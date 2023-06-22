@@ -1,12 +1,10 @@
 .div-body{
     background:#f8f9fa;
     margin: 0px;
-
 }
 
 .div-header{
-    padding: 9rem 9rem 7rem 9rem;  
-    background: #6c757d; 
+    padding: 9rem 9rem 7rem 9rem;   
 }  
 
 .div-tipo-medicacao{
@@ -65,12 +63,9 @@
     transition: all 0.4s ease-out;
 }
 
-.span-style{
+.span-style{    
+    border-radius: 14px;
+    padding: 2px 10px 3px 10px; 
     font-size: 14px;
-    color: #6c757d;
-    padding-left: 1rem;
+    color: white;
 }
-
-
-
-

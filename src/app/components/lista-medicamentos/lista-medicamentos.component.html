@@ -1,7 +1,7 @@
 <div class="div-body">
     <div class="div-header" id="header-lista">
         <div class="div-tipo-medicacao">
-            <span class="span-font-tipo">Pesquisar</span>
+            <span class="span-font-tipo">{{medicamento}}</span>
         </div>
         <div class="div-tipo-medicacao">
             <span class="span-font-tipo-2">
@@ -11,40 +11,25 @@
                 arrow_forward_ios
             </mat-icon>  
             <span class="span-font-tipo-2">
-                Pesquisar
+                {{medicamento}}
             </span>
         </div>      
     </div>
-    
-    <div>
-        <mat-form-field style="
-        border: 3px solid gray;
-        border-radius: 8px;
-        height: 3rem;">
-            <input  matInput  placeholder="Digite aqui sua pesquisa..." >
-            <mat-icon matSuffix>mode_edit</mat-icon>
-          </mat-form-field>
-    </div>
-   
     <div class="div-conteudo-medicacao">
         <div class="div-shadow">
-            <div>
-                <span>Todos os Medicamentos e Condutas (A - Z)</span>
-                <hr>
-            </div>
-            <div class="div-conteudo-medicacao-2 efeito-div" *ngFor="let item of allItens">
+            <div class="div-conteudo-medicacao-2 efeito-div" *ngFor="let medicacoes of listaMedicacoes">
                 <div class="div-conteudo-flex">
                     <mat-icon class="icon-style">
                         arrow_forward_ios
                     </mat-icon>  
                     <span >
-                        {{item.title}}
-                    </span>
-                    <span class="span-style">
-                        {{item.tag}}
+                        {{medicacoes.nome}}
                     </span>
                 </div>
-            </div>               
+                <div>
+                    <span class="span-style">{{medicacoes.aplicacao}}</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>

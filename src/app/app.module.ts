@@ -19,6 +19,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { AntibioticosComponent } from './pages/antibioticos/antibioticos.component';
+import { ListaMedicamentosComponent } from './components/lista-medicamentos/lista-medicamentos.component';
+import { AntiConvulsivantesComponent } from './pages/anti-convulsivantes/anti-convulsivantes.component';
+import { AntiInflamatorioComponent } from './pages/anti-inflamatorio/anti-inflamatorio.component';
+import {MatInputModule} from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +32,10 @@ import { AntibioticosComponent } from './pages/antibioticos/antibioticos.compone
     PesquisarComponent,
     NavbarComponent,
     FooterComponent,
-    AntibioticosComponent
+    AntibioticosComponent,
+    ListaMedicamentosComponent,
+    AntiConvulsivantesComponent,
+    AntiInflamatorioComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +47,8 @@ import { AntibioticosComponent } from './pages/antibioticos/antibioticos.compone
     MatExpansionModule,
     MatDividerModule,
     BrowserAnimationsModule,
-    MatListModule
+    MatListModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
