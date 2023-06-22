@@ -1,0 +1,24 @@
+<div class="div-body">
+    <div class="div-header">
+        <div class="div-tipo-medicacao">
+            <span class="span-font-tipo">Antibióticos</span>
+        </div>
+    </div>
+    <div class="div-conteudo-medicacao">
+        <div class="div-shadow">
+            <div class="div-conteudo-medicacao-2" *ngFor="let antibiotico of medicacoes">
+                <div class="div-conteudo-flex">
+                    <mat-icon class="icon-style">
+                        arrow_forward_ios
+                    </mat-icon>  
+                    <span cla>
+                        {{antibiotico.nome}}
+                    </span>
+                </div>
+                <div>
+                    <span>{{antibiotico.aplicacao}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@
   border: 1px solid #bbb;
 }
 
-.div-home{
+.div-body{
   background:#f8f9fa;
   margin: 0px;
   overflow-x: hidden;
@@ -66,6 +66,11 @@
  }
 }
 
+.div-flex-center{
+  display: flex;
+  justify-content: center;
+}
+
 .cards-button-1{
   background: #ffff;
   padding: 5rem 7rem 5rem 7rem;
@@ -108,5 +113,11 @@
 
 .card-border {
   border-bottom: 3px solid #3bb54a;
+}
+
+.icon-calculo{
+  height: 60px;
+  width: 60px;
+  font-size: 50px;
 }
   

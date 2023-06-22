@@ -17,7 +17,8 @@ export class NavbarComponent {
     if (window.pageYOffset > 90) {
       nav.style.background = '#fff';
     } else {
-      nav.style.background = 'transparent';
+      nav.style.background = '#fff';
+      // nav.style.background = 'transparent';
     }
   }
   

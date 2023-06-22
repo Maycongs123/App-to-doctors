@@ -1,5 +1,4 @@
-<div class="div-home">
-        <app-navbar></app-navbar>
+<div class="div-body">
         <div class="display-mobile">
             <div style="display: flex">
                 <div class="div-baby-doctor">
@@ -18,8 +17,6 @@
                 <span class="spam-flex-justify" style="font-size: 35px">Cálculo de Doses Pediátricos</span><br>
                 <span class="spam-flex-justify" style="font-size: 18px">As principais medicações usadas na pediatria,divididas por categorias, para auxiliá-lo nas suas condutas diárias.</span>
             </div>
-
-            
             <div class="div-calculo-dose-cards">
                 <div class="div-calculo-dose">
                     <div class="card card-border">
@@ -30,12 +27,12 @@
                             <p class="div-calculo-dose-cards">Configure a monetização</p>
                         </div>
                     </div>
-                    <div class="card card-border">
-                        <div>
-                            <h2 class="div-calculo-dose-cards">Monetização</h2>
+                    <div class="card card-border" routerLink="/antibiotico">
+                        <div class="div-flex-center">                            
+                            <mat-icon class="icon-calculo">coronavirus</mat-icon>
                         </div>
-                        <div>
-                            <p class="div-calculo-dose-cards">Configure a monetização</p>
+                        <div class="div-flex-center">
+                            <p class="div-calculo-dose-cards">ANTIBIÓTICO</p>
                         </div>
                     </div>
                     <div class="card card-border">
@@ -133,8 +130,8 @@
                 <button class="cards-button" mat-flat-button>Basic</button>
             </div>
         </div>
-        <app-footer></app-footer>
-</div>
+    </div>
+    
 
 
 
