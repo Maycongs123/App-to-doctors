@@ -1,0 +1,30 @@
+<div>
+    <section class="gray-container">
+        <h2>Pesquisar</h2>
+        <p>Página inicial > Pesquisar</p>
+    </section>
+
+    <section>
+        <div>
+            <input />
+        </div>
+
+        <div>
+            <h3>Todos os Medicamentos e Condutas (A - Z)</h3>
+            <mat-divider></mat-divider>
+
+            <div class="list-all-itens">
+                <mat-list *ngFor="let item of allItens">
+                    <mat-list-item>
+                        <span matListItemTitle> <span class="arrow-item"> > </span> {{ item.title }} </span>
+                        <span matListItemLine> {{ item.tag }} </span>
+                    </mat-list-item>
+                </mat-list>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
