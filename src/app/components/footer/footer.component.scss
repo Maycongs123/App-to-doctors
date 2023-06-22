@@ -1,0 +1,26 @@
+.div-logo{
+    width: 57%;
+}
+
+.img-logo{
+    height: 4rem;
+    width: 9rem;
+}
+
+.div-footer{
+    padding: 2rem 12rem 2rem 14rem;
+    display: grid;
+    grid-template-columns: 35rem 14rem 3rem;
+    @media (max-width: 990px){
+        display: none;
+     }
+}
+
+.div-grid{
+    display: grid;
+}
+
+.spam-flex-justify{
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,52 @@
+.div-logo{
+    width: 57%;
+}
+
+.img-logo{
+    height: 4rem;
+    width: 9rem;
+}
+
+.display-mobile-menu{
+    @media (max-width: 990px){
+        display: none;
+    }
+}
+
+.display-mobile-accordion{
+    display: none;
+    @media (max-width: 990px){
+        display: contents;
+    }
+}
+
+.toolbar-spacer {
+    flex : 1  1 auto;
+} 
+
+.span-toolbar{
+    color: #17a2b8;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+  
+.span-toolbar:hover {
+    color:#007bff;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 2);
+}
+
+.mat-toolbar{   
+    transition: all 0.3s ease-out;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    z-index: 9;
+    height: 6rem;
+    margin-top: -1rem;
+    @media (max-width: 990px){
+        display: block;
+        background:#fff;
+    }
+}
+  

@@ -1,0 +1,50 @@
+<mat-toolbar id="nav"> 
+        <mat-accordion class="display-mobile-accordion">
+            <mat-expansion-panel
+             hideToggle
+             style="background: #fff;"
+             (opened)="panelOpenState = true"
+             (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <div class="div-logo">
+                        <img class="img-logo" src="../../../assets/logo.png">
+                    </div>
+                </mat-panel-title>
+                <mat-panel-description style="display: contents;">
+                    <button mat-icon-button >
+                        <mat-icon>{{panelOpenState? "close" : "menu"}}</mat-icon>
+                    </button>
+                </mat-panel-description>
+              </mat-expansion-panel-header >
+                <div style="display: grid;">
+                    <button mat-button>
+                        <span class="span-toolbar">Página Inicial</span>
+                    </button>
+                    <button mat-button>
+                        <span class="span-toolbar">Sobre o Projeto</span>
+                    </button>
+                    <button mat-button>
+                        <span class="span-toolbar">Contato</span>
+                    </button>
+                </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+   
+
+        <div class="div-logo display-mobile-menu">
+            <img class="img-logo" src="../../../assets/logo.png">
+        </div>        
+        <span class="toolbar-spacer display-mobile-menu"></span>
+        <div class="display-mobile-menu">
+            <button mat-button>
+                <span class="span-toolbar">Página Inicial</span>
+            </button>
+            <button mat-button>
+                <span class="span-toolbar">Sobre o Projeto</span>
+            </button>
+            <button mat-button>
+                <span class="span-toolbar">Contato</span>
+            </button>
+        </div> 
+</mat-toolbar>

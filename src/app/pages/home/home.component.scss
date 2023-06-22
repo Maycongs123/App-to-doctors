@@ -1,0 +1,112 @@
+.demo-section {
+  border: 1px solid #bbb;
+}
+
+.div-home{
+  background:#f8f9fa;
+  margin: 0px;
+  overflow-x: hidden;
+}
+
+.cards-button{
+  background: #ffff;
+  padding: 5rem 6rem 5rem 6rem;
+  margin: 1rem;
+}
+
+.spam-flex-justify{
+  display: flex;
+  justify-content: center;
+  @media (max-width: 990px){
+    text-align: center;
+ }
+}
+
+.cards-button:hover {  
+  transition: all 0.4s;
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.1);
+  background: #fff;
+}
+
+.div-baby-doctor{
+  margin-top: 10rem;
+  padding: 1rem 5rem 0rem 7rem;
+}
+
+.display-mobile{
+  @media (max-width: 990px){
+     display: none;
+  }
+}
+
+.div-calculo-dose-2{
+  @media (max-width: 990px){
+    padding: 6rem 1rem 0rem 1rem;
+ }
+}
+
+.div-calculo-dose{
+  padding: 3rem 2rem 0rem 2rem;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  @media (max-width: 980px){
+    display: grid;
+    grid-template-columns: 34% 34%;
+    gap: 16px;
+    padding-left: 6rem;
+ }
+}
+
+.div-calculo-dose-cards{
+  @media (max-width: 990px){
+    display: flex;
+    justify-content: center;
+ }
+}
+
+.cards-button-1{
+  background: #ffff;
+  padding: 5rem 7rem 5rem 7rem;
+  margin: 1rem;
+  box-shadow: 0 6px darkgreen;
+}
+.image-container {
+  float: right;
+  border-radius: 61rem/52rem;
+  height: 47rem;
+  width: 64rem;
+  transform: rotate(-35deg) translateX(250px) translateY(0px)
+}
+
+.div-puericultura{
+  padding: 4rem;  
+  display: flex;
+  justify-content: center;
+  @media (max-width: 990px){
+    display: block;
+ }
+}
+
+.image-container-1 {
+  padding-top: 2rem; 
+  background-image: url("../../../assets/bebe.jpg"); 
+  background-size: cover; 
+  background-position: center center; 
+}
+
+.card {
+  cursor:pointer;
+  border-radius: 5px;
+  box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+  padding: 2rem;
+  margin: 1rem;
+  width: 65%;
+  transition: all 0.3s ease-out;
+}
+
+.card-border {
+  border-bottom: 3px solid #3bb54a;
+}
+  
