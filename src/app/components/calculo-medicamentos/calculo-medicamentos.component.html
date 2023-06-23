@@ -1,0 +1,120 @@
+<div class="div-body">
+    <div class="div-header" id="header-lista">
+        <div class="div-tipo-medicacao">
+            <span class="span-font-tipo">{{medicamento}}</span>
+        </div>
+        <div class="div-tipo-medicacao">
+            <span class="span-font-tipo-2">
+                Página Inicial
+            </span>
+            <mat-icon class="icon-style-2">
+                arrow_forward_ios
+            </mat-icon>  
+            <span class="span-font-tipo-2">
+                {{medicamento}}
+            </span>
+        </div>      
+    </div>
+   
+    <div class="div-conteudo-medicacao">
+       <div class="div-left">
+           <div class="div-shadow" >
+            <span class="span-style-2">
+                Apresentações Disponíveis
+            </span>
+            <div class="div-conteudo-medicacao-2" style="line-height: 25px;">
+                <div class="div-conteudo-flex">
+                    <mat-icon class="icon-style">
+                        arrow_forward_ios
+                    </mat-icon>  
+                </div>
+                   <div class="div-conteudo-grid" >
+                       <span style="margin-bottom: 2rem;">
+                        <strong>Amicacina 100mg/2mL</strong> - 3 mL (2 ampolas), em intervalos de 24/24 horas, por via IM ou IV.
+                       </span>
+                       
+                        <span >
+                            Administração IV: Rediluir em 100 mL de SF ou SG e infundir por 60 minutos.
+                        </span>
+                   </div>
+               </div>
+               <div class="div-conteudo-medicacao-2" style="line-height: 25px;">
+                <div class="div-conteudo-flex">
+                    <mat-icon class="icon-style">
+                        arrow_forward_ios
+                    </mat-icon>  
+                </div>
+                   <div class="div-conteudo-grid" >
+                       <span style="margin-bottom: 2rem;">
+                        <strong>Amicacina 100mg/2mL</strong> - 3 mL (2 ampolas), em intervalos de 24/24 horas, por via IM ou IV.
+                       </span>
+                       
+                        <span >
+                            Administração IV: Rediluir em 100 mL de SF ou SG e infundir por 60 minutos.
+                        </span>
+                   </div>
+               </div>
+                    
+           </div>
+       </div>
+       
+        <div class="div-right" >
+            <div class="div-shadow" style="margin-bottom: 2rem;">
+                <span class="span-style-2">
+                    Indicações Clínicas
+                </span>
+                <div 
+                class="div-conteudo-medicacao-2 teste" 
+                (click)="changeColor($index)"
+                *ngFor="let medicacoes of listaMedicacoes ; let $index = index"
+                [ngStyle]="{'background-color': selecionarIndex === $index ? selecionarCor : ''}"
+                >
+                    <div class="div-conteudo-flex">
+                        <mat-icon class="icon-style">
+                            arrow_forward_ios
+                        </mat-icon>  
+                        <span 
+                        class="efeito-span"
+                        [ngStyle]="{'margin-left': selecionarIndex === $index ? '1rem' : ''}">
+                        {{medicacoes.nome}}
+                        </span>
+                    </div>
+                    <div>
+                        <span class="span-style">{{medicacoes.aplicacao}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="div-shadow" >
+                <span class="span-style-2">
+                    Orientações
+                </span>
+                <div class="div-conteudo-medicacao-2" style="display: grid;">
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
+                        <mat-icon class="icon-style" style="padding-right: 0.5rem;">
+                            close
+                        </mat-icon>  
+                        <span >
+                            Contra-indicado em pacientes com hipersensibilidade.
+                        </span>
+                    </div>
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
+                        <mat-icon class="icon-style" style="padding-right: 0.5rem;">
+                            close
+                        </mat-icon>  
+                        <span >
+                            Contra-indicado em pacientes com hipersensibilidade.
+                        </span>
+                    </div>
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
+                        <mat-icon class="icon-style" style="padding-right: 0.5rem;">
+                            close
+                        </mat-icon>  
+                        <span >
+                            Contra-indicado em pacientes com hipersensibilidade.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -23,6 +23,8 @@ import { ListaMedicamentosComponent } from './components/lista-medicamentos/list
 import { AntiConvulsivantesComponent } from './pages/anti-convulsivantes/anti-convulsivantes.component';
 import { AntiInflamatorioComponent } from './pages/anti-inflamatorio/anti-inflamatorio.component';
 import {MatInputModule} from '@angular/material/input';
+import { CalculoMedicamentosComponent } from './components/calculo-medicamentos/calculo-medicamentos.component';
+import { AntibioticosCalculosComponent } from './pages/antibioticos-calculos/antibioticos-calculos.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import {MatInputModule} from '@angular/material/input';
     AntibioticosComponent,
     ListaMedicamentosComponent,
     AntiConvulsivantesComponent,
-    AntiInflamatorioComponent
+    AntiInflamatorioComponent,
+    CalculoMedicamentosComponent,
+    AntibioticosCalculosComponent
   ],
   imports: [
     BrowserModule,

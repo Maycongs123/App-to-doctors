@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
   }
 
   @HostListener('window:scroll', [])  
-  onWindowScroll() : void{
+  onWindowScroll(){
     const nav = this.elementRef.nativeElement.querySelector('#nav');
    
     if (this.rotaAtual === "" && window.scrollY > 90) {
