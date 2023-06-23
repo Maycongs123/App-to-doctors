@@ -1,4 +1,5 @@
-import { Component, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-medicamentos',
@@ -9,8 +10,13 @@ export class ListaMedicamentosComponent {
   @Input() medicamento: any;
   @Input() listaMedicacoes: any;
   @Input() cor: any;
+  @Output() dadosEnviados = new EventEmitter<string>();
 
-  constructor(private elementRef: ElementRef,  private renderer: Renderer2) {}
+  constructor(private elementRef: ElementRef,  private renderer: Renderer2,private router: Router) {}
+
+  getNome(getNome: any) { 
+    this.router.navigate(['/antibioticos-calculos', getNome]);
+  }
 
   @HostListener('window:click')
   @HostListener('window:load')

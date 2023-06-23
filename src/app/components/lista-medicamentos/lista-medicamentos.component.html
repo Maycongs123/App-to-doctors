@@ -17,7 +17,7 @@
     </div>
     <div class="div-conteudo-medicacao">
         <div class="div-shadow">
-            <div class="div-conteudo-medicacao-2 efeito-div" *ngFor="let medicacoes of listaMedicacoes">
+            <div class="div-conteudo-medicacao-2 efeito-div" *ngFor="let medicacoes of listaMedicacoes;" (click)="getNome(medicacoes.nome)" >
                 <div class="div-conteudo-flex">
                     <mat-icon class="icon-style">
                         arrow_forward_ios

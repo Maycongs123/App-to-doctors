@@ -6,40 +6,42 @@ import { Component, ElementRef, HostListener, Input, Renderer2 } from '@angular/
   styleUrls: ['./calculo-medicamentos.component.scss']
 })
 export class CalculoMedicamentosComponent {
-  @Input() medicamento: any = "teste"
-  // @Input() listaMedicacoes: any;
-  @Input() cor: any =" red"
+  @Input() medicamento: any;
+  @Input() listaMedicacoes: any;
+  @Input() cor: any;
+  @Input() dadosMedicacao: any;
   selecionarIndex: number = -1;
   selecionarCor: string = '';
 
+  
 
-  listaMedicacoes: any = [
-    {
-      id: 0,
-      nome: "Crianças",
-      aplicacao: "15 mg/kg/dose"
-    },
-    {
-      id: 1,
-      nome: "Neonatas (< 26 sem.)",
-      aplicacao: "7.5 mg/kg/dose"
-    },
-    {
-      id: 2,
-      nome: "Neonatas (27 a 34 sem.)",
-      aplicacao: "7.5 mg/kg/dose"
-    },
-    {
-      id: 3,
-      nome: "Neonatas (35 a 42 sem.)",
-      aplicacao: "10 mg/kg/dose/IV"
-    },
-    {
-      id: 4,
-      nome: "Neonatas (> 43 sem.)",
-      aplicacao: "10 mg/kg/dose/IV"
-    }
-    ]
+  // listaMedicacoes: any = [
+  //   {
+  //     id: 0,
+  //     nome: "Crianças",
+  //     aplicacao: "15 mg/kg/dose"
+  //   },
+  //   {
+  //     id: 1,
+  //     nome: "Neonatas (< 26 sem.)",
+  //     aplicacao: "7.5 mg/kg/dose"
+  //   },
+  //   {
+  //     id: 2,
+  //     nome: "Neonatas (27 a 34 sem.)",
+  //     aplicacao: "7.5 mg/kg/dose"
+  //   },
+  //   {
+  //     id: 3,
+  //     nome: "Neonatas (35 a 42 sem.)",
+  //     aplicacao: "10 mg/kg/dose/IV"
+  //   },
+  //   {
+  //     id: 4,
+  //     nome: "Neonatas (> 43 sem.)",
+  //     aplicacao: "10 mg/kg/dose/IV"
+  //   }
+  //   ]
 
   constructor(private elementRef: ElementRef,  private renderer: Renderer2) {}
 
@@ -61,7 +63,7 @@ export class CalculoMedicamentosComponent {
           this.selecionarCor = '';
       } else {          
           this.selecionarIndex = index;
-          this.selecionarCor = 'red';
+          this.selecionarCor = this.cor;
       }
   }
 }

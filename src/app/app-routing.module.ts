@@ -5,6 +5,7 @@ import { AntibioticosComponent } from './pages/antibioticos/antibioticos.compone
 import { AntiConvulsivantesComponent } from './pages/anti-convulsivantes/anti-convulsivantes.component';
 import { AntiInflamatorioComponent } from './pages/anti-inflamatorio/anti-inflamatorio.component';
 import { PesquisarComponent } from './pages/pesquisar/pesquisar.component';
+import { AntibioticosCalculosComponent } from './pages/antibioticos-calculos/antibioticos-calculos.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent}, 
@@ -12,6 +13,8 @@ const routes: Routes = [
   {path:"lista-antibiotico", component:AntibioticosComponent},
   {path:"lista-anti-convulsivantes", component:AntiConvulsivantesComponent},
   {path:"lista-anti-inflamatorio", component:AntiInflamatorioComponent},
+  {path:"antibioticos-calculos/:nomeItem", component:AntibioticosCalculosComponent},
+
 ];
 
 @NgModule({
