@@ -28,7 +28,7 @@
             <span class="span-style-2">
                 Apresentações Disponíveis
             </span>
-            <div class="div-conteudo-medicacao-2" style="line-height: 25px;" *ngFor="let dados of dadosMedicacao.indicacoesClinicas.apresentacaoDisponivel;">
+            <div class="div-conteudo-medicacao-3" style="line-height: 25px;" *ngFor="let dados of dadosMedicacao.apresentacaoDisponivel;">
                 <div class="div-conteudo-flex">
                     <mat-icon class="icon-style">
                         arrow_forward_ios
@@ -36,12 +36,11 @@
                 </div>
                    <div class="div-conteudo-grid" >
                        <span style="margin-bottom: 2rem;">
-                            {{dados.indicacoesClinicas.apresentacaoDisponivel}}
+                            {{dados.medicacao + valor + dados.modoUso }}
                        </span>
-                       
-                        <!-- <span >
-                            {{dados.indicacoesClinicas.apresentacaoDisponivel}}
-                        </span> -->
+                       <span style="margin-bottom: 2rem;">
+                            {{dados.administracao }}
+                        </span>
                    </div>
                </div>
            </div>
@@ -49,11 +48,22 @@
        
         <div class="div-right" >
             <div class="div-shadow" style="margin-bottom: 2rem;">
-                <span class="span-style-2">
-                    Indicações Clínicas
-                </span>
-                <div 
-                class="div-conteudo-medicacao-2 teste" 
+                <div>
+                    <span class="span-style-2">
+                        Cálculo Medicamento
+                    </span>
+                </div>
+                <div class="div-calculadora">
+                    <mat-form-field class="matFormCalculadora">
+                        <mat-label>Peso</mat-label>                          
+                        <input matInput placeholder="Ex: 10">
+                        <button  matSuffix mat-icon-button matTooltip="Accent" >
+                            <mat-icon class="matFormCalculadora">calculate</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <!-- <div 
+                class="div-conteudo-medicacao-2" 
                 (click)="changeColor($index)"
                 *ngFor="let dados of dadosMedicacao.indicacoesClinicas; let $index = index"
                 [ngStyle]="{'background-color': selecionarIndex === $index ? selecionarCor : ''}"
@@ -71,13 +81,13 @@
                     <div>
                         <span class="span-style">{{dados.dose}}</span>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="div-shadow" >
                 <span class="span-style-2">
                     Orientações
                 </span>
-                <div class="div-conteudo-medicacao-2" style="display: grid;" *ngFor="let dados of dadosMedicacao.orientacoes;">
+                <div class="div-conteudo-medicacao-3" style="display: grid;" *ngFor="let dados of dadosMedicacao.orientacoes;">
                     <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
                         <mat-icon class="icon-style" style="padding-right: 0.5rem; color: red;">
                             close

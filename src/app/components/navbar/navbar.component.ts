@@ -38,4 +38,5 @@ export class NavbarComponent implements OnInit {
     }
     nav.style.background = 'transparent';
   }
+
 }

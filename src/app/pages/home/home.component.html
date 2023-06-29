@@ -3,19 +3,18 @@
             <div style="display: flex">
                 <div class="div-baby-doctor">
                     <span style="font-size: 49px">Quando Eles Chegarem: Baby Doctor</span><br>
-                    <span style="font-size: 24px">Tudo que você precisa saber para manejar seus pacientes pediátricos, na palma de sua mão </span>
+                    <span style="font-size: 24px">Tudo que você precisa saber para manejar seus pacientes na palma de sua mão </span>
                 </div>
                 <span style="width: 60%">
-                    <img class="image-container" 
-                    src="../../../assets/bebe.jpg">
-    
+                    <img class="image-container" *ngIf="imagem" src="../../../assets/logomedicina.jpg">
+                    <img class="image-container" *ngIf="!imagem" src="../../../assets/bebe.jpg">
                 </span>
             </div>
         </div>
         <div style="padding-bottom: 4rem;">
             <div class="div-calculo-dose-2">
-                <span class="spam-flex-justify" style="font-size: 35px">Cálculo de Doses Pediátricos</span><br>
-                <span class="spam-flex-justify" style="font-size: 18px">As principais medicações usadas na pediatria,divididas por categorias, para auxiliá-lo nas suas condutas diárias.</span>
+                <span class="spam-flex-justify" style="font-size: 35px">Cálculo de Doses</span><br>
+                <span class="spam-flex-justify" style="font-size: 18px">As principais medicações divididas por categorias, para auxiliá-lo nas suas condutas diárias.</span>
             </div>
             <div class="div-calculo-dose-cards">
                 <div class="div-calculo-dose">
@@ -56,7 +55,7 @@
                             <mat-icon class="icon-calculo">coronavirus</mat-icon>
                         </div>
                         <div class="div-flex-center">
-                            <p class="div-calculo-dose-cards">ANTIBIÓTICO</p>
+                            <p class="div-calculo-dose-cards">ANTI-FÚNGICOS</p>
                         </div>
                     </div>
                     <div class="card card-border" routerLink="/lista-antibiotico">
@@ -64,7 +63,7 @@
                             <mat-icon class="icon-calculo">coronavirus</mat-icon>
                         </div>
                         <div class="div-flex-center">
-                            <p class="div-calculo-dose-cards">ANTIBIÓTICO</p>
+                            <p class="div-calculo-dose-cards">ANTI-HISTAMÍNICOS</p>
                         </div>
                     </div>
                     <div class="card card-border" routerLink="/lista-antibiotico">
@@ -72,7 +71,7 @@
                             <mat-icon class="icon-calculo">coronavirus</mat-icon>
                         </div>
                         <div class="div-flex-center">
-                            <p class="div-calculo-dose-cards">ANTIBIÓTICO</p>
+                            <p class="div-calculo-dose-cards">ANTI-PARASITÁRIOS</p>
                         </div>
                     </div>
                     <div class="card card-border" routerLink="/lista-antibiotico">
@@ -80,7 +79,7 @@
                             <mat-icon class="icon-calculo">coronavirus</mat-icon>
                         </div>
                         <div class="div-flex-center">
-                            <p class="div-calculo-dose-cards">ANTIBIÓTICO</p>
+                            <p class="div-calculo-dose-cards">BRONCODILATADORES</p>
                         </div>
                     </div>
                     <div class="card card-border" routerLink="/lista-antibiotico">
@@ -88,7 +87,7 @@
                             <mat-icon class="icon-calculo">coronavirus</mat-icon>
                         </div>
                         <div class="div-flex-center">
-                            <p class="div-calculo-dose-cards">ANTIBIÓTICO</p>
+                            <p class="div-calculo-dose-cards">CORTICOSTERÓIDES</p>
                         </div>
                     </div>
                     <div class="card card-border" routerLink="/lista-antibiotico">
@@ -96,7 +95,7 @@
                             <mat-icon class="icon-calculo">coronavirus</mat-icon>
                         </div>
                         <div class="div-flex-center">
-                            <p class="div-calculo-dose-cards">ANTIBIÓTICO</p>
+                            <p class="div-calculo-dose-cards">LAXATIVOS</p>
                         </div>
                     </div>
                     <div class="card card-border" routerLink="/lista-antibiotico">
@@ -104,7 +103,7 @@
                             <mat-icon class="icon-calculo">coronavirus</mat-icon>
                         </div>
                         <div class="div-flex-center">
-                            <p class="div-calculo-dose-cards">ANTIBIÓTICO</p>
+                            <p class="div-calculo-dose-cards">SINTOMÁTICOS</p>
                         </div>
                     </div>
                     <div class="card card-border" routerLink="/lista-antibiotico">
@@ -112,13 +111,13 @@
                             <mat-icon class="icon-calculo">coronavirus</mat-icon>
                         </div>
                         <div class="div-flex-center">
-                            <p class="div-calculo-dose-cards">ANTIBIÓTICO</p>
+                            <p class="div-calculo-dose-cards">HIDRATAÇÃO VENOSA</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="image-container-1">
+        <!-- <div class="image-container-1">
             <div>
                 <span class="spam-flex-justify" style="font-size: 35px">Puericultura</span><br>
                 <span class="spam-flex-justify" style="font-size: 18px">Destacamos os pontos fundamentais para auxiliá-lo no acompanhamento de seus pacientes, de maneira rápida e eficaz.</span>
@@ -129,7 +128,7 @@
                 <button class="cards-button" mat-flat-button>Basic</button>
                 <button class="cards-button" mat-flat-button>Basic</button>
             </div>
-        </div>
+        </div> -->
     </div>
     
 

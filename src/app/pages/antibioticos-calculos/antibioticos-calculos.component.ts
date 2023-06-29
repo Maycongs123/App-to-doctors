@@ -34,7 +34,6 @@ constructor(private route: ActivatedRoute){
   getMedicamentoByName(nomeAntibiotico: any){
     let dadosFiltrados;
     dadosFiltrados =  this.listaAntibiotico.find((medicacao: any) => medicacao.nome === nomeAntibiotico);
-    console.log(dadosFiltrados)
     return dadosFiltrados;
   }
 
@@ -46,74 +45,36 @@ listaAntibiotico: any = [
     indicacoesClinicas:[
       {
         indicacao: "Crianças",
-        dose: "15mg/kg/dia",
-        apresentacaoDisponivel:[
-          {
-            amicacina: "Amicacina 100mg/2mL - 3 mL (2 ampolas), em intervalos de 24/24 horas, por via IM ou IV." ,
-            admVI: "Rediluir em 100 mL de SF ou SG e infundir por 60 minutos."
-          },
-          {
-            amicacina: "Amicacina 500mg/2mL - 0.6 mL, em intervalos de 24/24 horas, por via IM ou IV." ,
-            admVI: "Rediluir em 100 mL de SF ou SG e infundir por 60 minutos."
-          }
-        ],
+        dose: "15mg/kg/dia"
       },
       {
         indicacao: "Neonatos(< 26 sem.)",
-        dose: "7.5mg/kg/dia",
-        apresentacaoDisponivel:[
-          {
-            amicacina: "Amicacina 100mg/2mL - 1.5 mL, em intervalos de 24/24 horas, por via IM ou IV." ,
-            admVI: "Rediluir em 100 mL de SF ou SG e infundir por 60 minutos."
-          },
-          {
-            amicacina: "Amicacina 500mg/2mL - 0.3 mL, em intervalos de 24/24 horas, por via IM ou IV." ,
-            admVI: "Rediluir em 100 mL de SF ou SG e infundir por 60 minutos."
-          }
-        ],
+        dose: "7.5mg/kg/dia"
       },
       {
         indicacao: "Neonatos(27 a 34 sem.)",
-        dose: "7.5mg/kg/dia",
-        apresentacaoDisponivel:[
-          {
-            amicacina: "Amicacina 100mg/2mL - 1,5 mL, em intervalos de 24/24 horas, por via IM ou IV." ,
-            admVI: "Rediluir em 100 mL de SF ou SG e infundir por 60 minutos."
-          },
-          {
-            amicacina: "Amicacina 500mg/2mL - 0.3 mL, em intervalos de 24/24 horas, por via IM ou IV." ,
-            admVI: "Rediluir em 100 mL de SF ou SG e infundir por 60 minutos."
-          }
-        ],
+        dose: "7.5mg/kg/dia"
       },
       {
         indicacao: "Neonatos(35 a 42 sem.)",
-        dose: "10mg/kg/dia",
-        apresentacaoDisponivel:[
-          {
-            amicacina: "Amicacina 100mg/2mL - 2 mL, em intervalos de 24/24 horas, por via IM ou IV." ,
-            admVI: "Rediluir em 100 mL de SF ou SG e infundir por 60 minutos."
-          },
-          {
-            amicacina: "Amicacina 500mg/2mL - 0.4 mL, em intervalos de 24/24 horas, por via IM ou IV." ,
-            admVI: "Rediluir em 100 mL de SF ou SG e infundir por 60 minutos."
-          }
-        ],
+        dose: "10mg/kg/dia"       
       },
       {
         indicacao: "Neonatos(> 43 sem.)",
-        dose: "10mg/kg/dia",
-        apresentacaoDisponivel:[
-          {
-            amicacina: "Amicacina 100mg/2mL - 2 mL, em intervalos de 24/24 horas, por via IM ou IV." ,
-            admVI: "Rediluir em 100 mL de SF ou SG e infundir por 60 minutos."
-          },
-          {
-            amicacina: "Amicacina 500mg/2mL - 0.4 mL, em intervalos de 24/24 horas, por via IM ou IV." ,
-            admVI: "Rediluir em 100 mL de SF ou SG e infundir por 60 minutos."
-          }
-        ],
+        dose: "10mg/kg/dia"       
       },
+    ],
+    apresentacaoDisponivel:[
+      {
+        medicacao: "Amicacina 100mg/2mL - " ,
+        modoUso: "mL, em intervalos de 24/24 horas, por via IM ou IV.",
+        administracao: "Rediluir em 100 mL de SF ou SG e infundir por 60 minutos."
+      },
+      {
+        medicacao: "Amicacina 500mg/2mL -" ,
+        modoUso: "mL, em intervalos de 24/24 horas, por via IM ou IV.",
+        administracao: "Rediluir em 100 mL de SF ou SG e infundir por 60 minutos."
+      }
     ],
     orientacoes:[
       {
@@ -135,64 +96,34 @@ listaAntibiotico: any = [
     indicacoesClinicas:[
       {
         indicacao: "Faringoamigdalite",
-        dose: "50mg/kg/dia",
-        apresentacaoDisponivel:[
-          {
-            amoxicilina: "Amoxicilina 250mg/5mL - 3.5 mL, em intervalos de 8/8 horas, durante 10 dias, por via oral." ,            
-          },
-          {
-            amoxicilina: "Amoxicilina 400mg/5mL - 3 mL, em intervalos de 12/12 horas, durante 10 dias, por via oral." ,
-          },
-          {
-            amoxicilina: "Amoxicilina 500mg - Esta apresentação não é uma boa indicação pelo sub-dose ou super-dose." ,
-          }
-        ],
+        dose: "50mg/kg/dia"        
       },
       {
         indicacao: "Otite Média Aguda",
-        dose: "90mg/kg/dia",
-        apresentacaoDisponivel:[
-          {
-            amoxicilina: "Amoxicilina 250mg/5mL - 10 mL, em intervalos de 8/8 horas, durante 10 dias, por via oral." ,            
-          },
-          {
-            amoxicilina: "Amoxicilina 400mg/5mL - 11 mL, em intervalos de 12/12 horas, durante 10 dias, por via oral." ,       
-          },
-          {
-            amoxicilina: "Amoxicilina 500mg - 1 comprimido, em intervalos de 8/8 horas, durante 10 dias, por via oral." ,       
-          }
-        ],
+        dose: "90mg/kg/dia"      
       },
       {
         indicacao: "Rinossinusite",
-        dose: "90mg/kg/dia",
-        apresentacaoDisponivel:[
-          {
-            amoxicilina: "Amoxicilina 250mg/5mL - 10 mL, em intervalos de 8/8 horas, durante 10 dias, por via oral." ,            
-          },
-          {
-            amoxicilina: "Amoxicilina 400mg/5mL - 11 mL, em intervalos de 12/12 horas, durante 10 dias, por via oral." ,       
-          },
-          {
-            amoxicilina: "Amoxicilina 500mg - 1 comprimido, em intervalos de 8/8 horas, durante 10 dias, por via oral." ,       
-          }
-        ],
+        dose: "90mg/kg/dia"     
       },
       {
         indicacao: "Pneumonia (PAC)",
-        dose: "90mg/kg/dia",
-        apresentacaoDisponivel:[
-          {
-            amoxicilina: "Amoxicilina 250mg/5mL - 10 mL, em intervalos de 8/8 horas, durante 10 dias, por via oral." ,            
-          },
-          {
-            amoxicilina: "Amoxicilina 400mg/5mL - 11 mL, em intervalos de 12/12 horas, durante 10 dias, por via oral." ,       
-          },
-          {
-            amoxicilina: "Amoxicilina 500mg - 1 comprimido, em intervalos de 8/8 horas, durante 10 dias, por via oral." ,       
-          }
-        ],
+        dose: "90mg/kg/dia"      
       }
+    ],
+    apresentacaoDisponivel:[
+      {
+        medicacao: "Amoxicilina 250mg/5mL -" ,
+        modoUso: "mL, em intervalos de 8/8 horas, durante 10 dias, por via oral.",
+      },
+      {
+        medicacao: "Amoxicilina 400mg/5mL - " ,
+        modoUso: "mL, em intervalos de 12/12 horas, durante 10 dias, por via oral.",
+      },
+      {
+        medicacao: "Amoxicilina 500mg - " ,
+        modoUso: "Esta apresentação não é uma boa indicação pelo sub-dose ou super-dose.",
+      },
     ],
     orientacoes:[
       {

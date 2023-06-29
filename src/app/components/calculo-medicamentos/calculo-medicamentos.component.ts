@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-calculo-medicamentos',
@@ -13,35 +14,9 @@ export class CalculoMedicamentosComponent {
   selecionarIndex: number = -1;
   selecionarCor: string = '';
 
-  
+  valor: number = 8;
+  peso: number = 10;
 
-  // listaMedicacoes: any = [
-  //   {
-  //     id: 0,
-  //     nome: "Crianças",
-  //     aplicacao: "15 mg/kg/dose"
-  //   },
-  //   {
-  //     id: 1,
-  //     nome: "Neonatas (< 26 sem.)",
-  //     aplicacao: "7.5 mg/kg/dose"
-  //   },
-  //   {
-  //     id: 2,
-  //     nome: "Neonatas (27 a 34 sem.)",
-  //     aplicacao: "7.5 mg/kg/dose"
-  //   },
-  //   {
-  //     id: 3,
-  //     nome: "Neonatas (35 a 42 sem.)",
-  //     aplicacao: "10 mg/kg/dose/IV"
-  //   },
-  //   {
-  //     id: 4,
-  //     nome: "Neonatas (> 43 sem.)",
-  //     aplicacao: "10 mg/kg/dose/IV"
-  //   }
-  //   ]
 
   constructor(private elementRef: ElementRef,  private renderer: Renderer2) {}
 
@@ -66,4 +41,12 @@ export class CalculoMedicamentosComponent {
           this.selecionarCor = this.cor;
       }
   }
+
+  calculoMedicamento(){
+    
+  }
+
+  emailFormControl = new FormControl('');
+
+
 }

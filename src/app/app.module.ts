@@ -25,6 +25,12 @@ import { AntiInflamatorioComponent } from './pages/anti-inflamatorio/anti-inflam
 import {MatInputModule} from '@angular/material/input';
 import { CalculoMedicamentosComponent } from './components/calculo-medicamentos/calculo-medicamentos.component';
 import { AntibioticosCalculosComponent } from './pages/antibioticos-calculos/antibioticos-calculos.component';
+import { PopupComponent } from './components/popup/popup.component';
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule} from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -39,7 +45,8 @@ import { AntibioticosCalculosComponent } from './pages/antibioticos-calculos/ant
     AntiConvulsivantesComponent,
     AntiInflamatorioComponent,
     CalculoMedicamentosComponent,
-    AntibioticosCalculosComponent
+    AntibioticosCalculosComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,
@@ -52,9 +59,15 @@ import { AntibioticosCalculosComponent } from './pages/antibioticos-calculos/ant
     MatDividerModule,
     BrowserAnimationsModule,
     MatListModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatSelectModule,
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
