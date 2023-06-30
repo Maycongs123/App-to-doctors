@@ -67,13 +67,11 @@ listaAntibiotico: any = [
     apresentacaoDisponivel:[
       {
         medicacao: "Amicacina 100mg/2mL - " ,
-        modoUso: "mL, em intervalos de 24/24 horas, por via IM ou IV.",
-        administracao: "Rediluir em 100 mL de SF ou SG e infundir por 60 minutos."
+        modoUso: "mL, em intervalos de 24/24 horas, por via IM ou IV. Rediluir em 100 mL de SF ou SG e infundir por 60 minutos.",        
       },
       {
         medicacao: "Amicacina 500mg/2mL -" ,
-        modoUso: "mL, em intervalos de 24/24 horas, por via IM ou IV.",
-        administracao: "Rediluir em 100 mL de SF ou SG e infundir por 60 minutos."
+        modoUso: "mL, em intervalos de 24/24 horas, por via IM ou IV. Rediluir em 100 mL de SF ou SG e infundir por 60 minutos.",        
       }
     ],
     orientacoes:[

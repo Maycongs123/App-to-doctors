@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-anti-inflamatorio',
-  templateUrl: './anti-inflamatorio.component.html',
-  styleUrls: ['./anti-inflamatorio.component.scss']
+  selector: 'app-corticosteroides',
+  templateUrl: './corticosteroides.component.html',
+  styleUrls: ['./corticosteroides.component.scss']
 })
-export class AntiInflamatorioComponent {
-  backgroundColor: any = '#dc3545'  
+export class CorticosteroidesComponent {
+  backgroundColor: any = '#007bff'  
 
-  antiInflamatorios:any = "Anti-Inflamatórios";
+  corticosteroides :any = "Corticosteroides";
     
   medicacoes: any = [
   {

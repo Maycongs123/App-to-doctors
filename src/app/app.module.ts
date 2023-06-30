@@ -31,6 +31,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { AntiFungicosComponent } from './pages/anti-fungicos/anti-fungicos.component';
+import { AntiHistaminicosComponent } from './pages/anti-histaminicos/anti-histaminicos.component';
+import { AntiParasitariosComponent } from './pages/anti-parasitarios/anti-parasitarios.component';
+import { BroncodilatadoresComponent } from './pages/broncodilatadores/broncodilatadores.component';
+import { CorticosteroidesComponent } from './pages/corticosteroides/corticosteroides.component';
+import { LaxativosComponent } from './pages/laxativos/laxativos.component';
+import { SintomaticosComponent } from './pages/sintomaticos/sintomaticos.component';
+import { HidratacaoVenosaComponent } from './pages/hidratacao-venosa/hidratacao-venosa.component';
 
 
 @NgModule({
@@ -46,7 +54,15 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     AntiInflamatorioComponent,
     CalculoMedicamentosComponent,
     AntibioticosCalculosComponent,
-    PopupComponent
+    PopupComponent,
+    AntiFungicosComponent,
+    AntiHistaminicosComponent,
+    AntiParasitariosComponent,
+    BroncodilatadoresComponent,
+    CorticosteroidesComponent,
+    LaxativosComponent,
+    SintomaticosComponent,
+    HidratacaoVenosaComponent
   ],
   imports: [
     BrowserModule,

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-anti-inflamatorio',
-  templateUrl: './anti-inflamatorio.component.html',
-  styleUrls: ['./anti-inflamatorio.component.scss']
+  selector: 'app-hidratacao-venosa',
+  templateUrl: './hidratacao-venosa.component.html',
+  styleUrls: ['./hidratacao-venosa.component.scss']
 })
-export class AntiInflamatorioComponent {
-  backgroundColor: any = '#dc3545'  
+export class HidratacaoVenosaComponent {
+  backgroundColor: any = '#ffc107'  
 
-  antiInflamatorios:any = "Anti-Inflamatórios";
+  hidratacaoVenosa :any = "Hidratação Venosa";
     
   medicacoes: any = [
   {

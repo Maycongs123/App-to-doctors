@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AntiConvulsivantesComponent {
   backgroundColor: any = '#6f42c1'  
 
-  antibiotico:any = "Anti-Convulsivantes";
+  antiConvulsivantes:any = "Anti-Convulsivantes";
     
   medicacoes: any = [
   {

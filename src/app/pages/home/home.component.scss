@@ -111,8 +111,41 @@
   transition: all 0.3s ease-out;
 }
 
-.card-border {
+.card-border-1 {
+  border-bottom: 3px solid #6c757d;
+}
+.card-border-2{
+  border-bottom: 3px solid #007bff;
+}
+.card-border-3 {
+  border-bottom: 3px solid #6f42c1;
+}
+.card-border-4 {
+  border-bottom: 3px solid #dc3545;
+}
+.card-border-5 {
+  border-bottom: 3px solid #ffc107;
+}
+.card-border-6 {
+  border-bottom: 3px solid #28a745;
+}
+.card-border-7 {
+  border-bottom: 3px solid #20c997;
+}
+.card-border-8 {
   border-bottom: 3px solid #3bb54a;
+}
+.card-border-9 {
+  border-bottom: 3px solid #007bff;
+}
+.card-border-10 {
+  border-bottom: 3px solid #dc3545;
+}
+.card-border-11 {
+  border-bottom: 3px solid #fd7e14;
+}
+.card-border-12 {
+  border-bottom: 3px solid #ffc107;
 }
 
 .icon-calculo{
@@ -130,6 +163,9 @@
     height: 20rem;    
     left: 30%;
     top: 20%;
+    background-color: rgba(1, 1, 1, 0.1);
+    backdrop-filter: blur(5px); 
+    
     @media (max-width: 990px){
       position: fixed;
       display: block;
@@ -138,8 +174,7 @@
       height: 40rem;
       left: 0%;  
       top: 10%;
-      padding: 1rem 1rem 7rem 1rem
-  
+      padding: 1rem 1rem 7rem 1rem;  
    }
   }
 }
