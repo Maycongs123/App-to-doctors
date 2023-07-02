@@ -1,6 +1,8 @@
 import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { PopupCadastroMedicamentoComponent } from '../popup-cadastro-medicamento/popup-cadastro-medicamento.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +10,14 @@ import { filter } from 'rxjs';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  constructor(private elementRef: ElementRef,private router: Router, private activatedRoute: ActivatedRoute) {}
+
+
+  constructor(
+    private elementRef: ElementRef,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    public dialog: MatDialog,
+    private route: ActivatedRoute) {}
 
   rotaAtual = ""
 
@@ -38,4 +47,20 @@ export class NavbarComponent implements OnInit {
     }
     nav.style.background = 'transparent';
   }
+
+  home(): void{
+    this.router.navigate(['/'], { relativeTo: this.route });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(PopupCadastroMedicamentoComponent, {  
+      panelClass: 'custom-dialog-container-cadastro'  
+    });
+
+    dialogRef.afterClosed().subscribe(result => {   
+        
+   
+    });
+  } 
+
 }

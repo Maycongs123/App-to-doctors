@@ -28,7 +28,10 @@
 
 .div-conteudo-medicacao{
     padding: 4rem 6rem 5rem 6rem;
-    background: #fff
+    background: #fff;
+    @media(max-width: 990px){
+        padding: 3rem 1rem 2rem 1rem;     
+    }
 }
 
 .div-shadow{
@@ -70,6 +73,18 @@
     color: #6c757d;
     padding-left: 1rem;
 }
+
+.input-filtro{
+    padding: 2rem;  
+}
+
+.width-input{
+    width: 40%;
+    @media(max-width: 990px){
+        width: 100%;
+    }
+}
+
 
 
 

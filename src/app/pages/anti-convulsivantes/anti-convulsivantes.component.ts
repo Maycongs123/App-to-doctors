@@ -8,33 +8,33 @@ import { Component } from '@angular/core';
 export class AntiConvulsivantesComponent {
   backgroundColor: any = '#6f42c1'  
 
-  antibiotico:any = "Anti-Convulsivantes";
-    
-  medicacoes: any = [
-  {
-    tipo: "Anti-Convulsivantes",
-    nome: "Carbamazepina",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Convulsivantes",
-    nome: "Diazepam",
-    aplicacao: "VO/IM/IV"
-  },
-  {
-    tipo: "Anti-Convulsivantes",
-    nome: "Fenítoina",
-    aplicacao: "VO/IV"
-  },
-  {
-    tipo: "Anti-Convulsivantes",
-    nome: "Fenobarbital",
-    aplicacao: "VO/IV"
-  },
-  {
-    tipo: "Anti-Convulsivantes",
-    nome: "Valproato de Sódio",
-    aplicacao: "VO"
-  }
+  antiConvulsivantes:any = "Anti-Convulsivantes";
+ 
+    medicacoes: any = [
+      {
+        tipo: "Anti-Convulsivantes",
+        nome: "Amicacina",
+        aplicacao: "IM/V"
+      },
+      {
+        tipo: "Anti-Convulsivantes",
+        nome: "Amoxicilina",
+        aplicacao: "VO"
+      },
+      {
+        tipo: "Anti-Convulsivantes",
+        nome: "Amoxicilina + Clavulanato",
+        aplicacao: "VO"
+      },
+      {
+        tipo: "Anti-Convulsivantes",
+        nome: "Ampicilina",
+        aplicacao: "IM/IV"
+      },
+      {
+        tipo: "Anti-Convulsivantes",
+        nome: "Azitromicina",
+        aplicacao: "VO"
+      }
   ]
 }

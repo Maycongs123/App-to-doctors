@@ -7,9 +7,9 @@
              (closed)="panelOpenState = false">
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                    <div class="div-logo">
+                    <!-- <div class="div-logo">
                         <img class="img-logo" src="../../../assets/logo.png">
-                    </div>
+                    </div> -->
                 </mat-panel-title>
                 <mat-panel-description style="display: contents;">
                     <button mat-icon-button >
@@ -18,33 +18,33 @@
                 </mat-panel-description>
               </mat-expansion-panel-header >
                 <div style="display: grid;">
-                    <button mat-button >
+                    <button mat-button (click)="home()">
                         <span class="span-toolbar">Página Inicial</span>
                     </button>
                     <button mat-button>
                         <span class="span-toolbar">Sobre o Projeto</span>
                     </button>   
-                    <button mat-button>
-                        <span class="span-toolbar">Contato</span>
+                    <button mat-button (click)="openDialog()">
+                        <span class="span-toolbar">Cadastro de Medicamentos</span>
                     </button>
                 </div>
             </mat-expansion-panel>
           </mat-accordion>
    
 
-        <div class="div-logo display-mobile-menu">
+        <!-- <div class="div-logo display-mobile-menu">
             <img class="img-logo" src="../../../assets/logo.png">
-        </div>        
+        </div>         -->
         <span class="toolbar-spacer display-mobile-menu"></span>
         <div class="display-mobile-menu">
-            <button mat-button>
+            <button mat-button (click)="home()">
                 <span class="span-toolbar">Página Inicial</span>
             </button>
             <button mat-button>
                 <span class="span-toolbar">Sobre o Projeto</span>
             </button>
-            <button mat-button>
-                <span class="span-toolbar">Contato</span>
+            <button mat-button (click)="openDialog()">
+                <span class="span-toolbar">Cadastro de Medicamentos</span>
             </button>
         </div> 
 </mat-toolbar>

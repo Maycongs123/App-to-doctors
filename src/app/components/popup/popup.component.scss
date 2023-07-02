@@ -1,0 +1,29 @@
+h1{
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    border: 1px solid ;
+}
+
+.div-modal{    
+    display: flex;
+    justify-content: center;
+    @media (max-width: 990px){
+      display: grid;
+   }
+  }
+
+  .cards-button{
+    background: #ffff;
+    padding: 5rem 6rem 5rem 6rem;
+    margin: 1rem;
+    font-size: 25px;
+  }  
+  .cards-button:hover{
+    background:#007bff;  
+    color: #ffff;
+    transition: all 0.4s ease-out; 
+  }  

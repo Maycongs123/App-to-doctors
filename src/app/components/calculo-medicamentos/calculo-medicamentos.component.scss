@@ -52,8 +52,7 @@
 }
 
 .div-conteudo-medicacao-3{
-    display: grid;
-       cursor:pointer;
+    display: flex;   
     padding: 1rem 2rem 1rem 2rem;
     // border-bottom: 1px dashed lightgray;
 }
@@ -116,5 +115,20 @@
     font-size: 26px;
     padding: 1rem;
 }
+
+.div-calculadora{
+    padding: 2rem;
+}
+
+.matFormCalculadora{
+    width: 100%;
+}
+
+.matFormCalculadora{
+    font-size: 20px;
+    color:#007bff ;
+}
+
+
 
 

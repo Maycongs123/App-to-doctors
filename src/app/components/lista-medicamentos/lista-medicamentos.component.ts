@@ -14,8 +14,41 @@ export class ListaMedicamentosComponent {
 
   constructor(private elementRef: ElementRef,  private renderer: Renderer2,private router: Router) {}
 
-  getNome(getNome: any) { 
-    this.router.navigate(['/antibioticos-calculos', getNome]);
+  getNome(getDados: any) {     
+    debugger
+    if(getDados.tipo === "Antibiótico"){
+      this.router.navigate(['/antibioticos-calculos', getDados.nome]);
+    }
+    if(getDados.tipo === "Anti-Convulsivantes"){
+      this.router.navigate(['/anti-convulsivantes-calculos', getDados.nome]);
+    }
+    if(getDados.tipo === "Anti-Inflamatórios"){
+      this.router.navigate(['/anti-inflamatorio-calculos', getDados.nome]);
+    }
+    if(getDados.tipo === "Anti-Fúngicos"){
+      this.router.navigate(['/anti-fungicos-calculos', getDados.nome]);
+    }
+    if(getDados.tipo === "Anti-Histaminicos"){
+      this.router.navigate(['/anti-histamicos-calculos', getDados.nome]);
+    }
+    if(getDados.tipo === "Anti-Parasitarios"){
+      this.router.navigate(['/anti-parasitario-calculos', getDados.nome]);
+    }
+    if(getDados.tipo === "Broncodilatadores"){
+      this.router.navigate(['/broncodilatadores-calculos', getDados.nome]);
+    }
+    if(getDados.tipo === "Corticosteroides"){
+      this.router.navigate(['/corticosteroides-calculos', getDados.nome]);
+    }
+    if(getDados.tipo === "Laxativos"){
+      this.router.navigate(['/laxativos-calculos', getDados.nome]);
+    }
+    if(getDados.tipo === "Sintomaticos"){
+      this.router.navigate(['/sintomaticos-calculos', getDados.nome]);
+    }
+    if(getDados.tipo === "Hidratação Venosa"){
+      this.router.navigate(['/hidratacao-venosa-calculos', getDados.nome]);
+    }   
   }
 
   @HostListener('window:click')
@@ -29,4 +62,8 @@ export class ListaMedicamentosComponent {
     this.elementRef.nativeElement.querySelector('.div-header').style.background = this.cor;
     this.elementRef.nativeElement.querySelector('.div-header').style.transition = 'all 0.4s ease-out';
   }    
+
+  back(){
+    history.back()
+  }
 }

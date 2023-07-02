@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
 @import 'app/pages/pesquisar/pesquisar.component.scss';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 * {
   font-family: "Quicksand", sans-serif;
@@ -7,6 +8,7 @@
   -moz-appearance: none;
   appearance: none;
 }
+
 
 
 
