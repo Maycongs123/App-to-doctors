@@ -11,30 +11,30 @@ export class CorticosteroidesComponent {
   corticosteroides :any = "Corticosteroides";
     
   medicacoes: any = [
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Ácido Acetilsalicílico",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Cetoprofeno",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Diclofenaco",
-    aplicacao: "VO/IM"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Ibuprofeno",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Naproxeno",
-    aplicacao: "VO"
-  }
+    {
+      tipo: "Corticosteroides",
+      nome: "Amicacina",
+      aplicacao: "IM/V"
+    },
+    {
+      tipo: "Corticosteroides",
+      nome: "Amoxicilina",
+      aplicacao: "VO"
+    },
+    {
+      tipo: "Corticosteroides",
+      nome: "Amoxicilina + Clavulanato",
+      aplicacao: "VO"
+    },
+    {
+      tipo: "Corticosteroides",
+      nome: "Ampicilina",
+      aplicacao: "IM/IV"
+    },
+    {
+      tipo: "Corticosteroides",
+      nome: "Azitromicina",
+      aplicacao: "VO"
+    }
   ]
 }

@@ -42,8 +42,8 @@ export class CalculoMedicamentosComponent {
       }
   }
 
-  calculoMedicamento(){
-    
+  back(){
+    history.back()
   }
 
   emailFormControl = new FormControl('');

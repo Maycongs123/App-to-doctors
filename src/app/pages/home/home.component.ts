@@ -21,8 +21,8 @@ export class HomeComponent implements OnInit{
    this.router.navigate(['/lista-antibiotico'], { relativeTo: this.route });
   }
 
-  ngOnInit(){
-    this.openDialog();
+  ngOnInit(){  
+    this.openDialog();  
     // const popupShown = localStorage.getItem('popupShown');
     // if (!popupShown) {
       
@@ -45,8 +45,5 @@ export class HomeComponent implements OnInit{
       this.imagem = false;
      }
     });
-  }
-
-
- 
+  } 
 }

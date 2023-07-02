@@ -6,35 +6,35 @@ import { Component } from '@angular/core';
   styleUrls: ['./broncodilatadores.component.scss']
 })
 export class BroncodilatadoresComponent {
-  backgroundColor: any = '#dc3545'  
+  backgroundColor: any = '#6f42c1'  
 
   broncodilatadores :any = "Broncodilatadores";
     
   medicacoes: any = [
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Ácido Acetilsalicílico",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Cetoprofeno",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Diclofenaco",
-    aplicacao: "VO/IM"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Ibuprofeno",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Naproxeno",
-    aplicacao: "VO"
-  }
+    {
+      tipo: "Broncodilatadores",
+      nome: "Amicacina",
+      aplicacao: "IM/V"
+    },
+    {
+      tipo: "Broncodilatadores",
+      nome: "Amoxicilina",
+      aplicacao: "VO"
+    },
+    {
+      tipo: "Broncodilatadores",
+      nome: "Amoxicilina + Clavulanato",
+      aplicacao: "VO"
+    },
+    {
+      tipo: "Broncodilatadores",
+      nome: "Ampicilina",
+      aplicacao: "IM/IV"
+    },
+    {
+      tipo: "Broncodilatadores",
+      nome: "Azitromicina",
+      aplicacao: "VO"
+    }
   ]
 }

@@ -39,6 +39,19 @@ import { CorticosteroidesComponent } from './pages/corticosteroides/corticostero
 import { LaxativosComponent } from './pages/laxativos/laxativos.component';
 import { SintomaticosComponent } from './pages/sintomaticos/sintomaticos.component';
 import { HidratacaoVenosaComponent } from './pages/hidratacao-venosa/hidratacao-venosa.component';
+import { PopupCadastroMedicamentoComponent } from './components/popup-cadastro-medicamento/popup-cadastro-medicamento.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { AntiConvulsivantesCalculosComponent } from './pages/anti-convulsivantes-calculos/anti-convulsivantes-calculos.component';
+import { AntiInflamatorioCalculosComponent } from './pages/anti-inflamatorio-calculos/anti-inflamatorio-calculos.component';
+import { AntiFungicosCalculosComponent } from './pages/anti-fungicos-calculos/anti-fungicos-calculos.component';
+import { AntiHistaminicosCalculosComponent } from './pages/anti-histaminicos-calculos/anti-histaminicos-calculos.component';
+import { AntiParasitariosCalculosComponent } from './pages/anti-parasitarios-calculos/anti-parasitarios-calculos.component';
+import { BroncodilatadoresCalculosComponent } from './pages/broncodilatadores-calculos/broncodilatadores-calculos.component';
+import { CorticosteroidesCalculosComponent } from './pages/corticosteroides-calculos/corticosteroides-calculos.component';
+import { LaxativosCalculosComponent } from './pages/laxativos-calculos/laxativos-calculos.component';
+import { SintomaticosCalculosComponent } from './pages/sintomaticos-calculos/sintomaticos-calculos.component';
+import { HidratacaoVenosaCalculosComponent } from './pages/hidratacao-venosa-calculos/hidratacao-venosa-calculos.component';
 
 
 @NgModule({
@@ -62,7 +75,19 @@ import { HidratacaoVenosaComponent } from './pages/hidratacao-venosa/hidratacao-
     CorticosteroidesComponent,
     LaxativosComponent,
     SintomaticosComponent,
-    HidratacaoVenosaComponent
+    HidratacaoVenosaComponent,
+    PopupCadastroMedicamentoComponent,
+    AntiConvulsivantesCalculosComponent,
+    AntiInflamatorioCalculosComponent,
+    AntiFungicosCalculosComponent,
+    AntiHistaminicosCalculosComponent,
+    AntiParasitariosCalculosComponent,
+    BroncodilatadoresCalculosComponent,
+    CorticosteroidesCalculosComponent,
+    LaxativosCalculosComponent,
+    SintomaticosCalculosComponent,
+    HidratacaoVenosaCalculosComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -80,6 +105,8 @@ import { HidratacaoVenosaComponent } from './pages/hidratacao-venosa/hidratacao-
     MatFormFieldModule,
     FormsModule,
     MatSelectModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}

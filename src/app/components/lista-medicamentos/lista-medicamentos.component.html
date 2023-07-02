@@ -4,7 +4,7 @@
             <span class="span-font-tipo">{{medicamento}}</span>
         </div>
         <div class="div-tipo-medicacao">
-            <span class="span-font-tipo-2">
+            <span class="span-font-tipo-2" style="cursor:pointer" (click)="back()">
                 Página Inicial
             </span>
             <mat-icon class="icon-style-2">
@@ -17,7 +17,7 @@
     </div>
     <div class="div-conteudo-medicacao">
         <div class="div-shadow">
-            <div class="div-conteudo-medicacao-2 efeito-div" *ngFor="let medicacoes of listaMedicacoes;" (click)="getNome(medicacoes.nome)" >
+            <div class="div-conteudo-medicacao-2 efeito-div" *ngFor="let medicacoes of listaMedicacoes;" (click)="getNome(medicacoes)" >
                 <div class="div-conteudo-flex">
                     <mat-icon class="icon-style">
                         arrow_forward_ios

@@ -11,30 +11,30 @@ export class AntiHistaminicosComponent {
   antiHistaminicos:any = "Anti-Histaminicos";
     
   medicacoes: any = [
-  {
-    tipo: "Antibiótico",
-    nome: "Amicacina",
-    aplicacao: "IM/V"
-  },
-  {
-    tipo: "Antibiótico",
-    nome: "Amoxicilina",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Antibiótico",
-    nome: "Amoxicilina + Clavulanato",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Antibiótico",
-    nome: "Ampicilina",
-    aplicacao: "IM/IV"
-  },
-  {
-    tipo: "Antibiótico",
-    nome: "Azitromicina",
-    aplicacao: "VO"
-  }
+    {
+      tipo: "Anti-Histaminicos",
+      nome: "Amicacina",
+      aplicacao: "IM/V"
+    },
+    {
+      tipo: "Anti-Histaminicos",
+      nome: "Amoxicilina",
+      aplicacao: "VO"
+    },
+    {
+      tipo: "Anti-Histaminicos",
+      nome: "Amoxicilina + Clavulanato",
+      aplicacao: "VO"
+    },
+    {
+      tipo: "Anti-Histaminicos",
+      nome: "Ampicilina",
+      aplicacao: "IM/IV"
+    },
+    {
+      tipo: "Anti-Histaminicos",
+      nome: "Azitromicina",
+      aplicacao: "VO"
+    }
   ]
 }

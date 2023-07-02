@@ -41,6 +41,7 @@ listaAntibiotico: any = [
   {
     id: 1,
     nome: "Amicacina",
+    tipo: "Antibiótico",
     aplicacao: "IM/V",    
     indicacoesClinicas:[
       {
@@ -90,6 +91,7 @@ listaAntibiotico: any = [
   {
     id: 2,
     nome: "Amoxicilina",
+    tipo: "Antibiótico",
     aplicacao: "VO",
     indicacoesClinicas:[
       {
@@ -141,24 +143,4 @@ listaAntibiotico: any = [
   ]
 
 
-  // {
-  //   id: 2,
-  //   nome: "Amoxicilina",
-  //   aplicacao: "VO"
-  // },
-  // {
-  //   id: 3,
-  //   nome: "Amoxicilina + Clavulanato",
-  //   aplicacao: "VO"
-  // },
-  // {
-  //   id: 4,
-  //   nome: "Ampicilina",
-  //   aplicacao: "IM/IV"
-  // },
-  // {
-  //   id: 5,
-  //   nome: "Azitromicina",
-  //   aplicacao: "VO"
-  // }
 }

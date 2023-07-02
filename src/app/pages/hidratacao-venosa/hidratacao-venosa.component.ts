@@ -11,30 +11,30 @@ export class HidratacaoVenosaComponent {
   hidratacaoVenosa :any = "Hidratação Venosa";
     
   medicacoes: any = [
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Ácido Acetilsalicílico",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Cetoprofeno",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Diclofenaco",
-    aplicacao: "VO/IM"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Ibuprofeno",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Naproxeno",
-    aplicacao: "VO"
-  }
+    {
+      tipo: "Hidratação Venosa",
+      nome: "Amicacina",
+      aplicacao: "IM/V"
+    },
+    {
+      tipo: "Hidratação Venosa",
+      nome: "Amoxicilina",
+      aplicacao: "VO"
+    },
+    {
+      tipo: "Hidratação Venosa",
+      nome: "Amoxicilina + Clavulanato",
+      aplicacao: "VO"
+    },
+    {
+      tipo: "Hidratação Venosa",
+      nome: "Ampicilina",
+      aplicacao: "IM/IV"
+    },
+    {
+      tipo: "Hidratação Venosa",
+      nome: "Azitromicina",
+      aplicacao: "VO"
+    }
   ]
 }

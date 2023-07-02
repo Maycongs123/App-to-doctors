@@ -11,30 +11,30 @@ export class SintomaticosComponent {
   sintomaticos :any = "Sintomaticos";
     
   medicacoes: any = [
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Ácido Acetilsalicílico",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Cetoprofeno",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Diclofenaco",
-    aplicacao: "VO/IM"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Ibuprofeno",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Naproxeno",
-    aplicacao: "VO"
-  }
+    {
+      tipo: "Sintomaticos",
+      nome: "Amicacina",
+      aplicacao: "IM/V"
+    },
+    {
+      tipo: "Sintomaticos",
+      nome: "Amoxicilina",
+      aplicacao: "VO"
+    },
+    {
+      tipo: "Sintomaticos",
+      nome: "Amoxicilina + Clavulanato",
+      aplicacao: "VO"
+    },
+    {
+      tipo: "Sintomaticos",
+      nome: "Ampicilina",
+      aplicacao: "IM/IV"
+    },
+    {
+      tipo: "Sintomaticos",
+      nome: "Azitromicina",
+      aplicacao: "VO"
+    }
   ]
 }

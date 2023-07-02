@@ -11,30 +11,30 @@ export class AntiInflamatorioComponent {
   antiInflamatorios:any = "Anti-Inflamatórios";
     
   medicacoes: any = [
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Ácido Acetilsalicílico",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Cetoprofeno",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Diclofenaco",
-    aplicacao: "VO/IM"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Ibuprofeno",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Anti-Inflamatórios",
-    nome: "Naproxeno",
-    aplicacao: "VO"
-  }
+    {
+      tipo: "Anti-Inflamatórios",
+      nome: "Amicacina",
+      aplicacao: "IM/V"
+    },
+    {
+      tipo: "Anti-Inflamatórios",
+      nome: "Amoxicilina",
+      aplicacao: "VO"
+    },
+    {
+      tipo: "Anti-Inflamatórios",
+      nome: "Amoxicilina + Clavulanato",
+      aplicacao: "VO"
+    },
+    {
+      tipo: "Anti-Inflamatórios",
+      nome: "Ampicilina",
+      aplicacao: "IM/IV"
+    },
+    {
+      tipo: "Anti-Inflamatórios",
+      nome: "Azitromicina",
+      aplicacao: "VO"
+    }
   ]
 }

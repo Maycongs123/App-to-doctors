@@ -11,30 +11,30 @@ export class AntiFungicosComponent {
   antiFungicos:any = "Anti-Fúngicos";
     
   medicacoes: any = [
-  {
-    tipo: "Antibiótico",
-    nome: "Amicacina",
-    aplicacao: "IM/V"
-  },
-  {
-    tipo: "Antibiótico",
-    nome: "Amoxicilina",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Antibiótico",
-    nome: "Amoxicilina + Clavulanato",
-    aplicacao: "VO"
-  },
-  {
-    tipo: "Antibiótico",
-    nome: "Ampicilina",
-    aplicacao: "IM/IV"
-  },
-  {
-    tipo: "Antibiótico",
-    nome: "Azitromicina",
-    aplicacao: "VO"
-  }
+    {
+      tipo: "Anti-Fúngicos",
+      nome: "Amicacina",
+      aplicacao: "IM/V"
+    },
+    {
+      tipo: "Anti-Fúngicos",
+      nome: "Amoxicilina",
+      aplicacao: "VO"
+    },
+    {
+      tipo: "Anti-Fúngicos",
+      nome: "Amoxicilina + Clavulanato",
+      aplicacao: "VO"
+    },
+    {
+      tipo: "Anti-Fúngicos",
+      nome: "Ampicilina",
+      aplicacao: "IM/IV"
+    },
+    {
+      tipo: "Anti-Fúngicos",
+      nome: "Azitromicina",
+      aplicacao: "VO"
+    }
   ]
 }
