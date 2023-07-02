@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./antibioticos.component.scss']
 })
 export class AntibioticosComponent {
+backgroundColor: any = '#007bff'  
+
+antibiotico:any = "Antibiótico";
+  
 medicacoes: any = [
 {
   tipo: "Antibiótico",
@@ -33,6 +37,5 @@ medicacoes: any = [
   aplicacao: "VO"
 }
 ]
-
 
 }

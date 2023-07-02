@@ -1,0 +1,71 @@
+.div-body{
+    background:#f8f9fa;
+    margin: 0px;
+}
+
+.div-header{
+    padding: 9rem 9rem 7rem 9rem;   
+}  
+
+.div-tipo-medicacao{
+    display: flex;
+    justify-content: center;
+}
+
+.span-font-tipo{
+    color: #fff;
+    font-size: 39px;
+    letter-spacing: 2px;
+}
+
+.span-font-tipo-2{
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.div-conteudo-medicacao{
+    padding: 4rem 6rem 5rem 6rem;
+    background: #fff
+}
+
+.div-shadow{
+    box-shadow: -3px 3px 12px 3px rgba(50, 50, 50, 0.22);
+}
+
+.div-conteudo-medicacao-2{
+    display: flex;
+    justify-content: space-between;
+    cursor:pointer;
+    padding: 1rem 2rem 1rem 2rem;
+    border-bottom: 1px dashed lightgray;
+}
+
+.div-conteudo-flex{
+    display: flex;
+}
+
+.icon-style{
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.icon-style-2{
+    font-size: 14px;
+    font-weight: bolder;
+    color: #fff;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.efeito-div:hover{
+    margin-left: 1rem;
+    transition: all 0.4s ease-out;
+}
+
+.span-style{    
+    border-radius: 14px;
+    padding: 2px 10px 3px 10px; 
+    font-size: 14px;
+    color: white;
+}

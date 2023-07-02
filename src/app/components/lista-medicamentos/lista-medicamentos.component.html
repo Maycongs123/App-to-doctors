@@ -1,0 +1,35 @@
+<div class="div-body">
+    <div class="div-header" id="header-lista">
+        <div class="div-tipo-medicacao">
+            <span class="span-font-tipo">{{medicamento}}</span>
+        </div>
+        <div class="div-tipo-medicacao">
+            <span class="span-font-tipo-2">
+                Página Inicial
+            </span>
+            <mat-icon class="icon-style-2">
+                arrow_forward_ios
+            </mat-icon>  
+            <span class="span-font-tipo-2">
+                {{medicamento}}
+            </span>
+        </div>      
+    </div>
+    <div class="div-conteudo-medicacao">
+        <div class="div-shadow">
+            <div class="div-conteudo-medicacao-2 efeito-div" *ngFor="let medicacoes of listaMedicacoes;" (click)="getNome(medicacoes.nome)" >
+                <div class="div-conteudo-flex">
+                    <mat-icon class="icon-style">
+                        arrow_forward_ios
+                    </mat-icon>  
+                    <span >
+                        {{medicacoes.nome}}
+                    </span>
+                </div>
+                <div>
+                    <span class="span-style">{{medicacoes.aplicacao}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

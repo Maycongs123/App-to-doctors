@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/98c0e1c9-50ab-4157-b3b9-4d772845fe27/resourceGroups/GR_freelancer/providers/Microsoft.Web/sites/app-to-doctors-mvp",
+    "appService.deploySubpath": "dist"
+}
