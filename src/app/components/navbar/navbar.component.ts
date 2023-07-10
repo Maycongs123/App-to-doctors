@@ -3,6 +3,8 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { PopupCadastroMedicamentoComponent } from '../popup-cadastro-medicamento/popup-cadastro-medicamento.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MedicamentosService } from 'src/app/services/medicamentos.service';
+import { Medicamento } from 'src/app/model/medicamento';
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +19,9 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute,
+    // private medicamentosService: MedicamentosService
+    ) {}
 
   rotaAtual = ""
 
@@ -32,15 +36,15 @@ export class NavbarComponent implements OnInit {
       });
   }
 
-  @HostListener('window:scroll', [])  
+  @HostListener('window:scroll', [])
   onWindowScroll(){
     const nav = this.elementRef.nativeElement.querySelector('#nav');
-   
+
     if (this.rotaAtual === "" && window.scrollY > 90) {
       nav.style.background = '#fff';
       return
-    } 
-    
+    }
+
     if(this.rotaAtual){
       nav.style.background = '#fff';
       return
@@ -53,14 +57,20 @@ export class NavbarComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(PopupCadastroMedicamentoComponent, {  
-      panelClass: 'custom-dialog-container-cadastro'  
+    const dialogRef = this.dialog.open(PopupCadastroMedicamentoComponent, {
+      panelClass: 'custom-dialog-container-cadastro'
     });
 
-    dialogRef.afterClosed().subscribe(result => {   
-        
-   
+    dialogRef.afterClosed().subscribe(result => {
+      // this.adicionarMedicamento(result);
     });
-  } 
+  }
+
+  // adicionarMedicamento(medicamento : Medicamento){
+  //   this.medicamentosService.Add(medicamento).subscribe((response: Medicamento) => {
+  //     console.log(response)
+  //   });
+  // }
+
 
 }

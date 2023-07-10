@@ -1,30 +1,30 @@
 <div>
-    <form>
-      <div class="div-flex">       
-        <h1 style="text-align: center;">Cadastro de Medicamento</h1>      
-      </div>      
+    <form [formGroup]="formMedicamento" (ngSubmit)="submit()">
+      <div class="div-flex">
+        <h1 style="text-align: center;">Cadastro de Medicamento</h1>
+      </div>
       <div class="div-flex">
         <div>
             <label>Medicamento de uso: </label><br>
-            <mat-radio-group class="div-mat-form-field">
+            <mat-radio-group class="div-mat-form-field" formControlName="medicamentoUso">
               <mat-radio-button value="Adulto">Adulto</mat-radio-button>
               <mat-radio-button value="Pediátrico">Pediátrico</mat-radio-button>
             </mat-radio-group>
         </div>
-      </div> 
+      </div>
       <div class="div-flex">
         <div>
             <label>Nome do medicamento:</label><br>
-            <mat-form-field class="div-mat-form-field" >            
-                <input matInput >
+            <mat-form-field class="div-mat-form-field" >
+                <input matInput formControlName="nome">
             </mat-form-field>
         </div>
-      </div> 
+      </div>
       <div class="div-flex">
         <div>
             <label style="text-align: left;">Tipo do medicamento: </label><br>
             <mat-form-field class="div-mat-form-field">
-              <mat-select required>
+              <mat-select required formControlName="tipo">
                 <mat-option>-- None --</mat-option>
                 <mat-option value="Antibiótico">Antibiótico</mat-option>
                 <mat-option value="Anti-Convulsivantes">Anti-Convulsivantes</mat-option>
@@ -37,22 +37,22 @@
                 <mat-option value="Laxativos">Laxativos</mat-option>
                 <mat-option value="Sintomático">Sintomáticos</mat-option>
                 <mat-option value="Hidratação Venosa">Hidratação Venosa</mat-option>
-              </mat-select>        
+              </mat-select>
             </mat-form-field>
-        </div>  
+        </div>
       </div>
       <div class="div-flex">
         <div>
-            <div> 
+            <div>
                 <label>Quantidade em mg:</label><br>
-                <mat-form-field class="div-mat-form-field">            
-                    <input matInput >            
+                <mat-form-field class="div-mat-form-field">
+                    <input matInput formControlName="quantidadeMg">
                 </mat-form-field>
             </div>
             <div>
                 <label>Quantidade em ml:</label><br>
-                <mat-form-field class="div-mat-form-field">            
-                    <input matInput>            
+                <mat-form-field class="div-mat-form-field">
+                    <input matInput formControlName="quantidadeMl">
                 </mat-form-field>
             </div>
         </div>
@@ -60,23 +60,64 @@
       <div class="div-flex">
         <div>
             <label>Modo de uso:</label><br>
-            <mat-form-field class="div-mat-form-field">            
-                <textarea matInput></textarea>           
+            <mat-form-field class="div-mat-form-field" >
+                <textarea matInput formControlName="modoDeUso"></textarea>
             </mat-form-field>
         </div>
       </div>
       <div class="div-flex">
-        <div>
-            <label>Contra indicação:</label><br>
-            <mat-form-field class="div-mat-form-field">  
-                <textarea matInput></textarea>   
-            </mat-form-field>
+        <div style="display: grid;">
+          <label>Contra indicações:</label><br>
+          <div formArrayName="contraIndicacoes">
+            <div *ngFor="let campo of contraIndicacoes.controls; let i = index" [formGroupName]="i">
+              <mat-form-field class="div-mat-form-field-grid">
+                <textarea matInput [formControlName]="i"></textarea>
+              </mat-form-field>
+              <button mat-button color="warn" (click)="removerCampo(i)">Retirar</button>
+            </div>
+          </div>
+          <button mat-button color="primary" (click)="adicionarCampo()">Adicionar Contra indicação</button>
         </div>
       </div>
     </form>
-    <mat-dialog-actions align="end">
-        <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Adicionar</button>
+    <div align="end">
+        <button mat-button [mat-dialog-close]="true" type="submit">Adicionar</button>
         <button mat-button mat-dialog-close>Cancelar</button>
-      </mat-dialog-actions>
+    </div>
   </div>
-  
+
+
+  <form
+  class="m-2 flex flex-col w-96 space-y-4"
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+>
+  <input
+    matInput
+    formControlName="name"
+    placeholder="Course name"
+    class="border-2 p-2 rounded outline-indigo-900"
+  />
+
+  <div formArrayName="lessons" class="flex flex-col space-y-2">
+    <div *ngFor="let lessonForm of lessons.controls; let i = index">
+      <input
+        matInput
+        [formControlName]="i"
+        class="border-2 p-2 rounded outline-indigo-900 w-full"
+        placeholder="Lesson title {{i + 1}}"
+      />
+    </div>
+    <button
+      type="button"
+      (click)="addLesson()"
+      class="text-xs text-blue-700 cursor-pointer self-end hover:opacity-80"
+    >
+      Add new lesson
+    </button>
+  </div>
+
+  <button type="submit" class="bg-indigo-600 p-3 rounded text-cyan-300">
+    Send
+  </button>
+</form>

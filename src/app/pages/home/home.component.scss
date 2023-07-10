@@ -22,7 +22,7 @@
  }
 }
 
-.cards-button:hover {  
+.cards-button:hover {
   transition: all 0.4s;
   -webkit-transform: scale(1.3);
   -ms-transform: scale(1.3);
@@ -90,7 +90,7 @@
 }
 
 .div-puericultura{
-  padding: 4rem;  
+  padding: 4rem;
   display: flex;
   justify-content: center;
   @media (max-width: 990px){
@@ -99,10 +99,10 @@
 }
 
 .image-container-1 {
-  padding-top: 2rem; 
-  background-image: url("../../../assets/bebe.jpg"); 
-  background-size: cover; 
-  background-position: center center; 
+  padding-top: 2rem;
+  background-image: url("../../../assets/bebe.jpg");
+  background-size: cover;
+  background-position: center center;
 }
 
 .card {
@@ -164,21 +164,21 @@
     display: block;
     z-index: 11;
     width: 45rem;
-    height: 20rem;    
+    height: 20rem;
     left: 30%;
     top: 20%;
     background-color: rgba(1, 1, 1, 0.1);
-    backdrop-filter: blur(5px); 
-    
+    backdrop-filter: blur(5px);
+
     @media (max-width: 990px){
       position: fixed;
       display: block;
       z-index: 11;
       width: 100%;
       height: 40rem;
-      left: 0%;  
+      left: 0%;
       top: 10%;
-      padding: 1rem 1rem 7rem 1rem;  
+      padding: 1rem 1rem 7rem 1rem;
    }
   }
 }
