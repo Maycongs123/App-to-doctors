@@ -15,13 +15,18 @@ export class PopupCadastroMedicamentoComponent {
     private formBuilder: FormBuilder
   ) {}
 
+  dosagemTipo: boolean = false;
+
   formMedicamento = this.formBuilder.group({
     nome: '',
     medicamentoUso: '',
     tipo: '',
+    dosagemTipo: '',
     modoDeUso: '',
-    quantidadeMg: '',
-    quantidadeMl: '',
+    quantidadeMg: 0,
+    quantidadeMl: 0,
+    quantidadeMgKg: 0,
+    quantidadeSoro: 0,
     indicacoes: this.formBuilder.array([this.formBuilder.control('')]),
     contraIndicacoes: this.formBuilder.array([this.formBuilder.control('')]),
   });
@@ -60,4 +65,17 @@ export class PopupCadastroMedicamentoComponent {
     console.log(this.formMedicamento.value);
     this.dialogRef.close(this.formMedicamento.value);
   }
+
+  formDosagemTipo(event: any){
+    debugger
+    console.log(event.value)
+    if(event.value === "mg/kg/dia"){
+      this.dosagemTipo = true;
+    }
+    else{
+      this.dosagemTipo = false;
+    }
+  }
+
+
 }

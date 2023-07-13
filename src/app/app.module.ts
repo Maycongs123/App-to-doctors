@@ -53,6 +53,7 @@ import { LaxativosCalculosComponent } from './pages/laxativos-calculos/laxativos
 import { SintomaticosCalculosComponent } from './pages/sintomaticos-calculos/sintomaticos-calculos.component';
 import { HidratacaoVenosaCalculosComponent } from './pages/hidratacao-venosa-calculos/hidratacao-venosa-calculos.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -109,6 +110,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     MatRadioModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatTabsModule
 
   ],
   providers: [

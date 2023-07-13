@@ -68,4 +68,39 @@ export class CalculoMedicamentosComponent {
     }
     console.log(this.indicacoes , this.contraIndicacoes)
   }
+
+  resultadoMgKg: any;
+  resultadoMcgKg: any;
+  resultadoMcgKgReverso: any;
+  resultadoMcgMin: any;
+  resultadoMcgMinReverso: any;
+  peso: any;
+  dose:any;
+  ampola: any;
+  vazao:any;
+
+  calculoMgKg(){
+    debugger
+    this.resultadoMgKg = (this.peso * this.dadosMedicacao.quantidadeMgKg * this.dadosMedicacao.quantidadeMl) / (this.dadosMedicacao.quantidadeMg * this.dose);
+  }
+
+  calculoMcgKg(){
+    debugger
+    this.resultadoMcgKg = (this.dose * this.peso * 60)/((this.dadosMedicacao.quantidadeMg * this.ampola)/(this.dadosMedicacao.quantidadeSoro + (this.dadosMedicacao.quantidadeMl * this.ampola)) * 1000);
+  }
+
+  calculoMcgMin(){
+    debugger
+    this.resultadoMcgMin = (this.dose * 60) / ((this.dadosMedicacao.quantidadeMg / (this.dadosMedicacao.quantidadeSoro + this.dadosMedicacao.quantidadeMl)) * 1000);
+  }
+
+  calculoMcgKgReverso(){
+    debugger
+    this.resultadoMcgKgReverso = (this.vazao * ((this.dadosMedicacao.quantidadeMg * this.ampola)/(this.dadosMedicacao.quantidadeSoro + (this.dadosMedicacao.quantidadeMl * this.ampola)) * 1000)) / (this.peso * 60);
+  }
+
+  calculoMcgMinReverso(){
+    debugger
+    this.resultadoMcgMinReverso = (this.vazao * ((this.dadosMedicacao.quantidadeMg * this.ampola)/(this.dadosMedicacao.quantidadeSoro + (this.dadosMedicacao.quantidadeMl * this.ampola)) * 1000) * this.ampola) /  60;
+  }
 }

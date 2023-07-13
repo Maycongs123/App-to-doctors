@@ -43,6 +43,18 @@
       </div>
       <div class="div-flex">
         <div>
+            <div style="display: flex; justify-content: center;">
+              <label>Tipo de dosagem </label><br>
+            </div>
+            <mat-radio-group required class="div-mat-form-field" formControlName="dosagemTipo" (change)="formDosagemTipo($event)">
+              <mat-radio-button value="mg/kg/dia">mg/kg/dia</mat-radio-button>
+              <mat-radio-button value="mcg/kg/min">mcg/kg/min</mat-radio-button>
+              <mat-radio-button value="mcg/min">mcg/min</mat-radio-button>
+            </mat-radio-group>
+        </div>
+      </div>
+      <div class="div-flex">
+        <div>
             <div>
                 <label>Quantidade em mg:</label><br>
                 <mat-form-field class="div-mat-form-field">
@@ -55,6 +67,18 @@
                     <input type="number" matInput formControlName="quantidadeMl">
                 </mat-form-field>
             </div>
+            <div *ngIf="dosagemTipo">
+              <label>Quantidade em mg/kg/dia:</label><br>
+              <mat-form-field class="div-mat-form-field">
+                  <input type="number" matInput formControlName="quantidadeMgKg">
+              </mat-form-field>
+          </div>
+          <div *ngIf="!dosagemTipo">
+            <label>Quantidade de soro glicosado 5% (ml):</label><br>
+            <mat-form-field class="div-mat-form-field">
+                <input type="number" matInput formControlName="quantidadeSoro">
+            </mat-form-field>
+        </div>
         </div>
       </div>
       <div class="div-flex">

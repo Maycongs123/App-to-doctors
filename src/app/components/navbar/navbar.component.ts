@@ -82,9 +82,12 @@ export class NavbarComponent implements OnInit {
       nome: result.nome,
       medicamentoUso: result.medicamentoUso,
       tipo: result.tipo,
+      dosagemTipo: result.dosagemTipo,
       modoDeUso: result.modoDeUso,
       quantidadeMg: result.quantidadeMg,
       quantidadeMl: result.quantidadeMl,
+      quantidadeMgKg: result.quantidadeMgKg,
+      quantidadeSoro: result.quantidadeSoro,
       indicacao: indicacao,
       contraIndicacao: contraIndicacao,
     });

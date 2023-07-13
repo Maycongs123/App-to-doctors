@@ -27,7 +27,7 @@
           <div style="margin-bottom: 1rem;">
             <div class="div-shadow" >
               <span class="span-style-2">
-                  Apresentações Disponíveis
+                  Apresentação Disponível
               </span>
               <div class="div-conteudo-medicacao-3" style="line-height: 25px;">
                   <div class="div-conteudo-flex">
@@ -49,15 +49,141 @@
                     Cálculo Medicamento
                 </span>
             </div>
-            <div class="div-calculadora">
+            <!-- Calcular os medicamentos em mg/kg/dia -->
+            <div *ngIf="dadosMedicacao.dosagemTipo === 'mg/kg/dia'" name="mg/kg/dia" class="div-calculadora">
                 <mat-form-field class="matFormCalculadora">
-                    <mat-label>Peso</mat-label>
-                    <input matInput placeholder="Ex: 10">
-                    <button  matSuffix mat-icon-button matTooltip="Accent" >
-                        <mat-icon class="matFormCalculadora">calculate</mat-icon>
-                    </button>
+                    <mat-label>Peso(Kg)</mat-label>
+                    <input matInput [(ngModel)]="peso">
                 </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Número de Doses</mat-label>
+                  <input matInput [(ngModel)]="dose">
+              </mat-form-field>
+              <button  mat-button matTooltip="Accent" (click)="calculoMgKg()">
+                <span>Calcular</span>
+                <mat-icon class="matFormCalculadora">calculate</mat-icon>
+              </button>
+              <div *ngIf="resultadoMgKg" class="div-result">
+                <span class="font-result" >
+                  {{resultadoMgKg + ' ml - ' +  dadosMedicacao.modoDeUso }}
+                </span>
+              </div>
             </div>
+
+          <!-- Calcular os medicamentos em mcg/kg/dia -->
+          <mat-tab-group *ngIf="dadosMedicacao.dosagemTipo === 'mcg/kg/min'">
+            <mat-tab>
+              <ng-template mat-tab-label>
+                mcg/kg/min
+              </ng-template>
+              <div  name="mcg/kg/min" class="div-calculadora">
+                <mat-form-field class="matFormCalculadora">
+                    <mat-label>Peso(Kg)</mat-label>
+                    <input matInput [(ngModel)]="peso">
+                </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Número de Doses</mat-label>
+                  <input matInput  [(ngModel)]="dose">
+                </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Quantidade de Ampolas</mat-label>
+                  <input matInput [(ngModel)]="ampola">
+                </mat-form-field>
+                <button mat-button matTooltip="Accent" (click)="calculoMcgKg()">
+                  <span>Calcular</span>
+                  <mat-icon class="matFormCalculadora">calculate</mat-icon>
+                </button>
+                <div *ngIf="resultadoMcgKg" class="div-result">
+                  <span class="font-result" >
+                    {{resultadoMcgKg + ' ml/h - ' +  dadosMedicacao.modoDeUso }}
+                  </span>
+                </div>
+            </div>
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                ml/h
+              </ng-template>
+              <div  name="mcg/kg/min" class="div-calculadora">
+                <mat-form-field class="matFormCalculadora">
+                    <mat-label>Peso(Kg)</mat-label>
+                    <input matInput [(ngModel)]="peso">
+                </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Vazão (ml/h)</mat-label>
+                  <input matInput  [(ngModel)]="vazao">
+                </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Quantidade de Ampolas</mat-label>
+                  <input matInput [(ngModel)]="ampola">
+                </mat-form-field>
+                <button mat-button matTooltip="Accent" (click)="calculoMcgKgReverso()">
+                  <span>Calcular</span>
+                  <mat-icon class="matFormCalculadora">calculate</mat-icon>
+                </button>
+                <div *ngIf="resultadoMcgKgReverso" class="div-result">
+                  <span class="font-result" >
+                    {{resultadoMcgKgReverso + ' mcg/kg/min - ' +  dadosMedicacao.modoDeUso }}
+                  </span>
+                </div>
+            </div>
+            </mat-tab>
+          </mat-tab-group>
+
+          <!-- Calcular os medicamentos em mcg/min -->
+          <mat-tab-group *ngIf="dadosMedicacao.dosagemTipo === 'mcg/min'">
+            <mat-tab>
+              <ng-template mat-tab-label>
+                mcg/min
+              </ng-template>
+              <div name="mcg/min" class="div-calculadora">
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Número de Doses</mat-label>
+                  <input matInput [(ngModel)]="dose">
+                </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Quantidade de Ampolas</mat-label>
+                  <input matInput [(ngModel)]="ampola">
+                </mat-form-field>
+                <button  mat-button matTooltip="Accent" (click)="calculoMcgMin()">
+                  <span>Calcular</span>
+                  <mat-icon class="matFormCalculadora">calculate</mat-icon>
+                </button>
+                <div  *ngIf="resultadoMcgMin" class="div-result">
+                  <span class="font-result">
+                    {{resultadoMcgMin + ' ml/h - ' +  dadosMedicacao.modoDeUso }}
+                  </span>
+                </div>
+              </div>
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                ml/h
+              </ng-template>
+              <div  name="mcg/kg/min" class="div-calculadora">
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Vazão (ml/h)</mat-label>
+                  <input matInput  [(ngModel)]="vazao">
+                </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Quantidade de Ampolas</mat-label>
+                  <input matInput [(ngModel)]="ampola">
+                </mat-form-field>
+                <button mat-button matTooltip="Accent" (click)="calculoMcgMinReverso()">
+                  <span>Calcular</span>
+                  <mat-icon class="matFormCalculadora">calculate</mat-icon>
+                </button>
+                <div *ngIf="resultadoMcgMinReverso" class="div-result">
+                  <span class="font-result" >
+                    {{resultadoMcgMinReverso + ' mcg/min - ' +  dadosMedicacao.modoDeUso }}
+                  </span>
+                </div>
+            </div>
+            </mat-tab>
+          </mat-tab-group>
+
         </div>
        </div>
         <div class="div-right" >
@@ -67,7 +193,7 @@
             </span>
             <div class="div-conteudo-medicacao-3" style="display: grid;" *ngFor="let dados of indicacoes">
                 <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
-                    <mat-icon class="icon-style" style="padding-right: 0.5rem; color: rgb(0, 247, 0);">
+                    <mat-icon class="icon-style icon-style-done">
                         done
                     </mat-icon>
                     <span >
@@ -82,7 +208,7 @@
                 </span>
                 <div class="div-conteudo-medicacao-3" style="display: grid;" *ngFor="let dados of contraIndicacoes">
                     <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
-                        <mat-icon class="icon-style" style="padding-right: 0.5rem; color: red;">
+                        <mat-icon class="icon-style icon-style-close">
                             close
                         </mat-icon>
                         <span >
