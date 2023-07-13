@@ -13,12 +13,13 @@ import { Medicamento } from '../model/medicamento';
 })
 export class MedicamentosService {
 
-REST_API: string = 'http://localhost:5206/api';
+REST_API: string = 'https://localhost:7044/api';
 
 httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 constructor(private httpClient: HttpClient) {}
 
 Add(data: Medicamento): Observable<any> {
+  debugger
   let API_URL = `${this.REST_API}/Medicamentos`;
   return this.httpClient
     .post(API_URL, data)

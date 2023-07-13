@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Medicamento } from 'src/app/model/medicamento';
+import { MedicamentosService } from 'src/app/services/medicamentos.service';
 
 @Component({
   selector: 'app-hidratacao-venosa',
@@ -6,35 +8,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./hidratacao-venosa.component.scss']
 })
 export class HidratacaoVenosaComponent {
-  backgroundColor: any = '#ffc107'  
+  backgroundColor: any = '#ffc107'
 
   hidratacaoVenosa :any = "Hidratação Venosa";
-    
-  medicacoes: any = [
-    {
-      tipo: "Hidratação Venosa",
-      nome: "Amicacina",
-      aplicacao: "IM/V"
-    },
-    {
-      tipo: "Hidratação Venosa",
-      nome: "Amoxicilina",
-      aplicacao: "VO"
-    },
-    {
-      tipo: "Hidratação Venosa",
-      nome: "Amoxicilina + Clavulanato",
-      aplicacao: "VO"
-    },
-    {
-      tipo: "Hidratação Venosa",
-      nome: "Ampicilina",
-      aplicacao: "IM/IV"
-    },
-    {
-      tipo: "Hidratação Venosa",
-      nome: "Azitromicina",
-      aplicacao: "VO"
-    }
-  ]
+
+  medicacoes: Medicamento[] = [];
+
+  constructor(private medicamentosService: MedicamentosService)
+  {}
+
+  ngOnInit(): void {
+    this.medicamentosService.GetAll().subscribe((response: any) => {
+
+      this.medicacoes = response.filter(function(medicacao : any) { return medicacao.tipo == "Hidratação Venosa"; });
+
+    });
+  }
 }

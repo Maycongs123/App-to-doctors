@@ -1,40 +1,29 @@
-import { Component } from '@angular/core';
+import { MedicamentosService } from 'src/app/services/medicamentos.service';
+import { Component, OnInit } from '@angular/core';
+import { Medicamento } from 'src/app/model/medicamento';
 
 @Component({
   selector: 'app-anti-convulsivantes',
   templateUrl: './anti-convulsivantes.component.html',
   styleUrls: ['./anti-convulsivantes.component.scss']
 })
-export class AntiConvulsivantesComponent {
-  backgroundColor: any = '#6f42c1'  
+export class AntiConvulsivantesComponent implements OnInit{
+
+  backgroundColor: any = '#6f42c1'
 
   antiConvulsivantes:any = "Anti-Convulsivantes";
- 
-    medicacoes: any = [
-      {
-        tipo: "Anti-Convulsivantes",
-        nome: "Amicacina",
-        aplicacao: "IM/V"
-      },
-      {
-        tipo: "Anti-Convulsivantes",
-        nome: "Amoxicilina",
-        aplicacao: "VO"
-      },
-      {
-        tipo: "Anti-Convulsivantes",
-        nome: "Amoxicilina + Clavulanato",
-        aplicacao: "VO"
-      },
-      {
-        tipo: "Anti-Convulsivantes",
-        nome: "Ampicilina",
-        aplicacao: "IM/IV"
-      },
-      {
-        tipo: "Anti-Convulsivantes",
-        nome: "Azitromicina",
-        aplicacao: "VO"
-      }
-  ]
+
+  medicacoes: Medicamento[] = [];
+
+  constructor(private medicamentosService: MedicamentosService)
+  {}
+
+  ngOnInit(): void {
+    debugger
+    this.medicamentosService.GetAll().subscribe((response: any) => {
+
+      this.medicacoes = response.filter(function(medicacao : any) { return medicacao.tipo == "Anti-Convulsivante"; });
+
+    });
+  }
 }

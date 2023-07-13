@@ -1,3 +1,4 @@
+import { FormBuilder } from '@angular/forms';
 import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
@@ -12,15 +13,14 @@ import { Medicamento } from 'src/app/model/medicamento';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
-
   constructor(
     private elementRef: ElementRef,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    // private medicamentosService: MedicamentosService
+    private formBuilder: FormBuilder,
+    private medicamentosService: MedicamentosService
     ) {}
 
   rotaAtual = ""
@@ -58,19 +58,47 @@ export class NavbarComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PopupCadastroMedicamentoComponent, {
-      panelClass: 'custom-dialog-container-cadastro'
+      panelClass: 'custom-dialog-container-cadastro',
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // this.adicionarMedicamento(result);
+
+      const medicamento = this.formMedicacao(result)
+      this.adicionarMedicamento(medicamento.value)
     });
   }
 
-  // adicionarMedicamento(medicamento : Medicamento){
-  //   this.medicamentosService.Add(medicamento).subscribe((response: Medicamento) => {
-  //     console.log(response)
-  //   });
-  // }
+
+  formMedicacao(result: any){
+    const chavesIndicacao = Object.keys(result.indicacoes);
+    const valoresIndicacao = chavesIndicacao.map(chave => result.contraIndicacoes[chave]);
+    const indicacao = valoresIndicacao.join("\\*");
+
+    const chavesContraIndicacao = Object.keys(result.contraIndicacoes);
+    const valoresContraIndicacao = chavesContraIndicacao.map(chave => result.contraIndicacoes[chave]);
+    const contraIndicacao = valoresContraIndicacao.join("\\*");
+
+    const formMedicamento = this.formBuilder.group({
+      nome: result.nome,
+      medicamentoUso: result.medicamentoUso,
+      tipo: result.tipo,
+      modoDeUso: result.modoDeUso,
+      quantidadeMg: result.quantidadeMg,
+      quantidadeMl: result.quantidadeMl,
+      indicacao: indicacao,
+      contraIndicacao: contraIndicacao,
+    });
+
+    return formMedicamento;
+  }
+
+  adicionarMedicamento(medicamento : any){
+    debugger
+    console.log(medicamento)
+    this.medicamentosService.Add(medicamento).subscribe((response: Medicamento) => {
+      console.log(response)
+    });
+  }
 
 
 }

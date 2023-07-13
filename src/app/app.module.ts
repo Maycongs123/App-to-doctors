@@ -52,7 +52,7 @@ import { CorticosteroidesCalculosComponent } from './pages/corticosteroides-calc
 import { LaxativosCalculosComponent } from './pages/laxativos-calculos/laxativos-calculos.component';
 import { SintomaticosCalculosComponent } from './pages/sintomaticos-calculos/sintomaticos-calculos.component';
 import { HidratacaoVenosaCalculosComponent } from './pages/hidratacao-venosa-calculos/hidratacao-venosa-calculos.component';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -107,7 +107,9 @@ import { HidratacaoVenosaCalculosComponent } from './pages/hidratacao-venosa-cal
     MatSelectModule,
     MatCheckboxModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}

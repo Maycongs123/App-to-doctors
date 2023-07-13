@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Medicamento } from 'src/app/model/medicamento';
+import { MedicamentosService } from 'src/app/services/medicamentos.service';
 
 @Component({
   selector: 'app-laxativos',
@@ -6,35 +8,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./laxativos.component.scss']
 })
 export class LaxativosComponent {
-  backgroundColor: any = '#dc3545'  
+  backgroundColor: any = '#dc3545'
 
   laxativos :any = "Laxativos";
-    
-  medicacoes: any = [
-    {
-      tipo: "Laxativos",
-      nome: "Amicacina",
-      aplicacao: "IM/V"
-    },
-    {
-      tipo: "Laxativos",
-      nome: "Amoxicilina",
-      aplicacao: "VO"
-    },
-    {
-      tipo: "Laxativos",
-      nome: "Amoxicilina + Clavulanato",
-      aplicacao: "VO"
-    },
-    {
-      tipo: "Laxativos",
-      nome: "Ampicilina",
-      aplicacao: "IM/IV"
-    },
-    {
-      tipo: "Laxativos",
-      nome: "Azitromicina",
-      aplicacao: "VO"
-    }
-  ]
+
+  medicacoes: Medicamento[] = [];
+
+  constructor(private medicamentosService: MedicamentosService)
+  {}
+
+  ngOnInit(): void {
+    this.medicamentosService.GetAll().subscribe((response: any) => {
+
+      this.medicacoes = response.filter(function(medicacao : any) { return medicacao.tipo == "Laxativo"; });
+
+    });
+  }
 }

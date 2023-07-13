@@ -22,7 +22,7 @@ export class PopupCadastroMedicamentoComponent {
     modoDeUso: '',
     quantidadeMg: '',
     quantidadeMl: '',
-    contraIndicacao: '',
+    indicacoes: this.formBuilder.array([this.formBuilder.control('')]),
     contraIndicacoes: this.formBuilder.array([this.formBuilder.control('')]),
   });
 
@@ -30,39 +30,34 @@ export class PopupCadastroMedicamentoComponent {
     return this.formMedicamento.get('contraIndicacoes') as FormArray;
   }
 
+  get indicacoes() {
+    return this.formMedicamento.get('indicacoes') as FormArray;
+  }
+
   adicionarCampo() {
-    debugger
     const contraIndicacoesForm = this.formBuilder.control('');
     this.contraIndicacoes.push(contraIndicacoesForm);
+  }
+
+  adicionarCampoIndicacao() {
+    const indicacoesForm = this.formBuilder.control('');
+    this.indicacoes.push(indicacoesForm);
   }
 
   removerCampo(index: number): void {
     this.contraIndicacoes.removeAt(index);
   }
 
-  adicionar(): void {
-    debugger
-    console.log(this.formMedicamento.value)
-    this.dialogRef.close(this.formMedicamento.value);
+  removerCampoIndicacao(index: number): void {
+    this.indicacoes.removeAt(index);
+  }
+
+  adicionar() {
+    this.submit();
   }
 
   submit() {
     console.log(this.formMedicamento.value);
-    console.log(this.form.value);
+    this.dialogRef.close(this.formMedicamento.value);
   }
-
-  form = this.formBuilder.group({
-    name: '',
-    lessons: this.formBuilder.array([this.formBuilder.control('')]),
-  });
-
-  get lessons() {
-    return this.form.get('lessons') as FormArray;
-  }
-
-  addLesson() {
-    const lessonForm = this.formBuilder.control('');
-    this.lessons.push(lessonForm);
-  }
-
 }

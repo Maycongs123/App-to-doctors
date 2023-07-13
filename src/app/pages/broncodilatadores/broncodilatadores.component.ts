@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Medicamento } from 'src/app/model/medicamento';
+import { MedicamentosService } from 'src/app/services/medicamentos.service';
 
 @Component({
   selector: 'app-broncodilatadores',
@@ -6,35 +8,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./broncodilatadores.component.scss']
 })
 export class BroncodilatadoresComponent {
-  backgroundColor: any = '#6f42c1'  
+
+
+  backgroundColor: any = '#6f42c1'
 
   broncodilatadores :any = "Broncodilatadores";
-    
-  medicacoes: any = [
-    {
-      tipo: "Broncodilatadores",
-      nome: "Amicacina",
-      aplicacao: "IM/V"
-    },
-    {
-      tipo: "Broncodilatadores",
-      nome: "Amoxicilina",
-      aplicacao: "VO"
-    },
-    {
-      tipo: "Broncodilatadores",
-      nome: "Amoxicilina + Clavulanato",
-      aplicacao: "VO"
-    },
-    {
-      tipo: "Broncodilatadores",
-      nome: "Ampicilina",
-      aplicacao: "IM/IV"
-    },
-    {
-      tipo: "Broncodilatadores",
-      nome: "Azitromicina",
-      aplicacao: "VO"
-    }
-  ]
+
+  medicacoes: Medicamento[] = [];
+
+  constructor(private medicamentosService: MedicamentosService)
+  {}
+
+  ngOnInit(): void {
+    this.medicamentosService.GetAll().subscribe((response: any) => {
+
+      this.medicacoes = response.filter(function(medicacao : any) { return medicacao.tipo == "Broncodilatadore"; });
+
+    });
+  }
 }

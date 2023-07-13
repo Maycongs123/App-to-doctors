@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Medicamento } from 'src/app/model/medicamento';
+import { MedicamentosService } from 'src/app/services/medicamentos.service';
 
 @Component({
   selector: 'app-anti-parasitarios',
@@ -6,35 +8,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./anti-parasitarios.component.scss']
 })
 export class AntiParasitariosComponent {
-  backgroundColor: any = '#3bb54a'  
+  backgroundColor: any = '#3bb54a'
 
   antiParasitarios:any = "Anti-Parasitarios";
-    
-  medicacoes: any = [
-    {
-      tipo: "Anti-Parasitarios",
-      nome: "Amicacina",
-      aplicacao: "IM/V"
-    },
-    {
-      tipo: "Anti-Parasitarios",
-      nome: "Amoxicilina",
-      aplicacao: "VO"
-    },
-    {
-      tipo: "Anti-Parasitarios",
-      nome: "Amoxicilina + Clavulanato",
-      aplicacao: "VO"
-    },
-    {
-      tipo: "Anti-Parasitarios",
-      nome: "Ampicilina",
-      aplicacao: "IM/IV"
-    },
-    {
-      tipo: "Anti-Parasitarios",
-      nome: "Azitromicina",
-      aplicacao: "VO"
-    }
-  ]
+
+  medicacoes: Medicamento[] = [];
+
+  constructor(private medicamentosService: MedicamentosService)
+  {}
+
+  ngOnInit(): void {
+    this.medicamentosService.GetAll().subscribe((response: any) => {
+
+      this.medicacoes = response.filter(function(medicacao : any) { return medicacao.tipo == "Anti-Parasitário"; });
+
+    });
+  }
 }

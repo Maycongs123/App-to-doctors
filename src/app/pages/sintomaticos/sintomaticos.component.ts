@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Medicamento } from 'src/app/model/medicamento';
+import { MedicamentosService } from 'src/app/services/medicamentos.service';
 
 @Component({
   selector: 'app-sintomaticos',
@@ -6,35 +8,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./sintomaticos.component.scss']
 })
 export class SintomaticosComponent {
-  backgroundColor: any = '#fd7e14'  
+  backgroundColor: any = '#fd7e14'
 
   sintomaticos :any = "Sintomaticos";
-    
-  medicacoes: any = [
-    {
-      tipo: "Sintomaticos",
-      nome: "Amicacina",
-      aplicacao: "IM/V"
-    },
-    {
-      tipo: "Sintomaticos",
-      nome: "Amoxicilina",
-      aplicacao: "VO"
-    },
-    {
-      tipo: "Sintomaticos",
-      nome: "Amoxicilina + Clavulanato",
-      aplicacao: "VO"
-    },
-    {
-      tipo: "Sintomaticos",
-      nome: "Ampicilina",
-      aplicacao: "IM/IV"
-    },
-    {
-      tipo: "Sintomaticos",
-      nome: "Azitromicina",
-      aplicacao: "VO"
-    }
-  ]
+
+
+  medicacoes: Medicamento[] = [];
+
+  constructor(private medicamentosService: MedicamentosService)
+  {}
+
+  ngOnInit(): void {
+    this.medicamentosService.GetAll().subscribe((response: any) => {
+
+      this.medicacoes = response.filter(function(medicacao : any) { return medicacao.tipo == "Sintomático"; });
+
+    });
+  }
 }

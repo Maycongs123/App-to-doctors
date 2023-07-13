@@ -1,4 +1,7 @@
+import { filter } from 'rxjs';
 import { Component } from '@angular/core';
+import { Medicamento } from 'src/app/model/medicamento';
+import { MedicamentosService } from 'src/app/services/medicamentos.service';
 
 @Component({
   selector: 'app-antibioticos',
@@ -6,36 +9,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./antibioticos.component.scss']
 })
 export class AntibioticosComponent {
-backgroundColor: any = '#007bff'  
+backgroundColor: any = '#007bff'
 
 antibiotico:any = "Antibiótico";
-  
-medicacoes: any = [
-{
-  tipo: "Antibiótico",
-  nome: "Amicacina",
-  aplicacao: "IM/V"
-},
-{
-  tipo: "Antibiótico",
-  nome: "Amoxicilina",
-  aplicacao: "VO"
-},
-{
-  tipo: "Antibiótico",
-  nome: "Amoxicilina + Clavulanato",
-  aplicacao: "VO"
-},
-{
-  tipo: "Antibiótico",
-  nome: "Ampicilina",
-  aplicacao: "IM/IV"
-},
-{
-  tipo: "Antibiótico",
-  nome: "Azitromicina",
-  aplicacao: "VO"
-}
-]
+
+medicacoes: any;
+
+  constructor(private medicamentosService: MedicamentosService)
+  {}
+
+  ngOnInit(): void {
+    this.medicamentosService.GetAll().subscribe((response: any) => {
+
+      this.medicacoes = response.filter(function(medicacao : any) { return medicacao.tipo == "Antibiótico"; });
+
+    });
+  }
 
 }

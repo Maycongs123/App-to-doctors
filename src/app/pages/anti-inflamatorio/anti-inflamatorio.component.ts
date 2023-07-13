@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Medicamento } from 'src/app/model/medicamento';
+import { MedicamentosService } from 'src/app/services/medicamentos.service';
 
 @Component({
   selector: 'app-anti-inflamatorio',
@@ -6,35 +8,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./anti-inflamatorio.component.scss']
 })
 export class AntiInflamatorioComponent {
-  backgroundColor: any = '#dc3545'  
+  backgroundColor: any = '#dc3545'
 
   antiInflamatorios:any = "Anti-Inflamatórios";
-    
-  medicacoes: any = [
-    {
-      tipo: "Anti-Inflamatórios",
-      nome: "Amicacina",
-      aplicacao: "IM/V"
-    },
-    {
-      tipo: "Anti-Inflamatórios",
-      nome: "Amoxicilina",
-      aplicacao: "VO"
-    },
-    {
-      tipo: "Anti-Inflamatórios",
-      nome: "Amoxicilina + Clavulanato",
-      aplicacao: "VO"
-    },
-    {
-      tipo: "Anti-Inflamatórios",
-      nome: "Ampicilina",
-      aplicacao: "IM/IV"
-    },
-    {
-      tipo: "Anti-Inflamatórios",
-      nome: "Azitromicina",
-      aplicacao: "VO"
-    }
-  ]
+
+  medicacoes: Medicamento[] = [];
+
+  constructor(private medicamentosService: MedicamentosService)
+  {}
+
+  ngOnInit(): void {
+    this.medicamentosService.GetAll().subscribe((response: any) => {
+
+      this.medicacoes = response.filter(function(medicacao : any) { return medicacao.tipo == "Anti-Inflamatório"; });
+
+    });
+  }
 }

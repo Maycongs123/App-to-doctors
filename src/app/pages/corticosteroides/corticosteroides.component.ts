@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Medicamento } from 'src/app/model/medicamento';
+import { MedicamentosService } from 'src/app/services/medicamentos.service';
 
 @Component({
   selector: 'app-corticosteroides',
@@ -6,35 +8,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./corticosteroides.component.scss']
 })
 export class CorticosteroidesComponent {
-  backgroundColor: any = '#007bff'  
+  backgroundColor: any = '#007bff'
 
   corticosteroides :any = "Corticosteroides";
-    
-  medicacoes: any = [
-    {
-      tipo: "Corticosteroides",
-      nome: "Amicacina",
-      aplicacao: "IM/V"
-    },
-    {
-      tipo: "Corticosteroides",
-      nome: "Amoxicilina",
-      aplicacao: "VO"
-    },
-    {
-      tipo: "Corticosteroides",
-      nome: "Amoxicilina + Clavulanato",
-      aplicacao: "VO"
-    },
-    {
-      tipo: "Corticosteroides",
-      nome: "Ampicilina",
-      aplicacao: "IM/IV"
-    },
-    {
-      tipo: "Corticosteroides",
-      nome: "Azitromicina",
-      aplicacao: "VO"
-    }
-  ]
+
+  medicacoes: Medicamento[] = [];
+
+  constructor(private medicamentosService: MedicamentosService)
+  {}
+
+  ngOnInit(): void {
+    this.medicamentosService.GetAll().subscribe((response: any) => {
+
+      this.medicacoes = response.filter(function(medicacao : any) { return medicacao.tipo == "Corticosteróide"; });
+
+    });
+  }
 }
