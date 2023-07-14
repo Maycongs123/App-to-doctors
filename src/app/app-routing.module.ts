@@ -23,9 +23,10 @@ import { CorticosteroidesCalculosComponent } from './pages/corticosteroides-calc
 import { LaxativosCalculosComponent } from './pages/laxativos-calculos/laxativos-calculos.component';
 import { SintomaticosCalculosComponent } from './pages/sintomaticos-calculos/sintomaticos-calculos.component';
 import { HidratacaoVenosaCalculosComponent } from './pages/hidratacao-venosa-calculos/hidratacao-venosa-calculos.component';
+import { CalculoMedicamentosComponent } from './components/calculo-medicamentos/calculo-medicamentos.component';
 
 const routes: Routes = [
-  {path:"", component:HomeComponent}, 
+  {path:"", component:HomeComponent},
   {path:"pesquisa", component:PesquisarComponent},
   {path:"lista-antibiotico", component:AntibioticosComponent},
   {path:"lista-anti-convulsivantes", component:AntiConvulsivantesComponent},
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path:"lista-laxativos", component:LaxativosComponent},
   {path:"lista-sintomaticos", component:SintomaticosComponent},
   {path:"lista-hidratacao-venosa", component:HidratacaoVenosaComponent},
+  {path:"calculos/:medicamento/:backgroundColor", component: CalculoMedicamentosComponent},
   {path:"antibioticos-calculos/:nomeItem", component:AntibioticosCalculosComponent},
   {path:"anti-convulsivantes-calculos/:nomeItem", component:AntiConvulsivantesCalculosComponent},
   {path:"anti-inflamatorio-calculos/:nomeItem", component:AntiInflamatorioCalculosComponent},

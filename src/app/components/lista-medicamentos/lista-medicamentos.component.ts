@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { MedicamentosService } from 'src/app/services/medicamentos.service';
 
 @Component({
   selector: 'app-lista-medicamentos',
@@ -13,16 +14,26 @@ export class ListaMedicamentosComponent {
   @Output() dadosEnviados = new EventEmitter<string>();
 
   constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2,
-    private router: Router
-  ) {}
+    protected elementRef: ElementRef,
+    protected renderer: Renderer2,
+    protected router: Router,
+    protected medicamentosService: MedicamentosService
+  ) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        console.log(event.url); // Exibir a URL da rota
+      }
+    });
+  }
 
   getNome(getDados: any) {
     debugger
     if(getDados.tipo === "Antibiótico"){
-      this.router.navigate(['/antibioticos-calculos', getDados.nome]);
+      let backgroundColor = '#007bff';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
+
     if(getDados.tipo === "Anti-Convulsivante"){
       this.router.navigate(['/anti-convulsivantes-calculos', getDados.nome]);
     }

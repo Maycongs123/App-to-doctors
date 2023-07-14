@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="div-conteudo-medicacao">
-        <div class="div-shadow">
+        <div *ngIf="listaMedicacoes.length > 0" class="div-shadow">
             <div class="div-conteudo-medicacao-2 efeito-div" *ngFor="let medicacoes of listaMedicacoes;" (click)="getNome(medicacoes)" >
                 <div class="div-conteudo-flex">
                     <mat-icon class="icon-style">
@@ -31,5 +31,17 @@
                 </div> -->
             </div>
         </div>
+        <div *ngIf="listaMedicacoes.length === 0" class="div-shadow">
+            <div class="div-conteudo-medicacao-2">
+              <div class="div-conteudo-flex">
+                  <span >
+                      Não existe medicamentos cadastrados.
+                  </span>
+              </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
+

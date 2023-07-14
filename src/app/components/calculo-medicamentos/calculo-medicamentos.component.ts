@@ -1,50 +1,56 @@
-import { Component, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, Renderer2, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-calculo-medicamentos',
   templateUrl: './calculo-medicamentos.component.html',
   styleUrls: ['./calculo-medicamentos.component.scss']
 })
-export class CalculoMedicamentosComponent {
+export class CalculoMedicamentosComponent implements OnInit{
   @Input() medicamento: any;
   // @Input() listaMedicacoes: any;
   @Input() cor: any;
   @Input() dadosMedicacao: any;
-  selecionarIndex: number = -1;
-  selecionarCor: string = '';
   indicacoes: any = [];
   contraIndicacoes: any = [];
+  resultadoMgKg: any;
+  resultadoMcgKg: any;
+  resultadoMcgKgReverso: any;
+  resultadoMcgMin: any;
+  resultadoMcgMinReverso: any;
+  peso: any;
+  dose:any;
+  ampola: any;
+  vazao:any;
+  item: any;
+  backgroundColor: any;
 
-  constructor(private elementRef: ElementRef,  private renderer: Renderer2) {}
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+    private route: ActivatedRoute
+    ) {
+    const dados : any = this.route.snapshot.paramMap.get('medicamento');
+    this.item = JSON.parse(decodeURIComponent(dados));
+    this.backgroundColor = this.route.snapshot.paramMap.get('backgroundColor');
+  }
 
-  ngOnChanges(): void {
-    debugger
-      console.log(this.dadosMedicacao);
-      this.metodoSpint();
-    }
-
+  ngOnInit(){
+    console.log(this.item , this.backgroundColor)
+    this.metodoSpint();
+  }
 
   @HostListener('window:click')
   @HostListener('window:load')
   onLoad(){
     const elements = this.elementRef.nativeElement.querySelectorAll('.span-style');
     elements.forEach((element: HTMLElement) => {
-      this.renderer.setStyle(element, 'background', this.cor);
+      this.renderer.setStyle(element, 'background', this.backgroundColor);
       this.renderer.setStyle(element, 'transition', 'all 0.4s ease-out');
     });
-    this.elementRef.nativeElement.querySelector('.div-header').style.background = this.cor;
+    this.elementRef.nativeElement.querySelector('.div-header').style.background = this.backgroundColor;
     this.elementRef.nativeElement.querySelector('.div-header').style.transition = 'all 0.4s ease-out';
-  }
-
-  changeColor(index: number) {
-      if (this.selecionarIndex === index) {
-          this.selecionarIndex = -1;
-          this.selecionarCor = '';
-      } else {
-          this.selecionarIndex = index;
-          this.selecionarCor = this.cor;
-      }
   }
 
   back(){
@@ -53,9 +59,9 @@ export class CalculoMedicamentosComponent {
 
   metodoSpint(){
     debugger
-    console.log(this.dadosMedicacao)
-    const indicacoesArray = this.dadosMedicacao.indicacao.split("\\*");
-    const contraIndicacoesArray  = this.dadosMedicacao.contraIndicacao.split("\\*");
+    console.log(this.item)
+    const indicacoesArray = this.item.indicacao.split("\\*");
+    const contraIndicacoesArray  = this.item.contraIndicacao.split("\\*");
 
     for (let i = 0; i < indicacoesArray.length; i++) {
       const key = `${i}`;
@@ -69,38 +75,28 @@ export class CalculoMedicamentosComponent {
     console.log(this.indicacoes , this.contraIndicacoes)
   }
 
-  resultadoMgKg: any;
-  resultadoMcgKg: any;
-  resultadoMcgKgReverso: any;
-  resultadoMcgMin: any;
-  resultadoMcgMinReverso: any;
-  peso: any;
-  dose:any;
-  ampola: any;
-  vazao:any;
-
   calculoMgKg(){
     debugger
-    this.resultadoMgKg = (this.peso * this.dadosMedicacao.quantidadeMgKg * this.dadosMedicacao.quantidadeMl) / (this.dadosMedicacao.quantidadeMg * this.dose);
+    this.resultadoMgKg = (this.peso * this.item.quantidadeMgKg * this.item.quantidadeMl) / (this.item.quantidadeMg * this.dose);
   }
 
   calculoMcgKg(){
     debugger
-    this.resultadoMcgKg = (this.dose * this.peso * 60)/((this.dadosMedicacao.quantidadeMg * this.ampola)/(this.dadosMedicacao.quantidadeSoro + (this.dadosMedicacao.quantidadeMl * this.ampola)) * 1000);
+    this.resultadoMcgKg = (this.dose * this.peso * 60)/((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.ampola)) * 1000);
   }
 
   calculoMcgMin(){
     debugger
-    this.resultadoMcgMin = (this.dose * 60) / ((this.dadosMedicacao.quantidadeMg / (this.dadosMedicacao.quantidadeSoro + this.dadosMedicacao.quantidadeMl)) * 1000);
+    this.resultadoMcgMin = (this.dose * 60) / ((this.item.quantidadeMg / (this.item.quantidadeSoro + this.item.quantidadeMl)) * 1000);
   }
 
   calculoMcgKgReverso(){
     debugger
-    this.resultadoMcgKgReverso = (this.vazao * ((this.dadosMedicacao.quantidadeMg * this.ampola)/(this.dadosMedicacao.quantidadeSoro + (this.dadosMedicacao.quantidadeMl * this.ampola)) * 1000)) / (this.peso * 60);
+    this.resultadoMcgKgReverso = (this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.ampola)) * 1000)) / (this.peso * 60);
   }
 
   calculoMcgMinReverso(){
     debugger
-    this.resultadoMcgMinReverso = (this.vazao * ((this.dadosMedicacao.quantidadeMg * this.ampola)/(this.dadosMedicacao.quantidadeSoro + (this.dadosMedicacao.quantidadeMl * this.ampola)) * 1000) * this.ampola) /  60;
+    this.resultadoMcgMinReverso = (this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.ampola)) * 1000) * this.ampola) /  60;
   }
 }

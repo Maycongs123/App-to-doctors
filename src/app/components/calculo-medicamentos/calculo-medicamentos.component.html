@@ -1,7 +1,7 @@
 <div class="div-body">
     <div class="div-header" id="header-lista">
         <div class="div-tipo-medicacao">
-            <span class="span-font-tipo">{{dadosMedicacao.nome}}</span>
+            <span class="span-font-tipo">{{item.nome}}</span>
         </div>
         <div class="div-tipo-medicacao">
             <span class="span-font-tipo-2" style="cursor:pointer" (click)="back()">
@@ -11,13 +11,13 @@
                 arrow_forward_ios
             </mat-icon>
             <span class="span-font-tipo-2" style="cursor:pointer" (click)="back()">
-                {{medicamento}}
+                {{item.tipo}}
             </span>
             <mat-icon class="icon-style-2">
                 arrow_forward_ios
             </mat-icon>
             <span class="span-font-tipo-2">
-                {{dadosMedicacao.nome}}
+                {{item.nome}}
             </span>
         </div>
     </div>
@@ -37,7 +37,7 @@
                   </div>
                      <div class="div-conteudo-grid" >
                          <span style="margin-bottom: 1rem;">
-                              {{dadosMedicacao.nome + ' ' + dadosMedicacao.quantidadeMg + 'mg/' + dadosMedicacao.quantidadeMl + 'ml - ' + dadosMedicacao.modoDeUso}}
+                              {{item.nome + ' ' + item.quantidadeMg + 'mg/' + item.quantidadeMl + 'ml - ' + item.modoDeUso}}
                          </span>
                      </div>
                  </div>
@@ -50,14 +50,14 @@
                 </span>
             </div>
             <!-- Calcular os medicamentos em mg/kg/dia -->
-            <div *ngIf="dadosMedicacao.dosagemTipo === 'mg/kg/dia'" name="mg/kg/dia" class="div-calculadora">
+            <div *ngIf="item.dosagemTipo === 'mg/kg/dia'" class="div-calculadora">
                 <mat-form-field class="matFormCalculadora">
                     <mat-label>Peso(Kg)</mat-label>
-                    <input matInput [(ngModel)]="peso">
+                    <input matInput type="number" [(ngModel)]="peso">
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Número de Doses</mat-label>
-                  <input matInput [(ngModel)]="dose">
+                  <input matInput type="number" [(ngModel)]="dose">
               </mat-form-field>
               <button  mat-button matTooltip="Accent" (click)="calculoMgKg()">
                 <span>Calcular</span>
@@ -65,29 +65,29 @@
               </button>
               <div *ngIf="resultadoMgKg" class="div-result">
                 <span class="font-result" >
-                  {{resultadoMgKg + ' ml - ' +  dadosMedicacao.modoDeUso }}
+                  {{resultadoMgKg + ' ml - ' +  item.modoDeUso }}
                 </span>
               </div>
             </div>
 
-          <!-- Calcular os medicamentos em mcg/kg/dia -->
-          <mat-tab-group *ngIf="dadosMedicacao.dosagemTipo === 'mcg/kg/min'">
+          <!-- Calcular os medicamentos em mcg/kg/dia e o calculo reverso-->
+          <mat-tab-group *ngIf="item.dosagemTipo === 'mcg/kg/min'">
             <mat-tab>
               <ng-template mat-tab-label>
                 mcg/kg/min
               </ng-template>
-              <div  name="mcg/kg/min" class="div-calculadora">
+              <div name="mcg/kg/min" class="div-calculadora">
                 <mat-form-field class="matFormCalculadora">
                     <mat-label>Peso(Kg)</mat-label>
-                    <input matInput [(ngModel)]="peso">
+                    <input matInput type="number" [(ngModel)]="peso">
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Número de Doses</mat-label>
-                  <input matInput  [(ngModel)]="dose">
+                  <input matInput type="number" [(ngModel)]="dose">
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Quantidade de Ampolas</mat-label>
-                  <input matInput [(ngModel)]="ampola">
+                  <input matInput type="number" [(ngModel)]="ampola">
                 </mat-form-field>
                 <button mat-button matTooltip="Accent" (click)="calculoMcgKg()">
                   <span>Calcular</span>
@@ -95,7 +95,7 @@
                 </button>
                 <div *ngIf="resultadoMcgKg" class="div-result">
                   <span class="font-result" >
-                    {{resultadoMcgKg + ' ml/h - ' +  dadosMedicacao.modoDeUso }}
+                    {{resultadoMcgKg + ' ml/h - ' +  item.modoDeUso }}
                   </span>
                 </div>
             </div>
@@ -105,18 +105,18 @@
               <ng-template mat-tab-label>
                 ml/h
               </ng-template>
-              <div  name="mcg/kg/min" class="div-calculadora">
+              <div name="mcg/kg/min" class="div-calculadora">
                 <mat-form-field class="matFormCalculadora">
                     <mat-label>Peso(Kg)</mat-label>
-                    <input matInput [(ngModel)]="peso">
+                    <input matInput type="number" [(ngModel)]="peso">
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Vazão (ml/h)</mat-label>
-                  <input matInput  [(ngModel)]="vazao">
+                  <input matInput type="number" [(ngModel)]="vazao">
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Quantidade de Ampolas</mat-label>
-                  <input matInput [(ngModel)]="ampola">
+                  <input matInput type="number" [(ngModel)]="ampola">
                 </mat-form-field>
                 <button mat-button matTooltip="Accent" (click)="calculoMcgKgReverso()">
                   <span>Calcular</span>
@@ -124,15 +124,15 @@
                 </button>
                 <div *ngIf="resultadoMcgKgReverso" class="div-result">
                   <span class="font-result" >
-                    {{resultadoMcgKgReverso + ' mcg/kg/min - ' +  dadosMedicacao.modoDeUso }}
+                    {{resultadoMcgKgReverso + ' mcg/kg/min - ' +  item.modoDeUso }}
                   </span>
                 </div>
             </div>
             </mat-tab>
           </mat-tab-group>
 
-          <!-- Calcular os medicamentos em mcg/min -->
-          <mat-tab-group *ngIf="dadosMedicacao.dosagemTipo === 'mcg/min'">
+          <!-- Calcular os medicamentos em mcg/min e o calculo reverso-->
+          <mat-tab-group *ngIf="item.dosagemTipo === 'mcg/min'">
             <mat-tab>
               <ng-template mat-tab-label>
                 mcg/min
@@ -140,11 +140,11 @@
               <div name="mcg/min" class="div-calculadora">
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Número de Doses</mat-label>
-                  <input matInput [(ngModel)]="dose">
+                  <input matInput type="number" [(ngModel)]="dose">
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Quantidade de Ampolas</mat-label>
-                  <input matInput [(ngModel)]="ampola">
+                  <input matInput type="number" [(ngModel)]="ampola">
                 </mat-form-field>
                 <button  mat-button matTooltip="Accent" (click)="calculoMcgMin()">
                   <span>Calcular</span>
@@ -152,7 +152,7 @@
                 </button>
                 <div  *ngIf="resultadoMcgMin" class="div-result">
                   <span class="font-result">
-                    {{resultadoMcgMin + ' ml/h - ' +  dadosMedicacao.modoDeUso }}
+                    {{resultadoMcgMin + ' ml/h - ' +  item.modoDeUso }}
                   </span>
                 </div>
               </div>
@@ -165,11 +165,11 @@
               <div  name="mcg/kg/min" class="div-calculadora">
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Vazão (ml/h)</mat-label>
-                  <input matInput  [(ngModel)]="vazao">
+                  <input matInput type="number" [(ngModel)]="vazao">
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Quantidade de Ampolas</mat-label>
-                  <input matInput [(ngModel)]="ampola">
+                  <input type="number" matInput [(ngModel)]="ampola">
                 </mat-form-field>
                 <button mat-button matTooltip="Accent" (click)="calculoMcgMinReverso()">
                   <span>Calcular</span>
@@ -177,7 +177,7 @@
                 </button>
                 <div *ngIf="resultadoMcgMinReverso" class="div-result">
                   <span class="font-result" >
-                    {{resultadoMcgMinReverso + ' mcg/min - ' +  dadosMedicacao.modoDeUso }}
+                    {{resultadoMcgMinReverso + ' mcg/min - ' +  item.modoDeUso }}
                   </span>
                 </div>
             </div>
