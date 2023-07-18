@@ -1,96 +1,218 @@
 <div class="div-body">
     <div class="div-header" id="header-lista">
         <div class="div-tipo-medicacao">
-            <span class="span-font-tipo">{{dadosMedicacao.nome}}</span>
+            <span class="span-font-tipo">{{item.nome}}</span>
         </div>
-        <div class="div-tipo-medicacao">
+        <div class="div-tipo-medicacao-1">
             <span class="span-font-tipo-2" style="cursor:pointer" (click)="back()">
                 Página Inicial
             </span>
             <mat-icon class="icon-style-2">
                 arrow_forward_ios
-            </mat-icon>  
+            </mat-icon>
             <span class="span-font-tipo-2" style="cursor:pointer" (click)="back()">
-                {{medicamento}}
+                {{item.tipo}}
             </span>
             <mat-icon class="icon-style-2">
                 arrow_forward_ios
-            </mat-icon>  
+            </mat-icon>
             <span class="span-font-tipo-2">
-                {{dadosMedicacao.nome}}
+                {{item.nome}}
             </span>
-        </div>      
+        </div>
     </div>
-   
+
     <div class="div-conteudo-medicacao">
        <div class="div-left">
-           <div class="div-shadow" >
-            <span class="span-style-2">
-                Apresentações Disponíveis
-            </span>
-            <div class="div-conteudo-medicacao-3" style="line-height: 25px;" *ngFor="let dados of dadosMedicacao.apresentacaoDisponivel;">
-                <div class="div-conteudo-flex">
-                    <mat-icon class="icon-style">
-                        arrow_forward_ios
-                    </mat-icon>  
+          <div style="margin-bottom: 1rem;">
+            <div class="div-shadow" >
+              <span class="span-style-2">
+                  Apresentação Disponível
+              </span>
+              <div class="div-conteudo-medicacao-3" style="line-height: 25px;">
+                  <div class="div-conteudo-flex">
+                      <mat-icon class="icon-style">
+                          arrow_forward_ios
+                      </mat-icon>
+                  </div>
+                     <div class="div-conteudo-grid" >
+                         <span style="margin-bottom: 1rem;">
+                              {{item.nome + ' ' + item.quantidadeMg + 'mg/' + item.quantidadeMl + 'ml - ' + item.modoDeUso}}
+                         </span>
+                     </div>
+                 </div>
+             </div>
+          </div>
+          <div class="div-shadow" style="margin-bottom: 2rem;">
+            <div>
+                <span class="span-style-2">
+                    Cálculo Medicamento
+                </span>
+            </div>
+            <!-- Calcular os medicamentos em mg/kg/dia -->
+            <div *ngIf="item.dosagemTipo === 'mg/kg/dia'" class="div-calculadora">
+                <mat-form-field class="matFormCalculadora">
+                    <mat-label>Peso(Kg)</mat-label>
+                    <input matInput type="number" [(ngModel)]="peso">
+                </mat-form-field>
+              <button  mat-button matTooltip="Accent" (click)="calculoMgKg()">
+                <span>Calcular</span>
+                <mat-icon class="matFormCalculadora">calculate</mat-icon>
+              </button>
+              <div *ngIf="resultadoMgKg" class="div-result">
+                <span class="font-result" >
+                  {{resultadoMgKg + ' ml - ' +  item.modoDeUso }}
+                </span>
+              </div>
+            </div>
+
+          <!-- Calcular os medicamentos em mcg/kg/dia e o calculo reverso-->
+          <mat-tab-group *ngIf="item.dosagemTipo === 'mcg/kg/min'">
+            <mat-tab>
+              <ng-template mat-tab-label>
+                mcg/kg/min
+              </ng-template>
+              <div name="mcg/kg/min" class="div-calculadora">
+                <mat-form-field class="matFormCalculadora">
+                    <mat-label>Peso(Kg)</mat-label>
+                    <input matInput type="number" [(ngModel)]="peso">
+                </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Dose a ser administrada (mcg/kg/min)</mat-label>
+                  <input matInput type="number" [(ngModel)]="dose" [step]="0.01">
+                </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Quantidade de soro glicosado(ml) </mat-label>
+                  <input matInput type="number" [(ngModel)]="soroGlicosado" [step]="0.01">
+                </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Solução total(ml) </mat-label>
+                  <input matInput type="number" [(ngModel)]="solucaoTotal" [step]="0.01">
+                </mat-form-field>
+                <button mat-button matTooltip="Accent" (click)="calculoMcgKg()">
+                  <span>Calcular</span>
+                  <mat-icon class="matFormCalculadora">calculate</mat-icon>
+                </button>
+                <div *ngIf="resultadoMcgKg" class="div-result">
+                  <span class="font-result" >
+                    {{resultadoMcgKg + ' ml/h - ' +  item.modoDeUso }}
+                  </span>
                 </div>
-                   <div class="div-conteudo-grid" >
-                       <span style="margin-bottom: 1rem;">
-                            {{dados.medicacao + valor + dados.modoUso }}
-                       </span>                 
-                   </div>
-               </div>
-           </div>
+            </div>
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                ml/h
+              </ng-template>
+              <div name="mcg/kg/min" class="div-calculadora">
+                <mat-form-field class="matFormCalculadora">
+                    <mat-label>Peso(Kg)</mat-label>
+                    <input matInput type="number" [(ngModel)]="peso">
+                </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Vazão (ml/h)</mat-label>
+                  <input matInput type="number" [(ngModel)]="vazao">
+                </mat-form-field>
+                <!-- <mat-form-field class="matFormCalculadora">
+                  <mat-label>Quantidade de Ampolas</mat-label>
+                  <input matInput type="number" [(ngModel)]="ampola">
+                </mat-form-field> -->
+                <button mat-button matTooltip="Accent" (click)="calculoMcgKgReverso()">
+                  <span>Calcular</span>
+                  <mat-icon class="matFormCalculadora">calculate</mat-icon>
+                </button>
+                <div *ngIf="resultadoMcgKgReverso" class="div-result">
+                  <span class="font-result" >
+                    {{resultadoMcgKgReverso + ' mcg/kg/min - ' +  item.modoDeUso }}
+                  </span>
+                </div>
+            </div>
+            </mat-tab>
+          </mat-tab-group>
+
+          <!-- Calcular os medicamentos em mcg/min e o calculo reverso-->
+          <mat-tab-group *ngIf="item.dosagemTipo === 'mcg/min'">
+            <mat-tab>
+              <ng-template mat-tab-label>
+                mcg/min
+              </ng-template>
+              <div name="mcg/min" class="div-calculadora">
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Dose a ser administrada (mcg/kg/min)</mat-label>
+                  <input matInput type="number" [step]="0.01" [(ngModel)]="dose">
+                </mat-form-field>
+                <!-- <mat-form-field class="matFormCalculadora">
+                  <mat-label>Quantidade de Ampolas</mat-label>
+                  <input matInput type="number" [(ngModel)]="ampola">
+                </mat-form-field> -->
+                <button  mat-button matTooltip="Accent" (click)="calculoMcgMin()">
+                  <span>Calcular</span>
+                  <mat-icon class="matFormCalculadora">calculate</mat-icon>
+                </button>
+                <div  *ngIf="resultadoMcgMin" class="div-result">
+                  <span class="font-result">
+                    {{resultadoMcgMin + ' ml/h - ' +  item.modoDeUso }}
+                  </span>
+                </div>
+              </div>
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                ml/h
+              </ng-template>
+              <div  name="mcg/kg/min" class="div-calculadora">
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Vazão (ml/h)</mat-label>
+                  <input matInput type="number" [(ngModel)]="vazao">
+                </mat-form-field>
+                <!-- <mat-form-field class="matFormCalculadora">
+                  <mat-label>Quantidade de Ampolas</mat-label>
+                  <input type="number" matInput [(ngModel)]="ampola">
+                </mat-form-field> -->
+                <button mat-button matTooltip="Accent" (click)="calculoMcgMinReverso()">
+                  <span>Calcular</span>
+                  <mat-icon class="matFormCalculadora">calculate</mat-icon>
+                </button>
+                <div *ngIf="resultadoMcgMinReverso" class="div-result">
+                  <span class="font-result" >
+                    {{resultadoMcgMinReverso + ' mcg/min - ' +  item.modoDeUso }}
+                  </span>
+                </div>
+            </div>
+            </mat-tab>
+          </mat-tab-group>
+
+        </div>
        </div>
-       
         <div class="div-right" >
-            <div class="div-shadow" style="margin-bottom: 2rem;">
-                <div>
-                    <span class="span-style-2">
-                        Cálculo Medicamento
+          <div class="div-shadow" style="margin-bottom: 1rem;" >
+            <span class="span-style-2">
+              Indicação
+            </span>
+            <div class="div-conteudo-medicacao-3" style="display: grid;" *ngFor="let dados of indicacoes">
+                <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
+                    <mat-icon class="icon-style icon-style-done">
+                        done
+                    </mat-icon>
+                    <span >
+                       {{dados}}
                     </span>
                 </div>
-                <div class="div-calculadora">
-                    <mat-form-field class="matFormCalculadora">
-                        <mat-label>Peso</mat-label>                          
-                        <input matInput placeholder="Ex: 10">
-                        <button  matSuffix mat-icon-button matTooltip="Accent" >
-                            <mat-icon class="matFormCalculadora">calculate</mat-icon>
-                        </button>
-                    </mat-form-field>
-                </div>
-                <!-- <div 
-                class="div-conteudo-medicacao-2" 
-                (click)="changeColor($index)"
-                *ngFor="let dados of dadosMedicacao.indicacoesClinicas; let $index = index"
-                [ngStyle]="{'background-color': selecionarIndex === $index ? selecionarCor : ''}"
-                >
-                    <div class="div-conteudo-flex">
-                        <mat-icon class="icon-style">
-                            arrow_forward_ios
-                        </mat-icon>  
-                        <span 
-                        class="efeito-span"
-                        [ngStyle]="{'margin-left': selecionarIndex === $index ? '1rem' : ''}">
-                        {{dados.indicacao}}
-                        </span>
-                    </div>
-                    <div>
-                        <span class="span-style">{{dados.dose}}</span>
-                    </div>
-                </div> -->
             </div>
+          </div>
             <div class="div-shadow" >
                 <span class="span-style-2">
-                    Orientações
+                    Contra Indicação
                 </span>
-                <div class="div-conteudo-medicacao-3" style="display: grid;" *ngFor="let dados of dadosMedicacao.orientacoes;">
+                <div class="div-conteudo-medicacao-3" style="display: grid;" *ngFor="let dados of contraIndicacoes">
                     <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
-                        <mat-icon class="icon-style" style="padding-right: 0.5rem; color: red;">
+                        <mat-icon class="icon-style icon-style-close">
                             close
-                        </mat-icon>  
+                        </mat-icon>
                         <span >
-                           {{dados.orieantacao}}
+                           {{dados}}
                         </span>
                     </div>
                 </div>

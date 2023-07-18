@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { MedicamentosService } from 'src/app/services/medicamentos.service';
 
 @Component({
   selector: 'app-lista-medicamentos',
@@ -12,43 +13,86 @@ export class ListaMedicamentosComponent {
   @Input() cor: any;
   @Output() dadosEnviados = new EventEmitter<string>();
 
-  constructor(private elementRef: ElementRef,  private renderer: Renderer2,private router: Router) {}
+  constructor(
+    protected elementRef: ElementRef,
+    protected renderer: Renderer2,
+    protected router: Router,
+    protected medicamentosService: MedicamentosService
+  ) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        console.log(event.url); // Exibir a URL da rota
+      }
+    });
+  }
 
-  getNome(getDados: any) {     
+  getNome(getDados: any) {
     debugger
     if(getDados.tipo === "Antibiótico"){
-      this.router.navigate(['/antibioticos-calculos', getDados.nome]);
+      let backgroundColor = '#007bff';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
-    if(getDados.tipo === "Anti-Convulsivantes"){
-      this.router.navigate(['/anti-convulsivantes-calculos', getDados.nome]);
+
+    if(getDados.tipo === "Anti-Convulsivante"){
+      let backgroundColor = '#6f42c1';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
-    if(getDados.tipo === "Anti-Inflamatórios"){
-      this.router.navigate(['/anti-inflamatorio-calculos', getDados.nome]);
+
+    if(getDados.tipo === "Anti-Inflamatório"){
+      let backgroundColor = '#dc3545';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
-    if(getDados.tipo === "Anti-Fúngicos"){
-      this.router.navigate(['/anti-fungicos-calculos', getDados.nome]);
+
+    if(getDados.tipo === "Anti-Fúngico"){
+      let backgroundColor = '#ffc107';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
-    if(getDados.tipo === "Anti-Histaminicos"){
-      this.router.navigate(['/anti-histamicos-calculos', getDados.nome]);
+
+    if(getDados.tipo === "Anti-Histaminico"){
+      let backgroundColor = '#28a745';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
-    if(getDados.tipo === "Anti-Parasitarios"){
-      this.router.navigate(['/anti-parasitario-calculos', getDados.nome]);
+
+    if(getDados.tipo === "Anti-Parasitario"){
+      let backgroundColor = '#3bb54a';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
+
     if(getDados.tipo === "Broncodilatadores"){
-      this.router.navigate(['/broncodilatadores-calculos', getDados.nome]);
+      let backgroundColor = '#6f42c1';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
-    if(getDados.tipo === "Corticosteroides"){
-      this.router.navigate(['/corticosteroides-calculos', getDados.nome]);
+
+    if(getDados.tipo === "Corticosteroide"){
+      let backgroundColor = '007bff';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
-    if(getDados.tipo === "Laxativos"){
-      this.router.navigate(['/laxativos-calculos', getDados.nome]);
+
+    if(getDados.tipo === "Laxativo"){
+      let backgroundColor = '#dc3545';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
-    if(getDados.tipo === "Sintomaticos"){
-      this.router.navigate(['/sintomaticos-calculos', getDados.nome]);
+
+    if(getDados.tipo === "Sintomatico"){
+      let backgroundColor = '#fd7e14';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
+
     if(getDados.tipo === "Hidratação Venosa"){
-      this.router.navigate(['/hidratacao-venosa-calculos', getDados.nome]);
-    }   
+      let backgroundColor = '#ffc107';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
+    }
   }
 
   @HostListener('window:click')
@@ -61,7 +105,7 @@ export class ListaMedicamentosComponent {
     });
     this.elementRef.nativeElement.querySelector('.div-header').style.background = this.cor;
     this.elementRef.nativeElement.querySelector('.div-header').style.transition = 'all 0.4s ease-out';
-  }    
+  }
 
   back(){
     history.back()

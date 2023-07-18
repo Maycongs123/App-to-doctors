@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -24,7 +24,6 @@ import { AntiConvulsivantesComponent } from './pages/anti-convulsivantes/anti-co
 import { AntiInflamatorioComponent } from './pages/anti-inflamatorio/anti-inflamatorio.component';
 import {MatInputModule} from '@angular/material/input';
 import { CalculoMedicamentosComponent } from './components/calculo-medicamentos/calculo-medicamentos.component';
-import { AntibioticosCalculosComponent } from './pages/antibioticos-calculos/antibioticos-calculos.component';
 import { PopupComponent } from './components/popup/popup.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -42,17 +41,10 @@ import { HidratacaoVenosaComponent } from './pages/hidratacao-venosa/hidratacao-
 import { PopupCadastroMedicamentoComponent } from './components/popup-cadastro-medicamento/popup-cadastro-medicamento.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { AntiConvulsivantesCalculosComponent } from './pages/anti-convulsivantes-calculos/anti-convulsivantes-calculos.component';
-import { AntiInflamatorioCalculosComponent } from './pages/anti-inflamatorio-calculos/anti-inflamatorio-calculos.component';
-import { AntiFungicosCalculosComponent } from './pages/anti-fungicos-calculos/anti-fungicos-calculos.component';
-import { AntiHistaminicosCalculosComponent } from './pages/anti-histaminicos-calculos/anti-histaminicos-calculos.component';
-import { AntiParasitariosCalculosComponent } from './pages/anti-parasitarios-calculos/anti-parasitarios-calculos.component';
-import { BroncodilatadoresCalculosComponent } from './pages/broncodilatadores-calculos/broncodilatadores-calculos.component';
-import { CorticosteroidesCalculosComponent } from './pages/corticosteroides-calculos/corticosteroides-calculos.component';
-import { LaxativosCalculosComponent } from './pages/laxativos-calculos/laxativos-calculos.component';
-import { SintomaticosCalculosComponent } from './pages/sintomaticos-calculos/sintomaticos-calculos.component';
-import { HidratacaoVenosaCalculosComponent } from './pages/hidratacao-venosa-calculos/hidratacao-venosa-calculos.component';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +58,6 @@ import { HidratacaoVenosaCalculosComponent } from './pages/hidratacao-venosa-cal
     AntiConvulsivantesComponent,
     AntiInflamatorioComponent,
     CalculoMedicamentosComponent,
-    AntibioticosCalculosComponent,
     PopupComponent,
     AntiFungicosComponent,
     AntiHistaminicosComponent,
@@ -77,17 +68,9 @@ import { HidratacaoVenosaCalculosComponent } from './pages/hidratacao-venosa-cal
     SintomaticosComponent,
     HidratacaoVenosaComponent,
     PopupCadastroMedicamentoComponent,
-    AntiConvulsivantesCalculosComponent,
-    AntiInflamatorioCalculosComponent,
-    AntiFungicosCalculosComponent,
-    AntiHistaminicosCalculosComponent,
-    AntiParasitariosCalculosComponent,
-    BroncodilatadoresCalculosComponent,
-    CorticosteroidesCalculosComponent,
-    LaxativosCalculosComponent,
-    SintomaticosCalculosComponent,
-    HidratacaoVenosaCalculosComponent,
-    
+    SnackBarComponent
+
+
   ],
   imports: [
     BrowserModule,
@@ -106,7 +89,12 @@ import { HidratacaoVenosaCalculosComponent } from './pages/hidratacao-venosa-cal
     FormsModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatTabsModule,
+    MatSnackBarModule
+
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}

@@ -1,82 +1,191 @@
 <div>
-    <form>
-      <div class="div-flex">       
-        <h1 style="text-align: center;">Cadastro de Medicamento</h1>      
-      </div>      
+    <form [formGroup]="formMedicamento" (ngSubmit)="submit()">
+      <div class="div-flex">
+        <h1 style="text-align: center;">Cadastro de Medicamento</h1>
+      </div>
       <div class="div-flex">
         <div>
             <label>Medicamento de uso: </label><br>
-            <mat-radio-group class="div-mat-form-field">
+            <mat-radio-group required class="div-mat-form-field" formControlName="medicamentoUso">
               <mat-radio-button value="Adulto">Adulto</mat-radio-button>
               <mat-radio-button value="Pediátrico">Pediátrico</mat-radio-button>
             </mat-radio-group>
+            <mat-error *ngIf="formMedicamento.controls.medicamentoUso.invalid && formMedicamento.controls.medicamentoUso.touched">
+              Esse campo é obrigatório.
+            </mat-error>
         </div>
-      </div> 
+      </div>
       <div class="div-flex">
         <div>
             <label>Nome do medicamento:</label><br>
-            <mat-form-field class="div-mat-form-field" >            
-                <input matInput >
+            <mat-form-field class="div-mat-form-field" >
+                <input  type="text" required matInput formControlName="nome">
+                <mat-error *ngIf="formMedicamento.controls.nome.invalid && formMedicamento.controls.nome.touched">
+                  Esse campo é obrigatório.
+                </mat-error>
             </mat-form-field>
         </div>
-      </div> 
+      </div>
       <div class="div-flex">
         <div>
             <label style="text-align: left;">Tipo do medicamento: </label><br>
             <mat-form-field class="div-mat-form-field">
-              <mat-select required>
+              <mat-select required formControlName="tipo">
                 <mat-option>-- None --</mat-option>
                 <mat-option value="Antibiótico">Antibiótico</mat-option>
-                <mat-option value="Anti-Convulsivantes">Anti-Convulsivantes</mat-option>
-                <mat-option value="Anti-Inflamatórios">Anti-Inflamatórios</mat-option>
-                <mat-option value="Anti-Fúngicos">Anti-Fúngicos</mat-option>
-                <mat-option value="Anti-Histamínicos">Anti-Histamínicos</mat-option>
-                <mat-option value="Anti-Parasitários">Anti-Parasitários</mat-option>
-                <mat-option value="Broncodilatadores">Broncodilatadores</mat-option>
-                <mat-option value="Corticosteróide">Corticosteróides</mat-option>
-                <mat-option value="Laxativos">Laxativos</mat-option>
-                <mat-option value="Sintomático">Sintomáticos</mat-option>
+                <mat-option value="Anti-Convulsivante">Anti-Convulsivante</mat-option>
+                <mat-option value="Anti-Inflamatório">Anti-Inflamatório</mat-option>
+                <mat-option value="Anti-Fúngico">Anti-Fúngico</mat-option>
+                <mat-option value="Anti-Histamínico">Anti-Histamínico</mat-option>
+                <mat-option value="Anti-Parasitário">Anti-Parasitário</mat-option>
+                <mat-option value="Broncodilatadores">Broncodilatadore</mat-option>
+                <mat-option value="Corticosteróide">Corticosteróide</mat-option>
+                <mat-option value="Laxativo">Laxativo</mat-option>
+                <mat-option value="Sintomático">Sintomático</mat-option>
                 <mat-option value="Hidratação Venosa">Hidratação Venosa</mat-option>
-              </mat-select>        
+              </mat-select>
+              <mat-error *ngIf="formMedicamento.controls.tipo.invalid && formMedicamento.controls.tipo.touched">
+                Esse campo é obrigatório.
+              </mat-error>
             </mat-form-field>
-        </div>  
+        </div>
       </div>
       <div class="div-flex">
         <div>
-            <div> 
+            <div style="display: flex; justify-content: center;">
+              <label>Tipo de dosagem </label><br>
+            </div>
+            <mat-radio-group required class="div-mat-form-field" formControlName="dosagemTipo" (change)="formDosagemTipo($event)">
+              <mat-radio-button value="mg/kg/dia">mg/kg/dia</mat-radio-button>
+              <mat-radio-button value="mcg/kg/min">mcg/kg/min</mat-radio-button>
+              <mat-radio-button value="mcg/min">mcg/min</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="formMedicamento.controls.dosagemTipo.invalid && formMedicamento.controls.dosagemTipo.touched">
+              Esse campo é obrigatório.
+            </mat-error>
+        </div>
+      </div>
+      <div class="div-flex">
+        <div>
+            <div>
                 <label>Quantidade em mg:</label><br>
-                <mat-form-field class="div-mat-form-field">            
-                    <input matInput >            
-                </mat-form-field>
+                <div formArrayName="quantidadeMg">
+                  <div *ngFor="let quantidadeMgForm of quantidadeMg.controls; let i = index" >
+                    <mat-form-field class="div-mat-form-field-grid">
+                      <input matInput [formControlName]="i" placeholder="{{i + 1}}ª Apresentação">
+                    </mat-form-field>
+                    <mat-error *ngIf="formMedicamento.controls.quantidadeMg.invalid && formMedicamento.controls.quantidadeMg.touched">
+                      Esse campo é obrigatório.
+                    </mat-error>
+                    <button mat-button color="warn" (click)="removerCampo(i)">Retirar</button>
+                  </div>
+                </div>
+                <button mat-button color="primary" type="button" (click)="adicionarCampoQuantidadeMg()">Adicionar quantidade em mg</button>
             </div>
             <div>
                 <label>Quantidade em ml:</label><br>
-                <mat-form-field class="div-mat-form-field">            
-                    <input matInput>            
-                </mat-form-field>
+                <div formArrayName="quantidadeMl">
+                  <div *ngFor="let quantidadeMlForm of quantidadeMl.controls; let i = index" >
+                    <mat-form-field class="div-mat-form-field-grid">
+                      <input matInput [formControlName]="i" placeholder="{{i + 1}}ª Apresentação">
+                    </mat-form-field>
+                    <mat-error *ngIf="formMedicamento.controls.quantidadeMl.invalid && formMedicamento.controls.quantidadeMl.touched">
+                      Esse campo é obrigatório.
+                    </mat-error>
+                    <button mat-button color="warn" (click)="removerCampo(i)">Retirar</button>
+                  </div>
+                </div>
+                <button mat-button color="primary" type="button" (click)="adicionarCampoQuantidadeMl()">Adicionar quantidade em ml</button>
             </div>
+            <div *ngIf="dosagemTipo">
+              <label>Quantidade em mg/kg/dia:</label><br>
+              <mat-form-field class="div-mat-form-field">
+                  <input type="number" matInput formControlName="quantidadeMgKg">
+                  <mat-error *ngIf="formMedicamento.controls.quantidadeMgKg.invalid && formMedicamento.controls.quantidadeMgKg.touched">
+                    Esse campo é obrigatório.
+                  </mat-error>
+              </mat-form-field>
+            </div>
+            <div *ngIf="dosagemTipo">
+              <label>Número de doses:</label><br>
+              <mat-form-field class="div-mat-form-field">
+                  <input type="number" matInput formControlName="numeroDoses">
+                  <mat-error *ngIf="formMedicamento.controls.numeroDoses.invalid && formMedicamento.controls.numeroDoses.touched">
+                    Esse campo é obrigatório.
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div *ngIf="!dosagemTipo">
+            <label>Número de doses:</label><br>
+            <mat-form-field class="div-mat-form-field">
+                <input type="number" matInput formControlName="quantidadeAmpolas">
+                <mat-error *ngIf="formMedicamento.controls.quantidadeAmpolas.invalid && formMedicamento.controls.quantidadeAmpolas.touched">
+                  Esse campo é obrigatório.
+                </mat-error>
+            </mat-form-field>
+        </div>
+          <div *ngIf="!dosagemTipo">
+            <label>Quantidade de soro glicosado 5% (ml):</label><br>
+            <mat-form-field class="div-mat-form-field">
+                <input type="number" matInput formControlName="quantidadeSoro">
+                <mat-error *ngIf="formMedicamento.controls.quantidadeSoro.invalid && formMedicamento.controls.quantidadeSoro.touched">
+                  Esse campo é obrigatório.
+                </mat-error>
+            </mat-form-field>
+        </div>
         </div>
       </div>
       <div class="div-flex">
         <div>
             <label>Modo de uso:</label><br>
-            <mat-form-field class="div-mat-form-field">            
-                <textarea matInput></textarea>           
+            <mat-form-field class="div-mat-form-field" >
+                <textarea matInput formControlName="modoDeUso"></textarea>
+                <mat-error *ngIf="formMedicamento.controls.modoDeUso.invalid && formMedicamento.controls.modoDeUso.touched">
+                  Esse campo é obrigatório.
+                </mat-error>
             </mat-form-field>
         </div>
       </div>
       <div class="div-flex">
-        <div>
-            <label>Contra indicação:</label><br>
-            <mat-form-field class="div-mat-form-field">  
-                <textarea matInput></textarea>   
-            </mat-form-field>
+        <div style="display: grid;">
+          <label>Indicações:</label><br>
+          <div formArrayName="indicacoes">
+            <div *ngFor="let indicacoesForm of indicacoes.controls; let i = index" >
+              <mat-form-field class="div-mat-form-field-grid">
+                <textarea matInput [formControlName]="i"></textarea>
+              </mat-form-field>
+              <mat-error *ngIf="formMedicamento.controls.indicacoes.invalid && formMedicamento.controls.indicacoes.touched">
+                Esse campo é obrigatório.
+              </mat-error>
+              <button mat-button color="warn" (click)="removerCampoIndicacao(i)">Retirar</button>
+            </div>
+          </div>
+          <button mat-button color="primary" type="button" (click)="adicionarCampoIndicacao()">Adicionar indicação</button>
+        </div>
+      </div>
+      <div class="div-flex">
+        <div style="display: grid;">
+          <label>Contra indicações:</label><br>
+          <div formArrayName="contraIndicacoes">
+            <div *ngFor="let contraIndicacoesForm of contraIndicacoes.controls; let i = index" >
+              <mat-form-field class="div-mat-form-field-grid">
+                <textarea matInput [formControlName]="i"></textarea>
+              </mat-form-field>
+              <mat-error *ngIf="formMedicamento.controls.contraIndicacoes.invalid && formMedicamento.controls.contraIndicacoes.touched">
+                Esse campo é obrigatório.
+              </mat-error>
+              <button mat-button color="warn" (click)="removerCampo(i)">Retirar</button>
+            </div>
+          </div>
+          <button mat-button color="primary" type="button" (click)="adicionarCampo()">Adicionar Contra indicação</button>
         </div>
       </div>
     </form>
-    <mat-dialog-actions align="end">
-        <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Adicionar</button>
+    <div align="end" style="padding: 2rem;">
+        <button mat-button  type="submit" (click)="adicionar()">Adicionar</button>
         <button mat-button mat-dialog-close>Cancelar</button>
-      </mat-dialog-actions>
+    </div>
   </div>
-  
+
+
+

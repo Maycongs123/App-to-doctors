@@ -12,31 +12,31 @@ export class HomeComponent implements OnInit{
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private appRef: ApplicationRef,
-    private router: Router) {}    
-  
-  atendimento: any;  
+    private router: Router) {}
+
+  atendimento: any;
   imagem: any;
-  
-  goToItems() {   
+
+  goToItems() {
    this.router.navigate(['/lista-antibiotico'], { relativeTo: this.route });
   }
 
-  ngOnInit(){  
-    this.openDialog();  
+  ngOnInit(){
+    this.openDialog();
     // const popupShown = localStorage.getItem('popupShown');
     // if (!popupShown) {
-      
+
     //   localStorage.setItem('popupShown', 'true');
     // }
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(PopupComponent, {  
-      panelClass: 'custom-dialog-container'  
+    const dialogRef = this.dialog.open(PopupComponent, {
+      panelClass: 'custom-dialog-container'
     });
 
-    dialogRef.afterClosed().subscribe(result => {    
-        
+    dialogRef.afterClosed().subscribe(result => {
+
      this.atendimento = localStorage.getItem('tipoAtendimento');
 
      if(this.atendimento === "Adulto"){
@@ -45,5 +45,5 @@ export class HomeComponent implements OnInit{
       this.imagem = false;
      }
     });
-  } 
+  }
 }

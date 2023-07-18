@@ -10,13 +10,12 @@ export class PopupComponent {
   constructor(public dialogRef: MatDialogRef<PopupComponent>,
   @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
-  
+
   adulto: any = "Adulto"
   pediatria: any = "Pediatrico"
 
   onNoClick(value: any) {
-    debugger
-    
+
     if(value === "Adulto"){
       localStorage.setItem('tipoAtendimento', value);
       return
@@ -24,8 +23,8 @@ export class PopupComponent {
     if(value === "Pediatrico"){
       localStorage.setItem('tipoAtendimento', value);
       return
-    }    
-   
+    }
+
     this.dialogRef.close();
-  }  
+  }
 }

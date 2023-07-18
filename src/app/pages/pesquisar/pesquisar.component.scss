@@ -5,13 +5,22 @@
 }
 
 .div-header{
-    padding: 9rem 9rem 7rem 9rem;  
-    background: #6c757d; 
-}  
+    padding: 9rem 9rem 7rem 9rem;
+    background: #6c757d;
+}
 
 .div-tipo-medicacao{
     display: flex;
     justify-content: center;
+}
+
+.div-tipo-medicacao-1{
+  display: flex;
+  justify-content: center;
+  @media (max-width: 500px) {
+    display: grid;
+    grid-template-columns: 9rem;
+  }
 }
 
 .span-font-tipo{
@@ -24,13 +33,17 @@
     color: #fff;
     font-size: 18px;
     letter-spacing: 2px;
+    @media (max-width:500px) {
+      display: flex;
+      justify-content: center;
+    }
 }
 
 .div-conteudo-medicacao{
     padding: 4rem 6rem 5rem 6rem;
     background: #fff;
     @media(max-width: 990px){
-        padding: 3rem 1rem 2rem 1rem;     
+        padding: 3rem 1rem 2rem 1rem;
     }
 }
 
@@ -61,6 +74,9 @@
     color: #fff;
     padding-left: 10px;
     padding-top: 5px;
+    @media (max-width:500px) {
+      padding-left: 4rem;
+    }
 }
 
 .efeito-div:hover{
@@ -75,7 +91,7 @@
 }
 
 .input-filtro{
-    padding: 2rem;  
+    padding: 2rem;
 }
 
 .width-input{
@@ -85,6 +101,49 @@
     }
 }
 
+.tipo-Antibiotico{
+  color: #007bff;
+}
+
+.tipo-Convulsivante{
+  color: #6f42c1;
+}
+
+.tipo-Inflamatorio{
+  color: #dc3545;
+}
+
+.tipo-Fungico{
+  color: #ffc107;
+}
+
+.tipo-Histaminico{
+  color: #28a745;
+}
+
+.tipo-Parasitario{
+  color: #3bb54a;
+}
+
+.tipo-Broncodilatadores{
+  color: #6f42c1;
+}
+
+.tipo-Corticosteroide{
+  color:#007bff;
+}
+
+.tipo-Laxativo{
+  color: #dc3545;
+}
+
+.tipo-Sintomatico{
+  color: #fd7e14;
+}
+
+.tipo-Hidratacao{
+  color: #ffc107;
+}
 
 
 
