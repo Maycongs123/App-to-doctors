@@ -29,10 +29,10 @@ export class PopupCadastroMedicamentoComponent {
     modoDeUso: ['', Validators.required],
     quantidadeMg: this.formBuilder.array([this.formBuilder.control('', Validators.required)]),
     quantidadeMl: this.formBuilder.array([this.formBuilder.control('', Validators.required)]),
-    quantidadeMgKg: ['', Validators.required],
+    quantidadeMgKg: [0, Validators.required],
     quantidadeSoro: [0,Validators.required],
     numeroDoses: [0, Validators.required],
-    quantidadeAmpolas: [0, Validators.required],
+    quantidadeAmpolas: [null, Validators.required],
     indicacoes: this.formBuilder.array([this.formBuilder.control('', Validators.required)]),
     contraIndicacoes: this.formBuilder.array([this.formBuilder.control('', Validators.required)]),
   });

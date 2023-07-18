@@ -115,15 +115,15 @@
                   </mat-error>
               </mat-form-field>
           </div>
-          <div *ngIf="!dosagemTipo">
-            <label>Número de doses:</label><br>
+          <!-- <div *ngIf="!dosagemTipo">
+            <label>Quantidade de Ampolas:</label><br>
             <mat-form-field class="div-mat-form-field">
                 <input type="number" matInput formControlName="quantidadeAmpolas">
                 <mat-error *ngIf="formMedicamento.controls.quantidadeAmpolas.invalid && formMedicamento.controls.quantidadeAmpolas.touched">
                   Esse campo é obrigatório.
                 </mat-error>
             </mat-form-field>
-        </div>
+        </div> -->
           <div *ngIf="!dosagemTipo">
             <label>Quantidade de soro glicosado 5% (ml):</label><br>
             <mat-form-field class="div-mat-form-field">

@@ -70,8 +70,9 @@ export class NavbarComponent implements OnInit {
 
 
   formMedicacao(result: any){
+    debugger
     const chavesIndicacao = Object.keys(result.indicacoes);
-    const valoresIndicacao = chavesIndicacao.map(chave => result.contraIndicacoes[chave]);
+    const valoresIndicacao = chavesIndicacao.map(chave => result.indicacoes[chave]);
     const indicacao = valoresIndicacao.join("\\*");
 
     const chavesContraIndicacao = Object.keys(result.contraIndicacoes);
@@ -83,7 +84,7 @@ export class NavbarComponent implements OnInit {
     const quantidadeMg = valoresQuantidadeMg.join("\\*");
 
     const chavesQuantidadeMl = Object.keys(result.quantidadeMl);
-    const valoresQuantidadeMl = chavesQuantidadeMl.map(chave => result.contraIndicacoes[chave]);
+    const valoresQuantidadeMl = chavesQuantidadeMl.map(chave => result.quantidadeMl[chave]);
     const quantidadeMl = valoresQuantidadeMl.join("\\*");
 
     const formMedicamento = this.formBuilder.group({

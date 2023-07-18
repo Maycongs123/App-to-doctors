@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './calculo-medicamentos.component.html',
   styleUrls: ['./calculo-medicamentos.component.scss']
 })
+
 export class CalculoMedicamentosComponent implements OnInit{
   @Input() medicamento: any;
   // @Input() listaMedicacoes: any;
@@ -14,13 +15,13 @@ export class CalculoMedicamentosComponent implements OnInit{
   @Input() dadosMedicacao: any;
   indicacoes: any = [];
   contraIndicacoes: any = [];
-  quantidadeMl: any = [];
-  quantidadeMg: any = [];
-  resultadoMgKg: any;
-  resultadoMcgKg: any;
-  resultadoMcgKgReverso: any;
-  resultadoMcgMin: any;
-  resultadoMcgMinReverso: any;
+  // quantidadeMgMl: any = [];
+  resultadoMgKg: any = [];
+  dadosMedicamentos: any = [];
+  resultadoMcgKg: any = []
+  resultadoMcgKgReverso: any = []
+  resultadoMcgMin: any = []
+  resultadoMcgMinReverso: any = []
   solucaoTotal: any;
   soroGlicosado: any;
   peso: any;
@@ -77,47 +78,90 @@ export class CalculoMedicamentosComponent implements OnInit{
 
     for (let i = 0; i < contraIndicacoesArray.length; i++) {
       const key = `${i}`;
-      this.contraIndicacoes[key] = indicacoesArray[i];
+      this.contraIndicacoes[key] = contraIndicacoesArray[i];
     }
 
-    for (let i = 0; i < quantidadeMlArray.length; i++) {
+    for (let i = 0; i < quantidadeMlArray.length || i < quantidadeMgArray.length; i++) {
       const key = `${i}`;
-      this.contraIndicacoes[key] = indicacoesArray[i];
+      this.dadosMedicamentos[key] = {
+        quantidadeMg: parseFloat(quantidadeMlArray[i]),
+        quantidadeMl: parseFloat(quantidadeMgArray[i])
+      };    
     }
-
-    for (let i = 0; i < contraIndicacoesArray.length; i++) {
-      const key = `${i}`;
-      this.contraIndicacoes[key] = indicacoesArray[i];
-    }
+    console.log(this.dadosMedicamentos)
   }
 
-  calculoMgKg(){
-    debugger
-    this.resultadoMgKg = ((this.peso * this.item.quantidadeMgKg * this.item.quantidadeMl) / (this.item.quantidadeMg * this.item.numeroDoses)).toFixed(2);
+  calculoMgKg(){  
+    for (let i = 0; i < this.dadosMedicamentos.length; i++) {
+      const resultado = (this.peso * this.item.quantidadeMgKg * this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses);
+      const key = `${i}`;
+      this.resultadoMgKg[key] = {
+        resultado: resultado,
+        quantidadeMg: this.dadosMedicamentos[i].quantidadeMg,
+        quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
+      }
+    }  
   }
 
   calculoMcgKg(){
     debugger
-    this.resultadoMcgKg = ((this.dose * this.peso * 60)/((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.ampola)) * 1000)).toFixed(2);
+    for (let i = 0; i < this.dadosMedicamentos.length; i++) {
+      const resultado = (this.dose * this.peso * 60)/(this.dadosMedicamentos[i].quantidadeMg/(this.item.quantidadeSoro + this.dadosMedicamentos[i].quantidadeMl) * 1000);
+      const key = `${i}`;
+      this.resultadoMcgKg[key] = {
+        resultado: resultado,
+        quantidadeMg: this.dadosMedicamentos[i].quantidadeMg,
+        quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
+      }
+    } 
+    // this.resultadoMcgKg = ((this.dose * this.peso * 60)/((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.ampola)) * 1000)).toFixed(2);
   }
 
   calculoMcgMin(){
-    debugger
-    this.resultadoMcgMin = ((this.dose * 60) / ((this.item.quantidadeMg / (this.item.quantidadeSoro + this.item.quantidadeMl)) * 1000)).toFixed(2);
+    for (let i = 0; i < this.dadosMedicamentos.length; i++) {
+      const resultado = (this.dose * 60) / ((this.item.quantidadeMg / (this.item.quantidadeSoro + this.item.quantidadeMl)) * 1000);
+      const key = `${i}`;
+      this.resultadoMcgMin[key] = {
+        resultado: resultado,
+        quantidadeMg: this.dadosMedicamentos[i].quantidadeMg,
+        quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
+      }
+    } 
+    // this.resultadoMcgMin = ((this.dose * 60) / ((this.item.quantidadeMg / (this.item.quantidadeSoro + this.item.quantidadeMl)) * 1000)).toFixed(2);
   }
 
   calculoMcgKgReverso(){
-    debugger
-    this.resultadoMcgKgReverso = ((this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.item.quantidadeAmpolas)) * 1000)) / (this.peso * 60)).toFixed(2);
+    for (let i = 0; i < this.dadosMedicamentos.length; i++) {
+      const resultado = (this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.item.quantidadeAmpolas)) * 1000)) / (this.peso * 60);
+      const key = `${i}`;
+      this.resultadoMcgKgReverso[key] = {
+        resultado: resultado,
+        quantidadeMg: this.dadosMedicamentos[i].quantidadeMg,
+        quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
+      }
+    }
+    // this.resultadoMcgKgReverso = ((this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.item.quantidadeAmpolas)) * 1000)) / (this.peso * 60)).toFixed(2);
   }
 
   calculoMcgMinReverso(){
-    debugger
-    this.resultadoMcgMinReverso = ((this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.item.quantidadeAmpolas)) * 1000) * this.item.quantidadeAmpolas) / 60).toFixed(2);
+    for (let i = 0; i < this.dadosMedicamentos.length; i++) {
+      const resultado = (this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.item.quantidadeAmpolas)) * 1000) * this.item.quantidadeAmpolas) / 60;
+      const key = `${i}`;
+      this.resultadoMcgMinReverso[key] = {
+        resultado: resultado,
+        quantidadeMg: this.dadosMedicamentos[i].quantidadeMg,
+        quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
+      }
+    }
+    // this.resultadoMcgMinReverso = ((this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.item.quantidadeAmpolas)) * 1000) * this.item.quantidadeAmpolas) / 60).toFixed(2);
   }
 
   calculoSolucaoTotal(){
-   this.solucaoTotal = (this.item.quantidadeSoro + this.item.quantidadeMl).toFixed(2);
-   this.soroGlicosado = (this.item.quantidadeSoro).toFixed(2);
+    debugger
+   this.solucaoTotal = this.item.quantidadeSoro + parseFloat(this.item.quantidadeMl);
+   this.soroGlicosado = this.item.quantidadeSoro
   }
+
+
+ 
 }
