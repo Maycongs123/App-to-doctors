@@ -78,18 +78,28 @@ export class NavbarComponent implements OnInit {
     const valoresContraIndicacao = chavesContraIndicacao.map(chave => result.contraIndicacoes[chave]);
     const contraIndicacao = valoresContraIndicacao.join("\\*");
 
+    const chavesQuantidadeMg = Object.keys(result.quantidadeMg);
+    const valoresQuantidadeMg = chavesQuantidadeMg.map(chave => result.quantidadeMg[chave]);
+    const quantidadeMg = valoresQuantidadeMg.join("\\*");
+
+    const chavesQuantidadeMl = Object.keys(result.quantidadeMl);
+    const valoresQuantidadeMl = chavesQuantidadeMl.map(chave => result.contraIndicacoes[chave]);
+    const quantidadeMl = valoresQuantidadeMl.join("\\*");
+
     const formMedicamento = this.formBuilder.group({
       nome: result.nome,
       medicamentoUso: result.medicamentoUso,
       tipo: result.tipo,
       dosagemTipo: result.dosagemTipo,
       modoDeUso: result.modoDeUso,
-      quantidadeMg: result.quantidadeMg,
-      quantidadeMl: result.quantidadeMl,
+      quantidadeMg: quantidadeMg,
+      quantidadeMl: quantidadeMl,
       quantidadeMgKg: result.quantidadeMgKg,
       quantidadeSoro: result.quantidadeSoro,
       indicacao: indicacao,
       contraIndicacao: contraIndicacao,
+      numeroDoses: result.numeroDoses,
+      quantidadeAmpolas: result.quantidadeAmpolas
     });
 
     return formMedicamento;
@@ -98,7 +108,7 @@ export class NavbarComponent implements OnInit {
   adicionarMedicamento(medicamento : any){
     debugger
     console.log(medicamento)
-    this.medicamentosService.Add(medicamento).subscribe((response: Medicamento) => {
+    this.medicamentosService.Add(medicamento).subscribe((response: any) => {
       console.log(response)
     });
   }

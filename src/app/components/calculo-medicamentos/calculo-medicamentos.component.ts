@@ -14,13 +14,17 @@ export class CalculoMedicamentosComponent implements OnInit{
   @Input() dadosMedicacao: any;
   indicacoes: any = [];
   contraIndicacoes: any = [];
+  quantidadeMl: any = [];
+  quantidadeMg: any = [];
   resultadoMgKg: any;
   resultadoMcgKg: any;
   resultadoMcgKgReverso: any;
   resultadoMcgMin: any;
   resultadoMcgMinReverso: any;
+  solucaoTotal: any;
+  soroGlicosado: any;
   peso: any;
-  dose:any;
+  dose:any = 0.01;
   ampola: any;
   vazao:any;
   item: any;
@@ -38,7 +42,8 @@ export class CalculoMedicamentosComponent implements OnInit{
 
   ngOnInit(){
     console.log(this.item , this.backgroundColor)
-    this.metodoSpint();
+    this.metodoSplit();
+    this.calculoSolucaoTotal()
   }
 
   @HostListener('window:click')
@@ -57,11 +62,13 @@ export class CalculoMedicamentosComponent implements OnInit{
     history.back()
   }
 
-  metodoSpint(){
+  metodoSplit(){
     debugger
     console.log(this.item)
     const indicacoesArray = this.item.indicacao.split("\\*");
     const contraIndicacoesArray  = this.item.contraIndicacao.split("\\*");
+    const quantidadeMlArray = this.item.quantidadeMg.split("\\*");
+    const quantidadeMgArray  = this.item.quantidadeMl.split("\\*");
 
     for (let i = 0; i < indicacoesArray.length; i++) {
       const key = `${i}`;
@@ -72,31 +79,45 @@ export class CalculoMedicamentosComponent implements OnInit{
       const key = `${i}`;
       this.contraIndicacoes[key] = indicacoesArray[i];
     }
-    console.log(this.indicacoes , this.contraIndicacoes)
+
+    for (let i = 0; i < quantidadeMlArray.length; i++) {
+      const key = `${i}`;
+      this.contraIndicacoes[key] = indicacoesArray[i];
+    }
+
+    for (let i = 0; i < contraIndicacoesArray.length; i++) {
+      const key = `${i}`;
+      this.contraIndicacoes[key] = indicacoesArray[i];
+    }
   }
 
   calculoMgKg(){
     debugger
-    this.resultadoMgKg = (this.peso * this.item.quantidadeMgKg * this.item.quantidadeMl) / (this.item.quantidadeMg * this.dose);
+    this.resultadoMgKg = ((this.peso * this.item.quantidadeMgKg * this.item.quantidadeMl) / (this.item.quantidadeMg * this.item.numeroDoses)).toFixed(2);
   }
 
   calculoMcgKg(){
     debugger
-    this.resultadoMcgKg = (this.dose * this.peso * 60)/((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.ampola)) * 1000);
+    this.resultadoMcgKg = ((this.dose * this.peso * 60)/((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.ampola)) * 1000)).toFixed(2);
   }
 
   calculoMcgMin(){
     debugger
-    this.resultadoMcgMin = (this.dose * 60) / ((this.item.quantidadeMg / (this.item.quantidadeSoro + this.item.quantidadeMl)) * 1000);
+    this.resultadoMcgMin = ((this.dose * 60) / ((this.item.quantidadeMg / (this.item.quantidadeSoro + this.item.quantidadeMl)) * 1000)).toFixed(2);
   }
 
   calculoMcgKgReverso(){
     debugger
-    this.resultadoMcgKgReverso = (this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.ampola)) * 1000)) / (this.peso * 60);
+    this.resultadoMcgKgReverso = ((this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.item.quantidadeAmpolas)) * 1000)) / (this.peso * 60)).toFixed(2);
   }
 
   calculoMcgMinReverso(){
     debugger
-    this.resultadoMcgMinReverso = (this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.ampola)) * 1000) * this.ampola) /  60;
+    this.resultadoMcgMinReverso = ((this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.item.quantidadeAmpolas)) * 1000) * this.item.quantidadeAmpolas) / 60).toFixed(2);
+  }
+
+  calculoSolucaoTotal(){
+   this.solucaoTotal = (this.item.quantidadeSoro + this.item.quantidadeMl).toFixed(2);
+   this.soroGlicosado = (this.item.quantidadeSoro).toFixed(2);
   }
 }

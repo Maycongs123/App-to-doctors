@@ -12,6 +12,15 @@
     justify-content: center;
 }
 
+.div-tipo-medicacao-1{
+  display: flex;
+  justify-content: center;
+  @media (max-width:500px) {
+    display: grid;
+    grid-template-columns: 9rem;
+  }
+}
+
 .span-font-tipo{
     color: #fff;
     font-size: 39px;
@@ -76,6 +85,9 @@
     color: #fff;
     padding-left: 10px;
     padding-top: 5px;
+    @media (max-width: 500px) {
+      padding-left: 4rem;
+    }
 }
 
 .efeito-span:hover{

@@ -5,14 +5,23 @@
 
 .div-header{
     padding: 9rem 9rem 7rem 9rem;
-    @media(max-width: 740px){
-        display: grid;
-    }
+    // @media(max-width: 740px){
+    //     display: grid;
+    // }
 }
 
 .div-tipo-medicacao{
     display: flex;
     justify-content: center;
+}
+
+.div-tipo-medicaca-1{
+  display: flex;
+  justify-content: center;
+  @media (max-width: 500px) {
+    display: grid;
+    grid-template-columns: 9rem;
+  }
 }
 
 .span-font-tipo{
@@ -48,6 +57,13 @@
     border-bottom: 1px dashed lightgray;
 }
 
+.div-conteudo-medicacao-3{
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem 1rem 2rem;
+  border-bottom: 1px dashed lightgray;
+}
+
 .div-conteudo-flex{
     display: flex;
 }
@@ -63,6 +79,9 @@
     color: #fff;
     padding-left: 10px;
     padding-top: 5px;
+    @media (max-width: 500px) {
+      padding-left: 4rem;
+    }
 }
 
 .efeito-div:hover{

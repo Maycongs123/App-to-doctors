@@ -35,34 +35,63 @@ export class ListaMedicamentosComponent {
     }
 
     if(getDados.tipo === "Anti-Convulsivante"){
-      this.router.navigate(['/anti-convulsivantes-calculos', getDados.nome]);
+      let backgroundColor = '#6f42c1';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
+
     if(getDados.tipo === "Anti-Inflamatório"){
-      this.router.navigate(['/anti-inflamatorio-calculos', getDados.nome]);
+      let backgroundColor = '#dc3545';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
+
     if(getDados.tipo === "Anti-Fúngico"){
-      this.router.navigate(['/anti-fungicos-calculos', getDados.nome]);
+      let backgroundColor = '#ffc107';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
+
     if(getDados.tipo === "Anti-Histaminico"){
-      this.router.navigate(['/anti-histamicos-calculos', getDados.nome]);
+      let backgroundColor = '#28a745';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
+
     if(getDados.tipo === "Anti-Parasitario"){
-      this.router.navigate(['/anti-parasitario-calculos', getDados.nome]);
+      let backgroundColor = '#3bb54a';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
-    if(getDados.tipo === "Broncodilatadore"){
-      this.router.navigate(['/broncodilatadores-calculos', getDados.nome]);
+
+    if(getDados.tipo === "Broncodilatadores"){
+      let backgroundColor = '#6f42c1';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
+
     if(getDados.tipo === "Corticosteroide"){
-      this.router.navigate(['/corticosteroides-calculos', getDados.nome]);
+      let backgroundColor = '007bff';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
+
     if(getDados.tipo === "Laxativo"){
-      this.router.navigate(['/laxativos-calculos', getDados.nome]);
+      let backgroundColor = '#dc3545';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
+
     if(getDados.tipo === "Sintomatico"){
-      this.router.navigate(['/sintomaticos-calculos', getDados.nome]);
+      let backgroundColor = '#fd7e14';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
+
     if(getDados.tipo === "Hidratação Venosa"){
-      this.router.navigate(['/hidratacao-venosa-calculos', getDados.nome]);
+      let backgroundColor = '#ffc107';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
     }
   }
 
