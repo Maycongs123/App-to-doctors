@@ -9,6 +9,7 @@ export interface Medicamento{
   quantidadeMl?: number;
   quantidadeMgKg?: number,
   quantidadeSoro?: number,
+  indicacao?:string,
   contraIndicacao?: string;
   numeroDoses?: number;
   quantidadeAmpolas?: number;

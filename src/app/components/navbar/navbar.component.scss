@@ -51,25 +51,25 @@
 }
 
 
-::ng-deep .custom-dialog-container-cadastro {
+::ng-deep .custom-dialog-container-login {
     mat-dialog-container {
       position: fixed;
       display: block;
       z-index: 11;
       width: 30rem;
-      height: 50rem;
+      height: 25rem;
       left: 36%;
       top: 4%;
       background-color: rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(3px);
 
       @media (max-width: 990px){
         position: fixed;
         display: block;
         z-index: 11;
         width: 100%;
-        height: 40rem;
-        left: 0%;
+        height: 35rem;
+        left: 10%;
         top: 10%;
         padding: 1rem 1rem 7rem 1rem;
         }

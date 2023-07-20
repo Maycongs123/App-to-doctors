@@ -6,6 +6,8 @@ import { PopupCadastroMedicamentoComponent } from '../popup-cadastro-medicamento
 import { MatDialog } from '@angular/material/dialog';
 import { MedicamentosService } from 'src/app/services/medicamentos.service';
 import { Medicamento } from 'src/app/model/medicamento';
+import { PopupLoginComponent } from '../popup-login/popup-login.component';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,13 +21,13 @@ export class NavbarComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private medicamentosService: MedicamentosService
+    private medicamentosService: MedicamentosService,
+    private loginService: LoginService
     ) {}
 
   rotaAtual = ""
-
   panelOpenState = false;
+  loginLogout = false;
 
   ngOnInit() {
     this.router.events
@@ -56,63 +58,35 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/'], { relativeTo: this.route });
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(PopupCadastroMedicamentoComponent, {
-      panelClass: 'custom-dialog-container-cadastro',
+  openDialogLogin(): void {
+    const dialogRef = this.dialog.open(PopupLoginComponent, {
+      panelClass: 'custom-dialog-container-login',
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
-      const medicamento = this.formMedicacao(result)
-      this.adicionarMedicamento(medicamento.value)
+      this.login(result)
     });
+  } 
+
+  login(login : any){
+    this.loginService.signIn(login)
+    
+    if(login){
+    }
+    this.confirmToken();
   }
 
-
-  formMedicacao(result: any){
-    debugger
-    const chavesIndicacao = Object.keys(result.indicacoes);
-    const valoresIndicacao = chavesIndicacao.map(chave => result.indicacoes[chave]);
-    const indicacao = valoresIndicacao.join("\\*");
-
-    const chavesContraIndicacao = Object.keys(result.contraIndicacoes);
-    const valoresContraIndicacao = chavesContraIndicacao.map(chave => result.contraIndicacoes[chave]);
-    const contraIndicacao = valoresContraIndicacao.join("\\*");
-
-    const chavesQuantidadeMg = Object.keys(result.quantidadeMg);
-    const valoresQuantidadeMg = chavesQuantidadeMg.map(chave => result.quantidadeMg[chave]);
-    const quantidadeMg = valoresQuantidadeMg.join("\\*");
-
-    const chavesQuantidadeMl = Object.keys(result.quantidadeMl);
-    const valoresQuantidadeMl = chavesQuantidadeMl.map(chave => result.quantidadeMl[chave]);
-    const quantidadeMl = valoresQuantidadeMl.join("\\*");
-
-    const formMedicamento = this.formBuilder.group({
-      nome: result.nome,
-      medicamentoUso: result.medicamentoUso,
-      tipo: result.tipo,
-      dosagemTipo: result.dosagemTipo,
-      modoDeUso: result.modoDeUso,
-      quantidadeMg: quantidadeMg,
-      quantidadeMl: quantidadeMl,
-      quantidadeMgKg: result.quantidadeMgKg,
-      quantidadeSoro: result.quantidadeSoro,
-      indicacao: indicacao,
-      contraIndicacao: contraIndicacao,
-      numeroDoses: result.numeroDoses,
-      quantidadeAmpolas: result.quantidadeAmpolas
-    });
-
-    return formMedicamento;
+  confirmToken(){
+    var access_token = this.loginService.getToken()
+    
+    if(access_token != null){
+      this.loginLogout = true;
+      this.router.navigate(['/adm'], { relativeTo: this.route });
+    }
   }
 
-  adicionarMedicamento(medicamento : any){
-    debugger
-    console.log(medicamento)
-    this.medicamentosService.Add(medicamento).subscribe((response: any) => {
-      console.log(response)
-    });
+  logout(){
+    this.loginLogout = false;
+    this.loginService.doLogout()
   }
-
-
 }

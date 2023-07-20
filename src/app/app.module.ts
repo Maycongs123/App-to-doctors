@@ -45,6 +45,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
+import { PopupLoginComponent } from './components/popup-login/popup-login.component';
+import { AdministradorComponent } from './pages/administrador/administrador.component';
+import {MatTableModule} from '@angular/material/table';
+import { PopupConfirmacaoComponent } from './components/popup-confirmacao/popup-confirmacao.component';
+import { AuthInterceptor } from './authconfig.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -68,7 +74,10 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
     SintomaticosComponent,
     HidratacaoVenosaComponent,
     PopupCadastroMedicamentoComponent,
-    SnackBarComponent
+    SnackBarComponent,
+    PopupLoginComponent,
+    AdministradorComponent,
+    PopupConfirmacaoComponent
 
 
   ],
@@ -93,12 +102,19 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatTabsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule
 
   ],
   providers: [
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
+    {
+      provide: {MAT_DIALOG_DEFAULT_OPTIONS, HTTP_INTERCEPTORS},
+      useValue: {hasBackdrop: true},
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

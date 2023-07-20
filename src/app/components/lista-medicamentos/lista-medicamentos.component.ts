@@ -18,13 +18,7 @@ export class ListaMedicamentosComponent {
     protected renderer: Renderer2,
     protected router: Router,
     protected medicamentosService: MedicamentosService
-  ) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        console.log(event.url); // Exibir a URL da rota
-      }
-    });
-  }
+  ) {}
 
   getNome(getDados: any) {
     debugger

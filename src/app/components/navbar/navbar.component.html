@@ -20,30 +20,28 @@
                 <div style="display: grid;">
                     <button mat-button (click)="home()">
                         <span class="span-toolbar">Página Inicial</span>
+                    </button>                    
+                    <button *ngIf="!loginLogout" mat-button (click)="openDialogLogin()">
+                        <span class="span-toolbar">Login</span>
                     </button>
-                    <button mat-button>
-                        <span class="span-toolbar">Sobre o Projeto</span>
-                    </button>
-                    <button mat-button (click)="openDialog()">
-                        <span class="span-toolbar">Cadastro de Medicamentos</span>
+                    <button *ngIf="loginLogout" mat-button (click)="logout()">
+                        <span class="span-toolbar">Logout</span>
                     </button>
                 </div>
             </mat-expansion-panel>
           </mat-accordion>
 
-        <!-- <div class="div-logo display-mobile-menu">
-            <img class="img-logo" src="../../../assets/logo.png">
-        </div>         -->
+        <!-- NavBar desktop -->
         <span class="toolbar-spacer display-mobile-menu"></span>
         <div class="display-mobile-menu">
             <button mat-button (click)="home()">
                 <span class="span-toolbar">Página Inicial</span>
+            </button>          
+            <button *ngIf="!loginLogout" mat-button (click)="openDialogLogin()">
+                <span class="span-toolbar">Login</span>
             </button>
-            <button mat-button>
-                <span class="span-toolbar">Sobre o Projeto</span>
-            </button>
-            <button mat-button (click)="openDialog()">
-                <span class="span-toolbar">Cadastro de Medicamentos</span>
+            <button *ngIf="loginLogout" mat-button (click)="logout()">
+                <span class="span-toolbar">Logout</span>
             </button>
         </div>
 </mat-toolbar>

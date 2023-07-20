@@ -1,0 +1,120 @@
+<div class="div-shadow">
+  <div class="demo-button-container" style="padding-top: 10rem;">
+    <button mat-raised-button class="span-toolbar" (click)="openDialog()">
+      Adicionar Medicamento
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container> 
+
+  <ng-container matColumnDef="Nome">
+   <th mat-header-cell *matHeaderCellDef> Nome </th>
+   <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+ </ng-container>    
+ 
+ <ng-container matColumnDef="MedicamentoUso">
+   <th mat-header-cell *matHeaderCellDef> Medicamento Uso </th>
+   <td mat-cell *matCellDef="let element"> {{element.medicamentoUso}} </td>
+ </ng-container>    
+ 
+ <ng-container matColumnDef="Tipo">
+   <th mat-header-cell *matHeaderCellDef> Tipo </th>
+   <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>
+ </ng-container>    
+ 
+ <ng-container matColumnDef="Dosagem">
+   <th mat-header-cell *matHeaderCellDef> Dosagem </th>
+   <td mat-cell *matCellDef="let element"> {{element.dosagemTipo}} </td>
+ </ng-container>  
+ 
+ <ng-container matColumnDef="actions">
+  <th mat-header-cell *matHeaderCellDef >&nbsp;</th>
+  <td mat-cell *matCellDef="let element">
+    <button mat-icon-button (click)="editarMedicamentoModal(element); $event.stopPropagation()">
+      <mat-icon >edit</mat-icon>      
+    </button>
+   <button mat-icon-button  (click)="deleteMedicamentoModal(element); $event.stopPropagation()">
+     <mat-icon>close</mat-icon>     
+   </button>
+  </td>
+  </ng-container>
+
+<ng-container matColumnDef="expand">
+<th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+<td mat-cell *matCellDef="let element">
+ <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+   <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+   <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+ </button>
+</td>
+</ng-container>
+
+<ng-container matColumnDef="expandedDetail">
+<td mat-cell *matCellDef="let element; let i = index" [attr.colspan]="columnsToDisplayWithExpand.length">
+ <div  class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+   <div style="width: 24%">
+       <span style="display: flex">Modo de Uso:</span>
+       <ng-container style="display: flex; justify-content: center;">
+         <span>{{element.modoDeUso}}</span>
+       </ng-container>
+   </div> 
+   <div style="width: 15%">
+       <span style="display: flex">Apresentações:</span>
+       <ng-container *ngFor="let dosagemItem of element.dosagem" style="display: flex; justify-content: center;">
+         <span>{{ '-' + dosagemItem.quantidadeMl + 'ml/' + dosagemItem.quantidadeMg + 'mg' }}</span><br>
+       </ng-container>
+   </div>
+   <div style="width: 15%">
+     <span style="display: flex">Quantidade:</span>
+     <ng-container style="display: flex; justify-content: center;">
+       <span>{{element.quantidadeMgKg + 'mg/kg'}}</span>
+     </ng-container>
+   </div>
+   <div style="width: 15%">
+     <span style="display: flex">Quantidade de Soro:</span>
+     <ng-container style="display: flex; justify-content: center;">
+       <span>{{element.quantidadeMgKg + 'ml'}}</span>
+     </ng-container>
+   </div>
+   <div style="width: 18%">
+     <span style="display: flex">Número de Doses:</span>
+     <ng-container style="display: flex; justify-content: center;">
+       <span>{{element.numeroDoses}}</span>
+     </ng-container>
+   </div>
+   <!-- <div style="width: 15%">
+     <span style="display: flex">Quantidade de Ampolas:</span>
+     <ng-container style="display: flex; justify-content: center;">
+       <span>{{element.quantidadeAmpolas}}</span>
+     </ng-container>
+   </div> -->
+   <div style="width: 24%">
+     <span style="display: flex">Indicações:</span>
+     <ng-container *ngFor="let indicacaoItem of element.indicacao" style="display: flex; justify-content: center;">
+       <span>{{'-' + indicacaoItem}}</span><br>
+     </ng-container>
+   </div>
+   <div style="width: 24%">
+     <span style="display: flex">Indicações:</span>
+     <ng-container *ngFor="let contraIndicacaoItem of element.contraIndicacao" style="display: flex; justify-content: center;">
+       <span>{{'-' + contraIndicacaoItem}}</span><br>
+     </ng-container>
+   </div>
+ </div>
+</td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+<tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+ class="example-element-row"
+ [class.example-expanded-row]="expandedElement === element"
+ (click)="expandedElement = expandedElement === element ? null : element">
+</tr>
+<tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>
+</div>
+

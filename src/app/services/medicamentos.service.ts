@@ -48,6 +48,7 @@ update(data: any): Observable<any> {
 }
 
 delete(id: any): Observable<any> {
+  debugger
   let API_URL = `${this.REST_API}/Medicamentos/${id}`;
   return this.httpClient
     .delete(API_URL, { headers: this.httpHeaders })

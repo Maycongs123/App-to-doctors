@@ -1,0 +1,36 @@
+<div>
+    <form [formGroup]="formLogin" (ngSubmit)="submit()">
+      <div class="div-flex">
+        <h1 style="text-align: center;">Login</h1>
+      </div>
+      <div class="div-flex">
+        <div>
+            <label>Email:</label><br>
+            <mat-form-field class="div-mat-form-field" >
+                <input  type="text" required matInput formControlName="email">
+                <mat-error *ngIf="formLogin.controls.email.invalid && formLogin.controls.email.touched">
+                  Esse campo é obrigatório.
+                </mat-error>
+            </mat-form-field>
+        </div>
+      </div>
+      <div class="div-flex">
+        <div>
+          <label>Senha:</label><br>
+          <mat-form-field class="div-mat-form-field" >
+              <input  type="text" required matInput formControlName="password">
+              <mat-error *ngIf="formLogin.controls.password.invalid && formLogin.controls.password.touched">
+                Esse campo é obrigatório.
+              </mat-error>
+          </mat-form-field>
+      </div>
+      </div>
+    </form>
+    <div align="end" style="padding: 2rem;">
+        <button mat-button  type="submit" (click)="adicionar()">Login</button>
+        <button mat-button mat-dialog-close>Cancelar</button>
+    </div>
+  </div>
+
+
+

@@ -15,6 +15,7 @@ import { SintomaticosComponent } from './pages/sintomaticos/sintomaticos.compone
 import { HidratacaoVenosaComponent } from './pages/hidratacao-venosa/hidratacao-venosa.component';
 
 import { CalculoMedicamentosComponent } from './components/calculo-medicamentos/calculo-medicamentos.component';
+import { AdministradorComponent } from './pages/administrador/administrador.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path:"lista-sintomaticos", component:SintomaticosComponent},
   {path:"lista-hidratacao-venosa", component:HidratacaoVenosaComponent},
   {path:"calculos/:medicamento/:backgroundColor", component: CalculoMedicamentosComponent},
+  {path:"adm", component: AdministradorComponent},
 
 
 ];

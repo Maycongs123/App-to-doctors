@@ -23,11 +23,10 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(){
     this.openDialog();
-    // const popupShown = localStorage.getItem('popupShown');
-    // if (!popupShown) {
-
-    //   localStorage.setItem('popupShown', 'true');
-    // }
+    const popupShown = localStorage.getItem('popupShown');
+    if (!popupShown) {
+      localStorage.setItem('popupShown', 'true');
+    }
   }
 
   openDialog(): void {

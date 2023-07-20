@@ -9,13 +9,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class CalculoMedicamentosComponent implements OnInit{
-  @Input() medicamento: any;
-  // @Input() listaMedicacoes: any;
+  @Input() medicamento: any; 
   @Input() cor: any;
   @Input() dadosMedicacao: any;
   indicacoes: any = [];
   contraIndicacoes: any = [];
-  // quantidadeMgMl: any = [];
   resultadoMgKg: any = [];
   dadosMedicamentos: any = [];
   resultadoMcgKg: any = []
@@ -32,7 +30,7 @@ export class CalculoMedicamentosComponent implements OnInit{
   backgroundColor: any;
 
   constructor(
-    private elementRef: ElementRef,
+    private elementRef: ElementRef,    
     private renderer: Renderer2,
     private route: ActivatedRoute
     ) {
@@ -41,8 +39,7 @@ export class CalculoMedicamentosComponent implements OnInit{
     this.backgroundColor = this.route.snapshot.paramMap.get('backgroundColor');
   }
 
-  ngOnInit(){
-    console.log(this.item , this.backgroundColor)
+  ngOnInit(){   
     this.metodoSplit();
     this.calculoSolucaoTotal()
   }
@@ -65,7 +62,7 @@ export class CalculoMedicamentosComponent implements OnInit{
 
   metodoSplit(){
     debugger
-    console.log(this.item)
+    
     const indicacoesArray = this.item.indicacao.split("\\*");
     const contraIndicacoesArray  = this.item.contraIndicacao.split("\\*");
     const quantidadeMlArray = this.item.quantidadeMg.split("\\*");
@@ -87,8 +84,7 @@ export class CalculoMedicamentosComponent implements OnInit{
         quantidadeMg: parseFloat(quantidadeMlArray[i]),
         quantidadeMl: parseFloat(quantidadeMgArray[i])
       };    
-    }
-    console.log(this.dadosMedicamentos)
+    }    
   }
 
   calculoMgKg(){  
