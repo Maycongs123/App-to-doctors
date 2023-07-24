@@ -19,7 +19,6 @@ httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 constructor(private httpClient: HttpClient) {}
 
 Add(data: any): Observable<any> {
-  debugger
   let API_URL = `${this.REST_API}/Medicamentos`;
   return this.httpClient
     .post(API_URL, data)
@@ -48,7 +47,6 @@ update(data: any): Observable<any> {
 }
 
 delete(id: any): Observable<any> {
-  debugger
   let API_URL = `${this.REST_API}/Medicamentos/${id}`;
   return this.httpClient
     .delete(API_URL, { headers: this.httpHeaders })

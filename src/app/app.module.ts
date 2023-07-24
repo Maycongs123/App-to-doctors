@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, makeStateKey } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -50,6 +50,8 @@ import { AdministradorComponent } from './pages/administrador/administrador.comp
 import {MatTableModule} from '@angular/material/table';
 import { PopupConfirmacaoComponent } from './components/popup-confirmacao/popup-confirmacao.component';
 import { AuthInterceptor } from './authconfig.interceptor';
+import { MaskedTextBoxModule } from '@progress/kendo-angular-inputs';
+
 
 
 @NgModule({
@@ -78,8 +80,6 @@ import { AuthInterceptor } from './authconfig.interceptor';
     PopupLoginComponent,
     AdministradorComponent,
     PopupConfirmacaoComponent
-
-
   ],
   imports: [
     BrowserModule,
@@ -103,8 +103,8 @@ import { AuthInterceptor } from './authconfig.interceptor';
     HttpClientModule,
     MatTabsModule,
     MatSnackBarModule,
-    MatTableModule
-
+    MatTableModule,
+    MaskedTextBoxModule
   ],
   providers: [
     {

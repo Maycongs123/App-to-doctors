@@ -1,4 +1,5 @@
 <mat-toolbar id="nav">
+        <!-- NavBar mobile -->
         <mat-accordion class="display-mobile-accordion">
             <mat-expansion-panel
              hideToggle
@@ -20,7 +21,10 @@
                 <div style="display: grid;">
                     <button mat-button (click)="home()">
                         <span class="span-toolbar">Página Inicial</span>
-                    </button>                    
+                    </button> 
+                    <button mat-button (click)="adm()">
+                        <span *ngIf="loginLogout" class="span-toolbar">Menu Adiministrativo</span>
+                    </button>                      
                     <button *ngIf="!loginLogout" mat-button (click)="openDialogLogin()">
                         <span class="span-toolbar">Login</span>
                     </button>
@@ -36,7 +40,10 @@
         <div class="display-mobile-menu">
             <button mat-button (click)="home()">
                 <span class="span-toolbar">Página Inicial</span>
-            </button>          
+            </button>     
+            <button *ngIf="loginLogout" mat-button (click)="adm()">
+                <span class="span-toolbar">Menu Adiministrativo</span>
+            </button>        
             <button *ngIf="!loginLogout" mat-button (click)="openDialogLogin()">
                 <span class="span-toolbar">Login</span>
             </button>

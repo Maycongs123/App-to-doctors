@@ -72,7 +72,7 @@
                 <div formArrayName="quantidadeMg">
                   <div *ngFor="let quantidadeMgForm of quantidadeMg.controls; let i = index" >
                     <mat-form-field class="div-mat-form-field-grid">
-                      <input matInput [formControlName]="i" placeholder="{{i + 1}}ª Apresentação">
+                      <input matInput [formControlName]="i" type="number"  placeholder="{{i + 1}}ª Apresentação">
                     </mat-form-field>
                     <mat-error *ngIf="formMedicamento.controls.quantidadeMg.invalid && formMedicamento.controls.quantidadeMg.touched">
                       Esse campo é obrigatório.
@@ -87,7 +87,7 @@
                 <div formArrayName="quantidadeMl">
                   <div *ngFor="let quantidadeMlForm of quantidadeMl.controls; let i = index" >
                     <mat-form-field class="div-mat-form-field-grid">
-                      <input matInput [formControlName]="i" placeholder="{{i + 1}}ª Apresentação">
+                      <input matInput [formControlName]="i" type="number" placeholder="{{i + 1}}ª Apresentação">
                     </mat-form-field>
                     <mat-error *ngIf="formMedicamento.controls.quantidadeMl.invalid && formMedicamento.controls.quantidadeMl.touched">
                       Esse campo é obrigatório.

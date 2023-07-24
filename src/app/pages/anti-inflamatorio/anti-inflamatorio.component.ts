@@ -18,10 +18,15 @@ export class AntiInflamatorioComponent {
   {}
 
   ngOnInit(): void {
+    const tipoAtendimento = localStorage.getItem("tipoAtendimento")
+
     this.medicamentosService.GetAll().subscribe((response: any) => {
-
-      this.medicacoes = response.filter(function(medicacao : any) { return medicacao.tipo == "Anti-Inflamatório"; });
-
+      if(tipoAtendimento === "Adulto"){
+        this.medicacoes = response.filter(function(medicacao : any) { return medicacao.medicamentoUso == "Adulto" && medicacao.tipo == "Anti-Inflamatório"});
+      }
+      if(tipoAtendimento === "Pediatrico"){
+        this.medicacoes = response.filter(function(medicacao : any) { return medicacao.medicamentoUso == "Pediátrico" && medicacao.tipo == "Anti-Inflamatório"});
+      }
     });
   }
 }

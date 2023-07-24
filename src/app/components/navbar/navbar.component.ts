@@ -26,8 +26,8 @@ export class NavbarComponent implements OnInit {
     ) {}
 
   rotaAtual = ""
-  panelOpenState = false;
-  loginLogout = false;
+  panelOpenState : boolean = false;
+  loginLogout : boolean = false;
 
   ngOnInit() {
     this.router.events
@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit {
         this.rotaAtual = this.activatedRoute?.root?.firstChild?.snapshot?.routeConfig?.path ?? ""
         this.onWindowScroll();
       });
+      this.confirmToken();
   }
 
   @HostListener('window:scroll', [])
@@ -58,6 +59,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/'], { relativeTo: this.route });
   }
 
+  adm(): void{
+    this.router.navigate(['/adm'], { relativeTo: this.route });
+  }
+
   openDialogLogin(): void {
     const dialogRef = this.dialog.open(PopupLoginComponent, {
       panelClass: 'custom-dialog-container-login',
@@ -68,25 +73,29 @@ export class NavbarComponent implements OnInit {
     });
   } 
 
-  login(login : any){
-    this.loginService.signIn(login)
-    
-    if(login){
-    }
-    this.confirmToken();
-  }
+  login(login : any){ 
+    debugger
+    this.loginService.signIn(login).subscribe((res: any) => {
+      localStorage.setItem('access_token', res.token);
+      localStorage.setItem('loginLogout', 'true');
+      this.confirmToken()
+    });
+  }  
 
   confirmToken(){
+    debugger
     var access_token = this.loginService.getToken()
     
-    if(access_token != null){
+    if(access_token  != null){  
       this.loginLogout = true;
       this.router.navigate(['/adm'], { relativeTo: this.route });
     }
   }
 
   logout(){
+    localStorage.removeItem('access_token');
+    localStorage.setItem('loginLogout', 'false');
     this.loginLogout = false;
-    this.loginService.doLogout()
+    this.loginService.doLogout();
   }
 }

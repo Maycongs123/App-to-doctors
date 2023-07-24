@@ -49,7 +49,7 @@ export class AdministradorComponent {
     const dialogRef = this.dialog.open(PopupCadastroMedicamentoComponent, {
       panelClass: 'custom-dialog-container-cadastro',
     });
-    debugger
+
     dialogRef.afterClosed().subscribe(result => {
 
       const medicamento = this.formMedicacao(result)
@@ -71,16 +71,13 @@ export class AdministradorComponent {
       data: {element: element , editMode: true }      
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      debugger 
+    dialogRef.afterClosed().subscribe(result => {   
       const medicamento = this.formMedicacao(result)
       this.editarMedicamento(medicamento)
     });
   }
 
-  editarMedicamento(dados:any){
-    debugger
-   console.log(dados)
+  editarMedicamento(dados:any){ 
     this.medicamentosService.update(dados.value).subscribe();
 
     location.reload();
@@ -99,16 +96,13 @@ export class AdministradorComponent {
     });
   }
   
-  deleteMedicamento(dados: any) {
-    debugger
+  deleteMedicamento(dados: any) {  
     this.medicamentosService.delete(dados).subscribe();
 
     location.reload();
   }
 
-  formMedicacao(result: any){
-    debugger
-    console.log(result)
+  formMedicacao(result: any){   
     const chavesIndicacao = Object.keys(result.indicacoes);
     const valoresIndicacao = chavesIndicacao.map(chave => result.indicacoes[chave]);
     const indicacao = valoresIndicacao.join("\\*");
@@ -146,7 +140,6 @@ export class AdministradorComponent {
   }
 
   formMedicacaoTable(result: any) {
-    debugger
     this.dataSource = []; // Array vazio para armazenar os dados processados.
   
     for (let index = 0; index < result.length; index++) {

@@ -18,10 +18,15 @@ export class LaxativosComponent {
   {}
 
   ngOnInit(): void {
+    const tipoAtendimento = localStorage.getItem("tipoAtendimento")
+
     this.medicamentosService.GetAll().subscribe((response: any) => {
-
-      this.medicacoes = response.filter(function(medicacao : any) { return medicacao.tipo == "Laxativo"; });
-
+      if(tipoAtendimento === "Adulto"){
+        this.medicacoes = response.filter(function(medicacao : any) { return medicacao.medicamentoUso == "Adulto" && medicacao.tipo == "Laxativo"});
+      }
+      if(tipoAtendimento === "Pediatrico"){
+        this.medicacoes = response.filter(function(medicacao : any) { return medicacao.medicamentoUso == "Pediátrico" && medicacao.tipo == "Laxativo"});
+      }
     });
   }
 }

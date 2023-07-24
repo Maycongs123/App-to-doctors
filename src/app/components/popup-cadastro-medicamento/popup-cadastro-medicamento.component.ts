@@ -95,20 +95,19 @@ export class PopupCadastroMedicamentoComponent {
   }
 
   submit() {
-    // if (this.formMedicamento.invalid) {
-    //   this.openSnackBar()
-    //   // Marcar todos os campos como tocados para exibir mensagens de erro
-    //   this.markFormGroupAsTouched(this.formMedicamento);
-    //   return;
-    // }
+    if (this.formMedicamento.invalid) {
+      this.openSnackBar()
+      // Marcar todos os campos como tocados para exibir mensagens de erro
+      this.markFormGroupAsTouched(this.formMedicamento);
+      return;
+    }
 
     console.log(this.formMedicamento.value);
     this.dialogRef.close(this.formMedicamento.value);
 
   }
 
-  formDosagemTipo(event: any){
-    debugger
+  formDosagemTipo(event: any){  
     console.log(event.value)
     if(event.value === "mg/kg/dia"){
 
@@ -125,8 +124,7 @@ export class PopupCadastroMedicamentoComponent {
     });
   }
 
-  markFormGroupAsTouched(formGroup: FormGroup) {
-    debugger
+  markFormGroupAsTouched(formGroup: FormGroup) {   
     Object.values(formGroup.controls).forEach(control => {
       control.markAsTouched();
 

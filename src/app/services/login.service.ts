@@ -23,18 +23,9 @@ export class LoginService {
     return this.http.post(api, login).pipe(catchError(this.handleError));
   }
   // Sign-in
-  signIn(login: Login) {
-    debugger
+  signIn(login: Login): Observable<any> {  
     return this.http
-      .post<any>(`${this.endpoint}/Login`, login)
-      .subscribe((res: any) => {
-        localStorage.setItem('access_token', res.token);
-        console.log(res.token)
-        // var token = this.getToken();
-        // if(token != null){
-        //   this.router.navigate(['/adm'], { relativeTo: this.route });
-        // }
-      });
+      .post<any>(`${this.endpoint}/Login`, login);
   }
   getToken() {
     return localStorage.getItem('access_token');

@@ -34,15 +34,22 @@ export class PesquisarComponent extends ListaMedicamentosComponent {
 
 
   ngOnInit(): void {
-    this.medicamentosService.GetAll().subscribe((response: any) => {
-      debugger
+    this.medicamentosService.GetAll().subscribe((response: any) => {  
       this.medicacoes = response
+      const tipoAtendimento = localStorage.getItem("tipoAtendimento")
+
+      if(tipoAtendimento === "Adulto"){
+        this.medicacoes = response.filter(function(medicacao : any) { return medicacao.medicamentoUso == "Adulto"});
+      }
+      if(tipoAtendimento === "Pediatrico"){
+        this.medicacoes = response.filter(function(medicacao : any) { return medicacao.medicamentoUso == "Pediátrico"});
+      }
+      
       this.getTipoMedicamentoClass(response.tipo)
     });
   }
 
   filtrarMedicacoes(): Medicamento[] {
-    debugger
     if (this.termoPesquisa.trim() === '') {
       return this.medicacoes;
     } else {
@@ -56,8 +63,7 @@ export class PesquisarComponent extends ListaMedicamentosComponent {
     super.getNome(medicamento)
   }
 
-  getTipoMedicamentoClass(tipo: any) {
-    debugger
+  getTipoMedicamentoClass(tipo: any) {  
     switch (tipo) {
       case 'Antibiótico':
         return 'tipo-Antibiotico';

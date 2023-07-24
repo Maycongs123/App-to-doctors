@@ -16,17 +16,14 @@ export class HomeComponent implements OnInit{
 
   atendimento: any;
   imagem: any;
+  exibirModal: boolean = false;
 
   goToItems() {
    this.router.navigate(['/lista-antibiotico'], { relativeTo: this.route });
   }
 
-  ngOnInit(){
+  ngOnInit(){   
     this.openDialog();
-    const popupShown = localStorage.getItem('popupShown');
-    if (!popupShown) {
-      localStorage.setItem('popupShown', 'true');
-    }
   }
 
   openDialog(): void {
@@ -35,7 +32,6 @@ export class HomeComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
      this.atendimento = localStorage.getItem('tipoAtendimento');
 
      if(this.atendimento === "Adulto"){

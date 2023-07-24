@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2 } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, Renderer2 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { MedicamentosService } from 'src/app/services/medicamentos.service';
 
@@ -12,16 +12,15 @@ export class ListaMedicamentosComponent {
   @Input() listaMedicacoes: any;
   @Input() cor: any;
   @Output() dadosEnviados = new EventEmitter<string>();
-
+  listaMedicacoesFiltrado: any;
   constructor(
     protected elementRef: ElementRef,
     protected renderer: Renderer2,
     protected router: Router,
     protected medicamentosService: MedicamentosService
   ) {}
-
-  getNome(getDados: any) {
-    debugger
+  
+  getNome(getDados: any) {    
     if(getDados.tipo === "Antibiótico"){
       let backgroundColor = '#007bff';
       let dados = encodeURIComponent(JSON.stringify(getDados))

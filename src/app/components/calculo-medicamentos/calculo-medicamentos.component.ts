@@ -15,6 +15,7 @@ export class CalculoMedicamentosComponent implements OnInit{
   indicacoes: any = [];
   contraIndicacoes: any = [];
   resultadoMgKg: any = [];
+  resultadoMgKgReverso: any = [];
   dadosMedicamentos: any = [];
   resultadoMcgKg: any = []
   resultadoMcgKgReverso: any = []
@@ -22,12 +23,15 @@ export class CalculoMedicamentosComponent implements OnInit{
   resultadoMcgMinReverso: any = []
   solucaoTotal: any;
   soroGlicosado: any;
+  medicamentoMl: any;
+  medicamentoMg: any;
   peso: any;
-  dose:any = 0.01;
+  dose:any;
   ampola: any;
   vazao:any;
   item: any;
   backgroundColor: any;
+  volume: any;
 
   constructor(
     private elementRef: ElementRef,    
@@ -37,11 +41,15 @@ export class CalculoMedicamentosComponent implements OnInit{
     const dados : any = this.route.snapshot.paramMap.get('medicamento');
     this.item = JSON.parse(decodeURIComponent(dados));
     this.backgroundColor = this.route.snapshot.paramMap.get('backgroundColor');
+    this.soroGlicosado = this.item.quantidadeSoro;
   }
 
   ngOnInit(){   
     this.metodoSplit();
-    this.calculoSolucaoTotal()
+    this.calculoSolucaoTotal();
+    this.calculoSoroGlicosado();
+    this.medicamentoMl = parseFloat(this.item.quantidadeMl);
+    this.medicamentoMg = parseFloat(this.item.quantidadeMg);   
   }
 
   @HostListener('window:click')
@@ -60,9 +68,7 @@ export class CalculoMedicamentosComponent implements OnInit{
     history.back()
   }
 
-  metodoSplit(){
-    debugger
-    
+  metodoSplit(){    
     const indicacoesArray = this.item.indicacao.split("\\*");
     const contraIndicacoesArray  = this.item.contraIndicacao.split("\\*");
     const quantidadeMlArray = this.item.quantidadeMg.split("\\*");
@@ -99,10 +105,9 @@ export class CalculoMedicamentosComponent implements OnInit{
     }  
   }
 
-  calculoMcgKg(){
-    debugger
+  calculoMcgKg(){  
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
-      const resultado = (this.dose * this.peso * 60)/(this.dadosMedicamentos[i].quantidadeMg/(this.item.quantidadeSoro + this.dadosMedicamentos[i].quantidadeMl) * 1000);
+      const resultado = (this.dose * this.peso * 60)/(this.medicamentoMg/(this.item.quantidadeSoro + this.medicamentoMl) * 1000);
       const key = `${i}`;
       this.resultadoMcgKg[key] = {
         resultado: resultado,
@@ -114,8 +119,9 @@ export class CalculoMedicamentosComponent implements OnInit{
   }
 
   calculoMcgMin(){
+    debugger
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
-      const resultado = (this.dose * 60) / ((this.item.quantidadeMg / (this.item.quantidadeSoro + this.item.quantidadeMl)) * 1000);
+      const resultado = (this.dose * 60)/(this.medicamentoMg/(this.item.quantidadeSoro + this.medicamentoMl) * 1000);
       const key = `${i}`;
       this.resultadoMcgMin[key] = {
         resultado: resultado,
@@ -126,9 +132,23 @@ export class CalculoMedicamentosComponent implements OnInit{
     // this.resultadoMcgMin = ((this.dose * 60) / ((this.item.quantidadeMg / (this.item.quantidadeSoro + this.item.quantidadeMl)) * 1000)).toFixed(2);
   }
 
-  calculoMcgKgReverso(){
+
+  calculoMgKgReverso(){  
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
-      const resultado = (this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.item.quantidadeAmpolas)) * 1000)) / (this.peso * 60);
+      const resultado = (this.volume * this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses) / (this.peso * this.medicamentoMl);
+      const key = `${i}`;
+      this.resultadoMgKgReverso[key] = {
+        resultado: resultado,
+        quantidadeMg: this.dadosMedicamentos[i].quantidadeMg,
+        quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
+      }
+    }  
+  }
+
+  calculoMcgKgReverso(){
+    debugger
+    for (let i = 0; i < this.dadosMedicamentos.length; i++) {
+      const resultado = (this.vazao * ( this.dadosMedicamentos[i].quantidadeMg /(this.item.quantidadeSoro + this.dadosMedicamentos[i].quantidadeMl) * 1000)) / (this.peso * 60);
       const key = `${i}`;
       this.resultadoMcgKgReverso[key] = {
         resultado: resultado,
@@ -140,8 +160,9 @@ export class CalculoMedicamentosComponent implements OnInit{
   }
 
   calculoMcgMinReverso(){
+    debugger
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
-      const resultado = (this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.item.quantidadeAmpolas)) * 1000) * this.item.quantidadeAmpolas) / 60;
+      const resultado = (this.vazao * (this.dadosMedicamentos[i].quantidadeMg / (this.item.quantidadeSoro + this.dadosMedicamentos[i].quantidadeMl) * 1000)) / 60;
       const key = `${i}`;
       this.resultadoMcgMinReverso[key] = {
         resultado: resultado,
@@ -153,11 +174,10 @@ export class CalculoMedicamentosComponent implements OnInit{
   }
 
   calculoSolucaoTotal(){
-    debugger
-   this.solucaoTotal = this.item.quantidadeSoro + parseFloat(this.item.quantidadeMl);
-   this.soroGlicosado = this.item.quantidadeSoro
+   this.solucaoTotal = this.soroGlicosado + parseFloat(this.item.quantidadeMl);
   }
 
-
- 
+  calculoSoroGlicosado() {
+    this.soroGlicosado = this.solucaoTotal - parseFloat(this.item.quantidadeMl);
+  }
 }

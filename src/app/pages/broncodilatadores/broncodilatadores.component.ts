@@ -20,10 +20,15 @@ export class BroncodilatadoresComponent {
   {}
 
   ngOnInit(): void {
+    const tipoAtendimento = localStorage.getItem("tipoAtendimento")
+
     this.medicamentosService.GetAll().subscribe((response: any) => {
-
-      this.medicacoes = response.filter(function(medicacao : any) { return medicacao.tipo == "Broncodilatadore"; });
-
+      if(tipoAtendimento === "Adulto"){
+        this.medicacoes = response.filter(function(medicacao : any) { return medicacao.medicamentoUso == "Adulto" && medicacao.tipo == "Broncodilatadore"});
+      }
+      if(tipoAtendimento === "Pediatrico"){
+        this.medicacoes = response.filter(function(medicacao : any) { return medicacao.medicamentoUso == "Pediátrico" && medicacao.tipo == "Broncodilatadore"});
+      }
     });
   }
 }

@@ -18,7 +18,7 @@
         <div>
           <label>Senha:</label><br>
           <mat-form-field class="div-mat-form-field" >
-              <input  type="text" required matInput formControlName="password">
+              <input  type="password" required matInput formControlName="password">
               <mat-error *ngIf="formLogin.controls.password.invalid && formLogin.controls.password.touched">
                 Esse campo é obrigatório.
               </mat-error>
