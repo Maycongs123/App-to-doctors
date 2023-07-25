@@ -111,6 +111,7 @@ export class AdministradorComponent {
   }
 
   formMedicacao(result: any) {
+    
     const chavesIndicacao = Object.keys(result.indicacoes);
     const valoresIndicacao = chavesIndicacao.map(chave => result.indicacoes[chave]);
     const indicacao = valoresIndicacao.join("\\*");
