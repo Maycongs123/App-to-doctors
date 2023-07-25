@@ -13,12 +13,13 @@ import { Medicamento } from '../model/medicamento';
 })
 export class MedicamentosService {
 
-REST_API: string = 'https://localhost:7044/api';
+REST_API: string = 'https://doctor-api.azurewebsites.net/api';
 
 httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 constructor(private httpClient: HttpClient) {}
 
 Add(data: any): Observable<any> {
+  
   let API_URL = `${this.REST_API}/Medicamentos`;
   return this.httpClient
     .post(API_URL, data)
@@ -47,6 +48,7 @@ update(data: any): Observable<any> {
 }
 
 delete(id: any): Observable<any> {
+  
   let API_URL = `${this.REST_API}/Medicamentos/${id}`;
   return this.httpClient
     .delete(API_URL, { headers: this.httpHeaders })

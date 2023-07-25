@@ -74,7 +74,7 @@ export class NavbarComponent implements OnInit {
   } 
 
   login(login : any){ 
-    debugger
+    
     this.loginService.signIn(login).subscribe((res: any) => {
       localStorage.setItem('access_token', res.token);
       localStorage.setItem('loginLogout', 'true');
@@ -83,7 +83,7 @@ export class NavbarComponent implements OnInit {
   }  
 
   confirmToken(){
-    debugger
+    
     var access_token = this.loginService.getToken()
     
     if(access_token  != null){  

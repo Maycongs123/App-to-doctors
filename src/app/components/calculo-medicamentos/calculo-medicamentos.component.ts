@@ -119,7 +119,7 @@ export class CalculoMedicamentosComponent implements OnInit{
   }
 
   calculoMcgMin(){
-    debugger
+    
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
       const resultado = (this.dose * 60)/(this.medicamentoMg/(this.item.quantidadeSoro + this.medicamentoMl) * 1000);
       const key = `${i}`;
@@ -146,7 +146,7 @@ export class CalculoMedicamentosComponent implements OnInit{
   }
 
   calculoMcgKgReverso(){
-    debugger
+    
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
       const resultado = (this.vazao * ( this.dadosMedicamentos[i].quantidadeMg /(this.item.quantidadeSoro + this.dadosMedicamentos[i].quantidadeMl) * 1000)) / (this.peso * 60);
       const key = `${i}`;
@@ -160,7 +160,7 @@ export class CalculoMedicamentosComponent implements OnInit{
   }
 
   calculoMcgMinReverso(){
-    debugger
+    
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
       const resultado = (this.vazao * (this.dadosMedicamentos[i].quantidadeMg / (this.item.quantidadeSoro + this.dadosMedicamentos[i].quantidadeMl) * 1000)) / 60;
       const key = `${i}`;
