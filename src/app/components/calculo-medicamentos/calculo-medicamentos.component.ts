@@ -25,6 +25,8 @@ export class CalculoMedicamentosComponent implements OnInit{
   soroGlicosado: any;
   medicamentoMl: any;
   medicamentoMg: any;
+  medicamentoMlReverso: any;
+  medicamentoMgReverso: any;
   peso: any;
   dose:any;
   ampola: any;
@@ -42,14 +44,20 @@ export class CalculoMedicamentosComponent implements OnInit{
     this.item = JSON.parse(decodeURIComponent(dados));
     this.backgroundColor = this.route.snapshot.paramMap.get('backgroundColor');
     this.soroGlicosado = this.item.quantidadeSoro;
+    console.log(this.item, this.backgroundColor, this.soroGlicosado)
   }
 
   ngOnInit(){   
-    this.metodoSplit();
+    debugger
+    this.metodoParse();
+    this.medicamentoMl = JSON.parse(this.item.quantidadeMl);
+    this.medicamentoMg = JSON.parse(this.item.quantidadeMg);  
+    this.medicamentoMlReverso = JSON.parse(this.item.quantidadeMl);
+    this.medicamentoMgReverso = JSON.parse(this.item.quantidadeMg); 
     this.calculoSolucaoTotal();
     this.calculoSoroGlicosado();
-    this.medicamentoMl = parseFloat(this.item.quantidadeMl);
-    this.medicamentoMg = parseFloat(this.item.quantidadeMg);   
+    console.log(this.medicamentoMl)
+    console.log(this.medicamentoMg)
   }
 
   @HostListener('window:click')
@@ -68,11 +76,12 @@ export class CalculoMedicamentosComponent implements OnInit{
     history.back()
   }
 
-  metodoSplit(){    
-    const indicacoesArray = this.item.indicacao.split("\\*");
-    const contraIndicacoesArray  = this.item.contraIndicacao.split("\\*");
-    const quantidadeMlArray = this.item.quantidadeMg.split("\\*");
-    const quantidadeMgArray  = this.item.quantidadeMl.split("\\*");
+  metodoParse(){    
+    debugger
+    const indicacoesArray = JSON.parse(this.item.indicacao);
+    const contraIndicacoesArray  = JSON.parse(this.item.contraIndicacao);
+    const quantidadeMlArray = JSON.parse(this.item.quantidadeMg);
+    const quantidadeMgArray  = JSON.parse(this.item.quantidadeMl);
 
     for (let i = 0; i < indicacoesArray.length; i++) {
       const key = `${i}`;
@@ -85,6 +94,7 @@ export class CalculoMedicamentosComponent implements OnInit{
     }
 
     for (let i = 0; i < quantidadeMlArray.length || i < quantidadeMgArray.length; i++) {
+      debugger
       const key = `${i}`;
       this.dadosMedicamentos[key] = {
         quantidadeMg: parseFloat(quantidadeMlArray[i]),
@@ -94,6 +104,7 @@ export class CalculoMedicamentosComponent implements OnInit{
   }
 
   calculoMgKg(){  
+    debugger
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
       const resultado = (this.peso * this.item.quantidadeMgKg * this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses);
       const key = `${i}`;
@@ -115,7 +126,6 @@ export class CalculoMedicamentosComponent implements OnInit{
         quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
       }
     } 
-    // this.resultadoMcgKg = ((this.dose * this.peso * 60)/((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.ampola)) * 1000)).toFixed(2);
   }
 
   calculoMcgMin(){
@@ -129,13 +139,12 @@ export class CalculoMedicamentosComponent implements OnInit{
         quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
       }
     } 
-    // this.resultadoMcgMin = ((this.dose * 60) / ((this.item.quantidadeMg / (this.item.quantidadeSoro + this.item.quantidadeMl)) * 1000)).toFixed(2);
   }
 
 
   calculoMgKgReverso(){  
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
-      const resultado = (this.volume * this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses) / (this.peso * this.medicamentoMl);
+      const resultado = (this.volume * this.medicamentoMgReverso * this.item.numeroDoses) / (this.peso * this.medicamentoMlReverso);
       const key = `${i}`;
       this.resultadoMgKgReverso[key] = {
         resultado: resultado,
@@ -146,9 +155,8 @@ export class CalculoMedicamentosComponent implements OnInit{
   }
 
   calculoMcgKgReverso(){
-    
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
-      const resultado = (this.vazao * ( this.dadosMedicamentos[i].quantidadeMg /(this.item.quantidadeSoro + this.dadosMedicamentos[i].quantidadeMl) * 1000)) / (this.peso * 60);
+      const resultado = (this.vazao * ( this.medicamentoMgReverso /(this.item.quantidadeSoro + this.medicamentoMlReverso) * 1000)) / (this.peso * 60);
       const key = `${i}`;
       this.resultadoMcgKgReverso[key] = {
         resultado: resultado,
@@ -156,13 +164,12 @@ export class CalculoMedicamentosComponent implements OnInit{
         quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
       }
     }
-    // this.resultadoMcgKgReverso = ((this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.item.quantidadeAmpolas)) * 1000)) / (this.peso * 60)).toFixed(2);
+    
   }
 
   calculoMcgMinReverso(){
-    
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
-      const resultado = (this.vazao * (this.dadosMedicamentos[i].quantidadeMg / (this.item.quantidadeSoro + this.dadosMedicamentos[i].quantidadeMl) * 1000)) / 60;
+      const resultado = (this.vazao * (this.medicamentoMgReverso / (this.item.quantidadeSoro + this.medicamentoMlReverso) * 1000)) / 60;
       const key = `${i}`;
       this.resultadoMcgMinReverso[key] = {
         resultado: resultado,
@@ -170,14 +177,15 @@ export class CalculoMedicamentosComponent implements OnInit{
         quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
       }
     }
-    // this.resultadoMcgMinReverso = ((this.vazao * ((this.item.quantidadeMg * this.ampola)/(this.item.quantidadeSoro + (this.item.quantidadeMl * this.item.quantidadeAmpolas)) * 1000) * this.item.quantidadeAmpolas) / 60).toFixed(2);
   }
 
   calculoSolucaoTotal(){
-   this.solucaoTotal = this.soroGlicosado + parseFloat(this.item.quantidadeMl);
+    debugger
+   this.solucaoTotal = this.soroGlicosado + parseFloat(this.medicamentoMl || this.medicamentoMlReverso);
   }
 
   calculoSoroGlicosado() {
-    this.soroGlicosado = this.solucaoTotal - parseFloat(this.item.quantidadeMl);
+    debugger
+    this.soroGlicosado = this.solucaoTotal - parseFloat(this.medicamentoMl || this.medicamentoMlReverso);
   }
 }

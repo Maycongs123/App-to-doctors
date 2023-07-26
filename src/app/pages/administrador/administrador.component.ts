@@ -61,6 +61,7 @@ export class AdministradorComponent {
   }
 
   adicionarMedicamento(medicamento: any) {
+    debugger
     this.medicamentosService.Add(medicamento).subscribe({
       complete: () => {
         this.getMedicamentos();
@@ -107,26 +108,18 @@ export class AdministradorComponent {
         this.getMedicamentos();
       }
     });
-
   }
 
-  formMedicacao(result: any) {
-    
-    const chavesIndicacao = Object.keys(result.indicacoes);
-    const valoresIndicacao = chavesIndicacao.map(chave => result.indicacoes[chave]);
-    const indicacao = valoresIndicacao.join("\\*");
-
-    const chavesContraIndicacao = Object.keys(result.contraIndicacoes);
-    const valoresContraIndicacao = chavesContraIndicacao.map(chave => result.contraIndicacoes[chave]);
-    const contraIndicacao = valoresContraIndicacao.join("\\*");
-
-    const chavesQuantidadeMg = Object.keys(result.quantidadeMg);
-    const valoresQuantidadeMg = chavesQuantidadeMg.map(chave => result.quantidadeMg[chave]);
-    const quantidadeMg = valoresQuantidadeMg.join("\\*");
-
-    const chavesQuantidadeMl = Object.keys(result.quantidadeMl);
-    const valoresQuantidadeMl = chavesQuantidadeMl.map(chave => result.quantidadeMl[chave]);
-    const quantidadeMl = valoresQuantidadeMl.join("\\*");
+  formMedicacao(result: any) {    
+    debugger  
+    const indicacao = JSON.stringify(result.indicacoes);
+    const contraIndicacao = JSON.stringify(result.contraIndicacoes);    
+    const quantidadeMg = JSON.stringify(result.quantidadeMg);   
+    const quantidadeMl = JSON.stringify(result.quantidadeMl);
+    const dose = JSON.stringify(result.dose);
+    const preparoDiluicao = JSON.stringify(result.preparoDiluicao);
+    const administracao = JSON.stringify(result.administracao);
+    const usoGestacao = JSON.stringify(result.usoGestacao);
 
     const formMedicamento = this.formBuilder.group({
       id: result.id,
@@ -142,32 +135,21 @@ export class AdministradorComponent {
       indicacao: indicacao,
       contraIndicacao: contraIndicacao,
       numeroDoses: result.numeroDoses,
-      quantidadeAmpolas: result.quantidadeAmpolas
+      quantidadeAmpolas: result.quantidadeAmpolas,
+      dose: dose,
+      preparoDiluicao: preparoDiluicao,
+      administracao: administracao,
+      usoGestacao: usoGestacao
     });
 
     return formMedicamento;
   }
 
   formMedicacaoTable(result: any) {
-    this.dataSource = []; // Array vazio para armazenar os dados processados.
+    debugger
+    this.dataSource = [];
 
-    for (let index = 0; index < result.length; index++) {
-      const indicacoesArray = result[index].indicacao.split("\\*");
-      const contraIndicacoesArray = result[index].contraIndicacao.split("\\*");
-      const quantidadeMlArray = result[index].quantidadeMg.split("\\*");
-      const quantidadeMgArray = result[index].quantidadeMl.split("\\*");
-
-      const dadosMedicamentos = []; // Array vazio para armazenar os objetos de medicamentos processados.
-
-      // Criar objetos de medicamento e adicionar ao array dadosMedicamentos.
-      for (let i = 0; i < quantidadeMlArray.length && i < quantidadeMgArray.length; i++) {
-        dadosMedicamentos.push({
-          quantidadeMg: parseFloat(quantidadeMgArray[i]),
-          quantidadeMl: parseFloat(quantidadeMlArray[i])
-        });
-      }
-
-      // Criar o novo objeto de medicamento com os dados processados.
+    for (let index = 0; index < result.length; index++) {     
       const medicamento = {
         id: result[index].id,
         nome: result[index].nome,
@@ -175,25 +157,25 @@ export class AdministradorComponent {
         tipo: result[index].tipo,
         dosagemTipo: result[index].dosagemTipo,
         modoDeUso: result[index].modoDeUso,
-        dosagem: dadosMedicamentos,
+        quantidadeMg: JSON.parse(result[index].quantidadeMg),
+        quantidadeMl: JSON.parse(result[index].quantidadeMl),       
         quantidadeMgKg: result[index].quantidadeMgKg,
-        quantidadeSoro: result[index].quantidadeSoro,
-        indicacao: indicacoesArray,
-        contraIndicacao: contraIndicacoesArray,
+        quantidadeSoro: result[index].quantidadeSoro,        
+        indicacao: JSON.parse(result[index].indicacao),
+        contraIndicacao: JSON.parse(result[index].contraIndicacao),
         numeroDoses: result[index].numeroDoses,
-        quantidadeAmpolas: result[index].quantidadeAmpolas
+        quantidadeAmpolas: result[index].quantidadeAmpolas,
+        dose: JSON.parse(result[index].dose),
+        preparoDiluicao: JSON.parse(result[index].preparoDiluicao),
+        administracao: JSON.parse(result[index].administracao),
+        usoGestacao: JSON.parse(result[index].usoGestacao)
       };
-
-      // Adicionar o objeto de medicamento processado ao array dados.
+     
       this.dataSource.push(medicamento);
     }
 
     console.log(this.dataSource);
   }
-
-
-
-
 }
 
 

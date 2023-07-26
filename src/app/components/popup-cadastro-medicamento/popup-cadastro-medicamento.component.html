@@ -72,30 +72,32 @@
                 <div formArrayName="quantidadeMg">
                   <div *ngFor="let quantidadeMgForm of quantidadeMg.controls; let i = index" >
                     <mat-form-field class="div-mat-form-field-grid">
+                      <mat-label>{{i + 1}}ª Apresentação(mg)</mat-label>
                       <input matInput [formControlName]="i" type="number"  placeholder="{{i + 1}}ª Apresentação">
                     </mat-form-field>
                     <mat-error *ngIf="formMedicamento.controls.quantidadeMg.invalid && formMedicamento.controls.quantidadeMg.touched">
                       Esse campo é obrigatório.
                     </mat-error>
-                    <button mat-button color="warn" (click)="removerCampo(i)">Retirar</button>
+                    <button mat-button color="warn" (click)="removerCampoMg(i)">Retirar</button>
                   </div>
                 </div>
-                <button mat-button color="primary" type="button" (click)="adicionarCampoQuantidadeMg()">Adicionar quantidade em mg</button>
+                <button mat-button color="primary" type="button" (click)="adicionarCampoQuantidadeMg()">Adicionar apresentação em mg</button>
             </div>
             <div>
                 <label>Quantidade em ml:</label><br>
                 <div formArrayName="quantidadeMl">
                   <div *ngFor="let quantidadeMlForm of quantidadeMl.controls; let i = index" >
                     <mat-form-field class="div-mat-form-field-grid">
+                      <mat-label>{{i + 1}}ª Apresentação(ml)</mat-label>
                       <input matInput [formControlName]="i" type="number" placeholder="{{i + 1}}ª Apresentação">
                     </mat-form-field>
                     <mat-error *ngIf="formMedicamento.controls.quantidadeMl.invalid && formMedicamento.controls.quantidadeMl.touched">
                       Esse campo é obrigatório.
                     </mat-error>
-                    <button mat-button color="warn" (click)="removerCampo(i)">Retirar</button>
+                    <button mat-button color="warn" (click)="removerCampoMl(i)">Retirar</button>
                   </div>
                 </div>
-                <button mat-button color="primary" type="button" (click)="adicionarCampoQuantidadeMl()">Adicionar quantidade em ml</button>
+                <button mat-button color="primary" type="button" (click)="adicionarCampoQuantidadeMl()">Adicionar apresentação em ml</button>
             </div>
             <div *ngIf="dosagemTipo">
               <label>Quantidade em mg/kg/dia:</label><br>
@@ -156,6 +158,57 @@
       </div>
       <div class="div-flex">
         <div style="display: grid;">
+          <label>Dose:</label><br>
+          <div formArrayName="dose">
+            <div *ngFor="let doseForm of dose.controls; let i = index" >
+              <mat-form-field class="div-mat-form-field-grid">
+                <textarea matInput [formControlName]="i"></textarea>
+              </mat-form-field>
+              <mat-error *ngIf="formMedicamento.controls.dose.invalid && formMedicamento.controls.dose.touched">
+                Esse campo é obrigatório.
+              </mat-error>
+              <button mat-button color="warn" (click)="removerCampoDose(i)">Retirar</button>
+            </div>
+          </div>
+          <button mat-button color="primary" type="button" (click)="adicionarCampoDose()">Adicionar Dose</button>
+        </div>
+      </div>
+      <div class="div-flex">
+        <div style="display: grid;">
+          <label>Preparo / Diluição:</label><br>
+          <div formArrayName="preparoDiluicao">
+            <div *ngFor="let preparoDiluicaoForm of preparoDiluicao.controls; let i = index" >
+              <mat-form-field class="div-mat-form-field-grid">
+                <textarea matInput [formControlName]="i"></textarea>
+              </mat-form-field>
+              <mat-error *ngIf="formMedicamento.controls.preparoDiluicao.invalid && formMedicamento.controls.preparoDiluicao.touched">
+                Esse campo é obrigatório.
+              </mat-error>
+              <button mat-button color="warn" (click)="removerCampoPreparoDiluicao(i)">Retirar</button>
+            </div>
+          </div>
+          <button mat-button color="primary" type="button" (click)="adicionarCampoPreparoDiluicao()">Adicionar Preparo / Diluição</button>
+        </div>
+      </div>
+      <div class="div-flex">
+        <div style="display: grid;">
+          <label>Administração:</label><br>
+          <div formArrayName="administracao">
+            <div *ngFor="let administracaoForm of administracao.controls; let i = index" >
+              <mat-form-field class="div-mat-form-field-grid">
+                <textarea matInput [formControlName]="i"></textarea>
+              </mat-form-field>
+              <mat-error *ngIf="formMedicamento.controls.administracao.invalid && formMedicamento.controls.administracao.touched">
+                Esse campo é obrigatório.
+              </mat-error>
+              <button mat-button color="warn" (click)="removerCampoAdministracao(i)">Retirar</button>
+            </div>
+          </div>
+          <button mat-button color="primary" type="button" (click)="adicionarCampoAdministracao()">Adicionar Administração</button>
+        </div>
+      </div>
+      <div class="div-flex">
+        <div style="display: grid;">
           <label>Contra indicações:</label><br>
           <div formArrayName="contraIndicacoes">
             <div *ngFor="let contraIndicacoesForm of contraIndicacoes.controls; let i = index" >
@@ -165,10 +218,27 @@
               <mat-error *ngIf="formMedicamento.controls.contraIndicacoes.invalid && formMedicamento.controls.contraIndicacoes.touched">
                 Esse campo é obrigatório.
               </mat-error>
-              <button mat-button color="warn" (click)="removerCampo(i)">Retirar</button>
+              <button mat-button color="warn" (click)="removerCampoContraIndicacoes(i)">Retirar</button>
             </div>
           </div>
           <button mat-button color="primary" type="button" (click)="adicionarCampo()">Adicionar Contra indicação</button>
+        </div>
+      </div>
+      <div class="div-flex">
+        <div style="display: grid;">
+          <label>Uso Durante a Gestação:</label><br>
+          <div formArrayName="usoGestacao">
+            <div *ngFor="let usoGestacaoForm of usoGestacao.controls; let i = index" >
+              <mat-form-field class="div-mat-form-field-grid">
+                <textarea matInput [formControlName]="i"></textarea>
+              </mat-form-field>
+              <mat-error *ngIf="formMedicamento.controls.usoGestacao.invalid && formMedicamento.controls.usoGestacao.touched">
+                Esse campo é obrigatório.
+              </mat-error>
+              <button mat-button color="warn" (click)="removerCampoUsoGestacao(i)">Retirar</button>
+            </div>
+          </div>
+          <button mat-button color="primary" type="button" (click)="adicionarCampoUsoGestacao()">Adicionar Uso na Gestação</button>
         </div>
       </div>
     </form>

@@ -37,7 +37,7 @@
                   </div>
                      <div class="div-conteudo-grid">
                          <span style="margin-bottom: 1rem;">
-                              {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml - ' + item.modoDeUso}}
+                              {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml'}}
                          </span>
                      </div>
                  </div>
@@ -68,7 +68,7 @@
                 <div *ngIf="resultadoMgKg" class="div-result">
                   <div *ngFor="let dados of resultadoMgKg" style="padding-bottom: 1rem;">
                     <span class="font-result" >
-                      {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml - ' + dados.resultado + ' ml'}}
+                      {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml - ' + dados.resultado + ' ml - ' + item.modoDeUso}}
                     </span>
                   </div>
                 </div>
@@ -95,7 +95,7 @@
                   <div *ngIf="resultadoMgKgReverso" class="div-result">
                     <div *ngFor="let dados of resultadoMgKgReverso" style="padding-bottom: 1rem;">
                       <span class="font-result" >
-                        {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml - ' + dados.resultado + ' mg/Kg'}}
+                        {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml - ' + dados.resultado + ' mg/Kg - ' + item.modoDeUso}}
                       </span>
                     </div>
                   </div>
@@ -124,10 +124,10 @@
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Medicamento(ml)</mat-label>
-                  <input matInput type="number" [(ngModel)]="medicamentoMl" [step]="0.01">
+                  <input matInput type="number" [(ngModel)]="medicamentoMl" [step]="0.01" >
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
-                  <mat-label>Quantidade de soro glicosado(ml) </mat-label>
+                  <mat-label>Quantidade de soro(ml) </mat-label>
                   <input matInput type="number" [(ngModel)]="soroGlicosado" [step]="0.01" (input)="calculoSolucaoTotal()">
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
@@ -141,7 +141,7 @@
                 <div *ngIf="resultadoMcgKg" class="div-result">
                   <div *ngFor="let dados of resultadoMcgKg" style="padding-bottom: 1rem;">
                     <span class="font-result" >
-                      {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml - ' + dados.resultado + ' ml/h'}}
+                      {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml - ' + dados.resultado + ' ml/h - '  + item.modoDeUso}}
                     </span>
                   </div>
                 </div>           
@@ -160,7 +160,15 @@
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Vazão (ml/h)</mat-label>
                   <input matInput type="number" [(ngModel)]="vazao" [step]="0.01">
-                </mat-form-field>             
+                </mat-form-field>      
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Medicamento(mg)</mat-label>
+                  <input matInput type="number" [(ngModel)]="medicamentoMgReverso" [step]="0.01">
+                </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Medicamento(ml)</mat-label>
+                  <input matInput type="number" [(ngModel)]="medicamentoMlReverso" [step]="0.01">
+                </mat-form-field>       
                 <button mat-button matTooltip="Accent" (click)="calculoMcgKgReverso()">
                   <span>Calcular</span>
                   <mat-icon class="matFormCalculadora">calculate</mat-icon>
@@ -168,7 +176,7 @@
                 <div *ngIf="resultadoMcgKgReverso" class="div-result">
                   <div *ngFor="let dados of resultadoMcgKgReverso" style="padding-bottom: 1rem;">
                     <span class="font-result" >
-                      {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml - ' + dados.resultado + ' mcg/kg/min'}}
+                      {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml - ' + dados.resultado + ' mcg/kg/min - ' + item.modoDeUso}}
                     </span>
                   </div>
                 </div>  
@@ -196,7 +204,7 @@
                   <input matInput type="number" [(ngModel)]="dose" [step]="0.01">
                 </mat-form-field> 
                 <mat-form-field class="matFormCalculadora">
-                  <mat-label>Quantidade de soro glicosado(ml) </mat-label>
+                  <mat-label>Quantidade de soro(ml) </mat-label>
                   <input matInput type="number" [(ngModel)]="soroGlicosado" [step]="0.01" (input)="calculoSolucaoTotal()">
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
@@ -210,7 +218,7 @@
                 <div *ngIf="resultadoMcgMin" class="div-result">
                   <div *ngFor="let dados of resultadoMcgMin" style="padding-bottom: 1rem;">
                     <span class="font-result" >
-                      {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml - ' + dados.resultado + ' ml/h'}}
+                      {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml - ' + dados.resultado + ' ml/h - ' + item.modoDeUso}}
                     </span>
                   </div>
                 </div>           
@@ -226,6 +234,14 @@
                   <mat-label>Vazão (ml/h)</mat-label>
                   <input matInput type="number" [(ngModel)]="vazao" [step]="0.01">
                 </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Medicamento(mg)</mat-label>
+                  <input matInput type="number" [(ngModel)]="medicamentoMgReverso" [step]="0.01">
+                </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Medicamento(ml)</mat-label>
+                  <input matInput type="number" [(ngModel)]="medicamentoMlReverso" [step]="0.01">
+                </mat-form-field>
                 <button mat-button matTooltip="Accent" (click)="calculoMcgMinReverso()">
                   <span>Calcular</span>
                   <mat-icon class="matFormCalculadora">calculate</mat-icon>
@@ -233,7 +249,7 @@
                 <div *ngIf="resultadoMcgMinReverso" class="div-result">
                   <div *ngFor="let dados of resultadoMcgMinReverso" style="padding-bottom: 1rem;">
                     <span class="font-result" >
-                      {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml - ' + dados.resultado + ' mcg/min'}}
+                      {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml - ' + dados.resultado + ' mcg/min - '  + item.modoDeUso}}
                     </span>
                   </div>
                 </div> 

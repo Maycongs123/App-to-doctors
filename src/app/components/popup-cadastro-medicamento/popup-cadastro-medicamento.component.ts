@@ -23,6 +23,7 @@ export class PopupCadastroMedicamentoComponent {
   ) {}
 
   ngOnInit(): void {
+    debugger
     this.editMode = this.data.editMode;
     if(this.editMode === true){
       this.buscarMedicamento(this.data.element.id)
@@ -44,6 +45,10 @@ export class PopupCadastroMedicamentoComponent {
     quantidadeAmpolas: [0, Validators.required],
     indicacoes: this.formBuilder.array([this.formBuilder.control('', Validators.required)]),
     contraIndicacoes: this.formBuilder.array([this.formBuilder.control('', Validators.required)]),
+    dose: this.formBuilder.array([this.formBuilder.control('', Validators.required)]),
+    preparoDiluicao: this.formBuilder.array([this.formBuilder.control('', Validators.required)]),
+    administracao: this.formBuilder.array([this.formBuilder.control('', Validators.required)]),
+    usoGestacao: this.formBuilder.array([this.formBuilder.control('', Validators.required)])
   });
 
   get contraIndicacoes() {
@@ -61,6 +66,25 @@ export class PopupCadastroMedicamentoComponent {
   get quantidadeMl() {
     return this.formMedicamento.get('quantidadeMl') as FormArray;
   }
+
+  get dose() {
+    return this.formMedicamento.get('dose') as FormArray;
+  }
+  
+  get preparoDiluicao() {
+    return this.formMedicamento.get('preparoDiluicao') as FormArray;
+  }
+  
+  get administracao() {
+    return this.formMedicamento.get('administracao') as FormArray;
+  }
+
+  get usoGestacao() {
+    return this.formMedicamento.get('usoGestacao') as FormArray;
+  }
+
+
+  // REFATORAR OS CAMPOS ADICIONAR E REMOVER 
 
   adicionarCampo() {
     const contraIndicacoesForm = this.formBuilder.control('');
@@ -81,13 +105,65 @@ export class PopupCadastroMedicamentoComponent {
     const quantidadeMlForm = this.formBuilder.control('');
     this.quantidadeMl.push(quantidadeMlForm);
   }
+  
+  adicionarCampoDose() {
+    const doseForm = this.formBuilder.control('');
+    this.dose.push(doseForm);
+  }
+  
+  adicionarCampoPreparoDiluicao() {
+    const preparoDiluicaoForm = this.formBuilder.control('');
+    this.preparoDiluicao.push(preparoDiluicaoForm);
+  }
 
-  removerCampo(index: number): void {
+  adicionarCampoAdministracao() {
+    const administracaoForm = this.formBuilder.control('');
+    this.administracao.push(administracaoForm);
+  }
+
+  adicionarCampoUsoGestacao() {
+    const usoGestacaoForm = this.formBuilder.control('');
+    this.usoGestacao.push(usoGestacaoForm);
+  }
+
+  removerCampoContraIndicacoes(index: number): void {
+    debugger
     this.contraIndicacoes.removeAt(index);
   }
 
   removerCampoIndicacao(index: number): void {
+    debugger
     this.indicacoes.removeAt(index);
+  }
+
+  removerCampoMg(index: number): void {
+    debugger
+    this.quantidadeMg.removeAt(index);
+  }
+
+  removerCampoMl(index: number): void {
+    debugger
+    this.quantidadeMl.removeAt(index);
+  }
+
+  removerCampoPreparoDiluicao(index: number): void {
+    debugger
+    this.preparoDiluicao.removeAt(index);
+  }
+
+  removerCampoDose(index: number): void {
+    debugger
+    this.dose.removeAt(index);
+  }
+
+  removerCampoUsoGestacao(index: number): void {
+    debugger
+    this.usoGestacao.removeAt(index);
+  }
+
+  removerCampoAdministracao(index: number): void {
+    debugger
+    this.administracao.removeAt(index);
   }
 
   adicionar() {
@@ -97,11 +173,10 @@ export class PopupCadastroMedicamentoComponent {
   submit() {
     if (this.formMedicamento.invalid) {
       this.openSnackBar()
-      // Marcar todos os campos como tocados para exibir mensagens de erro
       this.markFormGroupAsTouched(this.formMedicamento);
       return;
     }
-
+    debugger
     console.log(this.formMedicamento.value);
     this.dialogRef.close(this.formMedicamento.value);
 
@@ -134,11 +209,9 @@ export class PopupCadastroMedicamentoComponent {
     });
   }
  
-buscarMedicamento(id: any){
+buscarMedicamento(id: any){ 
   this.medicamentosService.Get(id).subscribe((response: any) => {    
-    console.log(response)
-    this.convertStringToArray(response, 'contraIndicacao', 'indicacao');
-    this.convertStringToArray(response, 'quantidadeMg', 'quantidadeMl');
+        
     console.log(response)
 
     if(response.dosagemTipo === "mg/kg/dia"){
@@ -153,7 +226,7 @@ buscarMedicamento(id: any){
       id: id,
       nome: response.nome,
       medicamentoUso: response.medicamentoUso,
-      tipo: response.tipo,
+      tipo: response.tipo,     
       dosagemTipo: response.dosagemTipo,
       modoDeUso: response.modoDeUso,
       quantidadeMgKg: response.quantidadeMgKg,
@@ -162,38 +235,171 @@ buscarMedicamento(id: any){
       quantidadeAmpolas: response.quantidadeAmpolas,
     });
 
-    this.setQuantidadeMg(response.quantidadeMg);
-    this.setQuantidadeMl(response.quantidadeMl);
-    this.setArrayValues('indicacoes', response.indicacao);
-    this.setArrayValues('contraIndicacoes', response.contraIndicacao);
+
+    // this.setQuantidadeMg(response.quantidadeMg);
+    // this.setQuantidadeMl(response.quantidadeMl);
+    // this.setIndicacoes(response.indicacao);
+    // this.setContraIndicacoes(response.contraIndicacao);
+    // this.setDose(response.dose);
+    // this.setPreparoDiluicao(response.preparoDiluicao);
+    // this.setAdministracao(response.administracao);
+    // this.setUsoGestacao(response.usoGestacao);
+
+    // Realizar teste quando estiver o back estiver pronto
+
+    this.teste('quantidadeMg', response.quantidadeMg)
+    this.teste('quantidadeMl', response.quantidadeMg)
+    this.teste('indicacao', response.indicacao)
+    this.teste('contraIndicacao', response.contraIndicacao)
+    this.teste('dose', response.dose)
+    this.teste('preparoDiluicao', response.preparoDiluicao)
+    this.teste('administracao', response.administracao)
+    this.teste('usoGestacao', response.usoGestacao)
   
   });
 }
 
-convertStringToArray(obj: any, ...properties: string[]): void {
-  properties.forEach((prop) => {
-    if (obj[prop] && typeof obj[prop] === 'string') {
-      obj[prop] = obj[prop].split('\\*').map((item: string) => item.trim());
-    }
-  });
+// Realizar teste quando estiver o back estiver pronto
+teste( string: any ,dados: any[]): void {
+  debugger
+  const dadosArray = this.formMedicamento.get(string) as FormArray;
+  dadosArray.clear();
+  
+  if (typeof dados === 'string') {
+    dados = JSON.parse(dados); 
+  }
+
+  if (Array.isArray(dados)) {
+    dados.forEach((value: any) => {
+      dadosArray.push(this.formBuilder.control(value, Validators.required));
+    });
+  }
 }
 
-setQuantidadeMg(quantidadesMg: string[]): void {
+setQuantidadeMg(quantidadeMg: any[]): void {
   const quantidadeMgArray = this.formMedicamento.get('quantidadeMg') as FormArray;
   quantidadeMgArray.clear();
-  quantidadesMg.forEach((mg) => quantidadeMgArray.push(this.formBuilder.control(mg, Validators.required)));
+  
+  if (typeof quantidadeMg === 'string') {
+    quantidadeMg = JSON.parse(quantidadeMg); 
+  }
+
+  if (Array.isArray(quantidadeMg)) {
+    quantidadeMg.forEach((mgValue: number) => {
+      quantidadeMgArray.push(this.formBuilder.control(mgValue, Validators.required));
+    });
+  }
 }
 
-setQuantidadeMl(quantidadesMl: string[]): void {
+setQuantidadeMl(quantidadesMl: any[]): void {  
   const quantidadeMlArray = this.formMedicamento.get('quantidadeMl') as FormArray;
   quantidadeMlArray.clear();
-  quantidadesMl.forEach((ml) => quantidadeMlArray.push(this.formBuilder.control(ml, Validators.required)));
+
+  if (typeof quantidadesMl === 'string') {
+    quantidadesMl = JSON.parse(quantidadesMl); 
+  }
+
+  if (Array.isArray(quantidadesMl)) {
+    quantidadesMl.forEach((mgValue: number) => {
+      quantidadeMlArray.push(this.formBuilder.control(mgValue, Validators.required));
+    });
+  }
 }
 
-setArrayValues(arrayName: string, values: string[]): void {
-  const formArray = this.formMedicamento.get(arrayName) as FormArray;
-  formArray.clear();
-  values.forEach((value) => formArray.push(this.formBuilder.control(value, Validators.required)));
+setIndicacoes(indicacoes: any[]): void {  
+  const indicacoesArray = this.formMedicamento.get('indicacoes') as FormArray;
+  indicacoesArray.clear();
+
+  if (typeof indicacoes === 'string') {
+    indicacoes = JSON.parse(indicacoes); 
+  }
+
+  if (Array.isArray(indicacoes)) {
+    indicacoes.forEach((mgValue: number) => {
+      indicacoesArray.push(this.formBuilder.control(mgValue, Validators.required));
+    });
+  }
 }
+
+
+setContraIndicacoes(contraIndicacoes: any[]): void {  
+  const contraIndicacoesArray = this.formMedicamento.get('contraIndicacoes') as FormArray;
+  contraIndicacoesArray.clear();
+
+  if (typeof contraIndicacoes === 'string') {
+    contraIndicacoes = JSON.parse(contraIndicacoes); 
+  }
+
+  if (Array.isArray(contraIndicacoes)) {
+    contraIndicacoes.forEach((mgValue: number) => {
+      contraIndicacoesArray.push(this.formBuilder.control(mgValue, Validators.required));
+    });
+  }
+}
+
+
+setDose(dose: any[]): void {  
+  const doseArray = this.formMedicamento.get('dose') as FormArray;
+  doseArray.clear();
+
+  if (typeof dose === 'string') {
+    dose = JSON.parse(dose); 
+  }
+
+  if (Array.isArray(dose)) {
+    dose.forEach((mgValue: number) => {
+      doseArray.push(this.formBuilder.control(mgValue, Validators.required));
+    });
+  }
+}
+
+
+setPreparoDiluicao(preparoDiluicao: any[]): void {  
+  const preparoDiluicaoArray = this.formMedicamento.get('preparoDiluicao') as FormArray;
+  preparoDiluicaoArray.clear();
+
+  if (typeof preparoDiluicao === 'string') {
+    preparoDiluicao = JSON.parse(preparoDiluicao); 
+  }
+
+  if (Array.isArray(preparoDiluicao)) {
+    preparoDiluicao.forEach((mgValue: number) => {
+      preparoDiluicaoArray.push(this.formBuilder.control(mgValue, Validators.required));
+    });
+  }
+}
+
+
+setAdministracao(administracao: any[]): void {  
+  const administracaoArray = this.formMedicamento.get('administracao') as FormArray;
+  administracaoArray.clear();
+
+  if (typeof administracao === 'string') {
+    administracao = JSON.parse(administracao); 
+  }
+
+  if (Array.isArray(administracao)) {
+    administracao.forEach((mgValue: number) => {
+      administracaoArray.push(this.formBuilder.control(mgValue, Validators.required));
+    });
+  }
+}
+
+
+setUsoGestacao(usoGestacao: any[]): void {  
+  const usoGestacaoArray = this.formMedicamento.get('usoGestacao') as FormArray;
+  usoGestacaoArray.clear();
+
+  if (typeof usoGestacao === 'string') {
+    usoGestacao = JSON.parse(usoGestacao); 
+  }
+
+  if (Array.isArray(usoGestacao)) {
+    usoGestacao.forEach((mgValue: number) => {
+      usoGestacaoArray.push(this.formBuilder.control(mgValue, Validators.required));
+    });
+  }
+}
+
 
 }
