@@ -14,6 +14,9 @@ export class PopupCadastroMedicamentoComponent {
   dosagemTipo: boolean = false;
   duracao = 8;
   editMode = false;
+  step = 0;
+
+
   constructor(
     public dialogRef: MatDialogRef<PopupCadastroMedicamentoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {element: any , editMode: any},
@@ -23,7 +26,7 @@ export class PopupCadastroMedicamentoComponent {
   ) {}
 
   ngOnInit(): void {
-    debugger
+    
     this.editMode = this.data.editMode;
     if(this.editMode === true){
       this.buscarMedicamento(this.data.element.id)
@@ -44,12 +47,24 @@ export class PopupCadastroMedicamentoComponent {
     numeroDoses: [0, Validators.required],
     quantidadeAmpolas: [0, Validators.required],
     indicacoes: this.formBuilder.array([this.formBuilder.control('', Validators.required)]),
-    contraIndicacoes: this.formBuilder.array([this.formBuilder.control('', Validators.required)]),
-    dose: this.formBuilder.array([this.formBuilder.control('', Validators.required)]),
+    contraIndicacoes: this.formBuilder.array([this.formBuilder.control('', Validators.required)]),  
+    dose: this.formBuilder.array([
+      this.formBuilder.group({
+        problema: ['', Validators.required],
+        usoDose: this.formBuilder.group({
+          usoInicial: [''],
+          usoManutencao: [''],
+        })
+      })
+    ]),
     preparoDiluicao: this.formBuilder.array([this.formBuilder.control('', Validators.required)]),
     administracao: this.formBuilder.array([this.formBuilder.control('', Validators.required)]),
     usoGestacao: this.formBuilder.array([this.formBuilder.control('', Validators.required)])
   });
+
+  getDoseFormGroup(index: number): FormGroup {
+    return this.dose.at(index) as FormGroup;
+  }
 
   get contraIndicacoes() {
     return this.formMedicamento.get('contraIndicacoes') as FormArray;
@@ -107,8 +122,16 @@ export class PopupCadastroMedicamentoComponent {
   }
   
   adicionarCampoDose() {
-    const doseForm = this.formBuilder.control('');
-    this.dose.push(doseForm);
+    // const doseForm = this.formBuilder.control('');
+    // this.dose.push(doseForm);
+    const newDoseFormGroup = this.formBuilder.group({
+      problema: ['', Validators.required],
+      usoDose: this.formBuilder.group({
+        usoInicial: [''],
+        usoManutencao: [''],
+      })
+    });
+    this.dose.push(newDoseFormGroup);
   }
   
   adicionarCampoPreparoDiluicao() {
@@ -126,43 +149,35 @@ export class PopupCadastroMedicamentoComponent {
     this.usoGestacao.push(usoGestacaoForm);
   }
 
-  removerCampoContraIndicacoes(index: number): void {
-    debugger
+  removerCampoContraIndicacoes(index: number): void {    
     this.contraIndicacoes.removeAt(index);
   }
 
-  removerCampoIndicacao(index: number): void {
-    debugger
+  removerCampoIndicacao(index: number): void {    
     this.indicacoes.removeAt(index);
   }
 
-  removerCampoMg(index: number): void {
-    debugger
+  removerCampoMg(index: number): void {    
     this.quantidadeMg.removeAt(index);
   }
 
-  removerCampoMl(index: number): void {
-    debugger
+  removerCampoMl(index: number): void {    
     this.quantidadeMl.removeAt(index);
   }
 
-  removerCampoPreparoDiluicao(index: number): void {
-    debugger
+  removerCampoPreparoDiluicao(index: number): void {    
     this.preparoDiluicao.removeAt(index);
   }
 
-  removerCampoDose(index: number): void {
-    debugger
+  removerCampoDose(index: number): void {    
     this.dose.removeAt(index);
   }
 
-  removerCampoUsoGestacao(index: number): void {
-    debugger
+  removerCampoUsoGestacao(index: number): void {    
     this.usoGestacao.removeAt(index);
   }
 
-  removerCampoAdministracao(index: number): void {
-    debugger
+  removerCampoAdministracao(index: number): void {   
     this.administracao.removeAt(index);
   }
 
@@ -175,15 +190,13 @@ export class PopupCadastroMedicamentoComponent {
       this.openSnackBar()
       this.markFormGroupAsTouched(this.formMedicamento);
       return;
-    }
-    debugger
-    console.log(this.formMedicamento.value);
+    }    
+   
     this.dialogRef.close(this.formMedicamento.value);
 
   }
 
-  formDosagemTipo(event: any){  
-    console.log(event.value)
+  formDosagemTipo(event: any){    
     if(event.value === "mg/kg/dia"){
 
       this.dosagemTipo = true;
@@ -210,10 +223,7 @@ export class PopupCadastroMedicamentoComponent {
   }
  
 buscarMedicamento(id: any){ 
-  this.medicamentosService.Get(id).subscribe((response: any) => {    
-        
-    console.log(response)
-
+  this.medicamentosService.Get(id).subscribe((response: any) => { 
     if(response.dosagemTipo === "mg/kg/dia"){
 
       this.dosagemTipo = true;
@@ -235,27 +245,15 @@ buscarMedicamento(id: any){
       quantidadeAmpolas: response.quantidadeAmpolas,
     });
 
-
-    // this.setQuantidadeMg(response.quantidadeMg);
-    // this.setQuantidadeMl(response.quantidadeMl);
-    // this.setIndicacoes(response.indicacao);
-    // this.setContraIndicacoes(response.contraIndicacao);
-    // this.setDose(response.dose);
-    // this.setPreparoDiluicao(response.preparoDiluicao);
-    // this.setAdministracao(response.administracao);
-    // this.setUsoGestacao(response.usoGestacao);
-
-    // Realizar teste quando estiver o back estiver pronto
-
     this.setItens('quantidadeMg', response.quantidadeMg)
     this.setItens('quantidadeMl', response.quantidadeMg)
     this.setItens('indicacoes', response.indicacao)
     this.setItens('contraIndicacoes', response.contraIndicacao)
-    this.setItens('dose', response.dose)
+    // this.setItens('dose', response.dose)
     this.setItens('preparoDiluicao', response.preparoDiluicao)
     this.setItens('administracao', response.administracao)
     this.setItens('usoGestacao', response.usoGestacao)
-  
+    this.setDoseItens(JSON.parse(response.dose));
   });
 }
 
@@ -275,130 +273,38 @@ setItens( string: any ,dados: any[]): void {
   }
 }
 
-// setQuantidadeMg(quantidadeMg: any[]): void {
-//   const quantidadeMgArray = this.formMedicamento.get('quantidadeMg') as FormArray;
-//   quantidadeMgArray.clear();
-  
-//   if (typeof quantidadeMg === 'string') {
-//     quantidadeMg = JSON.parse(quantidadeMg); 
-//   }
+setDoseItens(dados: any[]): void {
+  const doseArray = this.formMedicamento.get('dose') as FormArray;
+  doseArray.clear();
 
-//   if (Array.isArray(quantidadeMg)) {
-//     quantidadeMg.forEach((mgValue: number) => {
-//       quantidadeMgArray.push(this.formBuilder.control(mgValue, Validators.required));
-//     });
-//   }
-// }
+  if (typeof dados === 'string') {
+    dados = JSON.parse(dados);
+  }
 
-// setQuantidadeMl(quantidadesMl: any[]): void {  
-//   const quantidadeMlArray = this.formMedicamento.get('quantidadeMl') as FormArray;
-//   quantidadeMlArray.clear();
+  if (Array.isArray(dados)) {
+    dados.forEach((dose: any) => {
+      const doseFormGroup = this.formBuilder.group({
+        problema: [dose.problema, Validators.required],
+        usoDose: this.formBuilder.group({
+          usoInicial: [dose.usoDose.usoInicial],
+          usoManutencao: [dose.usoDose.usoManutencao],
+        }),
+      });
 
-//   if (typeof quantidadesMl === 'string') {
-//     quantidadesMl = JSON.parse(quantidadesMl); 
-//   }
+      doseArray.push(doseFormGroup);
+    });
+  }
+}
 
-//   if (Array.isArray(quantidadesMl)) {
-//     quantidadesMl.forEach((mgValue: number) => {
-//       quantidadeMlArray.push(this.formBuilder.control(mgValue, Validators.required));
-//     });
-//   }
-// }
+  setStep(index: number) {
+    this.step = index;
+  }
 
-// setIndicacoes(indicacoes: any[]): void {  
-//   const indicacoesArray = this.formMedicamento.get('indicacoes') as FormArray;
-//   indicacoesArray.clear();
+  nextStep() {
+    this.step++;
+  }
 
-//   if (typeof indicacoes === 'string') {
-//     indicacoes = JSON.parse(indicacoes); 
-//   }
-
-//   if (Array.isArray(indicacoes)) {
-//     indicacoes.forEach((mgValue: number) => {
-//       indicacoesArray.push(this.formBuilder.control(mgValue, Validators.required));
-//     });
-//   }
-// }
-
-
-// setContraIndicacoes(contraIndicacoes: any[]): void {  
-//   const contraIndicacoesArray = this.formMedicamento.get('contraIndicacoes') as FormArray;
-//   contraIndicacoesArray.clear();
-
-//   if (typeof contraIndicacoes === 'string') {
-//     contraIndicacoes = JSON.parse(contraIndicacoes); 
-//   }
-
-//   if (Array.isArray(contraIndicacoes)) {
-//     contraIndicacoes.forEach((mgValue: number) => {
-//       contraIndicacoesArray.push(this.formBuilder.control(mgValue, Validators.required));
-//     });
-//   }
-// }
-
-
-// setDose(dose: any[]): void {  
-//   const doseArray = this.formMedicamento.get('dose') as FormArray;
-//   doseArray.clear();
-
-//   if (typeof dose === 'string') {
-//     dose = JSON.parse(dose); 
-//   }
-
-//   if (Array.isArray(dose)) {
-//     dose.forEach((mgValue: number) => {
-//       doseArray.push(this.formBuilder.control(mgValue, Validators.required));
-//     });
-//   }
-// }
-
-
-// setPreparoDiluicao(preparoDiluicao: any[]): void {  
-//   const preparoDiluicaoArray = this.formMedicamento.get('preparoDiluicao') as FormArray;
-//   preparoDiluicaoArray.clear();
-
-//   if (typeof preparoDiluicao === 'string') {
-//     preparoDiluicao = JSON.parse(preparoDiluicao); 
-//   }
-
-//   if (Array.isArray(preparoDiluicao)) {
-//     preparoDiluicao.forEach((mgValue: number) => {
-//       preparoDiluicaoArray.push(this.formBuilder.control(mgValue, Validators.required));
-//     });
-//   }
-// }
-
-
-// setAdministracao(administracao: any[]): void {  
-//   const administracaoArray = this.formMedicamento.get('administracao') as FormArray;
-//   administracaoArray.clear();
-
-//   if (typeof administracao === 'string') {
-//     administracao = JSON.parse(administracao); 
-//   }
-
-//   if (Array.isArray(administracao)) {
-//     administracao.forEach((mgValue: number) => {
-//       administracaoArray.push(this.formBuilder.control(mgValue, Validators.required));
-//     });
-//   }
-// }
-
-
-// setUsoGestacao(usoGestacao: any[]): void {  
-//   const usoGestacaoArray = this.formMedicamento.get('usoGestacao') as FormArray;
-//   usoGestacaoArray.clear();
-
-//   if (typeof usoGestacao === 'string') {
-//     usoGestacao = JSON.parse(usoGestacao); 
-//   }
-
-//   if (Array.isArray(usoGestacao)) {
-//     usoGestacao.forEach((mgValue: number) => {
-//       usoGestacaoArray.push(this.formBuilder.control(mgValue, Validators.required));
-//     });
-//   }
-// }
-
-
+  prevStep() {
+    this.step--;
+  }
 }

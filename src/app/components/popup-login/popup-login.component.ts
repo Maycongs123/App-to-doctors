@@ -21,8 +21,7 @@ export class PopupLoginComponent {
     password: ['', Validators.required]
   });
 
-  submit() {
-    console.log(this.formLogin.value);
+  submit() {    
     this.dialogRef.close(this.formLogin.value);
   }
 

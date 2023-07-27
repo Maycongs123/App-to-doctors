@@ -32,7 +32,7 @@ GetAll() {
 }
 
 Get(id: any): Observable<any> {
-  debugger
+  
   let API_URL = `${this.REST_API}/Medicamentos/${id}`;
   return this.httpClient.get(API_URL, { headers: this.httpHeaders }).pipe(
     map((res: any) => {
@@ -63,8 +63,7 @@ handleError(error: HttpErrorResponse) {
     errorMessage = error.error.message;
   } else {
     errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-  }
-  console.log(errorMessage);
+  } 
   return throwError(() => {
     errorMessage;
   });

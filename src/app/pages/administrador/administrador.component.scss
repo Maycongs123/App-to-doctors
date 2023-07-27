@@ -20,7 +20,7 @@ table {
   
   .example-element-detail {
     overflow: hidden;
-    display: flex;
+    
   }
   
  .div-shadow{
@@ -63,5 +63,29 @@ table {
   color:#007bff;
   transition: cubic-bezier(0.075, 0.82, 0.165, 2);
 }
-  
+
+.div-conteudo{
+  display: flex;
+  padding-bottom: 2rem;
+  justify-content: space-around;
+}
+
+.div-container-1{
+  display: flex;
+  padding-bottom: 2rem;
+  justify-content: space-around;
+}
+
+.span-flex{
+  display: flex;
+}
+
+.span-flex-justify{
+  display: flex;
+  justify-content: center;
+}
+
+.div-width{
+  width: 50%;
+}
 

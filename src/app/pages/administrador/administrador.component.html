@@ -54,77 +54,92 @@
 </ng-container>
 
 <ng-container matColumnDef="expandedDetail">
-<td mat-cell *matCellDef="let element; let i = index" [attr.colspan]="columnsToDisplayWithExpand.length">
+<td mat-cell *matCellDef="let element; let i = index" [attr.colspan]="columnsToDisplayWithExpand.length" style="padding-bottom: 2rem;">
  <div  class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-   <div >
-       <span style="display: flex">Modo de Uso:</span>
-       <ng-container style="display: flex; justify-content: center;">
-         <span>{{element.modoDeUso}}</span>
-       </ng-container>
-   </div> 
-   <div >
-       <span style="display: flex">Apresentações:</span>      
-       <ng-container *ngFor="let mg of element.quantidadeMg; let i = index" style="display: flex; justify-content: center;">
-        <div style="display: flex;">
-          <span>{{ '-' + mg + 'ml/' + element.quantidadeMl[i] + 'mg' }}</span><br>
-        </div>
+  <div class="div-conteudo div-container-1">
+    <div >
+      <span class="span-flex"><strong>Modo de Uso:</strong></span>
+      <ng-container class="span-flex-justify">
+        <span>{{element.modoDeUso}}</span>
       </ng-container>
-   </div>
-   <div >
-     <span style="display: flex">Quantidade:</span>
-     <ng-container style="display: flex; justify-content: center;">
-       <span>{{element.quantidadeMgKg + 'mg/kg'}}</span>
+  </div> 
+  <div >
+      <span class="span-flex"><strong>Apresentações:</strong></span>      
+      <ng-container class="span-flex-justify" *ngFor="let mg of element.quantidadeMg; let i = index">
+       <div class="span-flex">
+         <span>{{ '-' + mg + 'ml/' + element.quantidadeMl[i] + 'mg' }}</span><br>
+       </div>
      </ng-container>
-   </div>
-   <div >
-     <span style="display: flex">Quantidade de Soro:</span>
-     <ng-container style="display: flex; justify-content: center;">
-       <span>{{element.quantidadeMgKg + 'ml'}}</span>
-     </ng-container>
-   </div>
-   <div >
-     <span style="display: flex">Número de Doses:</span>
-     <ng-container style="display: flex; justify-content: center;">
-       <span>{{element.numeroDoses}}</span>
-     </ng-container>
-   </div>
-   <div>
-     <span style="display: flex">Indicações:</span>
-     <ng-container *ngFor="let indicacaoItem of element.indicacao" style="display: flex; justify-content: center;">
-       <span>{{'-' + indicacaoItem}}</span><br>
-     </ng-container>
-   </div>
-   <div>
-     <span style="display: flex">Contra Indicações:</span>
-     <ng-container *ngFor="let contraIndicacaoItem of element.contraIndicacao" style="display: flex; justify-content: center;">
-       <span>{{'-' + contraIndicacaoItem}}</span><br>
-     </ng-container>
-   </div>
-   <div>
-    <span style="display: flex">Dose:</span>
-    <ng-container *ngFor="let doseItem of element.dose" style="display: flex; justify-content: center;">
-      <span>{{'-' + doseItem}}</span><br>
+  </div>
+  <div >
+    <span class="span-flex"><strong>Quantidade:</strong></span>
+    <ng-container class="span-flex-justify">
+      <span>{{element.quantidadeMgKg + 'mg/kg'}}</span>
     </ng-container>
   </div>
-  <div>
-    <span style="display: flex">Preparo / Diluição:</span>
-    <ng-container *ngFor="let preparoDiluicaoItem of element.preparoDiluicao" style="display: flex; justify-content: center;">
-      <span>{{'-' + preparoDiluicaoItem}}</span><br>
+  <div >
+    <span class="span-flex"><strong>Quantidade de Soro:</strong></span>
+    <ng-container class="span-flex-justify">
+      <span>{{element.quantidadeSoro + 'ml'}}</span>
     </ng-container>
   </div>
-  <div>
-    <span style="display: flex">Administração:</span>
-    <ng-container *ngFor="let administracaoItem of element.administracao" style="display: flex; justify-content: center;">
-      <span>{{'-' + administracaoItem}}</span><br>
+  <div >
+    <span class="span-flex"><strong>Número de Doses:</strong></span>
+    <ng-container class="span-flex-justify">
+      <span>{{element.numeroDoses}}</span>
     </ng-container>
   </div>
-  <div>
-    <span style="display: flex">Uso Durante a Gestação:</span>
-    <ng-container *ngFor="let usoGestacaoItem of element.usoGestacao" style="display: flex; justify-content: center;">
-      <span>{{'-' + usoGestacaoItem}}</span><br>
-    </ng-container>
+  </div>   
+   <div class="div-conteudo">
+    <div class="div-width" style="padding-right: 1rem;">
+      <span class="span-flex"><strong>Contra Indicações:</strong></span>
+      <ng-container class="span-flex-justify" *ngFor="let contraIndicacaoItem of element.contraIndicacao">
+        <span>{{'-' + contraIndicacaoItem}}</span><br>
+      </ng-container>
+    </div>
+    <div class="div-width">
+       <span class="span-flex"><strong>Indicações:</strong></span>
+       <ng-container class="span-flex-justify" *ngFor="let indicacaoItem of element.indicacao">
+         <span>{{'-' + indicacaoItem}}</span><br>
+       </ng-container>
+     </div>
+
+   </div>
+   <div class="div-conteudo">
+     <div class="div-width" style="padding-right: 1rem;">
+      <span class="span-flex"><strong>Dose:</strong></span>
+      <ng-container class="span-flex-justify" *ngFor="let doseItem of element.dose">
+        <span>{{'-' + doseItem.problema}}</span><br>       
+        <span *ngIf="doseItem.usoDose?.usoInicial != '' ">
+          <strong>"Inicial: "</strong> {{doseItem.usoDose?.usoInicial}}
+         </span><br>
+         <span *ngIf="doseItem.usoDose?.usoManutencao != '' ">
+           <strong>"Manutenção: "</strong>{{ doseItem.usoDose?.usoManutencao}}
+         </span><br>
+      </ng-container>
+    </div>
+    <div class="div-width" style="padding-right: 1rem;">
+      <span class="span-flex"><strong>Preparo / Diluição:</strong></span>
+      <ng-container class="span-flex-justify" *ngFor="let preparoDiluicaoItem of element.preparoDiluicao">
+        <span>{{'-' + preparoDiluicaoItem}}</span><br>
+      </ng-container>
+    </div>
   </div>
- </div>
+  <div  class="div-container-1">
+    <div class="div-width">
+      <span class="span-flex"><strong>Administração:</strong></span>
+      <ng-container class="span-flex-justify" *ngFor="let administracaoItem of element.administracao">
+        <span>{{'-' + administracaoItem}}</span><br>
+      </ng-container>
+    </div>
+    <div class="div-width">
+      <span class="span-flex"><strong>Uso Durante a Gestação:</strong></span>
+      <ng-container class="span-flex-justify" *ngFor="let usoGestacaoItem of element.usoGestacao">
+        <span>{{'-' + usoGestacaoItem}}</span><br>
+      </ng-container>
+    </div>
+   </div>
+  </div>
 </td>
 </ng-container>
 

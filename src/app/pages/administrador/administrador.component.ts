@@ -61,7 +61,7 @@ export class AdministradorComponent {
   }
 
   adicionarMedicamento(medicamento: any) {
-    debugger
+    
     this.medicamentosService.Add(medicamento).subscribe({
       complete: () => {
         this.getMedicamentos();
@@ -69,8 +69,7 @@ export class AdministradorComponent {
     });   
   }
 
-  editarMedicamentoModal(element: any) {
-    console.log(element)
+  editarMedicamentoModal(element: any) { 
     const dialogRef = this.dialog.open(PopupCadastroMedicamentoComponent, {
       panelClass: 'custom-dialog-container-cadastro',
       data: { element: element, editMode: true }
@@ -111,7 +110,7 @@ export class AdministradorComponent {
   }
 
   formMedicacao(result: any) {    
-    debugger  
+      
     const indicacao = JSON.stringify(result.indicacoes);
     const contraIndicacao = JSON.stringify(result.contraIndicacoes);    
     const quantidadeMg = JSON.stringify(result.quantidadeMg);   
@@ -146,7 +145,7 @@ export class AdministradorComponent {
   }
 
   formMedicacaoTable(result: any) {
-    debugger
+    
     this.dataSource = [];
 
     for (let index = 0; index < result.length; index++) {     
@@ -172,9 +171,7 @@ export class AdministradorComponent {
       };
      
       this.dataSource.push(medicamento);
-    }
-
-    console.log(this.dataSource);
+    }  
   }
 }
 

@@ -104,7 +104,7 @@ import { MaskedTextBoxModule } from '@progress/kendo-angular-inputs';
     MatTabsModule,
     MatSnackBarModule,
     MatTableModule,
-    MaskedTextBoxModule
+    MaskedTextBoxModule  
   ],
   providers: [
     {
