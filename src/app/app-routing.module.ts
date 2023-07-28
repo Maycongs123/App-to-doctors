@@ -16,6 +16,7 @@ import { HidratacaoVenosaComponent } from './pages/hidratacao-venosa/hidratacao-
 
 import { CalculoMedicamentosComponent } from './components/calculo-medicamentos/calculo-medicamentos.component';
 import { AdministradorComponent } from './pages/administrador/administrador.component';
+import { OutrosMedicamentosComponent } from './pages/outros-medicamentos/outros-medicamentos.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -31,10 +32,9 @@ const routes: Routes = [
   {path:"lista-laxativos", component:LaxativosComponent},
   {path:"lista-sintomaticos", component:SintomaticosComponent},
   {path:"lista-hidratacao-venosa", component:HidratacaoVenosaComponent},
+  {path:"lista-outros", component:OutrosMedicamentosComponent},
   {path:"calculos/:medicamento/:backgroundColor", component: CalculoMedicamentosComponent},
-  {path:"adm", component: AdministradorComponent},
-
-
+  {path:"adm", component: AdministradorComponent}
 ];
 
 @NgModule({

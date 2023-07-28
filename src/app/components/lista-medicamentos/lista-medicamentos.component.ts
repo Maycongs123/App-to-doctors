@@ -86,6 +86,12 @@ export class ListaMedicamentosComponent {
       let dados = encodeURIComponent(JSON.stringify(getDados))
       this.router.navigate(['/calculos', dados, backgroundColor]);
     }
+
+    if(getDados.tipo === "Outros"){
+      let backgroundColor = '#28a745';
+      let dados = encodeURIComponent(JSON.stringify(getDados))
+      this.router.navigate(['/calculos', dados, backgroundColor]);
+    }
   }
 
   @HostListener('window:click')

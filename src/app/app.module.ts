@@ -51,6 +51,7 @@ import {MatTableModule} from '@angular/material/table';
 import { PopupConfirmacaoComponent } from './components/popup-confirmacao/popup-confirmacao.component';
 import { AuthInterceptor } from './authconfig.interceptor';
 import { MaskedTextBoxModule } from '@progress/kendo-angular-inputs';
+import { OutrosMedicamentosComponent } from './pages/outros-medicamentos/outros-medicamentos.component';
 
 
 
@@ -79,7 +80,8 @@ import { MaskedTextBoxModule } from '@progress/kendo-angular-inputs';
     SnackBarComponent,
     PopupLoginComponent,
     AdministradorComponent,
-    PopupConfirmacaoComponent
+    PopupConfirmacaoComponent,
+    OutrosMedicamentosComponent
   ],
   imports: [
     BrowserModule,

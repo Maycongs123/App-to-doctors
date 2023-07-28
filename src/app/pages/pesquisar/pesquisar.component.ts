@@ -87,6 +87,8 @@ export class PesquisarComponent extends ListaMedicamentosComponent {
         return 'tipo-Sintomatico';
       case 'Hidratação Venosa':
         return 'tipo-Hidratacao';
+      case 'Outros':
+        return 'tipo-Outros';
       default:
         return '';
     }

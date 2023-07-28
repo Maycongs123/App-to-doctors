@@ -45,7 +45,6 @@
                 <label style="text-align: left;">Tipo do medicamento: </label><br>
                 <mat-form-field class="div-mat-form-field">
                   <mat-select required formControlName="tipo">
-                    <mat-option>-- None --</mat-option>
                     <mat-option value="Antibiótico">Antibiótico</mat-option>
                     <mat-option value="Anti-Convulsivante">Anti-Convulsivante</mat-option>
                     <mat-option value="Anti-Inflamatório">Anti-Inflamatório</mat-option>
@@ -57,6 +56,7 @@
                     <mat-option value="Laxativo">Laxativo</mat-option>
                     <mat-option value="Sintomático">Sintomático</mat-option>
                     <mat-option value="Hidratação Venosa">Hidratação Venosa</mat-option>
+                    <mat-option value="Outros">Outros</mat-option>
                   </mat-select>
                   <mat-error *ngIf="formMedicamento.controls.tipo.invalid && formMedicamento.controls.tipo.touched">
                     Esse campo é obrigatório.
@@ -342,7 +342,7 @@
 
         <mat-expansion-panel [expanded]="step === 7" (opened)="setStep(7)" hideToggle>
           <mat-expansion-panel-header>
-            <mat-panel-title>
+            <mat-panel-title >
               Uso Durante a Gestação
             </mat-panel-title>
             <mat-panel-description>
