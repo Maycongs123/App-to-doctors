@@ -176,11 +176,18 @@ export class CalculoMedicamentosComponent implements OnInit{
   }
 
   calculoSolucaoTotal(){    
-   this.solucaoTotal = this.soroGlicosado + parseFloat(this.medicamentoMl || this.medicamentoMlReverso);
+   this.solucaoTotal = this.soroGlicosado + parseFloat(this.medicamentoMl);
   }
 
-  calculoSoroGlicosado() {
-    
-    this.soroGlicosado = this.solucaoTotal - parseFloat(this.medicamentoMl || this.medicamentoMlReverso);
+  calculoSoroGlicosado() {    
+    this.soroGlicosado = this.solucaoTotal - parseFloat(this.medicamentoMl);
+  }
+
+  calculoSolucaoTotalReverso(){    
+    this.solucaoTotal = this.soroGlicosado + parseFloat(this.medicamentoMlReverso);
+   }
+
+   calculoSoroGlicosadoReverso() {    
+    this.soroGlicosado = this.solucaoTotal - parseFloat(this.medicamentoMlReverso);
   }
 }

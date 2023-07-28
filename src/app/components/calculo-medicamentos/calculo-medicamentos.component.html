@@ -167,15 +167,15 @@
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Medicamento(ml)</mat-label>
-                  <input matInput type="number" [(ngModel)]="medicamentoMlReverso" [step]="0.01" (input)="calculoSolucaoTotal()">
+                  <input matInput type="number" [(ngModel)]="medicamentoMlReverso" [step]="0.01" (input)="calculoSolucaoTotalReverso()">
                 </mat-form-field>   
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Quantidade de soro(ml) </mat-label>
-                  <input matInput type="number" [(ngModel)]="soroGlicosado" [step]="0.01" (input)="calculoSolucaoTotal()">
+                  <input matInput type="number" [(ngModel)]="soroGlicosado" [step]="0.01" (input)="calculoSolucaoTotalReverso()">
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Solução total(ml) </mat-label>
-                  <input matInput type="number" [(ngModel)]="solucaoTotal" [step]="0.01" (input)="calculoSoroGlicosado()">
+                  <input matInput type="number" [(ngModel)]="solucaoTotal" [step]="0.01" (input)="calculoSoroGlicosadoReverso()">
                 </mat-form-field>    
                 <button mat-button matTooltip="Accent" (click)="calculoMcgKgReverso()">
                   <span>Calcular</span>
@@ -209,15 +209,15 @@
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Medicamento(ml)</mat-label>
-                  <input matInput type="number" [(ngModel)]="medicamentoMl" [step]="0.01"(input)="calculoSolucaoTotal()">
+                  <input matInput type="number" [(ngModel)]="medicamentoMl" [step]="0.01"(input)="calculoSolucaoTotalReverso()">
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Quantidade de soro(ml) </mat-label>
-                  <input matInput type="number" [(ngModel)]="soroGlicosado" [step]="0.01" (input)="calculoSolucaoTotal()">
+                  <input matInput type="number" [(ngModel)]="soroGlicosado" [step]="0.01" (input)="calculoSolucaoTotalReverso()">
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Solução total(ml) </mat-label>
-                  <input matInput type="number" [(ngModel)]="solucaoTotal" [step]="0.01" (input)="calculoSoroGlicosado()">
+                  <input matInput type="number" [(ngModel)]="solucaoTotal" [step]="0.01" (input)="calculoSoroGlicosadoReverso()">
                 </mat-form-field>               
                 <button  mat-button matTooltip="Accent" (click)="calculoMcgMin()">
                   <span>Calcular</span>
@@ -248,7 +248,7 @@
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Medicamento(ml)</mat-label>
-                  <input matInput type="number" [(ngModel)]="medicamentoMlReverso" [step]="0.01">
+                  <input matInput type="number" [(ngModel)]="medicamentoMlReverso" [step]="0.01" (input)="calculoSolucaoTotalReverso()">
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Quantidade de soro(ml) </mat-label>
@@ -256,7 +256,7 @@
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Solução total(ml) </mat-label>
-                  <input matInput type="number" [(ngModel)]="solucaoTotal" [step]="0.01" (input)="calculoSoroGlicosado()">
+                  <input matInput type="number" [(ngModel)]="solucaoTotal" [step]="0.01" (input)="calculoSoroGlicosadoReverso()">
                 </mat-form-field>
                 <button mat-button matTooltip="Accent" (click)="calculoMcgMinReverso()">
                   <span>Calcular</span>

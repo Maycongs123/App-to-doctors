@@ -15,6 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LoginService {
   endpoint: string = 'https://doctor-api.azurewebsites.net/api';
   // endpoint: string = 'https://localhost:7044/api';
+
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentLogin = {};
   constructor(private http: HttpClient, public router: Router,private route: ActivatedRoute,) {}
