@@ -105,8 +105,7 @@ export class CalculoMedicamentosComponent implements OnInit{
     }   
   }
 
-  calculoMgKg(){  
-    debugger
+  calculoMgKg(){     
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
       const resultado = (this.peso * this.dosagemMgKg* this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses);
       const key = `${i}`;
@@ -159,11 +158,11 @@ export class CalculoMedicamentosComponent implements OnInit{
     }  
   }
 
-  calculoMcgKgReverso(){       
+  calculoMcgKgReverso(){  
     var qntMg = this.medicamentoMgReverso[0] || this.medicamentoMgReverso
     var qntMl = this.medicamentoMlReverso[0] || this.medicamentoMlReverso
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
-      const resultado = (this.vazao * ((qntMg) /(this.soroGlicosado + qntMl) * 1000)) / (this.peso * 60);
+      const resultado = (this.vazao * ((qntMg) /(this.soroGlicosadoReverso + qntMl) * 1000)) / (this.peso * 60);
       const key = `${i}`;
       this.resultadoMcgKgReverso[key] = {
         resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
@@ -178,7 +177,7 @@ export class CalculoMedicamentosComponent implements OnInit{
     var qntMg = this.medicamentoMgReverso[0] || this.medicamentoMgReverso
     var qntMl = this.medicamentoMlReverso[0] || this.medicamentoMlReverso
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
-      const resultado = (this.vazao * (qntMg / (this.soroGlicosado + qntMl) * 1000)) / 60;
+      const resultado = (this.vazao * (qntMg / (this.soroGlicosadoReverso + qntMl) * 1000)) / 60;
       const key = `${i}`;
       this.resultadoMcgMinReverso[key] = {
         resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),

@@ -18,7 +18,6 @@ export class OutrosMedicamentosComponent {
   {}
 
   ngOnInit(): void {
-    debugger
     const tipoAtendimento = localStorage.getItem("tipoAtendimento")
 
     this.medicamentosService.GetAll().subscribe((response: any) => {
