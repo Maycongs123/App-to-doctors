@@ -20,8 +20,7 @@ REST_API: string = 'https://doctor-api.azurewebsites.net/api';
 httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 constructor(private httpClient: HttpClient) {}
 
-Add(data: any): Observable<any> {
-  
+Add(data: any): Observable<any> {  
   let API_URL = `${this.REST_API}/Medicamentos`;
   return this.httpClient
     .post(API_URL, data)

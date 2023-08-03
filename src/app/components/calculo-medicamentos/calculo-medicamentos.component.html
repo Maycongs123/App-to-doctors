@@ -279,32 +279,20 @@
         </div>
        </div>
         <div class="div-right" >
-          <div class="div-shadow" style="margin-bottom: 1rem;" >
-            <span class="span-style-2">
-              Indicação
-            </span>
-            <div class="div-conteudo-medicacao-3" style="display: grid;" *ngFor="let dados of indicacoes">
-                <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
-                    <mat-icon class="icon-style icon-style-done">
-                        done
-                    </mat-icon>
-                    <span >
-                       {{dados}}
-                    </span>
-                </div>
-            </div>
-          </div>
-            <div class="div-shadow" style="margin-bottom: 1rem;">
-                <span class="span-style-2">
-                    Contra Indicação
-                </span>
-                <div class="div-conteudo-medicacao-3" style="display: grid;" *ngFor="let dados of contraIndicacoes">
-                    <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
-                        <span >
-                           {{dados}}
-                        </span>
-                    </div>
-                </div>
+            <div class="div-shadow" style="margin-bottom: 1rem;" >
+              <span class="span-style-2">
+                Indicação
+              </span>
+              <div class="div-conteudo-medicacao-3" style="display: grid;" *ngFor="let dados of indicacoes">
+                  <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
+                      <mat-icon class="icon-style icon-style-done">
+                          done
+                      </mat-icon>
+                      <span >
+                        {{dados}}
+                      </span>
+                  </div>
+              </div>
             </div>
             <div class="div-shadow" style="margin-bottom: 1rem;">
               <span class="span-style-2">
@@ -316,7 +304,7 @@
                       {{dados.problema}}
                     </span>
                     <span *ngIf="dados.usoDose.usoInicial != '' ">
-                     <strong>Inicial: </strong> {{dados.usoDose.usoInicial}}
+                    <strong>Inicial: </strong> {{dados.usoDose.usoInicial}}
                     </span>
                     <span *ngIf="dados.usoDose.usoManutencao != '' ">
                       <strong>Manutenção: </strong>{{ dados.usoDose.usoManutencao}}
@@ -329,12 +317,9 @@
               Preparo / Diluição
             </span>
             <div class="div-conteudo-medicacao-3" style="display: grid;" *ngFor="let dados of preparoDiluicao">
-                <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
-                    <!-- <mat-icon class="icon-style icon-style-close">
-                        close
-                    </mat-icon> -->
+                <div class="div-conteudo-flex" style="margin-bottom: 1rem;">                  
                     <span >
-                       {{dados}}
+                      {{dados}}
                     </span>
                 </div>
             </div>
@@ -344,31 +329,40 @@
             Administração
           </span>
           <div class="div-conteudo-medicacao-3" style="display: grid;" *ngFor="let dados of administracao">
-              <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
-                  <!-- <mat-icon class="icon-style icon-style-close">
-                      close
-                  </mat-icon> -->
+              <div class="div-conteudo-flex" style="margin-bottom: 1rem;">                 
                   <span >
-                     {{dados}}
+                    {{dados}}
                   </span>
               </div>
           </div>
       </div>
       <div class="div-shadow" style="margin-bottom: 1rem;">
         <span class="span-style-2">
-          Uso Durante a Gestação
+            Contra Indicação
         </span>
-        <div class="div-conteudo-medicacao-3" style="display: grid;" *ngFor="let dados of usoGestacao">
+        <div class="div-conteudo-medicacao-3" style="display: grid;" *ngFor="let dados of contraIndicacoes">
             <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
-                <!-- <mat-icon class="icon-style icon-style-close">
-                    close
-                </mat-icon> -->
                 <span >
-                   {{dados}}
+                  {{dados}}
                 </span>
             </div>
+        </div>
+    </div>        
+    <div class="div-shadow" style="margin-bottom: 1rem;">
+      <span class="span-style-2">
+        Uso Durante a Gestação
+      </span>
+      <div class="div-conteudo-medicacao-3" style="display: grid;" *ngFor="let dados of usoGestacao">
+          <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
+              <!-- <mat-icon class="icon-style icon-style-close">
+                  close
+              </mat-icon> -->
+              <span >
+                {{dados}}
+              </span>
           </div>
         </div>
+      </div>
       </div>
     </div>
 </div>
