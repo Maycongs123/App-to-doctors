@@ -107,13 +107,14 @@
               </mat-tab>
             </mat-tab-group>
 
-          <!-- Calcular os medicamentos em mcg/kg/dia e o calculo reverso-->
+          <!-- Calcular os medicamentos em mcg/kg/dia(ADULTO E PEDIATRICO) e o calculo reverso-->
           <mat-tab-group *ngIf="item.dosagemTipo === 'mcg/kg/min'">
             <mat-tab>
               <ng-template mat-tab-label>
                 mcg/kg/min
               </ng-template>
-              <div name="mcg/kg/min" class="div-calculadora">
+              <!--CALCULO ADULTO-->
+              <div name="mcg/kg/min" class="div-calculadora" *ngIf="atendimento === 'Adulto'">
                 <mat-form-field class="matFormCalculadora">
                     <mat-label>Peso(Kg)</mat-label>
                     <input matInput type="number" [(ngModel)]="peso" [step]="0.01">
@@ -150,6 +151,36 @@
                   </div>
                 </div>           
             </div>
+            <!--CALCULO PEDIATRICO-->
+            <div name="mcg/kg/min" class="div-calculadora" *ngIf="atendimento === 'Pediatrico'">
+              <mat-form-field class="matFormCalculadora">
+                  <mat-label>Peso(Kg)</mat-label>
+                  <input matInput type="number" [(ngModel)]="peso" [step]="0.01">
+              </mat-form-field>
+              <mat-form-field class="matFormCalculadora">
+                <mat-label>Dose a ser administrada (mcg/kg/min)</mat-label>
+                <input matInput type="number" [(ngModel)]="doseCalculo" [step]="0.01">
+              </mat-form-field>
+              <mat-form-field class="matFormCalculadora">
+                <mat-label>Medicamento(mg)</mat-label>
+                <input matInput type="number" [(ngModel)]="medicamentoMg" [step]="0.01">
+              </mat-form-field>
+              <mat-form-field class="matFormCalculadora">
+                <mat-label>Medicamento(ml)</mat-label>
+                <input matInput type="number" [(ngModel)]="medicamentoMl" [step]="0.01" (input)="calculoSolucaoTotal()">
+              </mat-form-field>          
+              <button mat-button matTooltip="Accent" (click)="calculoMcgKgPediatrico()">
+                <span>Calcular</span>
+                <mat-icon class="matFormCalculadora">calculate</mat-icon>
+              </button>
+              <div *ngIf="resultadoMcgKgPediatrico" class="div-result">
+                <div *ngFor="let dados of resultadoMcgKgPediatrico" style="padding-bottom: 1rem;">
+                  <span class="font-result" >
+                    {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml : ' + dados.resultado + ' ml de adrenalina ' + dados.soroFisologico + ' ml de soro fisologico 0,9% - ' + item.modoDeUso}}
+                  </span>
+                </div>
+              </div>           
+          </div>
             </mat-tab>
 
             <mat-tab>

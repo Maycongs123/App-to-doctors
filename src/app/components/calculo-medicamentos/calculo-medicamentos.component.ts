@@ -12,15 +12,17 @@ export class CalculoMedicamentosComponent implements OnInit{
   @Input() medicamento: any; 
   @Input() cor: any;
   @Input() dadosMedicacao: any;
+
   indicacoes: any = [];
   contraIndicacoes: any = [];
   resultadoMgKg: any = [];
   resultadoMgKgReverso: any = [];
   dadosMedicamentos: any = [];
-  resultadoMcgKg: any = []
-  resultadoMcgKgReverso: any = []
-  resultadoMcgMin: any = []
-  resultadoMcgMinReverso: any = []
+  resultadoMcgKg: any = [];
+  resultadoMcgKgPediatrico: any = []
+  resultadoMcgKgReverso: any = [];
+  resultadoMcgMin: any = [];
+  resultadoMcgMinReverso: any = [];
   solucaoTotal: any;
   solucaoTotalReverso: any;
   soroGlicosado: any;
@@ -42,6 +44,8 @@ export class CalculoMedicamentosComponent implements OnInit{
   administracao: any;
   usoGestacao: any;
   dosagemMgKg: any;
+  atendimento: any;
+
 
   constructor(
     private elementRef: ElementRef,    
@@ -53,7 +57,8 @@ export class CalculoMedicamentosComponent implements OnInit{
     this.backgroundColor = this.route.snapshot.paramMap.get('backgroundColor');
     this.soroGlicosado = this.item.quantidadeSoro;
     this.soroGlicosadoReverso = this.item.quantidadeSoro;
-  
+    this.atendimento = localStorage.getItem('tipoAtendimento');
+    console.log(this.atendimento)
   }
 
   ngOnInit(){          
@@ -118,8 +123,9 @@ export class CalculoMedicamentosComponent implements OnInit{
   }
 
   calculoMcgKg(){
-    var qntMg = this.medicamentoMg[0] || this.medicamentoMg
-    var qntMl = this.medicamentoMl[0] || this.medicamentoMl  
+    var qntMg = this.medicamentoMg[0] || this.medicamentoMg;
+    var qntMl = this.medicamentoMl[0] || this.medicamentoMl;
+
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
       const resultado = (this.doseCalculo * this.peso * 60)/(qntMg/(this.soroGlicosado + qntMl) * 1000);
       const key = `${i}`;
@@ -127,6 +133,23 @@ export class CalculoMedicamentosComponent implements OnInit{
         resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
         quantidadeMg: this.medicamentoMg,
         quantidadeMl: this.medicamentoMl
+      }
+    } 
+  }
+
+  calculoMcgKgPediatrico(){
+    var qntMg = this.medicamentoMg[0] || this.medicamentoMg;
+    var qntMl = this.medicamentoMl[0] || this.medicamentoMl;
+      
+    for (let i = 0; i < this.dadosMedicamentos.length; i++) {
+      const resultado = (this.doseCalculo * this.peso * (1440 / ((qntMg/qntMl) * 1000)));
+      const soroFisologico = 24 - resultado;
+      const key = `${i}`;
+      this.resultadoMcgKgPediatrico[key] = {
+        resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
+        soroFisologico: soroFisologico,
+        quantidadeMg: this.medicamentoMg,
+        quantidadeMl: this.medicamentoMl        
       }
     } 
   }
