@@ -1,0 +1,555 @@
+.coloring-image-container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+  }   
+  
+  .coloring-image-container img {
+    position: absolute;
+  }   
+  
+  .coloring-image {
+    max-width: 100%;
+  }
+  
+  .color-palette {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .color {
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  
+  .tronco-frente{
+    width: 36%;
+    top: 27%;
+    left: 32%;
+    height: 49%;
+  }
+  
+  .cabeça-frente{
+    width: 20.6%;
+    top: -1%;
+    left: 40%;
+    height: 24%;
+  }
+  
+  .pescoço-frente{
+    width: 30.2%;
+    top: 21.9%;
+    left: 35.8%;
+    height: 6%;
+  }
+  
+  .biceps-direito-frente{
+    width: 18%;
+    top: 28%;
+    left: 67%;
+    height: 28%;
+  }
+  
+  .biceps-esquerdo-frente{
+    width: 17%;
+    top: 28.7%;
+    left: 16%;
+    height: 28%;
+  }
+  
+  .antebraco-direito-frente{
+    width: 22%;
+    top: 55%;
+    left: 70%;
+    height: 24%;
+  }
+  
+  .antebraco-esquerdo-frente{
+    width: 22.6%;
+    top: 56%;
+    left: 7.3%;
+    height: 23%;
+  }
+  
+  .mao-direito-frente{
+    width: 18.6%;
+    top: 78.2%;
+    left: 82.6%;
+    height: 20.3%;
+  }
+  
+  .mao-esquerda-frente{
+    width: 19.5%;
+    top: 78.5%;
+    height: 20.1%;
+    right: 81.6%;
+  }
+  
+  .genitalia-frente{
+    width: 38.8%;
+    top: 75%;
+    left: 30.2%;
+    height: 16%;
+  }
+  
+  .quadricipes-direito-frente{
+    width: 22.3%;
+    top: 90.7%;
+    left: 49.4%;
+    height: 36%;
+  }
+  
+  .quadricipes-esquerdo-frente{
+    width: 22.6%;
+    top: 90.7%;
+    left: 28%;
+    height: 35%;
+  }
+  
+  .panturilha-direito-frente{
+    width: 13.8%;
+    top: 126.2%;
+    left: 54%;
+    height: 33.7%;
+  }
+  
+  .panturilha-esquerdo-frente{
+    width: 14.3%;
+    top: 124%;
+    left: 32.5%;
+    height: 35%;
+  }
+  
+  
+  .pe-direito-frente{
+    width: 15%;
+    top: 158%;
+    left: 57%;
+    height: 17.8%;
+  }
+  
+  .pe-esquerdo-frente{
+    width: 15.3%;
+    top: 158.2%;
+    left: 28%;
+    height: 19%;
+  }
+  .corpo-frente{
+    width: 100%;
+    height: 175%;
+  }
+  
+  
+  
+  
+  .tronco-costa{
+    width: 39%;
+    top: 23%;
+    left: 31%;
+    height: 52%;
+  }
+  
+  .cabeça-costa{
+    width: 22.1%;
+    top: -1%;
+    left: 38.8%;
+    height: 19%;
+  }
+  
+  .pescoço-costa{
+    width: 19.2%;
+    top: 17.2%;
+    left: 40.9%;
+    height: 8%;
+  }
+  
+  .biceps-direito-costa{
+    width: 16.4%;
+    top: 28%;
+    left: 68.9%;
+    height: 31%;
+  }
+  
+  .biceps-esquerdo-costa{
+    width: 17%;
+    top: 28.2%;
+    left: 15%;
+    height: 32%;
+  }
+  
+  .antebraco-direito-costa{
+    width: 20%;
+    top: 58%;
+    left: 72%;
+    height: 24%;
+  }
+  
+  .antebraco-esquerdo-costa{
+    width: 19.7%;
+    top: 59%;
+    left: 8.1%;
+    height: 23%;
+  }
+  
+  .mao-direito-costa{
+    width: 15.9%;
+    top: 80.24%;
+    left: 82.3%;
+    height: 20.7%;
+  }
+  
+  .mao-esquerda-costa{
+    width: 16.2%;
+    top: 80.5%;
+    height: 20.4%;
+    right: 82%;
+  }
+  
+  .gluteo-direito-costa{
+    width: 21.8%;
+    top: 74%;
+    left: 49.2%;
+    height: 24.7%;
+  }
+  
+  .gluteo-esquerdo-costa{
+    width: 20.9%;
+    top: 74.2%;
+    left: 29%;
+    height: 24%;
+  }
+  
+  .quadricipes-direito-costa{
+    width: 21.2%;
+    top: 97.2%;
+    left: 51%;
+    height: 35%;
+  }
+  
+  .quadricipes-esquerdo-costa{
+    width: 21.4%;
+    top: 97.7%;
+    left: 29%;
+    height: 35.1%;
+  }
+  
+  .panturilha-direito-costa{
+    width: 17%;
+    top: 131.2%;
+    left: 52.9%;
+    height: 29.8%;
+  }
+  
+  .panturilha-esquerdo-costa{
+    width: 18.7%;
+      top: 132%;
+      left: 29.9%;
+      height: 29.8%;
+  }
+  
+  
+  .pe-direito-costa{
+    width: 16.7%;
+    top: 160%;
+    left: 57%;
+    height: 18%;
+  }
+  
+  .pe-esquerdo-costa{
+    width: 16.7%;
+    top: 160%;
+    left: 29%;
+    height: 18%;
+  }
+
+.div-body{
+    background:#f8f9fa;
+    margin: 0px;
+}
+
+.div-header{
+    padding: 9rem 9rem 7rem 9rem;
+}
+
+.div-tipo-medicacao{
+    display: flex;
+    justify-content: center;
+}
+
+.div-tipo-medicacao-1{
+    display: flex;
+    justify-content: center;
+    @media (max-width:500px) {
+      display: grid;
+      grid-template-columns: 9rem;
+    }
+  }
+
+  .span-font-tipo-2{
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.icon-style-2{
+    font-size: 14px;
+    font-weight: bolder;
+    color: #fff;
+    padding-left: 10px;
+    padding-top: 5px;
+    @media (max-width: 500px) {
+      padding-left: 4rem;
+    }
+}
+
+.span-font-tipo-2{
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+
+
+.tronco-frente-kid{
+    width: 31.8%;
+    top: 34%;
+    left: 36.2%;
+    height: 43%;
+  }
+  
+  .cabeça-frente-kid{
+    width: 31%;
+    top: 4%;
+    left: 36.1%;
+    height: 32%;
+  }
+  
+  .pescoço-frente-kid{
+    width: 30.2%;
+    top: 21.9%;
+    left: 35.8%;
+    height: 6%;
+  }
+  
+  .biceps-direito-frente-kid{
+    width: 14%;
+    top: 37%;
+    left: 66%;
+    height: 33%;
+  }
+  
+  .biceps-esquerdo-frente-kid{
+    width: 14%;
+    top: 38.4%;
+    left: 23.5%;
+    height: 39.3%;
+  }
+  
+  .antebraco-direito-frente-kid{
+    width: 17%;
+    top: 52.1%;
+    left: 78%;
+    height: 25%;    
+  }
+  
+  .antebraco-esquerdo-frente-kid{
+    width: 15.6%;
+    top: 54%;
+    left: 9.4%;
+    height: 23.2%;
+  }
+  
+  .mao-direito-frente-kid{
+    width: 18.9%;
+    top: 72.1%;
+    left: 83.7%;
+    height: 20%;
+  }
+  
+  .mao-esquerda-frente-kid{
+    width: 13.7%;
+    top: 71.9%;
+    height: 16.9%;
+    right: 79.7%;
+  }
+  
+  .genitalia-frente-kid{
+    width: 34%;
+    top: 74%;
+    left: 35.9%;
+    height: 15%;
+  }
+  
+  .quadricipes-direito-frente-kid{
+    width: 17.3%;
+    top: 84.7%;
+    left: 53.4%;
+    height: 31%;
+  }
+  
+  .quadricipes-esquerdo-frente-kid{
+    width: 17.2%;
+    top: 84.6%;
+    left: 34%;
+    height: 30%;
+  }
+  
+  .panturilha-direito-frente-kid{
+    width: 18%;
+    top: 111.9%;
+    left: 58%;
+    height: 35.7%;
+  }
+  
+  .panturilha-esquerdo-frente-kid{
+    width: 14.6%;
+    top: 112.3%;
+    left: 33%;
+    height: 36%;
+  }
+  
+  
+  .pe-direito-frente-kid{
+    width: 17.9%;
+    top: 145.3%;
+    left: 62%;
+    height: 17.4%;
+  }
+  
+  .pe-esquerdo-frente-kid{
+    width: 17.6%;
+    top: 144.9%;
+    left: 26%;
+    height: 17.8%;
+  }
+
+  .corpo-frente-kid{
+    width: 100%;
+    height: 175%;
+  }
+  
+  
+  .tronco-costa-kid{
+    width: 32%;
+    top: 41%;
+    left: 34.4%;
+    height: 41%;
+  }
+  
+  .cabeça-costa-kid{
+    width: 32.5%;
+    top: 9.8%;
+    left: 34.1%;
+    height: 33.8%;
+  }
+  
+  .pescoço-costa-kid{
+    width: 19.2%;
+    top: 17.2%;
+    left: 40.9%;
+    height: 8%;
+  }
+  
+  .biceps-direito-costa-kid{
+    width: 16.4%;
+    top: 28%;
+    left: 68.9%;
+    height: 31%;
+  }
+  
+  .biceps-esquerdo-costa-kid{
+    width: 17%;
+    top: 28.2%;
+    left: 15%;
+    height: 32%;
+  }
+  
+  .antebraco-direito-costa-kid{
+    width: 20%;
+    top: 58%;
+    left: 72%;
+    height: 24%;
+  }
+  
+  .antebraco-esquerdo-costa-kid{
+    width: 19.7%;
+    top: 59%;
+    left: 8.1%;
+    height: 23%;
+  }
+  
+  .mao-direito-costa-kid{
+    width: 15.9%;
+    top: 80.24%;
+    left: 82.3%;
+    height: 20.7%;
+  }
+  
+  .mao-esquerda-costa-kid{
+    width: 16.2%;
+    top: 80.5%;
+    height: 20.4%;
+    right: 82%;
+  }
+  
+  .gluteo-direito-costa-kid{
+    width: 21.8%;
+    top: 74%;
+    left: 49.2%;
+    height: 24.7%;
+  }
+  
+  .gluteo-esquerdo-costa-kid{
+    width: 20.9%;
+    top: 74.2%;
+    left: 29%;
+    height: 24%;
+  }
+  
+  .quadricipes-direito-costa-kid{
+    width: 21.2%;
+    top: 97.2%;
+    left: 51%;
+    height: 35%;
+  }
+  
+  .quadricipes-esquerdo-costa-kid{
+    width: 21.4%;
+    top: 97.7%;
+    left: 29%;
+    height: 35.1%;
+  }
+  
+  .panturilha-direito-costa-kid{
+    width: 17%;
+    top: 131.2%;
+    left: 52.9%;
+    height: 29.8%;
+  }
+  
+  .panturilha-esquerdo-costa-kid{
+    width: 18.7%;
+      top: 132%;
+      left: 29.9%;
+      height: 29.8%;
+  }
+  
+  
+  .pe-direito-costa-kid{
+    width: 16.7%;
+    top: 160%;
+    left: 57%;
+    height: 18%;
+  }
+  
+  .pe-esquerdo-costa-kid{
+    width: 16.7%;
+    top: 160%;
+    left: 29%;
+    height: 18%;
+  }
+

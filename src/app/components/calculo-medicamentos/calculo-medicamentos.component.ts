@@ -45,7 +45,11 @@ export class CalculoMedicamentosComponent implements OnInit{
   usoGestacao: any;
   dosagemMgKg: any;
   atendimento: any;
-
+  disfuncaoRenal: string = 'não';
+  genero: string = 'masculino';
+  idade: any;
+  clearanceCreatinina: any;
+  creatina: any;
 
   constructor(
     private elementRef: ElementRef,    
@@ -225,4 +229,16 @@ export class CalculoMedicamentosComponent implements OnInit{
    calculoSoroGlicosadoReverso() {    
     this.soroGlicosadoReverso = this.solucaoTotalReverso - parseFloat(this.medicamentoMlReverso);
   }
+
+  calculoClearanceCreatininaAdulto(){
+    let fatorCorrecao;
+
+    if(this.genero === 'masculino'){
+      fatorCorrecao = 1;
+      this.clearanceCreatinina = (((140 - this.idade) * this.peso) / (72 * this.creatina)) * fatorCorrecao;
+    }else{
+      fatorCorrecao = 0.85;
+      this.clearanceCreatinina = (((140 - this.idade) * this.peso) / (72 * this.creatina)) * fatorCorrecao;
+    }
+  } 
 }

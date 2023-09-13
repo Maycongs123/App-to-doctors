@@ -1,0 +1,102 @@
+<div class="div-body">
+    <div class="div-header" id="header-lista">
+        <div class="div-tipo-medicacao">
+            <!-- <span class="span-font-tipo">{{item.nome}}</span> -->
+        </div>
+        <div class="div-tipo-medicacao-1">
+            <span class="span-font-tipo-2" style="cursor:pointer" (click)="back()">
+                Página Inicial
+            </span>
+            <mat-icon class="icon-style-2">
+                arrow_forward_ios
+            </mat-icon>
+            <span class="span-font-tipo-2">
+                Hidratação Venosa
+            </span>
+        </div>
+    </div>
+    <div style="display: flex; justify-content: space-around;">
+        <!-- <div style="display: flex;padding-top: 4rem; padding-bottom: 24rem;">
+            <div class="coloring-image-container">
+              <img src="../../../assets/corpo-vermelho/frente.png" alt="Imagem de Colorir" class="coloring-image corpo-frente corpo-frente" >
+              <img src="../../../assets/corpo/tronco-frente-removebg-preview.png" value="13"  id="tronco-frente" class="coloring-image tronco-frente" (click)="toggleImageDisplay('tronco-frente', 13)">
+              <img src="../../../assets/corpo/cabeça-frente-removebg-preview.png"  value="3.5"  id="cabeça-frente" class="coloring-image cabeça-frente" (click)="toggleImageDisplay('cabeça-frente', 3.5)">
+              <img src="../../../assets/corpo/pescoço-frente-removebg-preview.png" value="1" id="pescoço-frente" class="coloring-image pescoço-frente" (click)="toggleImageDisplay('pescoço-frente', 1)">
+              <img src="../../../assets/corpo/biceps-direito-frente-removebg-preview.png" value="2" id="biceps-direito-frente" class="coloring-image biceps-direito-frente" (click)="toggleImageDisplay('biceps-direito-frente', 2)">
+              <img src="../../../assets/corpo/biceps-esquerdo-frente-removebg-preview.png" value="2" id="biceps-esquerdo-frente" class="coloring-image biceps-esquerdo-frente" (click)="toggleImageDisplay('biceps-esquerdo-frente', 2)">
+              <img src="../../../assets/corpo/antebraço-direito-frente-removebg-preview.png" value="1.5" id="antebraco-direito-frente" class="coloring-image antebraco-direito-frente" (click)="toggleImageDisplay('antebraco-direito-frente', 1.5)">
+              <img src="../../../assets/corpo/antebraço-esquerdo-frente-removebg-preview.png" value="1.5" id="antebraco-esquerdo-frente" class="coloring-image antebraco-esquerdo-frente" (click)="toggleImageDisplay('antebraco-esquerdo-frente', 1.5)">
+              <img src="../../../assets/corpo/mao-direito-frente-removebg-preview.png" value="1.25" id="mao-direito-frente" class="coloring-image mao-direito-frente" (click)="toggleImageDisplay('mao-direito-frente', 1.25)">
+              <img src="../../../assets/corpo/mao-esquerdo-frente-removebg-preview.png" value="1.25" id="mao-esquerda-frente" class="coloring-image mao-esquerda-frente" (click)="toggleImageDisplay('mao-esquerda-frente', 1.25)">
+              <img src="../../../assets/corpo/genitalia-frente-removebg-preview.png" value="1" id="genitalia-frente" class="coloring-image genitalia-frente" (click)="toggleImageDisplay('genitalia-frente', 1)">
+              <img src="../../../assets/corpo/quadricipes-direito-removebg-preview.png" value="4.75" id="quadricipes-direito-frente" class="coloring-image quadricipes-direito-frente" (click)="toggleImageDisplay('quadricipes-direito-frente', 4.75)">
+              <img src="../../../assets/corpo/quadricipes-esquerdo-removebg-preview.png" value="4.75" id="quadricipes-esquerdo-frente" class="coloring-image quadricipes-esquerdo-frente" (click)="toggleImageDisplay('quadricipes-esquerdo-frente', 4.75)">
+              <img src="../../../assets/corpo/panturilha-direito-removebg-preview.png" value="3.5" id="panturilha-direito-frente" class="coloring-image panturilha-direito-frente" (click)="toggleImageDisplay('panturilha-direito-frente', 3.5)">
+              <img src="../../../assets/corpo/panturilha-esquerdo-removebg-preview.png" value="3.5" id="panturilha-esquerdo-frente" class="coloring-image panturilha-esquerdo-frente" (click)="toggleImageDisplay('panturilha-esquerdo-frente', 3.5)">
+              <img src="../../../assets/corpo/pe-direito-removebg-preview.png" value="1.75" id="pe-direito-frente" class="coloring-image pe-direito-frente" (click)="toggleImageDisplay('pe-direito-frente', 1.75)">
+              <img src="../../../assets/corpo/pe-esquerdo-removebg-preview.png" value="1.75" id="pe-esquerdo-frente" class="coloring-image pe-esquerdo-frente" (click)="toggleImageDisplay('pe-esquerdo-frente', 1.75)">
+            </div>
+            <div class="coloring-image-container">
+              <img src="../../../assets/corpo-vermelho/fundo.png" alt="Imagem de Colorir" class="coloring-image corpo-frente" >
+              <img src="../../../assets/corpo-costas/tronco-costa-removebg-preview.png" value="13" id="tronco-costa" class="coloring-image tronco-costa" (click)="toggleImageDisplay('tronco-costa', 13)">
+              <img src="../../../assets/corpo-costas/cabeça-costa-removebg-preview.png" value="3.5" id="cabeça-costa" class="coloring-image cabeça-costa" (click)="toggleImageDisplay('cabeça-costa', 3.5)">
+              <img src="../../../assets/corpo-costas/pescoço-costa-removebg-preview.png" value="1" id="pescoço-costa" class="coloring-image pescoço-costa" (click)="toggleImageDisplay('pescoço-costa', 1)">
+              <img src="../../../assets/corpo-costas/biceps-direito-costa-removebg-preview.png" value="2" id="biceps-direito-costa" class="coloring-image biceps-direito-costa" (click)="toggleImageDisplay('biceps-direito-costa', 2)">
+              <img src="../../../assets/corpo-costas/biceps-esquerdo-costa-removebg-preview.png" value="2" id="biceps-esquerdo-costa" class="coloring-image biceps-esquerdo-costa" (click)="toggleImageDisplay('biceps-esquerdo-costa', 2)">
+              <img src="../../../assets/corpo-costas/antebraço-direito-costa-removebg-preview.png" value="1.5" id="antebraco-direito-costa" class="coloring-image antebraco-direito-costa" (click)="toggleImageDisplay('antebraco-direito-costa', 1.5)">
+              <img src="../../../assets/corpo-costas/antebraço-esquerdo-costa-removebg-preview.png" value="1.5" id="antebraco-esquerdo-costa" class="coloring-image antebraco-esquerdo-costa" (click)="toggleImageDisplay('antebraco-esquerdo-costa', 1.5)">
+              <img src="../../../assets/corpo-costas/mao-direito-costa-removebg-preview.png" value="1.25" id="mao-direito-costa" class="coloring-image mao-direito-costa" (click)="toggleImageDisplay('mao-direito-costa', 1.25)">
+              <img src="../../../assets/corpo-costas/mao-esquerdo-costa-removebg-preview.png" value="1.25" id="mao-esquerda-costa" class="coloring-image mao-esquerda-costa" (click)="toggleImageDisplay('mao-esquerda-costa', 1.25)">
+              <img src="../../../assets/corpo-costas/gluteo-direito-costa-removebg-preview.png" value="2.5" id="gluteo-direito-costa" class="coloring-image gluteo-direito-costa" (click)="toggleImageDisplay('gluteo-direito-costa', 2.5)">
+              <img src="../../../assets/corpo-costas/gluteo-esquerdo-costa-removebg-preview.png" value="2.5" id="gluteo-esquerdo-costa" class="coloring-image gluteo-esquerdo-costa" (click)="toggleImageDisplay('gluteo-esquerdo-costa', 2.5)">
+              <img src="../../../assets/corpo-costas/posterior-direito-costa-removebg-preview.png" value="3.5" id="quadricipes-direito-costa" class="coloring-image quadricipes-direito-costa" (click)="toggleImageDisplay('quadricipes-direito-costa', 4.75)">
+              <img src="../../../assets/corpo-costas/posterior-esquerdo-costa-removebg-preview.png" value="3.5" id="quadricipes-esquerdo-costa" class="coloring-image quadricipes-esquerdo-costa" (click)="toggleImageDisplay('quadricipes-esquerdo-costa', 4.75)">
+              <img src="../../../assets/corpo-costas/panturilha-direito-costa-removebg-preview.png" value="3.5" id="panturilha-direito-costa" class="coloring-image panturilha-direito-costa" (click)="toggleImageDisplay('panturilha-direito-costa', 3.5 )">
+              <img src="../../../assets/corpo-costas/panturilha-esquerdo-costa-removebg-preview.png" value="3.5" id="panturilha-esquerdo-costa" class="coloring-image panturilha-esquerdo-costa" (click)="toggleImageDisplay('panturilha-esquerdo-costa', 3.5)">
+              <img src="../../../assets/corpo-costas/pe-direito-costa-removebg-preview.png" value="1.75" id="pe-direito-costa" class="coloring-image pe-direito-costa" (click)="toggleImageDisplay('pe-direito-costa', 1.75)">
+              <img src="../../../assets/corpo-costas/pe-esquerdo-costa-removebg-preview.png" value="1.75" id="pe-esquerdo-costa" class="coloring-image pe-esquerdo-costa" (click)="toggleImageDisplay('pe-esquerdo-costa', 1.75)">
+            </div>
+          </div> -->
+          <div style="display: flex;padding-top: 4rem; padding-bottom: 24rem;">
+            <div class="coloring-image-container">
+              <img src="../../../assets/kid-corpo/frente-kid.png" alt="Imagem de Colorir" class="coloring-image corpo-frente corpo-frente-kid" >
+              <img src="../../../assets/frente-kid/tronco-frente.png" value="13"  id="tronco-frente" class="coloring-image tronco-frente-kid" (click)="toggleImageDisplay('tronco-frente', 13)">
+              <img src="../../../assets/frente-kid/cabeça-frente.png"  value="3.5"  id="cabeça-frente" class="coloring-image cabeça-frente-kid" (click)="toggleImageDisplay('cabeça-frente', 3.5)">
+              <!-- <img src="../../../assets/frente-kid//pescoço-frente-removebg-preview.png" value="1" id="pescoço-frente" class="coloring-image pescoço-frente" (click)="toggleImageDisplay('pescoço-frente', 1)"> -->
+              <img src="../../../assets/frente-kid/biceps-direito-frente.png" value="2" id="biceps-direito-frente" class="coloring-image biceps-direito-frente-kid" (click)="toggleImageDisplay('biceps-direito-frente', 2)">
+              <img src="../../../assets/frente-kid/biceps-esquerdo-frente.png" value="2" id="biceps-esquerdo-frente" class="coloring-image biceps-esquerdo-frente-kid" (click)="toggleImageDisplay('biceps-esquerdo-frente', 2)">
+              <img src="../../../assets/frente-kid/antebraço-direito-frente.png" value="1.5" id="antebraco-direito-frente" class="coloring-image antebraco-direito-frente-kid" (click)="toggleImageDisplay('antebraco-direito-frente', 1.5)">
+              <img src="../../../assets/frente-kid/antebraco-esquerdo-frente.png" value="1.5" id="antebraco-esquerdo-frente" class="coloring-image antebraco-esquerdo-frente-kid" (click)="toggleImageDisplay('antebraco-esquerdo-frente', 1.5)">
+              <img src="../../../assets/frente-kid/mao-direito-frente.png" value="1.25" id="mao-direito-frente" class="coloring-image mao-direito-frente-kid" (click)="toggleImageDisplay('mao-direito-frente', 1.25)">
+              <img src="../../../assets/frente-kid/mao-esquerdo-frente.png" value="1.25" id="mao-esquerda-frente" class="coloring-image mao-esquerda-frente-kid" (click)="toggleImageDisplay('mao-esquerda-frente', 1.25)">
+              <img src="../../../assets/frente-kid/virilia-frente.png" value="1" id="genitalia-frente" class="coloring-image genitalia-frente-kid" (click)="toggleImageDisplay('genitalia-frente', 1)">
+              <img src="../../../assets/frente-kid/quadri-direito-frente.png" value="4.75" id="quadricipes-direito-frente" class="coloring-image quadricipes-direito-frente-kid" (click)="toggleImageDisplay('quadricipes-direito-frente', 4.75)">
+              <img src="../../../assets/frente-kid/quadri-esquerdo-frente.png" value="4.75" id="quadricipes-esquerdo-frente" class="coloring-image quadricipes-esquerdo-frente-kid" (click)="toggleImageDisplay('quadricipes-esquerdo-frente', 4.75)">
+              <img src="../../../assets/frente-kid/panturilha-direito-frente.png" value="3.5" id="panturilha-direito-frente" class="coloring-image panturilha-direito-frente-kid" (click)="toggleImageDisplay('panturilha-direito-frente', 3.5)">
+              <img src="../../../assets/frente-kid/panturilha-esquerdo-frente.png" value="3.5" id="panturilha-esquerdo-frente" class="coloring-image panturilha-esquerdo-frente-kid" (click)="toggleImageDisplay('panturilha-esquerdo-frente', 3.5)">
+              <img src="../../../assets/frente-kid/pe-direito-frente.png" value="1.75" id="pe-direito-frente" class="coloring-image pe-direito-frente-kid" (click)="toggleImageDisplay('pe-direito-frente', 1.75)">
+              <img src="../../../assets/frente-kid/pe-esquerdo-frente.png" value="1.75" id="pe-esquerdo-frente" class="coloring-image pe-esquerdo-frente-kid" (click)="toggleImageDisplay('pe-esquerdo-frente', 1.75)">
+            </div>
+            <div class="coloring-image-container">
+              <img src="../../../assets/kid-corpo/costas-kid.png" alt="Imagem de Colorir" class="coloring-image corpo-frente-kid" >
+              <img src="../../../assets/costa-kid/tronco-costa.png" value="13" id="tronco-costa" class="coloring-image tronco-costa-kid" (click)="toggleImageDisplay('tronco-costa', 13)">
+              <img src="../../../assets/costa-kid/cabeca-costa.png" value="3.5" id="cabeça-costa" class="coloring-image cabeça-costa-kid" (click)="toggleImageDisplay('cabeça-costa', 3.5)">
+              <!-- <img src="../../../assets/costa-kid//pescoço-costa-removebg-preview.png" value="1" id="pescoço-costa" class="coloring-image pescoço-costa" (click)="toggleImageDisplay('pescoço-costa', 1)"> -->
+              <img src="../../../assets/costa-kid/biceps-direito-costa.png" value="2" id="biceps-direito-costa" class="coloring-image biceps-direito-costa-kid" (click)="toggleImageDisplay('biceps-direito-costa', 2)">
+              <img src="../../../assets/costa-kid/biceps-esquerdo-costa.png" value="2" id="biceps-esquerdo-costa" class="coloring-image biceps-esquerdo-costa-kid" (click)="toggleImageDisplay('biceps-esquerdo-costa', 2)">
+              <img src="../../../assets/costa-kid/antebraço-direito-costa.png" value="1.5" id="antebraco-direito-costa" class="coloring-image antebraco-direito-costa-kid" (click)="toggleImageDisplay('antebraco-direito-costa', 1.5)">
+              <img src="../../../assets/costa-kid/antebraço-esquerdo-costa.png" value="1.5" id="antebraco-esquerdo-costa" class="coloring-image antebraco-esquerdo-costa-kid" (click)="toggleImageDisplay('antebraco-esquerdo-costa', 1.5)">
+              <img src="../../../assets/costa-kid/mao-direita-costa.png" value="1.25" id="mao-direito-costa" class="coloring-image mao-direito-costa-kid" (click)="toggleImageDisplay('mao-direito-costa', 1.25)">
+              <img src="../../../assets/costa-kid/mao-esquerdo-costa.png" value="1.25" id="mao-esquerda-costa" class="coloring-image mao-esquerda-costa-kid" (click)="toggleImageDisplay('mao-esquerda-costa', 1.25)">
+              <img src="../../../assets/costa-kid/gluteo-direito-costa.png" value="2.5" id="gluteo-direito-costa" class="coloring-image gluteo-direito-costa-kid" (click)="toggleImageDisplay('gluteo-direito-costa', 2.5)">
+              <img src="../../../assets/costa-kid/gluteo-esquerdo-costa.png" value="2.5" id="gluteo-esquerdo-costa" class="coloring-image gluteo-esquerdo-costa-kid" (click)="toggleImageDisplay('gluteo-esquerdo-costa', 2.5)">
+              <img src="../../../assets/costa-kid/posterior-direito-costa.png" value="3.5" id="quadricipes-direito-costa" class="coloring-image quadricipes-direito-costa-kid" (click)="toggleImageDisplay('quadricipes-direito-costa', 4.75)">
+              <img src="../../../assets/costa-kid/posterior-esquerdo-costa.png" value="3.5" id="quadricipes-esquerdo-costa" class="coloring-image quadricipes-esquerdo-costa-kid" (click)="toggleImageDisplay('quadricipes-esquerdo-costa', 4.75)">
+              <img src="../../../assets/costa-kid/panturilha-direito-costa.png" value="3.5" id="panturilha-direito-costa" class="coloring-image panturilha-direito-costa-kid" (click)="toggleImageDisplay('panturilha-direito-costa', 3.5 )">
+              <img src="../../../assets/costa-kid/panturilha-esquerdo-costa.png" value="3.5" id="panturilha-esquerdo-costa" class="coloring-image panturilha-esquerdo-costa-kid" (click)="toggleImageDisplay('panturilha-esquerdo-costa', 3.5)">
+              <img src="../../../assets/costa-kid/pe-direito-costa.png" value="1.75" id="pe-direito-costa" class="coloring-image pe-direito-costa-kid" (click)="toggleImageDisplay('pe-direito-costa', 1.75)">
+              <img src="../../../assets/costa-kid/pe-esquerdo-costa.png" value="1.75" id="pe-esquerdo-costa" class="coloring-image pe-esquerdo-costa-kid" (click)="toggleImageDisplay('pe-esquerdo-costa', 1.75)">
+            </div>
+          </div>
+
+    </div>

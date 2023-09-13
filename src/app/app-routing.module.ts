@@ -17,6 +17,7 @@ import { HidratacaoVenosaComponent } from './pages/hidratacao-venosa/hidratacao-
 import { CalculoMedicamentosComponent } from './components/calculo-medicamentos/calculo-medicamentos.component';
 import { AdministradorComponent } from './pages/administrador/administrador.component';
 import { OutrosMedicamentosComponent } from './pages/outros-medicamentos/outros-medicamentos.component';
+import { CalculoRegraDos9Component } from './pages/calculo-regra-dos9/calculo-regra-dos9.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path:"lista-broncodilatadores", component:BroncodilatadoresComponent},
   {path:"lista-corticosteroides", component:CorticosteroidesComponent},
   {path:"lista-laxativos", component:LaxativosComponent},
+  {path:"regra-dos-nove", component:CalculoRegraDos9Component},
   {path:"lista-sintomaticos", component:SintomaticosComponent},
   {path:"lista-hidratacao-venosa", component:HidratacaoVenosaComponent},
   {path:"lista-outros", component:OutrosMedicamentosComponent},
