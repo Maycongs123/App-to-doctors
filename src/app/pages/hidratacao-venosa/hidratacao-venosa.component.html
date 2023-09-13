@@ -1,2 +1,241 @@
+<!-- 
+<app-lista-medicamentos [medicamento] = "hidratacaoVenosa" [listaMedicacoes] = "medicacoes" [cor] = 'backgroundColor'></app-lista-medicamentos> -->
 
-<app-lista-medicamentos [medicamento] = "hidratacaoVenosa" [listaMedicacoes] = "medicacoes" [cor] = 'backgroundColor'></app-lista-medicamentos>
+<div class="div-body">
+    <div class="div-header" id="header-lista">
+        <div class="div-tipo-medicacao">
+            <!-- <span class="span-font-tipo">{{item.nome}}</span> -->
+        </div>
+        <div class="div-tipo-medicacao-1">
+            <span class="span-font-tipo-2" style="cursor:pointer" (click)="back()">
+                Página Inicial
+            </span>
+            <mat-icon class="icon-style-2">
+                arrow_forward_ios
+            </mat-icon>
+            <span class="span-font-tipo-2">
+                Hidratação Venosa
+            </span>
+        </div>
+    </div>
+
+    <div class="div-conteudo-medicacao">
+       <div class="div-left">
+        
+          <div class="div-shadow" style="margin-bottom: 2rem;">
+            <div>
+                <span class="span-style-2">
+                    Cálculo
+                </span>
+            </div>
+            <div class="div-calculadora">
+                <mat-form-field class="matFormCalculadora">
+                    <mat-label>Peso(Kg)</mat-label>
+                    <input matInput type="number" [(ngModel)]="peso" [step]="0.01">
+                </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                    <mat-label>Quantidade de Etapas</mat-label>
+                    <input matInput type="number" [(ngModel)]="etapas">
+                </mat-form-field>
+                <button mat-button matTooltip="Accent" (click)="calcularHidratacaoVenosa()">
+                    <span>Calcular</span>
+                    <mat-icon class="matFormCalculadora">calculate</mat-icon>
+                </button>
+                <div class="div-result" *ngIf="etapaSG5">
+                    <div style="padding-bottom: 1rem;">
+                        <div style="padding-bottom: 1rem;">
+                            <span class="font-result">Hidratação Venosa</span>                        
+                        </div>
+                        <div style="padding-bottom: 1rem; display: flex; flex-direction: column;">
+                            <span class="font-result-2">
+                                Quantidade de etapas : {{etapas}} 
+                            </span>   
+                            <span class="font-result-3">
+                                <b>SG5% :</b> {{etapaSG5}} ml por etapa.
+                            </span> 
+                            <span class="font-result-3">
+                                <b>NaCl20% :</b> {{etapaNaCl20}} ml por etapa.
+                            </span> 
+                            <span class="font-result-3">
+                                <b>KCl10% :</b> {{etapaKCl10}} ml por etapa.
+                            </span>                        
+                        </div>
+                        <div style="padding-bottom: 1rem; display: flex; flex-direction: column;">
+                            <span class="font-result-2">
+                                Taxa de infusão em bomba de infusão:
+                            </span>   
+                            <span class="font-result-3">
+                                <b>{{taxaInfusaoBombaVenosa}} ml/h</b>
+                            </span>
+                        </div>
+                        <div style="padding-bottom: 1rem; display: flex; flex-direction: column;">
+                            <span class="font-result-2">
+                                Taxa de infusão em gotas por minuto para correr em 24h:
+                            </span>   
+                            <span class="font-result-3">
+                                <b>{{taxaInfusaoGotasMinVenosa}} gotas/min</b>
+                            </span>
+                        </div>
+                        <div style="padding-bottom: 1rem; display: flex; flex-direction: column;">
+                            <span class="font-result-2">
+                                Taxa de infusão em microgotas por minuto para correr em 24h:
+                            </span>   
+                            <span class="font-result-3">
+                                <b>{{taxaInfusaoMicrogotasMinVenosa}} microgotas/min</b>
+                            </span>
+                        </div>
+                    </div>
+                    <div style="padding-bottom: 1rem;">
+                        <div style="padding-bottom: 1rem;">
+                            <span class="font-result">Hidratação Isotônica</span>                        
+                        </div>
+                        <div style="padding-bottom: 1rem; display: flex; flex-direction: column;">
+                            <span class="font-result-2">
+                                Quantidade de etapas : {{etapas}}
+                            </span>   
+                            <span class="font-result-3">
+                                <b>SG5% :</b> {{etapaSG5}} ml por etapa.
+                            </span> 
+                            <span class="font-result-3">
+                                <b>NaCl20% :</b> {{etapaNaCl20Tonico}} ml por etapa.
+                            </span> 
+                            <span class="font-result-3">
+                                <b>KCl10% :</b> {{etapaKCl10}} ml por etapa.
+                            </span>                        
+                        </div>
+                        <div style="padding-bottom: 1rem; display: flex; flex-direction: column;">
+                            <span class="font-result-2">
+                                Taxa de infusão em bomba de infusão.
+                            </span>   
+                            <span class="font-result-3">
+                                <b>{{taxaInfusaoBombaIsotonica}} ml/h</b>
+                            </span>
+                        </div>
+                        <div style="padding-bottom: 1rem; display: flex; flex-direction: column;">
+                            <span class="font-result-2">
+                                Taxa de infusão em gotas por minuto para correr em 24h:
+                            </span>   
+                            <span class="font-result-3">
+                                <b>{{taxaInfusaoGotasMinIsotonica}} gotas/min</b>
+                            </span>
+                        </div>
+                        <div style="padding-bottom: 1rem; display: flex; flex-direction: column;">
+                            <span class="font-result-2">
+                                Taxa de infusão em microgotas por minuto para correr em 24h:
+                            </span>   
+                            <span class="font-result--3">
+                                <b>{{taxaInfusaoMicrogotasMinIsotonica}} microgotas/min</b>
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div style="margin-bottom: 1rem;">
+            <div class="div-shadow" >
+              <span class="span-style-2">
+                  Prescrição Médica
+              </span>
+              <div class="div-conteudo-medicacao-3" style="line-height: 25px;" >
+                  <div class="div-conteudo-flex">
+                      <mat-icon class="icon-style">
+                          arrow_forward_ios
+                      </mat-icon>
+                  </div>
+                     <div class="div-conteudo-grid">
+                         <span style="margin-bottom: 1rem;">
+                              <!-- {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml'}} -->
+                         </span>
+                     </div>
+                 </div>
+             </div>
+          </div>
+       </div>
+        <div class="div-right" >
+            <div class="div-shadow" style="margin-bottom: 1rem;" >
+              <span class="span-style-2">
+                Indicação
+              </span>
+              <div class="div-conteudo-medicacao-3" style="display: grid;">
+                  <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
+                      <!-- <mat-icon class="icon-style icon-style-done">
+                          done
+                      </mat-icon>
+                      <span >
+                        {{dados}}
+                      </span> -->
+                  </div>
+              </div>
+            </div>
+            <div class="div-shadow" style="margin-bottom: 1rem;">
+              <span class="span-style-2">
+                Dose
+              </span>
+              <div class="div-conteudo-medicacao-3" style="display: grid;">
+                  <div class="div-conteudo-flex" style="margin-bottom: 1rem; display: grid;">
+                    <!-- <span >
+                      {{dados.problema}}
+                    </span>
+                    <span *ngIf="dados.usoDose.usoInicial != '' ">
+                    <strong>Inicial: </strong> {{dados.usoDose.usoInicial}}
+                    </span>
+                    <span *ngIf="dados.usoDose.usoManutencao != '' ">
+                      <strong>Manutenção: </strong>{{ dados.usoDose.usoManutencao}}
+                    </span> -->
+                  </div>
+              </div>
+          </div>
+          <div class="div-shadow" style="margin-bottom: 1rem;">
+            <span class="span-style-2">
+              Preparo / Diluição
+            </span>
+            <div class="div-conteudo-medicacao-3" style="display: grid;">
+                <div class="div-conteudo-flex" style="margin-bottom: 1rem;">                  
+                    <span >
+                      <!-- {{dados}} -->
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="div-shadow" style="margin-bottom: 1rem;">
+          <span class="span-style-2">
+            Administração
+          </span>
+          <div class="div-conteudo-medicacao-3" style="display: grid;">
+              <div class="div-conteudo-flex" style="margin-bottom: 1rem;">                 
+                  <span >
+                    <!-- {{dados}} -->
+                  </span>
+              </div>
+          </div>
+      </div>
+      <div class="div-shadow" style="margin-bottom: 1rem;">
+        <span class="span-style-2">
+            Contra Indicação
+        </span>
+        <div class="div-conteudo-medicacao-3" style="display: grid;">
+            <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
+                <span >
+                  <!-- {{dados}} -->
+                </span>
+            </div>
+        </div>
+    </div>        
+    <div class="div-shadow" style="margin-bottom: 1rem;">
+      <span class="span-style-2">
+        Uso Durante a Gestação
+      </span>
+      <div class="div-conteudo-medicacao-3" style="display: grid;">
+          <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
+              <!-- <mat-icon class="icon-style icon-style-close">
+                  close
+              </mat-icon> -->
+              <span >
+                <!-- {{dados}} -->
+              </span>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+</div>
