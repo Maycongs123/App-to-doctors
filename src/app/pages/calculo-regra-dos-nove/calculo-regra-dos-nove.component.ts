@@ -1,16 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-calculo-regra-dos9',
-  templateUrl: './calculo-regra-dos9.component.html',
-  styleUrls: ['./calculo-regra-dos9.component.scss']
+  selector: 'app-calculo-regra-dos-nove',
+  templateUrl: './calculo-regra-dos-nove.component.html',
+  styleUrls: ['./calculo-regra-dos-nove.component.scss']
 })
-export class CalculoRegraDos9Component {
+export class CalculoRegraDos9Component implements OnInit{
   isTransparent: boolean = false;
   isColored: boolean = false;
   totalValue = 0; 
   peso: any;
   formParkland: any;
+  atendimento: any;
+  idade: any;
+
+  ngOnInit(){   
+    this.atendimento = localStorage.getItem('tipoAtendimento');
+  }
 
   toggleImageDisplay(imageId: string, imageValue: number) {
     const imagem = document.getElementById(imageId);

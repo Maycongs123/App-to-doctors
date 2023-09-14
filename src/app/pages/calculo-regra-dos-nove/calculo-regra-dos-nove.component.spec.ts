@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CalculoRegraDos9Component } from './calculo-regra-dos9.component';
+import { CalculoRegraDos9Component } from './calculo-regra-dos-nove.component';
 
 describe('CalculoRegraDos9Component', () => {
   let component: CalculoRegraDos9Component;

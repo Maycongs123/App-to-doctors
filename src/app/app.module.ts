@@ -52,7 +52,7 @@ import { PopupConfirmacaoComponent } from './components/popup-confirmacao/popup-
 import { AuthInterceptor } from './authconfig.interceptor';
 import { MaskedTextBoxModule } from '@progress/kendo-angular-inputs';
 import { OutrosMedicamentosComponent } from './pages/outros-medicamentos/outros-medicamentos.component';
-import { CalculoRegraDos9Component } from './pages/calculo-regra-dos9/calculo-regra-dos9.component';
+import { CalculoRegraDos9Component } from './pages/calculo-regra-dos-nove/calculo-regra-dos-nove.component';
 
 
 

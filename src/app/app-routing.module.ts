@@ -17,7 +17,7 @@ import { HidratacaoVenosaComponent } from './pages/hidratacao-venosa/hidratacao-
 import { CalculoMedicamentosComponent } from './components/calculo-medicamentos/calculo-medicamentos.component';
 import { AdministradorComponent } from './pages/administrador/administrador.component';
 import { OutrosMedicamentosComponent } from './pages/outros-medicamentos/outros-medicamentos.component';
-import { CalculoRegraDos9Component } from './pages/calculo-regra-dos9/calculo-regra-dos9.component';
+import { CalculoRegraDos9Component } from './pages/calculo-regra-dos-nove/calculo-regra-dos-nove.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
