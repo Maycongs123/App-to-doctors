@@ -70,6 +70,14 @@
                     <mat-label>Peso(Kg)</mat-label>
                     <input matInput [(ngModel)]="peso" type="number" ng [step]="0.01">
                 </mat-form-field>
+                <mat-form-field class="matFormCalculadora">
+                  <mat-label>Quantidade (ml)</mat-label>
+                  <mat-select [(ngModel)]="quantidadeMl">
+                    <mat-option *ngFor="let ml of valoresMl" [value]="ml.value">
+                      {{ml.viewValue}}
+                    </mat-option>
+                  </mat-select>
+              </mat-form-field>
                 <button mat-button matTooltip="Accent" (click)="calculateBody()" >
                   <span>Calcular</span>
                   <mat-icon class="matFormCalculadora">calculate</mat-icon>
@@ -133,19 +141,27 @@
             <span>Clique nas regiões queimadas</span>
           </div>
           <div class="div-calculadora">
-            <div style="width: 50%;">
+            <div class="divWidth">
               <mat-form-field class="matFormCalculadora">
                 <mat-label>Porcetagem da área queimada (%)</mat-label>
                 <input matInput [(ngModel)]="totalValue" >
               </mat-form-field>
               <mat-form-field class="matFormCalculadora">
                 <mat-label>Idade</mat-label>
-                <input matInput [(ngModel)]="idade" >
+                <input matInput type="number" [(ngModel)]="idade" >
               </mat-form-field>
               <mat-form-field class="matFormCalculadora">
                   <mat-label>Peso(Kg)</mat-label>
                   <input matInput [(ngModel)]="peso" type="number" ng [step]="0.01">
               </mat-form-field>
+              <mat-form-field class="matFormCalculadora">
+                <mat-label>Quantidade (ml)</mat-label>
+                <mat-select [(ngModel)]="quantidadeMl">
+                  <mat-option *ngFor="let ml of valoresMl" [value]="ml.value">
+                    {{ml.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
               <button mat-button matTooltip="Accent" (click)="calculateBody()" >
                 <span>Calcular</span>
                 <mat-icon class="matFormCalculadora">calculate</mat-icon>

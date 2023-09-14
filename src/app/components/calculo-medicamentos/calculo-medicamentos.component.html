@@ -61,6 +61,10 @@
                       <mat-label>Peso(Kg)</mat-label>
                       <input matInput type="number" [(ngModel)]="peso" [step]="0.01">
                   </mat-form-field>
+                  <mat-form-field class="matFormCalculadora" *ngIf="atendimento === 'Pediatrico'">
+                    <mat-label>Idade</mat-label>
+                    <input matInput type="number" [(ngModel)]="idade" >
+                  </mat-form-field>
                   <mat-form-field class="matFormCalculadora">
                     <mat-label>Dosagem (mg/kg)</mat-label>
                     <input matInput type="number" [(ngModel)]="dosagemMgKg" [step]="0.01">
@@ -87,6 +91,10 @@
                   <mat-form-field class="matFormCalculadora">
                       <mat-label>Peso(Kg)</mat-label>
                       <input matInput type="number" [(ngModel)]="peso" [step]="0.01">
+                  </mat-form-field>
+                  <mat-form-field class="matFormCalculadora" *ngIf="atendimento === 'Pediatrico'">
+                    <mat-label>Idade</mat-label>
+                    <input matInput type="number" [(ngModel)]="idade" >
                   </mat-form-field>
                   <mat-form-field class="matFormCalculadora">
                     <mat-label>Volume (ml)</mat-label>
@@ -158,6 +166,10 @@
                   <input matInput type="number" [(ngModel)]="peso" [step]="0.01">
               </mat-form-field>
               <mat-form-field class="matFormCalculadora">
+                <mat-label>Idade</mat-label>
+                <input matInput type="number" [(ngModel)]="idade" >
+              </mat-form-field>
+              <mat-form-field class="matFormCalculadora">
                 <mat-label>Dose a ser administrada (mcg/kg/min)</mat-label>
                 <input matInput type="number" [(ngModel)]="doseCalculo" [step]="0.01">
               </mat-form-field>
@@ -191,6 +203,10 @@
                 <mat-form-field class="matFormCalculadora">
                     <mat-label>Peso(Kg)</mat-label>
                     <input matInput type="number" [(ngModel)]="peso" [step]="0.01">
+                </mat-form-field>
+                <mat-form-field class="matFormCalculadora" *ngIf="atendimento === 'Pediatrico'">
+                  <mat-label>Idade</mat-label>
+                  <input matInput type="number" [(ngModel)]="idade" >
                 </mat-form-field>
                 <mat-form-field class="matFormCalculadora">
                   <mat-label>Vazão (ml/h)</mat-label>

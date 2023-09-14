@@ -50,6 +50,7 @@ export class CalculoMedicamentosComponent implements OnInit{
   idade: any;
   clearanceCreatinina: any;
   creatina: any;
+ 
 
   constructor(
     private elementRef: ElementRef,    
@@ -114,7 +115,24 @@ export class CalculoMedicamentosComponent implements OnInit{
     }   
   }
 
-  calculoMgKg(){     
+  calculoMgKg(){   
+    var pesoLimitado;
+
+    if(this.idade <= 10){
+      pesoLimitado = (this.idade * 2) + 8;
+      
+      for (let i = 0; i < this.dadosMedicamentos.length; i++) {
+        const resultado = (pesoLimitado * this.dosagemMgKg* this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses);
+        const key = `${i}`;
+        this.resultadoMgKg[key] = {
+          resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
+          quantidadeMg: this.dadosMedicamentos[i].quantidadeMg,
+          quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
+        }
+      } 
+      return
+    }  
+    
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
       const resultado = (this.peso * this.dosagemMgKg* this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses);
       const key = `${i}`;
@@ -144,6 +162,24 @@ export class CalculoMedicamentosComponent implements OnInit{
   calculoMcgKgPediatrico(){
     var qntMg = this.medicamentoMg[0] || this.medicamentoMg;
     var qntMl = this.medicamentoMl[0] || this.medicamentoMl;
+    var pesoLimitado;
+
+    if(this.idade <= 10){
+      pesoLimitado = (this.idade * 2) + 8;
+      
+      for (let i = 0; i < this.dadosMedicamentos.length; i++) {
+        const resultado = (this.doseCalculo * pesoLimitado * (1440 / ((qntMg/qntMl) * 1000)));
+        const soroFisologico = 24 - resultado;
+        const key = `${i}`;
+        this.resultadoMcgKgPediatrico[key] = {
+          resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
+          soroFisologico: soroFisologico,
+          quantidadeMg: this.medicamentoMg,
+          quantidadeMl: this.medicamentoMl        
+        }
+      }
+      return
+    } 
       
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
       const resultado = (this.doseCalculo * this.peso * (1440 / ((qntMg/qntMl) * 1000)));
@@ -174,6 +210,24 @@ export class CalculoMedicamentosComponent implements OnInit{
 
 
   calculoMgKgReverso(){   
+    var pesoLimitado;
+
+    if(this.idade <= 10){
+      pesoLimitado = (this.idade * 2) + 8;
+      
+      for (let i = 0; i < this.dadosMedicamentos.length; i++) {
+        const resultado = (this.volume * this.medicamentoMgReverso[i] * this.item.numeroDoses) / (pesoLimitado * this.medicamentoMlReverso[i]);
+        const key = `${i}`;
+        this.resultadoMgKgReverso[key] = {
+          resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
+          quantidadeMg: this.dadosMedicamentos[i].quantidadeMg,
+          quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
+        }
+      } 
+      return
+    } 
+
+
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
       const resultado = (this.volume * this.medicamentoMgReverso[i] * this.item.numeroDoses) / (this.peso * this.medicamentoMlReverso[i]);
       const key = `${i}`;
@@ -188,6 +242,23 @@ export class CalculoMedicamentosComponent implements OnInit{
   calculoMcgKgReverso(){  
     var qntMg = this.medicamentoMgReverso[0] || this.medicamentoMgReverso
     var qntMl = this.medicamentoMlReverso[0] || this.medicamentoMlReverso
+    var pesoLimitado;
+
+    if(this.idade <= 10){
+      pesoLimitado = (this.idade * 2) + 8;
+      
+      for (let i = 0; i < this.dadosMedicamentos.length; i++) {
+        const resultado = (this.vazao * ((qntMg) /(this.soroGlicosadoReverso + qntMl) * 1000)) / (pesoLimitado * 60);
+        const key = `${i}`;
+        this.resultadoMcgKgReverso[key] = {
+          resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
+          quantidadeMg: this.medicamentoMgReverso,
+          quantidadeMl: this.medicamentoMlReverso
+        }
+      }
+      return
+    } 
+
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
       const resultado = (this.vazao * ((qntMg) /(this.soroGlicosadoReverso + qntMl) * 1000)) / (this.peso * 60);
       const key = `${i}`;

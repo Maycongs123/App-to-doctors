@@ -271,8 +271,16 @@
     margin: 0px;
 }
 
+.divWidth{
+  width: 100%;
+  @media (min-width: 630px){
+   width: 50%;
+ }
+}
+
 .div-header{
     padding: 9rem 9rem 7rem 9rem;
+    background-color: #dc3545;
 }
 
 .div-tipo-medicacao{
@@ -336,9 +344,9 @@
   }
   
   .biceps-direito-frente-kid{
-    width: 14%;
+    width: 14.2%;
     top: 37%;
-    left: 66%;
+    left: 65.9%;
     height: 33%;
   }
   
@@ -357,10 +365,10 @@
   }
   
   .antebraco-esquerdo-frente-kid{
-    width: 15.6%;
+    width: 15.7%;
     top: 54%;
     left: 9.4%;
-    height: 23.2%;
+    height: 23.5%;
   }
   
   .mao-direito-frente-kid{
@@ -388,7 +396,7 @@
     width: 17.3%;
     top: 84.7%;
     left: 53.4%;
-    height: 31%;
+    height: 31.1%;
   }
   
   .quadricipes-esquerdo-frente-kid{
@@ -456,9 +464,9 @@
   
   .biceps-direito-costa-kid{
     width: 16.4%;
-    top: 45%;
+    top: 44.3%;
     left: 65.5%;
-    height: 35.8%;
+    height: 36.3%;
   }
   
   .biceps-esquerdo-costa-kid{
@@ -498,7 +506,7 @@
   
   .gluteo-direito-costa-kid{
     width: 20.3%;
-    top: 80.5%;
+    top: 80.4%;
     left: 49.2%;
     height: 15.4%;
   }
@@ -533,9 +541,9 @@
   
   .panturilha-esquerdo-costa-kid{
     width: 15.5%;
-    top: 122.4%;
+    top: 122.2%;
     left: 29.8%;
-    height: 32%;
+    height: 32.1%;
   }
   
   

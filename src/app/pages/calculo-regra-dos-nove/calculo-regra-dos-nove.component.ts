@@ -13,6 +13,14 @@ export class CalculoRegraDos9Component implements OnInit{
   formParkland: any;
   atendimento: any;
   idade: any;
+  quantidadeMl: any;  
+
+
+  valoresMl: any[] = [
+    {value: 2, viewValue: '2ml'},
+    {value: 3, viewValue: '3ml'},
+    {value: 4, viewValue: '4ml'},
+  ];
 
   ngOnInit(){   
     this.atendimento = localStorage.getItem('tipoAtendimento');
@@ -42,7 +50,17 @@ export class CalculoRegraDos9Component implements OnInit{
   }
 
   calculateBody(){
-    this.formParkland = this.totalValue * this.peso * 4;
+    debugger
+    var pesoLimitado;
+    if(this.idade <= 10){
+      pesoLimitado = (this.idade * 2) + 8;
+
+      this.formParkland = this.totalValue * pesoLimitado * this.quantidadeMl;
+
+      return
+    }
+    
+    this.formParkland = this.totalValue * this.peso * this.quantidadeMl;
   }
 
   back(){
