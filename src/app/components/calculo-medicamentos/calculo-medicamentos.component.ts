@@ -74,6 +74,11 @@ export class CalculoMedicamentosComponent implements OnInit{
     this.calculoSoroGlicosadoReverso();
   }
 
+  generos: any[] = [
+    {value: 1, viewValue: 'Masculino'},
+    {value: 2, viewValue: 'Feminino'}    
+  ];
+
   @HostListener('window:click')
   @HostListener('window:load')
   onLoad(){
@@ -116,6 +121,8 @@ export class CalculoMedicamentosComponent implements OnInit{
   }
 
   calculoMgKg(){   
+    this.calculoClearanceCreatininaAdulto()
+    
     var pesoLimitado;
 
     if(this.idade <= 10){
@@ -130,7 +137,7 @@ export class CalculoMedicamentosComponent implements OnInit{
           quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
         }
       } 
-      return
+      return;
     }  
     
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
@@ -178,7 +185,7 @@ export class CalculoMedicamentosComponent implements OnInit{
           quantidadeMl: this.medicamentoMl        
         }
       }
-      return
+      return;
     } 
       
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
@@ -224,9 +231,8 @@ export class CalculoMedicamentosComponent implements OnInit{
           quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
         }
       } 
-      return
+      return;
     } 
-
 
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
       const resultado = (this.volume * this.medicamentoMgReverso[i] * this.item.numeroDoses) / (this.peso * this.medicamentoMlReverso[i]);
@@ -256,7 +262,7 @@ export class CalculoMedicamentosComponent implements OnInit{
           quantidadeMl: this.medicamentoMlReverso
         }
       }
-      return
+      return;
     } 
 
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
