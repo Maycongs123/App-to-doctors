@@ -109,7 +109,7 @@ export class AdministradorComponent {
     });
   }
 
-  formMedicacao(result: any) {    
+  formMedicacao(result: any) {   
       
     const indicacao = JSON.stringify(result.indicacoes);
     const contraIndicacao = JSON.stringify(result.contraIndicacoes);    
@@ -123,6 +123,7 @@ export class AdministradorComponent {
     const formMedicamento = this.formBuilder.group({
       id: result.id,
       nome: result.nome,
+      calculoRenal: result.calculoRenal,
       medicamentoUso: result.medicamentoUso,
       tipo: result.tipo,
       dosagemTipo: result.dosagemTipo,
@@ -144,14 +145,14 @@ export class AdministradorComponent {
     return formMedicamento;
   }
 
-  formMedicacaoTable(result: any) {
-    
+  formMedicacaoTable(result: any) {    
     this.dataSource = [];
 
     for (let index = 0; index < result.length; index++) {     
       const medicamento = {
         id: result[index].id,
         nome: result[index].nome,
+        calculoRenal: result[index].calculoRenal,
         medicamentoUso: result[index].medicamentoUso,
         tipo: result[index].tipo,
         dosagemTipo: result[index].dosagemTipo,

@@ -4,6 +4,7 @@ export interface Medicamento{
   medicamentoUso?: string;
   dosagemTipo?: string;
   tipo?: string;
+  calculoRenal?: string;
   modoDeUso?: string;
   quantidadeMg?: number;
   quantidadeMl?: number;

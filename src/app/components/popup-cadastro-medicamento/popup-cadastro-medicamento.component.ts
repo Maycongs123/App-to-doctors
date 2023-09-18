@@ -25,8 +25,7 @@ export class PopupCadastroMedicamentoComponent {
     private medicamentosService: MedicamentosService
   ) {}
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void {    
     this.editMode = this.data.editMode;
     if(this.editMode === true){
       this.buscarMedicamento(this.data.element.id)
@@ -37,6 +36,7 @@ export class PopupCadastroMedicamentoComponent {
     id: 0,
     nome: ['', Validators.required],
     medicamentoUso: ['', Validators.required],
+    calculoRenal: ['', Validators.required],
     tipo: ['', Validators.required],
     dosagemTipo: ['', Validators.required],
     modoDeUso: ['', Validators.required],
@@ -236,6 +236,7 @@ buscarMedicamento(id: any){
       id: id,
       nome: response.nome,
       medicamentoUso: response.medicamentoUso,
+      calculoRenal: response.calculoRenal,
       tipo: response.tipo,     
       dosagemTipo: response.dosagemTipo,
       modoDeUso: response.modoDeUso,

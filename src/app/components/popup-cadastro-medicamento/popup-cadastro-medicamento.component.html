@@ -30,6 +30,21 @@
 
           <div class="div-flex">
             <div>
+                <div style="display: flex; justify-content: center;">
+                  <label>Medicamento com correção renal?:</label><br>
+                </div>
+                <mat-radio-group required class="div-mat-form-field" style="padding-left: 3rem;" formControlName="calculoRenal">
+                  <mat-radio-button value="Sim">Sim</mat-radio-button>
+                  <mat-radio-button value="Não">Não</mat-radio-button>
+                </mat-radio-group>
+                <mat-error *ngIf="formMedicamento.controls.calculoRenal.invalid && formMedicamento.controls.calculoRenal.touched">
+                  Esse campo é obrigatório.
+                </mat-error>
+            </div>
+          </div>
+
+          <div class="div-flex">
+            <div>
                 <label>Nome do medicamento:</label><br>
                 <mat-form-field class="div-mat-form-field" >
                     <input  type="text" required matInput formControlName="nome">
