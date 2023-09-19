@@ -26,6 +26,7 @@ medicacoes: any;
         this.medicacoes = response.filter(function(medicacao : any) { return medicacao.medicamentoUso == "Adulto" && medicacao.tipo == "Antibiótico"});
       }
       if(tipoAtendimento === "Pediatrico"){
+        debugger
         this.medicacoes = response.filter(function(medicacao : any) { return medicacao.medicamentoUso == "Pediátrico" && medicacao.tipo == "Antibiótico"});
       }
     });
