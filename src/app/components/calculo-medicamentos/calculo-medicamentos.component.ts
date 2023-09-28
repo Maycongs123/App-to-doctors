@@ -66,8 +66,7 @@ export class CalculoMedicamentosComponent implements OnInit{
     this.backgroundColor = this.route.snapshot.paramMap.get('backgroundColor');
     this.soroGlicosado = this.item.quantidadeSoro;
     this.soroGlicosadoReverso = this.item.quantidadeSoro;
-    this.atendimento = localStorage.getItem('tipoAtendimento');    
-    debugger
+    this.atendimento = localStorage.getItem('tipoAtendimento');        
     console.log(this.item.calculoRenal)
   }
 
@@ -149,8 +148,7 @@ export class CalculoMedicamentosComponent implements OnInit{
     if(this.idade <= 10){
       pesoLimitado = (this.idade * 2) + 8;
       
-      for (let i = 0; i < this.dadosMedicamentos.length; i++) {
-        debugger
+      for (let i = 0; i < this.dadosMedicamentos.length; i++) {    
         const resultado = (pesoLimitado * this.dosagemMgKg* this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses * quantidadeMgCalculoRenal);
         this.correcaoMl = resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
         const key = `${i}`;
@@ -347,7 +345,7 @@ export class CalculoMedicamentosComponent implements OnInit{
 
   calculoClearanceCreatininaCrianca(){
     let constanteK: any;
-    debugger
+   
     switch (this.idadeCalculoRenal) {
       case 0.33:
         constanteK = 0.33;
@@ -370,8 +368,7 @@ export class CalculoMedicamentosComponent implements OnInit{
   } 
 
 
-  calculoCorrecao(){
-    debugger
+  calculoCorrecao(){   
     
     this.correcaoMl =  Math.round(parseInt(this.correcaoMl) * 0.9)
     this.rediluicao = (((0.9 * this.dosagemMgKg * this.peso) / 50) - this.correcaoMl).toLocaleString('pt-BR', { minimumFractionDigits: 2 });

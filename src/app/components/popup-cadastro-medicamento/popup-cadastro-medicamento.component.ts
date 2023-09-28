@@ -185,7 +185,7 @@ export class PopupCadastroMedicamentoComponent {
     this.submit();
   }
 
-  submit() {
+  submit() {  
     if (this.formMedicamento.invalid) {
       this.openSnackBar()
       this.markFormGroupAsTouched(this.formMedicamento);

@@ -60,24 +60,23 @@ export class HidratacaoVenosaComponent {
     history.back();
   }
 
-  calcularHidratacaoVenosa() {
-    debugger;
+  calcularHidratacaoVenosa() {   
     if (this.peso <= 10) {
-      this.valueSG5 = 100;
-      this.valueNaCl20 = 3;
-      this.valueKCl10 = 2;
+      this.valueSG5 = 100 * this.peso;
+      this.valueNaCl20 = (3 * this.peso)/3.4;
+      this.valueKCl10 = (2 * this.peso)/1.34;
       this.valueNaCl20Tonico = this.valueSG5 * 0.0411;
     }
     if (this.peso > 10 && this.peso <= 20) {
       this.valueSG5 = 1000 + 50 * (this.peso - 10);
-      this.valueNaCl20 = (32 + 2 * (this.peso - 10)) / 3.4;
-      this.valueKCl10 = (21 + 1 * (this.peso - 10)) / 1.3;
+      this.valueNaCl20 = (30 + (2 * (this.peso - 10))) / 3.4;
+      this.valueKCl10 = (20 + (1 * (this.peso - 10))) / 1.34;
       this.valueNaCl20Tonico = this.valueSG5 * 0.0411;
     }
     if (this.peso > 20) {
       this.valueSG5 = 1500 + 20 * (this.peso - 20);
-      this.valueNaCl20 = (50 + 1 * (this.peso - 20)) / 3.4;
-      this.valueKCl10 = (30 + 0.5 * (this.peso - 20)) / 1.3;
+      this.valueNaCl20 = (50 + (1 * (this.peso - 20))) / 3.4;
+      this.valueKCl10 = (30 + (0.5 * (this.peso - 20))) / 1.34;
       this.valueNaCl20Tonico = this.valueSG5 * 0.0411;
     }
 

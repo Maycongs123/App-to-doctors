@@ -44,13 +44,11 @@ export class CalculoRegraDos9Component implements OnInit{
     }
   }
 
-  toggleColor() {
-    debugger
+  toggleColor() {   
     this.isColored = !this.isColored;
   }
 
-  calculateBody(){
-    debugger
+  calculateBody(){    
     var pesoLimitado;
     if(this.idade <= 10){
       pesoLimitado = (this.idade * 2) + 8;
