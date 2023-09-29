@@ -34,6 +34,7 @@ export class CalculoRegraDos9Component implements OnInit{
   }
 
   toggleImageDisplay(imageId: string, imageValue: number) {  
+    debugger
     const imagem = document.getElementById(imageId);
 
     let valorAreaCorpo: any = imageValue;
@@ -42,7 +43,21 @@ export class CalculoRegraDos9Component implements OnInit{
     if(imageId === 'quadricipes-direito-frente-kid' || imageId === 'quadricipes-esquerdo-frente-kid' || imageId === 'quadricipes-direito-costa-kid' || imageId === 'quadricipes-esquerdo-costa-kid' ) valorAreaCorpo = this.calculoQuadricipesKids();
     if(imageId === 'panturilha-direito-frente-kid' || imageId === 'panturilha-esquerdo-frente-kid' || imageId === 'panturilha-direito-costa-kid' || imageId === 'panturilha-esquerdo-costa-kid') valorAreaCorpo = this.calculoPanturilhaKids();
 
-    if (imagem && this.idade) {
+    if (imagem && this.atendimento === 'Adulto') {
+      this.isTransparent = imagem.style.opacity !== '0.3';
+      imagem.style.opacity = this.isTransparent ? '0.3' : '1';
+
+      if (this.isTransparent) {
+        this.totalValue += valorAreaCorpo;
+      } else {
+        this.totalValue -= valorAreaCorpo;
+      }
+      
+    } else {
+      console.log('Imagem não encontrada.');
+    }
+
+    if (imagem && this.idade && this.atendimento === 'Pediatrico') {
       this.isTransparent = imagem.style.opacity !== '0.3';
       imagem.style.opacity = this.isTransparent ? '0.3' : '1';
 
