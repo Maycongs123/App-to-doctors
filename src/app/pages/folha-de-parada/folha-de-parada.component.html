@@ -127,6 +127,7 @@
                                 </div>
                             </div>
                     </div>
+
                 </div>
             </div>    
             <div class="div-shadow div-bottom-height">
@@ -136,6 +137,7 @@
                 <div class="div-conteudo-medicacao-3" style="display: grid;">
                         <div class="div-conteudo-flex div-margin-bottom">
                             <div class="div-flex-column">
+
                                 <span>
                                     <b>Cetamina </b> (1mg/kg):
                                 </span>
@@ -143,12 +145,12 @@
                             </div>
                             <div class="div-font-size">
                                 <span>
-                                    <b>__ mg</b>
+                                    <b>{{ dosagens.KETAMINE  }} mg</b>
                                     <span> = __ ml</span>
                                 </span>
                             </div>
                         </div>
-
+            
                         <!-- Midazolam (0,1mg/kg): -->
                         <div class="div-conteudo-flex div-margin-bottom">
                             <div class="div-flex-column">
@@ -160,12 +162,12 @@
                             </div>
                             <div class="div-font-size">
                                 <span>
-                                    <b>__ mg</b>
+                                    <b>{{ dosagens.MIDAZOLAM  > 5 ? 5 : dosagens.MIDAZOLAM}} mg</b>
                                     <span> = __ ml</span>
                                 </span>
                             </div>
                         </div>
-
+            
                         <!-- Fentanil (1micrograma/kg): -->
                         <div class="div-conteudo-flex div-margin-bottom">
                             <div class="div-flex-column">
@@ -177,12 +179,12 @@
                             </div>
                             <div class="div-font-size">
                                 <span>
-                                    <b>__ micrograma</b>
+                                    <b>{{ dosagens.FENTANYL > 100 ? 100 : dosagens.FENTANYL }} micrograma</b>
                                     <span> = __ ml</span>
                                 </span>
                             </div>
                         </div>
-
+            
                         <!-- Morfina (0,1mg/kg): -->
                         <div class="div-conteudo-flex div-margin-bottom">
                             <div class="div-flex-column">
@@ -194,12 +196,12 @@
                             </div>
                             <div class="div-font-size">
                                 <span>
-                                    <b>__ mg</b>
+                                    <b>{{ dosagens.MORPHINE > 10 ? 10 : dosagens.MORPHINE }} mg</b>
                                     <span> = __ ml</span>
                                 </span>
                             </div>
                         </div>
-
+            
                         <!-- Etomidato (0,3mg/kg): -->
                         <div class="div-conteudo-flex div-margin-bottom">
                             <div class="div-flex-column">
@@ -211,12 +213,12 @@
                             </div>
                             <div class="div-font-size">
                                 <span>
-                                    <b>__ mg</b>
+                                    <b>{{ dosagens.ETOMIDATE > 20 ? 20 :  dosagens.ETOMIDATE}} mg</b>
                                     <span> = __ ml</span>
                                 </span>
                             </div>
                         </div>
-
+            
                         <!-- Propofol (1mg/kg): -->
                         <div class="div-conteudo-flex div-margin-bottom">
                             <div class="div-flex-column">
@@ -227,12 +229,12 @@
                             </div>
                             <div class="div-font-size">
                                 <span>
-                                    <b>__ mg</b>
+                                    <b>{{ dosagens.PROPOFOL }} mg</b>
                                     <span> = __ ml</span>
                                 </span>
                             </div>
                         </div>
-
+            
                         <!-- Rocurônio (1mg/kg): -->
                         <div class="div-conteudo-flex div-margin-bottom">
                             <div class="div-flex-column">
@@ -243,12 +245,12 @@
                             </div>
                             <div class="div-font-size">
                                 <span>
-                                    <b>__ mg</b>
+                                    <b>{{ dosagens.ROCURONIUM }} mg</b>
                                     <span> = __ ml</span>
                                 </span>
                             </div>
                         </div>
-
+            
                         <!-- Suxametônio (1,5mg/kg): -->
                         <div class="div-conteudo-flex div-margin-bottom">
                             <div class="div-flex-column">
@@ -260,12 +262,12 @@
                             </div>
                             <div class="div-font-size">
                                 <span>
-                                    <b>__ mg</b>
+                                    <b>{{ dosagens.SUXAMETHONIUM > 100 ? 100 : dosagens.SUXAMETHONIUM  }} mg</b>
                                     <span> = __ ml</span>
                                 </span>
                             </div>
                         </div>
-
+            
                         <!-- Neostigmina (0,05mg/kg): -->
                         <div class="div-conteudo-flex div-margin-bottom">
                             <div class="div-flex-column">
@@ -277,7 +279,7 @@
                             </div>
                             <div class="div-font-size">
                                 <span>
-                                    <b>__ mg</b>
+                                    <b>{{ dosagens.NEOSTIGMINE  > 2.5 ? 2.5 : dosagens.NEOSTIGMINE }} mg</b>
                                     <span> = __ ml</span>
                                 </span>
                             </div>
@@ -525,7 +527,7 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__mg</b>
+                                <b>{{ dosagens.ADRENALINE_IV_IO > 1 ? 1 : dosagens.ADRENALINE_IV_IO}} mg</b>
                                 <span> = __ml</span>
                             </span>
                         </div>
@@ -547,7 +549,7 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__mg</b>
+                                <b>{{ dosagens.ADRENALINE_ET > 2.5 ? 2.5 : dosagens.ADRENALINE_ET}}mg</b>
                                 <span> = __ml</span>
                             </span>
                         </div>
@@ -569,7 +571,8 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__mg</b>
+                                //TODO
+                                <b>{{ dosagens.ADRENALINE_IM > 0.5 ? 0.5 : dosagens.ADRENALINE_IM }}mg</b>
                                 <span> = __ml</span>
                             </span>
                         </div>
@@ -582,7 +585,8 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__mg</b>
+                                //TODO
+                                <b>{{ dosagens.ATROPINE > 0.5 ? 0.5 : dosagens.ATROPINE }}mg</b>
                                 <span> = __ml</span>
                             </span>
                         </div>
@@ -595,6 +599,9 @@
                         </div>
                         <div class="div-font-size">
                             <span>
+
+                                <b>{{ dosagens.AMIODARONE > 300 ? 300 : dosagens.AMIODARONE }}mg</b>
+
                                 <b>__mg</b>
                                 <span> = __ml</span>
                             </span>
@@ -621,7 +628,9 @@
                         </div>
                         <div class="div-font-size">
                             <span>
+                                <b>{{ dosagens.AMIODARONE > 300 ? 300 : dosagens.AMIODARONE }}mg</b>
                                 <b>__mg</b>
+
                                 <span> = __ml</span>
                             </span>
                         </div>
@@ -634,7 +643,7 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__mg</b>
+                                <b>{{ dosagens.ATP   > 20 ? 20 : dosagens.ATP }}mg</b>
                                 <span> = __ml</span>
                             </span>
                         </div>
@@ -646,7 +655,7 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__ ml</b>
+                                <b>{{ dosagens.CALCIUM_GLUCONATE  > 20 ? 20 : dosagens.CALCIUM_GLUCONATE  }} ml</b>
                                 <span> = __ml</span>
                             </span>
                         </div>
@@ -661,7 +670,7 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__ ml</b>
+                                <b>{{ dosagens.DEXTROSE_D10  > 250 ? 250 : dosagens.DEXTROSE_D10}}ml</b>
                                 <span> = __ml</span>
                             </span>
                         </div>
@@ -676,7 +685,7 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__ ml</b>
+                                <b>{{ dosagens.DEXTROSE_D50 > 50 ? 50 : dosagens.DEXTROSE_D50 }} ml</b>
                                 <span> = __ml</span>
                             </span>
                         </div>
@@ -691,7 +700,7 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__ mg</b>
+                                <b>{{ dosagens.FLUMAZENIL > 0.2 ? 0.2 : dosagens.FLUMAZENIL }} mg</b>
                                 <span> = __ ml</span>
                             </span>
                         </div>
@@ -705,7 +714,7 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__ mg</b>
+                                <b>{{ dosagens.LIGNOCAINE }} mg</b>
                                 <span> = __ ml</span>
                             </span>
                         </div>
@@ -720,7 +729,7 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__ mg</b>
+                                <b>{{ dosagens.LORAZEPAM > 4 ? 4 : dosagens.LORAZEPAM }} mg</b>
                                 <span> = __ ml</span>
                             </span>
                         </div>
@@ -735,7 +744,7 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__ mg</b>
+                                <b>{{ dosagens.MIDAZOLAM > 5 ? 5 : dosagens.MIDAZOLAM }} mg</b>
                                 <span> = __ ml</span>
                             </span>
                         </div>
@@ -751,7 +760,7 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__ mg</b>
+                                <b>{{ dosagens.MgSO4_50 > 2000 ? 2000 : dosagens.MgSO4_50  }} mg</b>
                                 <span> = __ ml</span>
                             </span>
                         </div>
@@ -765,7 +774,7 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__ mg</b>
+                                <b>{{ dosagens.NALOXONE > 2 ? 2 : dosagens.NALOXONE  }} mg</b>
                                 <span> = __ ml</span>
                             </span>
                         </div>
@@ -780,7 +789,7 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__ ml</b>
+                                <b>{{ dosagens.NAHCO3  > 100 ? 100 : dosagens.NAHCO3 }} ml</b>
                                 <span> = __ ml</span>
                             </span>
                         </div>
@@ -796,7 +805,7 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-                                <b>__ mg</b>
+                                <b>{{ dosagens.PROCANAMIDE > 1000 ? 1000 : dosagens.PROCANAMIDE }} mg</b>
                                 <span> = __ ml</span>
                             </span>
                         </div>
