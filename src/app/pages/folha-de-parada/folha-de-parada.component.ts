@@ -382,7 +382,6 @@ calcularIdade(){
     this.mascaraLaringea = objetoEncontrado?.label
   }
 
-
   private encontrarFaixaDePeso() {
     debugger
     if (this.peso >= 3 && this.peso <= 5) return 1;
