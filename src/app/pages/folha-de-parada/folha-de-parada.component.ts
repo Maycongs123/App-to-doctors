@@ -1,3 +1,4 @@
+import { StickyDirection } from '@angular/cdk/table';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,7 +7,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./folha-de-parada.component.scss']
 })
 export class FolhaDeParadaComponent {
-  bolsaValvaRessuscitacao = [
+  bolsaValvaRessuscitacao!: any;
+  mascaraO2!: any;
+  canulaOroFaringea!: any;
+  laminaLaringoscopio!: any;
+  canulaTraqueal!: any;
+  comprimentoCanulaTraqueal!: any;
+  fioGuia!: any;
+  sondaAspiracao!: any;
+  manguitoPA!: any;
+  cateterEV!: any;
+  intraOssea!: any;
+  sondaNasogastrica!: any;
+  sondaUrinaria!: any;
+  pasDesfibrilacoe!:any;
+  drenoToracico!: any;
+  mascaraLaringea!: any;
+  peso!: any;
+
+  bolsasValvaRessuscitacao = [
     {value: 1, label: "Lactente"},
     {value: 2, label: "Lactente/criança"},
     {value: 3, label: "Lactente/criança"},
@@ -18,7 +37,7 @@ export class FolhaDeParadaComponent {
     {value: 9, label: "Adulto"}
   ];
 
-  mascaraO2 = [
+  mascarasO2 = [
     {value: 1, label: "Neonatal"},
     {value: 2, label: "Neonatal"},
     {value: 3, label: "Neonatal"},
@@ -31,7 +50,7 @@ export class FolhaDeParadaComponent {
   ];
 
 
-  canulaOroFaringea = [
+  canulasOroFaringea = [
     {value: 1, label: "0"},
     {value: 2, label: "0-1"},
     {value: 3, label: "1"},
@@ -43,7 +62,7 @@ export class FolhaDeParadaComponent {
     {value: 9, label: "3 ou +"}
   ];
 
-  laminaLaringoscopio = [
+  laminasLaringoscopio = [
     {value: 1, label: "Reta 0-1"},
     {value: 2, label: "Reta 1"},
     {value: 3, label: "Reta 1"},
@@ -55,7 +74,7 @@ export class FolhaDeParadaComponent {
     {value: 9, label: "Reta 3 ou curva"}
   ];
 
-  canulaTraqueal = [
+  canulasTraqueal = [
     {value: 1, label: "Prematuro 2,5 Termo 3,0 - 3,5 sem cuff"},
     {value: 2, label: "3,5 sem cuff - 3,0 com cuff"},
     {value: 3, label: "3,5 sem cuff - 3,0 com cuff"},
@@ -67,7 +86,7 @@ export class FolhaDeParadaComponent {
     {value: 9, label: "6,5 com cuff"}
   ];
 
-  comprimentoCanulaTraqueal = [
+  comprimentosCanulaTraqueal = [
     {value: 1, label: "3kg: 9-9,5 / 4kg: 9,5-10 / 5kg: 10-10,5"},
     {value: 2, label: "10,5 - 11"},
     {value: 3, label: "10,5 - 11"},
@@ -79,7 +98,7 @@ export class FolhaDeParadaComponent {
     {value: 9, label: "18,5 - 19,5"}
   ];
 
-  fioGuia = [
+  fioGuias = [
     {value: 1, label: "6"},
     {value: 2, label: "6"},
     {value: 3, label: "6"},
@@ -91,7 +110,7 @@ export class FolhaDeParadaComponent {
     {value: 9, label: "14"}
   ];
 
-  sondaAspiracao = [
+  sondasAspiracao = [
     {value: 1, label: "6 - 8"},
     {value: 2, label: "6 - 8"},
     {value: 3, label: "8"},
@@ -103,7 +122,7 @@ export class FolhaDeParadaComponent {
     {value: 9, label: "12"}
   ];
 
-  manguitoPA = [
+  manguitosPA = [
     {value: 1, label: "Neonato/lactente"},
     {value: 2, label: "Neonato/lactente"},
     {value: 3, label: "Neonato/lactente"},
@@ -115,7 +134,7 @@ export class FolhaDeParadaComponent {
     {value: 9, label: "Pequeno adulto"}
   ];
 
-  cateterEV = [
+  catetersEV = [
     {value: 1, label: "22 - 24"},
     {value: 2, label: "22 - 24"},
     {value: 3, label: "22 - 24"},
@@ -127,7 +146,7 @@ export class FolhaDeParadaComponent {
     {value: 9, label: "16 - 20"}
   ];
 
-  intraOssea = [
+  intrasOssea = [
     {value: 1, label: "18/15"},
     {value: 2, label: "18/15"},
     {value: 3, label: "18/15"},
@@ -139,7 +158,7 @@ export class FolhaDeParadaComponent {
     {value: 9, label: "15"}
   ];
 
-  sondaNasogastrica = [
+  sondasNasogastrica = [
     {value: 1, label: "5 - 8"},
     {value: 2, label: "5 - 8"},
     {value: 3, label: "5 - 8"},
@@ -151,7 +170,7 @@ export class FolhaDeParadaComponent {
     {value: 9, label: "16 - 18"}
   ];
 
-  sondaUrinaria = [
+  sondasUrinaria = [
     {value: 1, label: "5"},
     {value: 2, label: "5 - 8"},
     {value: 3, label: "5 - 8"},
@@ -163,7 +182,7 @@ export class FolhaDeParadaComponent {
     {value: 9, label: "16 - 18"}
   ];
 
-  pasDesfibrilacao = [
+  pasDesfibrilacoes = [
     {value: 1, label: "Pás de lactente <1 ano"},
     {value: 2, label: "Pás de lactente <1 ano"},
     {value: 3, label: "Pás de lactente <1 ano ou 10kg"},
@@ -175,7 +194,7 @@ export class FolhaDeParadaComponent {
     {value: 9, label: "Pás de adulto"}
   ];
 
-  drenoToracico = [
+  drenosToracico = [
     {value: 1, label: "10"},
     {value: 2, label: "10 - 12"},
     {value: 3, label: "10 - 12"},
@@ -187,7 +206,7 @@ export class FolhaDeParadaComponent {
     {value: 9, label: "32 - 38"}
   ];
 
-  mascaraLaringea = [
+  mascarasLaringea = [
     {value: 1, label: "1"},
     {value: 2, label: "1 - 1,5"},
     {value: 3, label: "1,5"},
@@ -197,5 +216,155 @@ export class FolhaDeParadaComponent {
     {value: 7, label: "2 - 2,5"},
     {value: 8, label: "2,5"},
     {value: 9, label: "3"}
-  ];
+  ];  
+
+  calcularSoma(){    
+    this.calcularTeste()
+  }
+
+
+  calcularTeste(){
+    debugger
+    
+    this.calcularBolsaValvaRessuscitacao();
+    this.calcularMascaraO2()
+    this.calcularCanulaOroFaringea()
+    this.calcularLaminaLaringoscopio()
+    this.calcularCanulaTraqueal()
+    this.calcularComprimentoCanulaTraqueal()
+    this.calcularFioGuia()
+    this.calcularSondaAspiracao()
+    this.calcularManguitoPA()
+    this.calcularCateterEV()
+    this.calcularIntraOssea()
+    this.calcularSondaNasogastrica()
+    this.calcularSondaUrinaria()
+    this.calcularPasDesfibrilacoes()
+    this.calcularDrenosToracico()
+    this.calcularMascaraLaringea()
+
+  }
+
+  // private encontrarLabelComFaixaDePeso(array: any[], faixa: any): any {
+  //   const itemEncontrado = array.find(item => item.value === faixa);
+  //   return itemEncontrado ? itemEncontrado.label : '';
+  // }
+
+  // private preencherVariavelComFaixaDePeso(nomeVariavel: any, array: any[]) {
+  //   const faixa = this.encontrarFaixaDePeso();
+  //   this[nomeVariavel] = this.encontrarLabelComFaixaDePeso(array, faixa);
+  // }
+  
+
+  calcularBolsaValvaRessuscitacao() {
+    const faixa = this.encontrarFaixaDePeso();
+    const objetoEncontrado = this.bolsasValvaRessuscitacao.find(item => item.value === faixa);
+    this.bolsaValvaRessuscitacao = objetoEncontrado?.label
+  }
+
+  calcularMascaraO2() {
+    const faixa = this.encontrarFaixaDePeso();    
+    const objetoEncontrado = this.mascarasO2.find(item => item.value === faixa);
+    this.mascaraO2 = objetoEncontrado?.label  
+  }
+
+  calcularCanulaOroFaringea() {
+    const faixa = this.encontrarFaixaDePeso();
+    const objetoEncontrado = this.canulasOroFaringea.find(item => item.value === faixa);
+    this.canulaOroFaringea = objetoEncontrado?.label
+  }
+
+  calcularLaminaLaringoscopio() {
+    const faixa = this.encontrarFaixaDePeso();
+    const objetoEncontrado = this.laminasLaringoscopio.find(item => item.value === faixa);
+    this.laminaLaringoscopio = objetoEncontrado?.label
+  }
+ 
+  calcularCanulaTraqueal() {
+    const faixa = this.encontrarFaixaDePeso();
+    const objetoEncontrado = this.canulasTraqueal.find(item => item.value === faixa);
+    this.canulaTraqueal = objetoEncontrado?.label
+  }
+  
+  calcularComprimentoCanulaTraqueal() {
+    const faixa = this.encontrarFaixaDePeso();
+    const objetoEncontrado = this.comprimentosCanulaTraqueal.find(item => item.value === faixa);
+    this.comprimentoCanulaTraqueal = objetoEncontrado?.label
+  }
+  
+  calcularFioGuia() {
+    const faixa = this.encontrarFaixaDePeso();
+    const objetoEncontrado = this.fioGuias.find(item => item.value === faixa);
+    this.fioGuia = objetoEncontrado?.label
+  }
+  
+  calcularSondaAspiracao() {
+    const faixa = this.encontrarFaixaDePeso();
+    const objetoEncontrado = this.sondasAspiracao.find(item => item.value === faixa);
+    this.sondaAspiracao = objetoEncontrado?.label
+  }
+  
+  calcularManguitoPA() {
+    const faixa = this.encontrarFaixaDePeso();
+    const objetoEncontrado = this.manguitosPA.find(item => item.value === faixa);
+    this.manguitoPA = objetoEncontrado?.label
+  }
+ 
+  calcularCateterEV() {
+    const faixa = this.encontrarFaixaDePeso();
+    const objetoEncontrado = this.catetersEV.find(item => item.value === faixa);
+    this.cateterEV = objetoEncontrado?.label
+  }
+  
+  calcularIntraOssea() {
+    const faixa = this.encontrarFaixaDePeso();
+    const objetoEncontrado = this.intrasOssea.find(item => item.value === faixa);
+    this.intraOssea = objetoEncontrado?.label
+  }
+
+  calcularSondaNasogastrica() {
+    const faixa = this.encontrarFaixaDePeso();
+    const objetoEncontrado = this.sondasNasogastrica.find(item => item.value === faixa);
+    this.sondaNasogastrica = objetoEncontrado?.label
+  }
+
+  calcularSondaUrinaria() {
+    const faixa = this.encontrarFaixaDePeso();
+    const objetoEncontrado = this.sondasUrinaria.find(item => item.value === faixa);
+    this.sondaUrinaria = objetoEncontrado?.label
+  }
+
+  calcularPasDesfibrilacoes() {
+    const faixa = this.encontrarFaixaDePeso();
+    const objetoEncontrado = this.pasDesfibrilacoes.find(item => item.value === faixa);
+    this.pasDesfibrilacoe = objetoEncontrado?.label
+  }
+  
+  calcularDrenosToracico() {
+    const faixa = this.encontrarFaixaDePeso();
+    const objetoEncontrado  = this.drenosToracico.find(item => item.value === faixa);
+    this.drenoToracico = objetoEncontrado?.label
+  }
+
+  calcularMascaraLaringea() {
+    const faixa = this.encontrarFaixaDePeso();
+    const objetoEncontrado = this.mascarasLaringea.find(item => item.value === faixa);
+    this.mascaraLaringea = objetoEncontrado?.label
+  }
+
+
+  private encontrarFaixaDePeso() {
+    debugger
+    if (this.peso >= 3 && this.peso <= 5) return 1;
+    if (this.peso >= 6 && this.peso <= 7) return 2;
+    if (this.peso >= 8 && this.peso <= 9) return 3;
+    if (this.peso >= 10 && this.peso <= 11) return 4;
+    if (this.peso >= 12 && this.peso <= 14) return 5;
+    if (this.peso >= 15 && this.peso <= 18) return 6;
+    if (this.peso >= 19 && this.peso <= 23) return 7;
+    if (this.peso >= 24 && this.peso <= 29) return 8;
+    if (this.peso >= 30 && this.peso <= 36) return 9;
+
+    return 0;  
+  }
 }
