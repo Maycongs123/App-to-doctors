@@ -2,22 +2,22 @@
     <div class="div-header" id="header-lista">
         <div class="div-tipo-medicacao">
             <span class="span-font-tipo">
-                <!-- {{item.nome}} -->
+                Folha de Parada
             </span>
         </div>
         <div class="div-tipo-medicacao-1">
-            <span class="span-font-tipo-2" style="cursor:pointer">
+            <!-- <span class="span-font-tipo-2" style="cursor:pointer">
                 Página Inicial
-            </span>
-            <mat-icon class="icon-style-2">
+            </span> -->
+            <!-- <mat-icon class="icon-style-2">
                 arrow_forward_ios
-            </mat-icon>
+            </mat-icon> -->
             <span class="span-font-tipo-2" style="cursor:pointer">
                 <!-- {{item.tipo}} -->
             </span>
-            <mat-icon class="icon-style-2">
+            <!-- <mat-icon class="icon-style-2">
                 arrow_forward_ios
-            </mat-icon>
+            </mat-icon> -->
             <span class="span-font-tipo-2">
                 <!-- {{item.nome}} -->
             </span>
@@ -35,7 +35,7 @@
                     <div class="div-conteudo-medicacao-4" style="line-height: 25px;">
                         <mat-form-field class="matFormCalculadora">
                             <mat-label>Peso(Kg)</mat-label>
-                            <input matInput type="number" [step]="0.01" (input)="calcularSoma()" [(ngModel)]="peso">
+                            <input matInput type="number" [step]="0.01" (input)="calcularDosagens()" [(ngModel)]="peso">
                         </mat-form-field>
                         <mat-form-field class="matFormCalculadora">
                             <mat-label>Idade</mat-label>
@@ -570,8 +570,7 @@
                             <span>Dose máxima = Pré-púbere: 0.3mg/Adolescente: 0.5mg</span>
                         </div>
                         <div class="div-font-size">
-                            <span>
-                                //TODO
+                            <span>                                
                                 <b>{{ dosagens.ADRENALINE_IM > 0.5 ? 0.5 : dosagens.ADRENALINE_IM }}mg</b>
                                 <span> = __ml</span>
                             </span>
@@ -584,8 +583,7 @@
                             <span>Dose mínima = 0,1mg, dose máx = Criança: 0,5mg/Adolescente: 1mg</span>
                         </div>
                         <div class="div-font-size">
-                            <span>
-                                //TODO
+                            <span>                                
                                 <b>{{ dosagens.ATROPINE > 0.5 ? 0.5 : dosagens.ATROPINE }}mg</b>
                                 <span> = __ml</span>
                             </span>
@@ -599,42 +597,12 @@
                         </div>
                         <div class="div-font-size">
                             <span>
-
-                                <b>{{ dosagens.AMIODARONE > 300 ? 300 : dosagens.AMIODARONE }}mg</b>
-
-                                <b>__mg</b>
+                                <b>{{ dosagens.AMIODARONE > 300 ? 300 : dosagens.AMIODARONE }}mg</b>                                
                                 <span> = __ml</span>
                             </span>
                         </div>
-                    </div>
-                    <div class="div-conteudo-flex div-margin-bottom">
-                        <div class="div-flex-column">
-                            <span> <b>ATP </b> (0,167mg/kg):</span>
-                            <span> Preparação = 10mg/ml</span>
-                            <span>Dose máxima = 20mg</span>
-                        </div>
-                        <div class="div-font-size">
-                            <span>
-                                <b>__mg</b>
-                                <span> = __ml</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="div-conteudo-flex div-margin-bottom">
-                        <div class="div-flex-column">
-                            <span> <b>ATP </b> (0,167mg/kg):</span>
-                            <span> Preparação = 10mg/ml</span>
-                            <span>Dose máxima = 20mg</span>
-                        </div>
-                        <div class="div-font-size">
-                            <span>
-                                <b>{{ dosagens.AMIODARONE > 300 ? 300 : dosagens.AMIODARONE }}mg</b>
-                                <b>__mg</b>
-
-                                <span> = __ml</span>
-                            </span>
-                        </div>
-                    </div>
+                    </div>                
+                  
                     <div class="div-conteudo-flex div-margin-bottom">
                         <div class="div-flex-column">
                             <span> <b>ATP </b> (0,167mg/kg):</span>

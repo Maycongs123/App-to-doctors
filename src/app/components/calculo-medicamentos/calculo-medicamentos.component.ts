@@ -149,7 +149,7 @@ export class CalculoMedicamentosComponent implements OnInit{
       pesoLimitado = (this.idade * 2) + 8;
       
       for (let i = 0; i < this.dadosMedicamentos.length; i++) {    
-        const resultado = (pesoLimitado * this.dosagemMgKg* this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses * quantidadeMgCalculoRenal);
+        const resultado = (pesoLimitado * this.dosagemMgKg * this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses * quantidadeMgCalculoRenal);
         this.correcaoMl = resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
         const key = `${i}`;
         this.resultadoMgKg[key] = {
