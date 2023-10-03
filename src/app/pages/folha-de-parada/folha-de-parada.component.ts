@@ -243,18 +243,7 @@ export class FolhaDeParadaComponent {
     this.calcularDrenosToracico()
     this.calcularMascaraLaringea()
 
-  }
-
-  // private encontrarLabelComFaixaDePeso(array: any[], faixa: any): any {
-  //   const itemEncontrado = array.find(item => item.value === faixa);
-  //   return itemEncontrado ? itemEncontrado.label : '';
-  // }
-
-  // private preencherVariavelComFaixaDePeso(nomeVariavel: any, array: any[]) {
-  //   const faixa = this.encontrarFaixaDePeso();
-  //   this[nomeVariavel] = this.encontrarLabelComFaixaDePeso(array, faixa);
-  // }
-  
+  }  
 
   calcularBolsaValvaRessuscitacao() {
     const faixa = this.encontrarFaixaDePeso();
