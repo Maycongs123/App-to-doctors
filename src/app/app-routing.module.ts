@@ -18,10 +18,12 @@ import { CalculoMedicamentosComponent } from './components/calculo-medicamentos/
 import { AdministradorComponent } from './pages/administrador/administrador.component';
 import { OutrosMedicamentosComponent } from './pages/outros-medicamentos/outros-medicamentos.component';
 import { CalculoRegraDos9Component } from './pages/calculo-regra-dos-nove/calculo-regra-dos-nove.component';
+import { FolhaDeParadaComponent } from './pages/folha-de-parada/folha-de-parada.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
   {path:"pesquisa", component:PesquisarComponent},
+  {path:"folha-parada", component:FolhaDeParadaComponent},
   {path:"lista-antibiotico", component:AntibioticosComponent},
   {path:"lista-anti-convulsivantes", component:AntiConvulsivantesComponent},
   {path:"lista-anti-inflamatorio", component:AntiInflamatorioComponent},
