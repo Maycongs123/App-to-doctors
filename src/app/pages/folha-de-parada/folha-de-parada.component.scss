@@ -1,6 +1,7 @@
 .div-body{
     background:#f8f9fa;
-    margin: 0px;
+    margin: 0px;  
+    
 }
 
 .div-header{
@@ -10,6 +11,7 @@
 .div-tipo-medicacao{
     display: flex;
     justify-content: center;
+    
 }
 
 .div-tipo-medicacao-1{
@@ -36,7 +38,7 @@
 .div-conteudo-medicacao{
     display: flex;
     justify-content: space-around;
-    padding: 3rem ;
+    //padding: 3rem ;
     background: #fff;
     @media (max-width: 760px){
         display: grid;
@@ -68,6 +70,7 @@
 
 .div-conteudo-flex{
     display: flex;
+    justify-content: space-between;
 }
 
 .div-conteudo-grid{

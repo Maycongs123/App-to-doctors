@@ -12,7 +12,7 @@
             <mat-icon class="icon-style-2">
                 arrow_forward_ios
             </mat-icon>
-            <span class="span-font-tipo-2" style="cursor:pointer" >
+            <span class="span-font-tipo-2" style="cursor:pointer">
                 <!-- {{item.tipo}} -->
             </span>
             <mat-icon class="icon-style-2">
@@ -24,113 +24,585 @@
         </div>
     </div>
 
+
     <div class="div-conteudo-medicacao">
-       <div class="div-left">
-          <div style="margin-bottom: 1rem;">
-            <div class="div-shadow" >
-              <span class="span-style-2">
-                  Apresentação Disponível
-              </span>
-              <div class="div-conteudo-medicacao-3" style="line-height: 25px;" >
-                  <div class="div-conteudo-flex">
-                      <mat-icon class="icon-style">
-                          arrow_forward_ios
-                      </mat-icon>
-                  </div>
-                     <div class="div-conteudo-grid">
-                         <span style="margin-bottom: 1rem;">
-                              <!-- {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml'}} -->
-                         </span>
-                     </div>
-                 </div>
-             </div>
-          </div>
-          <div class="div-shadow" style="margin-bottom: 2rem;">
-            <div>
-                <span class="span-style-2">
-                    Cálculo Medicamento
-                </span>
+
+
+
+        <div class="div-left">
+            <div style="margin-bottom: 1rem;">
+                <div class="div-shadow">
+                    <span class="span-style-2">
+                        Apresentação Disponível
+                    </span>
+                    <div class="div-conteudo-medicacao-3" style="line-height: 25px;">
+                        <div class="div-conteudo-flex">
+                            <mat-icon class="icon-style">
+                                arrow_forward_ios
+                            </mat-icon>
+                        </div>
+                        <div class="div-conteudo-grid">
+                            <span style="margin-bottom: 1rem;">
+                                <!-- {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml'}} -->
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-           
-        </div>
-       </div>
-        <div class="div-right" >
-            <div class="div-shadow" style="margin-bottom: 1rem;" >
-              <span class="span-style-2">
-                Indicação
-              </span>
-              <div class="div-conteudo-medicacao-3" style="display: grid;" *>
-                  <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
-                      <mat-icon class="icon-style icon-style-done">
-                          done
-                      </mat-icon>
-                      <span >
-                        <!-- {{dados}} -->
-                      </span>
-                  </div>
-              </div>
-            </div>
-            <div class="div-shadow" style="margin-bottom: 1rem;">
-              <span class="span-style-2">
-                Dose
-              </span>
-              <div class="div-conteudo-medicacao-3" style="display: grid;" >
-                  <div class="div-conteudo-flex" style="margin-bottom: 1rem; display: grid;">
-          
-                  </div>
-              </div>
-          </div>
-          <div class="div-shadow" style="margin-bottom: 1rem;">
-            <span class="span-style-2">
-              Preparo / Diluição
-            </span>
-            <div class="div-conteudo-medicacao-3" style="display: grid;" >
-                <div class="div-conteudo-flex" style="margin-bottom: 1rem;">                  
-                    <span >
-                      <!-- {{dados}} -->
+
+
+            
+
+
+
+                <div class="div-shadow" style="margin-bottom: 2rem; height: 100%;">
+                    <div class="div-shadow" style="margin-bottom: 2rem; height: 100%;">
+
+
+                        <div style="margin-bottom: 2rem;">
+                            <span class="span-style-2">
+                                VIA AÉREA E DESFIB
+                            </span>
+                            <div class="div-conteudo-medicacao-3" style="display: grid;">
+                                <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px; ">
+                                    <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                                        <span>
+                                            <b>Tamanho do TE: </b>
+                                        </span>
+                                    </div>
+                                    <div style="font-size: 11.5px;">
+                                        <span>
+                                            <span> --</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px; ">
+                                    <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                                        <span>
+                                            <b>Profundidade do TE: </b>
+                                        </span>
+                                    </div>
+                                    <div style="font-size: 11.5px;">
+                                        <span>
+                                            <span> --</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px; ">
+                                    <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                                        <span>
+                                            <b>Lâmina de laringoscopia: </b>
+                                        </span>
+                                    </div>
+                                    <div style="font-size: 11.5px;">
+                                        <span>
+                                            <span> --</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px; ">
+                                    <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                                        <span>
+                                            <b>Tamanho da LMA: </b>
+                                        </span>
+                                    </div>
+                                    <div style="font-size: 11.5px;">
+                                        <span>
+                                            <span> --</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px; ">
+                                    <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                                        <span>
+                                            <b>Desfibrilação (2-4J/kg): </b>
+                                        </span>
+                                    </div>
+                                    <div style="font-size: 11.5px;">
+                                        <span>
+                                            <span> --</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px; ">
+                                    <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                                        <span>
+                                            <b>Sincronização.Cardioversão (0,5→1→2J/kg): </b>
+                                        </span>
+                                    </div>
+                                    <div style="font-size: 11.5px;">
+                                        <span>
+                                            <span> --</span>
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>    
+                <div class="div-shadow" style="margin-bottom: 2rem; height: 100%;">
+                    <span class="span-style-2">
+                        MEDICAMENTOS PARA INTUBAÇÃO
                     </span>
+                    <div class="div-conteudo-medicacao-3" style="display: grid;">
+                        <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px; ">
+                            <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                                <span>
+                                    <b>Cetamina </b> (1mg/kg):
+                                </span>
+                                <span> Preparação=10mg/ml</span>
+                            </div>
+                            <div style="font-size: 11.5px;">
+                                <span>
+                                    <b>__ mg</b>
+                                    <span> = __ ml</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Midazolam (0,1mg/kg): -->
+                        <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                            <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                                <span>
+                                    <b>Midazolam </b> (0,1mg/kg):
+                                </span>
+                                <span> Preparação=5mg/ml</span>
+                                <span> Dose máxima = 5mg</span>
+                            </div>
+                            <div style="font-size: 11.5px;">
+                                <span>
+                                    <b>__ mg</b>
+                                    <span> = __ ml</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Fentanil (1micrograma/kg): -->
+                        <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                            <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                                <span>
+                                    <b>Fentanil </b> (1 micrograma/kg):
+                                </span>
+                                <span> Preparação=50 micrograma/ml</span>
+                                <span> Dose máxima = 100 micrograma</span>
+                            </div>
+                            <div style="font-size: 11.5px;">
+                                <span>
+                                    <b>__ micrograma</b>
+                                    <span> = __ ml</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Morfina (0,1mg/kg): -->
+                        <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                            <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                                <span>
+                                    <b>Morfina </b> (0,1mg/kg):
+                                </span>
+                                <span> Preparação=15mg/ml</span>
+                                <span> Dose máxima = 10mg</span>
+                            </div>
+                            <div style="font-size: 11.5px;">
+                                <span>
+                                    <b>__ mg</b>
+                                    <span> = __ ml</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Etomidato (0,3mg/kg): -->
+                        <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                            <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                                <span>
+                                    <b>Etomidato </b> (0,3mg/kg):
+                                </span>
+                                <span> Preparação=2mg/ml</span>
+                                <span> Dose máxima = 20mg</span>
+                            </div>
+                            <div style="font-size: 11.5px;">
+                                <span>
+                                    <b>__ mg</b>
+                                    <span> = __ ml</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Propofol (1mg/kg): -->
+                        <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                            <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                                <span>
+                                    <b>Propofol </b> (1mg/kg):
+                                </span>
+                                <span> Preparação=10mg/ml</span>
+                            </div>
+                            <div style="font-size: 11.5px;">
+                                <span>
+                                    <b>__ mg</b>
+                                    <span> = __ ml</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Rocurônio (1mg/kg): -->
+                        <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                            <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                                <span>
+                                    <b>Rocurônio </b> (1mg/kg):
+                                </span>
+                                <span> Preparação=10mg/ml</span>
+                            </div>
+                            <div style="font-size: 11.5px;">
+                                <span>
+                                    <b>__ mg</b>
+                                    <span> = __ ml</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Suxametônio (1,5mg/kg): -->
+                        <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                            <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                                <span>
+                                    <b>Suxametônio </b> (1,5mg/kg):
+                                </span>
+                                <span> Preparação=50mg/ml</span>
+                                <span> Dose máxima = 100mg</span>
+                            </div>
+                            <div style="font-size: 11.5px;">
+                                <span>
+                                    <b>__ mg</b>
+                                    <span> = __ ml</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Neostigmina (0,05mg/kg): -->
+                        <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                            <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                                <span>
+                                    <b>Neostigmina </b> (0,05mg/kg):
+                                </span>
+                                <span> Preparação=2.5mg/ml</span>
+                                <span> Dose máxima=2.5mg</span>
+                            </div>
+                            <div style="font-size: 11.5px;">
+                                <span>
+                                    <b>__ mg</b>
+                                    <span> = __ ml</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="div-right">
+            <div class="div-shadow" style="margin-bottom: 1rem; width: 100%;">
+                <span class="span-style-2">
+                    EMERGÊNCIAS
+                </span>
+                <div class="div-conteudo-medicacao-3" style="display: grid;">
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px; ">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span>
+                                <b>Adrenalina </b>
+                                <span style="text-decoration: underline;">1:10.10000 </span>
+                                <b style="color: red;">IV/IO </b>
+                                (0,01mg/kg):
+                            </span>
+                            <span>
+                                para
+                                <b style="color: red;">PARADA CARDÍACA</b>
+                                (usar formulação 1:10.000, 0,1mg/ml)
+                            </span>
+                            <span>Dose máxima = 1mg</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__mg</b>
+                                <span> = __ml</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px; ">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span>
+                                <b>Adrenalina </b>
+                                <span style="text-decoration: underline;">1:10.10000 </span>
+                                <b style="color: red;">TE </b>
+                                (0,01mg/kg):
+                            </span>
+                            <span>
+                                para
+                                <b style="color: red;">PARADA CARDÍACA</b>
+                                (usar formulação 1:10.000, 0,1mg/ml)
+                            </span>
+                            <span>Dose máxima = 2.5mg</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__mg</b>
+                                <span> = __ml</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px; ">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span>
+                                <b>Adrenalina </b>
+                                <span style="text-decoration: underline;">1:10.10000 </span>
+                                <b style="color: red;">IM </b>
+                                (0,01mg/kg):
+                            </span>
+                            <span>
+                                para
+                                <b style="color: red;">PARADA CARDÍACA</b>
+                                (usar formulação 1:10.000, 0,1mg/ml)
+                            </span>
+                            <span>Dose máxima = Pré-púbere: 0.3mg/Adolescente: 0.5mg</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__mg</b>
+                                <span> = __ml</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px; ">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span> <b>Atropina </b> (0,02mg/kg):</span>
+                            <span> Preparação = 0.6mg/ml</span>
+                            <span>Dose mínima = 0,1mg, dose máx = Criança: 0,5mg/Adolescente: 1mg</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__mg</b>
+                                <span> = __ml</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px; ">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span> <b>Amiodarona </b> (5mg/kg):</span>
+                            <span> Preparação = 50mg/ml</span>
+                            <span>Dose máxima = 300mg</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__mg</b>
+                                <span> = __ml</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px; ">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span> <b>ATP </b> (0,167mg/kg):</span>
+                            <span> Preparação = 10mg/ml</span>
+                            <span>Dose máxima = 20mg</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__mg</b>
+                                <span> = __ml</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px; ">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span> <b>ATP </b> (0,167mg/kg):</span>
+                            <span> Preparação = 10mg/ml</span>
+                            <span>Dose máxima = 20mg</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__mg</b>
+                                <span> = __ml</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px; ">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span> <b>ATP </b> (0,167mg/kg):</span>
+                            <span> Preparação = 10mg/ml</span>
+                            <span>Dose máxima = 20mg</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__mg</b>
+                                <span> = __ml</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span> <b>Gluconato de cálcio 10% </b> (0,5ml/kg):</span>
+                            <span> Dose máxima = 20ml</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__ ml</b>
+                                <span> = __ml</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Dextrose (D10) (2.5ml/kg): -->
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span> <b>Dextrose (D10) </b> (2.5ml/kg):</span>
+                            <span> Bebês e crianças pequenas</span>
+                            <span> Dose máxima = 250ml</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__ ml</b>
+                                <span> = __ml</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Dextrose (D50) (0.5ml/kg): -->
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span> <b>Dextrose (D50) </b> (0.5ml/kg):</span>
+                            <span> Crianças mais velhas e adolescentes</span>
+                            <span> Dose máxima = 50ml</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__ ml</b>
+                                <span> = __ml</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Flumazenil (0,01mg/kg): -->
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span> <b>Flumazenil </b> (0,01mg/kg):</span>
+                            <span> Preparação=0.1mg/ml</span>
+                            <span> Dose máxima=0.2mg</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__ mg</b>
+                                <span> = __ ml</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Lignocaína 2% (1mg/kg): -->
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span> <b>Lignocaína 2% </b> (1mg/kg):</span>
+                            <span> Preparação=20mg/ml</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__ mg</b>
+                                <span> = __ ml</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Lorazepam (0,1mg/kg): -->
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span> <b>Lorazepam </b> (0,1mg/kg):</span>
+                            <span> Preparação=2mg/ml</span>
+                            <span> Dose máxima = 4mg</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__ mg</b>
+                                <span> = __ ml</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Midazolam (0,1mg/kg): -->
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span> <b>Midazolam </b> (0,1mg/kg):</span>
+                            <span> Preparação=5mg/ml</span>
+                            <span> Dose máxima = 5mg</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__ mg</b>
+                                <span> = __ ml</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- MgSO4 50% (40mg/kg): -->
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span> <b>MgSO4 50% </b> (40mg/kg):</span>
+                            <span> Preparação=2500mg/5ml</span>
+                            <span> Diluir 3x com D5 (completar até __ml com D5)</span>
+                            <span> Dose máxima = 2000mg</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__ mg</b>
+                                <span> = __ ml</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                        <div style="display: flex; flex-direction: column; font-size:11.5px">
+                            <span> <b>Naloxona </b> (0,1mg/kg):</span>
+                            <span> Preparação=0.4mg/ml</span>
+                            <span> Dose máxima = 2mg</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__ mg</b>
+                                <span> = __ ml</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- NaHCO3 8,4% (1ml/kg): -->
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span> <b>NaHCO3 8,4% </b> (1ml/kg):</span>
+                            <span> Dose máxima = 100ml</span>
+                            <span> Lento IV mais de 5-10mins</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__ ml</b>
+                                <span> = __ ml</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Procainamida (15mg/kg): -->
+                    <div class="div-conteudo-flex" style="margin-bottom: 1rem; border-bottom: solid 1px;">
+                        <div style="display: flex; flex-direction: column; font-size: 11.5px;">
+                            <span> <b>Procainamida </b> (15mg/kg):</span>
+                            <span> Preparação=100mg/ml</span>
+                            <span> Diluir 5x com D5 (completar até __ml com D5)</span>
+                            <span> Dose máxima = 1000mg</span>
+                        </div>
+                        <div style="font-size: 11.5px;">
+                            <span>
+                                <b>__ mg</b>
+                                <span> = __ ml</span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="div-shadow" style="margin-bottom: 1rem;">
-          <span class="span-style-2">
-            Administração
-          </span>
-          <div class="div-conteudo-medicacao-3" style="display: grid;" >
-              <div class="div-conteudo-flex" style="margin-bottom: 1rem;">                 
-                  <span >
-                    <!-- {{dados}} -->
-                  </span>
-              </div>
-          </div>
-      </div>
-      <div class="div-shadow" style="margin-bottom: 1rem;">
-        <span class="span-style-2">
-            Contra Indicação
-        </span>
-        <div class="div-conteudo-medicacao-3" style="display: grid;" >
-            <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
-                <span >
-                  <!-- {{dados}} -->
-                </span>
-            </div>
-        </div>
-    </div>        
-    <div class="div-shadow" style="margin-bottom: 1rem;">
-      <span class="span-style-2">
-        Uso Durante a Gestação
-      </span>
-      <div class="div-conteudo-medicacao-3" style="display: grid;" >
-          <div class="div-conteudo-flex" style="margin-bottom: 1rem;">
-         
-              <span >
-                <!-- {{dados}} -->
-              </span>
-          </div>
-        </div>
-      </div>
-      </div>
     </div>
 </div>
-
