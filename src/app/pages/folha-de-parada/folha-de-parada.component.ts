@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 export class FolhaDeParadaComponent {
 
 peso!:number;
+pesoPrevisto!:number
 dosagens:any = {};
 idade!: number;
 bolsaValvaRessuscitacao!: any;
@@ -259,8 +260,11 @@ calcularDosagens() {
   } 
 }
 
-
-
+calcularIdade(){
+  if(!this.peso && this.idade){
+    this.pesoPrevisto = (this.idade * 2) + 8;
+  }
+}
  
 
   calcularEquipamentos(){   
@@ -389,12 +393,18 @@ calcularDosagens() {
     if (this.peso >= 15 && this.peso <= 18) return 6;
     if (this.peso >= 19 && this.peso <= 23) return 7;
     if (this.peso >= 24 && this.peso <= 29) return 8;
-    if (this.peso >= 30 && this.peso <= 36) return 9;
+    if (this.peso >= 30) return 9;
 
     return 0;  
 
   }
+
+  back(){
+    history.back()
+  }
+  
 }
+
 
 
 export const MEDICAMENTOS = {
@@ -426,6 +436,8 @@ export const MEDICAMENTOS = {
   SUGAMMADEX: 16,
   MgSO4_50:40, // Verifique se a dosagem está correta
 };
+
+
 
 
 
