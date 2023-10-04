@@ -33,6 +33,8 @@ tamanhoTE!:number;
 profundidadeTE!:number;
 desfibrilacao: number[] = [];
 cardioversaoSinc: number[] = [];
+resultadoCalculo: string = '';
+calcLaminasLaringoscopio: string = '';
 
 ml_ADRENALINE_ET: any;
 ml_ADRENALINE_IM: any;
@@ -62,6 +64,8 @@ ml_SUGAMMADEX: any;
 ml_SUXAMETHONIUM: any;
 
 calcularDosagens() {
+  this.calcularLaminasLaringoscopio(this.peso)
+  this.calcularValorComBaseNoPeso(this.peso)
   this.calcularEquipamentosEmergencia()
   this.calculoMl();
   this.calculoMg();
@@ -92,6 +96,51 @@ calcularDosagens() {
     this.drenoToracico = this.calcularEquipamento(drenosToracico);
     this.mascaraLaringea = this.calcularEquipamento(mascarasLaringea);
   }
+
+  calcularValorComBaseNoPeso(peso: number): string {
+    if (this.peso >= 3 && this.peso <= 5) {
+      return  this.resultadoCalculo = '1';
+    } else if (this.peso >= 6 && this.peso <= 7) {
+      return this.resultadoCalculo ='1-1.5';
+    } else if ((this.peso >= 8 && this.peso <= 9) || (this.peso >= 10 && this.peso <= 11)) {
+      return this.resultadoCalculo = '1.5';
+    } else if (this.peso >= 12 && this.peso <= 14) {
+      return this.resultadoCalculo = '2';
+    } else if (this.peso >= 15 && this.peso <= 18) {
+      return this.resultadoCalculo = '2';
+    } else if (this.peso >= 19 && this.peso <= 23) {
+      return this.resultadoCalculo = '2-2.5';
+    } else if (this.peso >= 24 && this.peso <= 29) {
+      return this.resultadoCalculo = '2.5';
+    } else if (this.peso >= 30 && this.peso <= 36) {
+      return this.resultadoCalculo = '3';
+    } else {
+      return 'Valor não encontrado'; 
+    }
+  }
+
+  calcularLaminasLaringoscopio(peso: number): string {
+    if (this.peso >= 3 && this.peso <= 5) {
+      return this.calcLaminasLaringoscopio = "Reta 0-1";
+    } else if (this.peso >= 6 && this.peso <= 7) {
+      return this.calcLaminasLaringoscopio = "Reta 1";
+    } else if ((this.peso >= 8 && this.peso <= 9) || (this.peso >= 10 && this.peso <= 11)) {
+      return this.calcLaminasLaringoscopio =  "Reta 1";
+    } else if (this.peso >= 12 && this.peso <= 14) {
+      return this.calcLaminasLaringoscopio = "Reta 1";
+    } else if (this.peso >= 15 && this.peso <= 18) {
+      return this.calcLaminasLaringoscopio =  "Reta 2";
+    } else if (this.peso >= 19 && this.peso <= 23) {
+      return this.calcLaminasLaringoscopio =  "Reta 2";
+    } else if (this.peso >= 24 && this.peso <= 29) {
+      return this.calcLaminasLaringoscopio =  "Reta 2 ou curva";
+    } else if (this.peso >= 30 && this.peso <= 36) {
+      return this.calcLaminasLaringoscopio = "Reta 2-3 ou curva";
+    } else {
+      return "Valor não encontrado";
+    }
+  }
+  
 
   calcularEquipamento(equipamento:any) {
     const faixa = this.encontrarFaixaDePeso(); 
