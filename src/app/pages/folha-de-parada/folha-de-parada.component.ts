@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 export class FolhaDeParadaComponent {
 
 peso!:number;
+pesoPrevisto!:number
 dosagens:any = {};
 idade!: number;
 bolsaValvaRessuscitacao!: any;
@@ -287,8 +288,11 @@ calcularDosagens() {
   } 
 }
 
-
-
+calcularIdade(){
+  if(!this.peso && this.idade){
+    this.pesoPrevisto = (this.idade * 2) + 8;
+  }
+}
  
 
   calcularEquipamentos(){   
@@ -405,7 +409,6 @@ calcularDosagens() {
     const objetoEncontrado = this.mascarasLaringea.find(item => item.value === faixa);
     this.mascaraLaringea = objetoEncontrado?.label
   }
-
   calculoMl(){
     var pesoLimitado;
 
@@ -471,8 +474,6 @@ calcularDosagens() {
       const ml_SUGAMMADEX = (this.peso * MEDICAMENTOS.SUGAMMADEX * 1) / PREPARACOES.SUGAMMADEX;
   }
 
-
-
   private encontrarFaixaDePeso() {
     debugger
     if (this.peso >= 3 && this.peso <= 5) return 1;
@@ -483,12 +484,18 @@ calcularDosagens() {
     if (this.peso >= 15 && this.peso <= 18) return 6;
     if (this.peso >= 19 && this.peso <= 23) return 7;
     if (this.peso >= 24 && this.peso <= 29) return 8;
-    if (this.peso >= 30 && this.peso <= 36) return 9;
+    if (this.peso >= 30) return 9;
 
     return 0;  
 
   }
+
+  back(){
+    history.back()
+  }
+  
 }
+
 
 
 export const MEDICAMENTOS = {
@@ -548,6 +555,8 @@ export const PREPARACOES = {
   NEOSTIGMINE: 2.5,
   SUGAMMADEX: 100,
 };
+
+
 
 
 
