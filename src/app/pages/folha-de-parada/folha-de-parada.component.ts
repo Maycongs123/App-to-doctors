@@ -71,11 +71,15 @@ calcularDosagens() {
   this.calculoMg();
   this.calcularProfundidadeTE();
   this.calcularTamanhoTE();
+  this.calcularDesfibrilacao();
+  this.cardioversaoSincronizada();
 } 
 
   calcularIdade(){
     this.calcularTamanhoTE();
     this.calcularProfundidadeTE();
+    this.calcularDesfibrilacao();
+    this.cardioversaoSincronizada()
     
     if(!this.peso && this.idade){
       this.pesoPrevisto = (this.idade * 2) + 8;
@@ -189,14 +193,15 @@ calcularDosagens() {
   calcularDesfibrilacao() {
     const energias = [2, 4, 6, 8, 10];      
     // Calcular as cinco energias e adicioná-las ao array
-    return this.desfibrilacao = energias.map(x => x * this.peso)
+      this.desfibrilacao = energias.map(x => x * this.peso);
   }
 
   cardioversaoSincronizada() {
     const energias = [0.5,1,2];    
     // Calcular as cinco energias e adicioná-las ao array
-    return this.cardioversaoSinc = energias.map(x => x * this.peso)
+    this.cardioversaoSinc = energias.map(x => x * this.peso);
   }
+ 
 
   calculoMl(){
     let pesoCalculo = this.peso;

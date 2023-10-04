@@ -200,71 +200,87 @@
                   </mat-error>
               </div>
             </div>
+            <div>
 
-            <div *ngIf="isRenal">
-              <label>Dados para pacientes com hemodiálise</label><br>
-              <mat-form-field class="div-mat-form-field">
-                  <input type="text" matInput formControlName="hemodialise">
-                  <mat-error *ngIf="formMedicamento.controls.hemodialise.invalid && formMedicamento.controls.hemodialise.touched">
-                    Esse campo é obrigatório.
-                  </mat-error>
-              </mat-form-field>
-            </div>        
-
-            <div *ngIf="isRenal">
-              <label>Clearance de Creatinina (Menor valor para comparação):</label><br>
-              <mat-form-field class="div-mat-form-field">
-                  <input type="number" matInput formControlName="clearanceCreatininaItem1">
-                  <mat-error *ngIf="formMedicamento.controls.clearanceCreatininaItem1.invalid && formMedicamento.controls.clearanceCreatininaItem1.touched">
-                    Esse campo é obrigatório.
-                  </mat-error>
-              </mat-form-field>
-            </div>   
-            
-            <div *ngIf="isRenal">
-              <label>Clearance de Creatinina (Maior valor para comparação):</label><br>
-              <mat-form-field class="div-mat-form-field">
-                <input type="number" matInput formControlName="clearanceCreatininaItem2">
-                <mat-error *ngIf="formMedicamento.controls.clearanceCreatininaItem2.invalid && formMedicamento.controls.clearanceCreatininaItem2.touched">
-                  Esse campo é obrigatório.
-                </mat-error>
-              </mat-form-field>
-            </div>   
-            
-            <div *ngIf="isRenal && isPediatrico">
-              <label>Clearance de Creatinina (Valor intermediário para comparação):</label><br>
-              <mat-form-field class="div-mat-form-field">
-                  <input type="number" matInput formControlName="clearanceCreatininaItem3">
-              </mat-form-field>
-            </div>    
+              <div *ngIf="isRenal" class="div-flex-1">
+                <div>
+                  <label>Dados para pacientes com hemodiálise</label><br>
+                  <mat-form-field class="div-mat-form-field">
+                      <input type="text" matInput formControlName="hemodialise">
+                      <mat-error *ngIf="formMedicamento.controls.hemodialise.invalid && formMedicamento.controls.hemodialise.touched">
+                        Esse campo é obrigatório.
+                      </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>        
+  
+              <div *ngIf="isRenal" class="div-flex-1" >
+                <div style="width: 78%">
+                  <label>Clearance de Creatinina (Menor valor para comparação):</label><br>
+                  <mat-form-field class="div-mat-form-field">
+                      <input type="number" matInput formControlName="clearanceCreatininaItem1">
+                      <mat-error *ngIf="formMedicamento.controls.clearanceCreatininaItem1.invalid && formMedicamento.controls.clearanceCreatininaItem1.touched">
+                        Esse campo é obrigatório.
+                      </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>   
               
-            <div *ngIf="isRenal">
-              <label>Correção de horário (Ex: 'Menor ClCr ou Medio ClCr' - 'Maior ClCr'):</label><br>
+              <div *ngIf="isRenal" class="div-flex-1">
+                <div style="width: 78%">
+                  <label>Clearance de Creatinina (Maior valor para comparação):</label><br>
+                  <mat-form-field class="div-mat-form-field">
+                    <input type="number" matInput formControlName="clearanceCreatininaItem2">
+                    <mat-error *ngIf="formMedicamento.controls.clearanceCreatininaItem2.invalid && formMedicamento.controls.clearanceCreatininaItem2.touched">
+                      Esse campo é obrigatório.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>   
+              
+              <div *ngIf="isRenal && isPediatrico" class="div-flex-1">
+                <div style="width: 78%">
+                  <label>Clearance de Creatinina (Valor intermediário para comparação):</label><br>
+                  <mat-form-field class="div-mat-form-field">
+                      <input type="number" matInput formControlName="clearanceCreatininaItem3">
+                  </mat-form-field>
+                </div>
+              </div>    
+                
+              <div *ngIf="isRenal" class="div-flex-1">
+                <div style="width: 78%">
+                  <label>Correção de horário (Ex: 'Menor ClCr ou Medio ClCr' - 'Maior ClCr'):</label><br>
+                  <mat-form-field class="div-mat-form-field">
+                      <input type="text" matInput formControlName="clearanceCreatininaHorario1">
+                      <mat-error *ngIf="formMedicamento.controls.clearanceCreatininaHorario1.invalid && formMedicamento.controls.clearanceCreatininaHorario1.touched">
+                        Esse campo é obrigatório.
+                      </mat-error>
+                  </mat-form-field>
+                </div>
+              </div> 
+            
+            <div *ngIf="isRenal" class="div-flex-1">
+              <div style="width: 78%">
+                <label>Correção de horário (Ex: < 'Menor ClCr'):</label><br>
+                <mat-form-field class="div-mat-form-field">
+                    <input type="text" matInput formControlName="clearanceCreatininaHorario2">
+                    <mat-error *ngIf="formMedicamento.controls.clearanceCreatininaHorario2.invalid && formMedicamento.controls.clearanceCreatininaHorario2.touched">
+                      Esse campo é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="isRenal && isPediatrico" class="div-flex-1">
+            <div style="width: 78%"> 
+              <label>Correção de horário (Ex: 'Menor ClCr' - 'Medio ClCr'):</label><br>
               <mat-form-field class="div-mat-form-field">
-                  <input type="text" matInput formControlName="clearanceCreatininaHorario1">
-                  <mat-error *ngIf="formMedicamento.controls.clearanceCreatininaHorario1.invalid && formMedicamento.controls.clearanceCreatininaHorario1.touched">
-                    Esse campo é obrigatório.
-                  </mat-error>
+                  <input type="text" matInput formControlName="clearanceCreatininaHorario3">             
               </mat-form-field>
-            </div> 
+            </div>
+          </div>
           
-          <div *ngIf="isRenal">
-            <label>Correção de horário (Ex: < 'Menor ClCr'):</label><br>
-            <mat-form-field class="div-mat-form-field">
-                <input type="text" matInput formControlName="clearanceCreatininaHorario2">
-                <mat-error *ngIf="formMedicamento.controls.clearanceCreatininaHorario2.invalid && formMedicamento.controls.clearanceCreatininaHorario2.touched">
-                  Esse campo é obrigatório.
-                </mat-error>
-            </mat-form-field>
-          </div>
-
-
-          <div *ngIf="isRenal && isPediatrico">
-            <label>Correção de horário (Ex: 'Menor ClCr' - 'Medio ClCr'):</label><br>
-            <mat-form-field class="div-mat-form-field">
-                <input type="text" matInput formControlName="clearanceCreatininaHorario3">             
-            </mat-form-field>
-          </div>
           <mat-action-row>
             <button mat-button color="warn" (click)="prevStep()">Voltar</button>
             <button mat-button color="primary" (click)="nextStep()">Próximo</button>
