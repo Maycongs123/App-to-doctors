@@ -54,6 +54,7 @@ export class CalculoMedicamentosComponent implements OnInit{
   altura: any;
   calculoRenal: any = "Sim";
   correcaoMl: any;
+  correcaoDose: any;
   rediluicao: any;
 
   constructor(
@@ -61,13 +62,13 @@ export class CalculoMedicamentosComponent implements OnInit{
     private renderer: Renderer2,
     private route: ActivatedRoute
     ) {
-    const dados : any = this.route.snapshot.paramMap.get('medicamento');
-    this.item = JSON.parse(decodeURIComponent(dados));
+    const dados : any = this.route.snapshot.paramMap.get('medicamento');    
+    this.item = JSON.parse(decodeURIComponent(dados));  
+    console.log(this.item)  
     this.backgroundColor = this.route.snapshot.paramMap.get('backgroundColor');
     this.soroGlicosado = this.item.quantidadeSoro;
     this.soroGlicosadoReverso = this.item.quantidadeSoro;
     this.atendimento = localStorage.getItem('tipoAtendimento');        
-    console.log(this.item.calculoRenal)
   }
 
   ngOnInit(){          
@@ -147,9 +148,10 @@ export class CalculoMedicamentosComponent implements OnInit{
 
     if(this.idade <= 10){
       pesoLimitado = (this.idade * 2) + 8;
+      debugger
       
       for (let i = 0; i < this.dadosMedicamentos.length; i++) {    
-        const resultado = (pesoLimitado * this.dosagemMgKg * this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses * quantidadeMgCalculoRenal);
+        const resultado = (pesoLimitado * this.dosagemMgKg * this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses * quantidadeMgCalculoRenal) * 1000;
         this.correcaoMl = resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
         const key = `${i}`;
         this.resultadoMgKg[key] = {
@@ -369,8 +371,9 @@ export class CalculoMedicamentosComponent implements OnInit{
 
 
   calculoCorrecao(){   
-    
+    debugger
     this.correcaoMl =  Math.round(parseInt(this.correcaoMl) * 0.9)
+    this.correcaoDose = this.dosagemMgKg * 0.9
     this.rediluicao = (((0.9 * this.dosagemMgKg * this.peso) / 50) - this.correcaoMl).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
 
   }
