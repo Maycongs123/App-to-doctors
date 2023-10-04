@@ -251,8 +251,8 @@ mascarasLaringea = [
 ]; 
 
 calcularDosagens() {
-  this.calcularEquipamentos()
-
+  this.calcularEquipamentos();
+  this.calculoMl();
   this.dosagens.ADRENALINE_IV_IO = this.peso * MEDICAMENTOS.ADRENALINE_IV_IO;
   this.dosagens.ADRENALINE_ET = this.peso * MEDICAMENTOS.ADRENALINE_ET;
   this.dosagens.ADRENALINE_IM = this.peso * MEDICAMENTOS.ADRENALINE_IM;
@@ -410,72 +410,68 @@ calcularIdade(){
     this.mascaraLaringea = objetoEncontrado?.label
   }
   calculoMl(){
-    var pesoLimitado;
+    debugger
 
-    if(this.idade <= 10){
-      pesoLimitado = (this.idade * 2) + 8;
-      const ml_ADRENALINE_IV_IO = (pesoLimitado * MEDICAMENTOS.ADRENALINE_IV_IO * 1) / PREPARACOES.ADRENALINE_IV_IO;
-      const ml_ADRENALINE_ET = (pesoLimitado * MEDICAMENTOS.ADRENALINE_ET * 1) / PREPARACOES.ADRENALINE_ET;
-      const ml_ADRENALINE_IM = (pesoLimitado * MEDICAMENTOS.ADRENALINE_IM * 1) / PREPARACOES.ADRENALINE_IM;
-      const ml_ATROPINE = (pesoLimitado * MEDICAMENTOS.ATROPINE * 1) / PREPARACOES.ATROPINE;
-      const ml_AMIODARONE = (pesoLimitado * MEDICAMENTOS.AMIODARONE * 1) / PREPARACOES.AMIODARONE;
-      const ml_ATP = (pesoLimitado * MEDICAMENTOS.ATP * 1) / PREPARACOES.ATP;
-      const ml_CALCIUM_GLUCONATE = (pesoLimitado * MEDICAMENTOS.CALCIUM_GLUCONATE * 1) / PREPARACOES.CALCIUM_GLUCONATE;
-      const ml_DEXTROSE_D10 = (pesoLimitado * MEDICAMENTOS.DEXTROSE_D10 * 1) / PREPARACOES.DEXTROSE_D10;
-      const ml_DEXTROSE_D50 = (pesoLimitado * MEDICAMENTOS.DEXTROSE_D50 * 1) / PREPARACOES.DEXTROSE_D50;
-      const ml_FLUMAZENIL = (pesoLimitado * MEDICAMENTOS.FLUMAZENIL * 1) / PREPARACOES.FLUMAZENIL;
-      const ml_LIGNOCAINE = (pesoLimitado * MEDICAMENTOS.LIGNOCAINE * 1) / PREPARACOES.LIGNOCAINE;
-      const ml_LORAZEPAM = (pesoLimitado * MEDICAMENTOS.LORAZEPAM * 1) / PREPARACOES.LORAZEPAM;
-      const ml_MIDAZOLAM = (pesoLimitado * MEDICAMENTOS.MIDAZOLAM * 1) / PREPARACOES.MIDAZOLAM;
-      const ml_MgSO4_50 = (pesoLimitado * MEDICAMENTOS.MgSO4_50 * 5) / PREPARACOES.MgSO4_50;
-      //const ml_NALOXONE = (pesoLimitado * MEDICAMENTOS.NALOXONE * 1) / PREPARACOES.NALOXONE;
-      const ml_NAHCO3 = (pesoLimitado * MEDICAMENTOS.NAHCO3 * 1) / PREPARACOES.NAHCO3;
-      const ml_PROCANAMIDE = (pesoLimitado * MEDICAMENTOS.PROCANAMIDE * 1) / PREPARACOES.PROCANAMIDE;
-      const ml_KETAMINE = (pesoLimitado * MEDICAMENTOS.KETAMINE * 1) / PREPARACOES.KETAMINE;
-      const ml_FENTANYL = (pesoLimitado * MEDICAMENTOS.FENTANYL * 1) / PREPARACOES.FENTANYL;
-      const ml_MORPHINE = (pesoLimitado * MEDICAMENTOS.MORPHINE * 1) / PREPARACOES.MORPHINE;
-      const ml_ETOMIDATE = (pesoLimitado * MEDICAMENTOS.ETOMIDATE * 1) / PREPARACOES.ETOMIDATE;
-      const ml_PROPOFOL = (pesoLimitado * MEDICAMENTOS.PROPOFOL * 1) / PREPARACOES.PROPOFOL;
-      const ml_ROCURONIUM = (pesoLimitado * MEDICAMENTOS.ROCURONIUM * 1) / PREPARACOES.ROCURONIUM;
-      const ml_SUXAMETHONIUM = (pesoLimitado * MEDICAMENTOS.SUXAMETHONIUM * 1) / PREPARACOES.SUXAMETHONIUM;
-      const ml_NEOSTIGMINE = (pesoLimitado * MEDICAMENTOS.NEOSTIGMINE * 1) / PREPARACOES.NEOSTIGMINE;
-      const ml_SUGAMMADEX = (pesoLimitado * MEDICAMENTOS.SUGAMMADEX * 1) / PREPARACOES.SUGAMMADEX;
-      
-      
+    if(this.idade && !this.peso){
+      this.ml_ADRENALINE_IV_IO = ((this.pesoPrevisto * MEDICAMENTOS.ADRENALINE_IV_IO * 1) / PREPARACOES.ADRENALINE_IV_IO).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ADRENALINE_ET = ((this.pesoPrevisto * MEDICAMENTOS.ADRENALINE_ET * 1) / PREPARACOES.ADRENALINE_ET).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ADRENALINE_IM = ((this.pesoPrevisto * MEDICAMENTOS.ADRENALINE_IM * 1) / PREPARACOES.ADRENALINE_IM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ATROPINE = ((this.pesoPrevisto * MEDICAMENTOS.ATROPINE * 1) / PREPARACOES.ATROPINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_AMIODARONE = ((this.pesoPrevisto * MEDICAMENTOS.AMIODARONE * 1) / PREPARACOES.AMIODARONE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ATP = ((this.pesoPrevisto * MEDICAMENTOS.ATP * 1) / PREPARACOES.ATP).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_CALCIUM_GLUCONATE = ((this.pesoPrevisto * MEDICAMENTOS.CALCIUM_GLUCONATE * 1) / PREPARACOES.CALCIUM_GLUCONATE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_DEXTROSE_D10 = ((this.pesoPrevisto * MEDICAMENTOS.DEXTROSE_D10 * 1) / PREPARACOES.DEXTROSE_D10).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_DEXTROSE_D50 = ((this.pesoPrevisto * MEDICAMENTOS.DEXTROSE_D50 * 1) / PREPARACOES.DEXTROSE_D50).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_FLUMAZENIL = ((this.pesoPrevisto * MEDICAMENTOS.FLUMAZENIL * 1) / PREPARACOES.FLUMAZENIL).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_LIGNOCAINE = ((this.pesoPrevisto * MEDICAMENTOS.LIGNOCAINE * 1) / PREPARACOES.LIGNOCAINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_LORAZEPAM = ((this.pesoPrevisto * MEDICAMENTOS.LORAZEPAM * 1) / PREPARACOES.LORAZEPAM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_MIDAZOLAM = ((this.pesoPrevisto * MEDICAMENTOS.MIDAZOLAM * 1) / PREPARACOES.MIDAZOLAM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_MgSO4_50 = ((this.pesoPrevisto * MEDICAMENTOS.MgSO4_50 * 5) / PREPARACOES.MgSO4_50).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_NALOXONE = ((this.pesoPrevisto * MEDICAMENTOS.NALOXONE * 1) / PREPARACOES.NALOXONE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_NAHCO3 = ((this.pesoPrevisto * MEDICAMENTOS.NAHCO3 * 1) / PREPARACOES.NAHCO3).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_PROCANAMIDE = ((this.pesoPrevisto * MEDICAMENTOS.PROCANAMIDE * 1) / PREPARACOES.PROCANAMIDE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_KETAMINE = ((this.pesoPrevisto * MEDICAMENTOS.KETAMINE * 1) / PREPARACOES.KETAMINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_FENTANYL = ((this.pesoPrevisto * MEDICAMENTOS.FENTANYL * 1) / PREPARACOES.FENTANYL).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_MORPHINE = ((this.pesoPrevisto * MEDICAMENTOS.MORPHINE * 1) / PREPARACOES.MORPHINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ETOMIDATE = ((this.pesoPrevisto * MEDICAMENTOS.ETOMIDATE * 1) / PREPARACOES.ETOMIDATE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_PROPOFOL = ((this.pesoPrevisto * MEDICAMENTOS.PROPOFOL * 1) / PREPARACOES.PROPOFOL).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ROCURONIUM = ((this.pesoPrevisto * MEDICAMENTOS.ROCURONIUM * 1) / PREPARACOES.ROCURONIUM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_SUXAMETHONIUM = ((this.pesoPrevisto * MEDICAMENTOS.SUXAMETHONIUM * 1) / PREPARACOES.SUXAMETHONIUM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_NEOSTIGMINE = ((this.pesoPrevisto * MEDICAMENTOS.NEOSTIGMINE * 1) / PREPARACOES.NEOSTIGMINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_SUGAMMADEX = ((this.pesoPrevisto * MEDICAMENTOS.SUGAMMADEX * 1) / PREPARACOES.SUGAMMADEX).toLocaleString('pt-BR', { minimumFractionDigits: 2 });      
       
       return
     }
-
-    const ml_ADRENALINE_IV_IO = (this.peso * MEDICAMENTOS.ADRENALINE_IV_IO * 1) / PREPARACOES.ADRENALINE_IV_IO;
-      const ml_ADRENALINE_ET = (this.peso * MEDICAMENTOS.ADRENALINE_ET * 1) / PREPARACOES.ADRENALINE_ET;
-      const ml_ADRENALINE_IM = (this.peso * MEDICAMENTOS.ADRENALINE_IM * 1) / PREPARACOES.ADRENALINE_IM;
-      const ml_ATROPINE = (this.peso * MEDICAMENTOS.ATROPINE * 1) / PREPARACOES.ATROPINE;
-      const ml_AMIODARONE = (this.peso * MEDICAMENTOS.AMIODARONE * 1) / PREPARACOES.AMIODARONE;
-      const ml_ATP = (this.peso * MEDICAMENTOS.ATP * 1) / PREPARACOES.ATP;
-      const ml_CALCIUM_GLUCONATE = (this.peso * MEDICAMENTOS.CALCIUM_GLUCONATE * 1) / PREPARACOES.CALCIUM_GLUCONATE;
-      const ml_DEXTROSE_D10 = (this.peso * MEDICAMENTOS.DEXTROSE_D10 * 1) / PREPARACOES.DEXTROSE_D10;
-      const ml_DEXTROSE_D50 = (this.peso * MEDICAMENTOS.DEXTROSE_D50 * 1) / PREPARACOES.DEXTROSE_D50;
-      const ml_FLUMAZENIL = (this.peso * MEDICAMENTOS.FLUMAZENIL * 1) / PREPARACOES.FLUMAZENIL;
-      const ml_LIGNOCAINE = (this.peso * MEDICAMENTOS.LIGNOCAINE * 1) / PREPARACOES.LIGNOCAINE;
-      const ml_LORAZEPAM = (this.peso * MEDICAMENTOS.LORAZEPAM * 1) / PREPARACOES.LORAZEPAM;
-      const ml_MIDAZOLAM = (this.peso * MEDICAMENTOS.MIDAZOLAM * 1) / PREPARACOES.MIDAZOLAM;
-      const ml_MgSO4_50 = (this.peso * MEDICAMENTOS.MgSO4_50 * 5) / PREPARACOES.MgSO4_50;
-      //const ml_NALOXONE = (this.peso * MEDICAMENTOS.NALOXONE * 1) / PREPARACOES.NALOXONE;
-      const ml_NAHCO3 = (this.peso * MEDICAMENTOS.NAHCO3 * 1) / PREPARACOES.NAHCO3;
-      const ml_PROCANAMIDE = (this.peso * MEDICAMENTOS.PROCANAMIDE * 1) / PREPARACOES.PROCANAMIDE;
-      const ml_KETAMINE = (this.peso * MEDICAMENTOS.KETAMINE * 1) / PREPARACOES.KETAMINE;
-      const ml_FENTANYL = (this.peso * MEDICAMENTOS.FENTANYL * 1) / PREPARACOES.FENTANYL;
-      const ml_MORPHINE = (this.peso * MEDICAMENTOS.MORPHINE * 1) / PREPARACOES.MORPHINE;
-      const ml_ETOMIDATE = (this.peso * MEDICAMENTOS.ETOMIDATE * 1) / PREPARACOES.ETOMIDATE;
-      const ml_PROPOFOL = (this.peso * MEDICAMENTOS.PROPOFOL * 1) / PREPARACOES.PROPOFOL;
-      const ml_ROCURONIUM = (this.peso * MEDICAMENTOS.ROCURONIUM * 1) / PREPARACOES.ROCURONIUM;
-      const ml_SUXAMETHONIUM = (this.peso * MEDICAMENTOS.SUXAMETHONIUM * 1) / PREPARACOES.SUXAMETHONIUM;
-      const ml_NEOSTIGMINE = (this.peso * MEDICAMENTOS.NEOSTIGMINE * 1) / PREPARACOES.NEOSTIGMINE;
-      const ml_SUGAMMADEX = (this.peso * MEDICAMENTOS.SUGAMMADEX * 1) / PREPARACOES.SUGAMMADEX;
+      
+      this.ml_ADRENALINE_IV_IO = ((this.peso * MEDICAMENTOS.ADRENALINE_IV_IO * 1) / PREPARACOES.ADRENALINE_IV_IO).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ADRENALINE_ET = ((this.peso * MEDICAMENTOS.ADRENALINE_ET * 1) / PREPARACOES.ADRENALINE_ET).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ADRENALINE_IM = ((this.peso * MEDICAMENTOS.ADRENALINE_IM * 1) / PREPARACOES.ADRENALINE_IM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ATROPINE = ((this.peso * MEDICAMENTOS.ATROPINE * 1) / PREPARACOES.ATROPINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_AMIODARONE = ((this.peso * MEDICAMENTOS.AMIODARONE * 1) / PREPARACOES.AMIODARONE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ATP = ((this.peso * MEDICAMENTOS.ATP * 1) / PREPARACOES.ATP).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_CALCIUM_GLUCONATE = ((this.peso * MEDICAMENTOS.CALCIUM_GLUCONATE * 1) / PREPARACOES.CALCIUM_GLUCONATE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_DEXTROSE_D10 = ((this.peso * MEDICAMENTOS.DEXTROSE_D10 * 1) / PREPARACOES.DEXTROSE_D10).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_DEXTROSE_D50 = ((this.peso * MEDICAMENTOS.DEXTROSE_D50 * 1) / PREPARACOES.DEXTROSE_D50).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_FLUMAZENIL = ((this.peso * MEDICAMENTOS.FLUMAZENIL * 1) / PREPARACOES.FLUMAZENIL).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_LIGNOCAINE = ((this.peso * MEDICAMENTOS.LIGNOCAINE * 1) / PREPARACOES.LIGNOCAINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_LORAZEPAM = ((this.peso * MEDICAMENTOS.LORAZEPAM * 1) / PREPARACOES.LORAZEPAM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_MIDAZOLAM = ((this.peso * MEDICAMENTOS.MIDAZOLAM * 1) / PREPARACOES.MIDAZOLAM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_MgSO4_50 = ((this.peso * MEDICAMENTOS.MgSO4_50 * 5) / PREPARACOES.MgSO4_50).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_NALOXONE = ((this.peso * MEDICAMENTOS.NALOXONE * 1) / PREPARACOES.NALOXONE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_NAHCO3 = ((this.peso * MEDICAMENTOS.NAHCO3 * 1) / PREPARACOES.NAHCO3).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_PROCANAMIDE = ((this.peso * MEDICAMENTOS.PROCANAMIDE * 1) / PREPARACOES.PROCANAMIDE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_KETAMINE = ((this.peso * MEDICAMENTOS.KETAMINE * 1) / PREPARACOES.KETAMINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_FENTANYL = ((this.peso * MEDICAMENTOS.FENTANYL * 1) / PREPARACOES.FENTANYL).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_MORPHINE = ((this.peso * MEDICAMENTOS.MORPHINE * 1) / PREPARACOES.MORPHINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ETOMIDATE = ((this.peso * MEDICAMENTOS.ETOMIDATE * 1) / PREPARACOES.ETOMIDATE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_PROPOFOL = ((this.peso * MEDICAMENTOS.PROPOFOL * 1) / PREPARACOES.PROPOFOL).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ROCURONIUM = ((this.peso * MEDICAMENTOS.ROCURONIUM * 1) / PREPARACOES.ROCURONIUM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_SUXAMETHONIUM = ((this.peso * MEDICAMENTOS.SUXAMETHONIUM * 1) / PREPARACOES.SUXAMETHONIUM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_NEOSTIGMINE = ((this.peso * MEDICAMENTOS.NEOSTIGMINE * 1) / PREPARACOES.NEOSTIGMINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_SUGAMMADEX = ((this.peso * MEDICAMENTOS.SUGAMMADEX * 1) / PREPARACOES.SUGAMMADEX).toLocaleString('pt-BR', { minimumFractionDigits: 2 });    
   }
 
-  private encontrarFaixaDePeso() {
-    debugger
+  private encontrarFaixaDePeso() { 
     if (this.peso >= 3 && this.peso <= 5) return 1;
     if (this.peso >= 6 && this.peso <= 7) return 2;
     if (this.peso >= 8 && this.peso <= 9) return 3;
@@ -495,8 +491,6 @@ calcularIdade(){
   }
   
 }
-
-
 
 export const MEDICAMENTOS = {
   ADRENALINE_IV_IO: 0.01,
