@@ -28,6 +28,10 @@ sondaUrinaria!: any;
 pasDesfibrilacoe!:any;
 drenoToracico!: any;
 mascaraLaringea!: any;  
+tamanhoTE!:number;
+profundidadeTE!:number;
+desfibrilacao: number[] = [];
+cardioversaoSinc: number[] = [];
 
 ml_ADRENALINE_ET: any;
 ml_ADRENALINE_IM: any;
@@ -250,7 +254,59 @@ mascarasLaringea = [
   {value: 9, label: "3"}
 ]; 
 
+//   ----- Calculos Vias Aereas ----
+
+
+calcularTamanhoTE() {
+  console.log("Valor de this.idade:", this.idade);
+
+  if (this.idade > 1) {
+    // Calcular o tamanho bruto do tubo com base na idade
+    const tamanhoETTRaw = (this.idade / 4) + 3.5;
+   
+
+    // Arredondar o tamanho bruto para o próximo número inteiro ou 0,5
+    this.tamanhoTE = Math.ceil(tamanhoETTRaw * 2) / 2;
+    
+
+    // Limitar tamanho do TE a 9, se for maior que 9
+    this.tamanhoTE = Math.min(this.tamanhoTE, 9);
+    
+    return this.tamanhoTE;
+  }
+  return '--'
+
+}
+
+calcularProfundidadeTE() {
+   if( this.idade > 1 ) {
+    
+    return this.profundidadeTE = this.tamanhoTE * 3;
+  }
+  return '--'
+   
+}
+
+calcularDesfibrilacao() {
+  const energias = [2, 4, 6, 8, 10];
+    
+  // Calcular as cinco energias e adicioná-las ao array
+  return this.desfibrilacao = energias.map(x => x * this.peso)
+}
+
+cardioversaoSincronizada() {
+  const energias = [0.5,1,2];
+ 
+  
+  // Calcular as cinco energias e adicioná-las ao array
+  return this.cardioversaoSinc = energias.map(x => x * this.peso)
+}
+
 calcularDosagens() {
+  this.cardioversaoSincronizada();
+  this.calcularTamanhoTE();
+  this.calcularProfundidadeTE();
+  this.calcularDesfibrilacao();
   this.calcularEquipamentos();
   this.calculoMl();
   this.dosagens.ADRENALINE_IV_IO = this.peso * MEDICAMENTOS.ADRENALINE_IV_IO;
@@ -289,6 +345,7 @@ calcularDosagens() {
 }
 
 calcularIdade(){
+  this.calcularTamanhoTE();
   if(!this.peso && this.idade){
     this.pesoPrevisto = (this.idade * 2) + 8;
   }
@@ -410,7 +467,7 @@ calcularIdade(){
     this.mascaraLaringea = objetoEncontrado?.label
   }
   calculoMl(){
-    debugger
+    
 
     if(this.idade && !this.peso){
       this.ml_ADRENALINE_IV_IO = ((this.pesoPrevisto * MEDICAMENTOS.ADRENALINE_IV_IO * 1) / PREPARACOES.ADRENALINE_IV_IO).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
