@@ -170,8 +170,11 @@ calcularDosagens() {
       this.ml_SUXAMETHONIUM = ((pesoCalculo * MEDICAMENTOS.SUXAMETHONIUM * 1) / PREPARACOES.SUXAMETHONIUM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
       this.ml_NEOSTIGMINE = ((pesoCalculo * MEDICAMENTOS.NEOSTIGMINE * 1) / PREPARACOES.NEOSTIGMINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
       this.ml_SUGAMMADEX = ((pesoCalculo * MEDICAMENTOS.SUGAMMADEX * 1) / PREPARACOES.SUGAMMADEX).toLocaleString('pt-BR', { minimumFractionDigits: 2 });  
+
     }
-      
+     
+
+
   calculoMg(){
     let pesoCalculo = this.peso;
 
@@ -214,22 +217,25 @@ calcularDosagens() {
     } 
   }
 
-  private encontrarFaixaDePeso() { 
-    if (this.peso >= 3 && this.peso <= 5) return 1;
-    if (this.peso >= 6 && this.peso <= 7) return 2;
-    if (this.peso >= 8 && this.peso <= 9) return 3;
-    if (this.peso >= 10 && this.peso <= 11) return 4;
-    if (this.peso >= 12 && this.peso <= 14) return 5;
-    if (this.peso >= 15 && this.peso <= 18) return 6;
-    if (this.peso >= 19 && this.peso <= 23) return 7;
-    if (this.peso >= 24 && this.peso <= 29) return 8;
-    if (this.peso >= 30) return 9;
+    private encontrarFaixaDePeso() { 
+      if (this.peso >= 3 && this.peso <= 5) return 1;
+      if (this.peso >= 6 && this.peso <= 7) return 2;
+      if (this.peso >= 8 && this.peso <= 9) return 3;
+      if (this.peso >= 10 && this.peso <= 11) return 4;
+      if (this.peso >= 12 && this.peso <= 14) return 5;
+      if (this.peso >= 15 && this.peso <= 18) return 6;
+      if (this.peso >= 19 && this.peso <= 23) return 7;
+      if (this.peso >= 24 && this.peso <= 29) return 8;
+      if (this.peso >= 30) return 9;
 
-    return 0;
-  }
+      return 0;  
 
-  back(){
-    history.back()
+    }
+    back(){
+       history.back()
+     }  
+    
   }
   
-}
+
+
