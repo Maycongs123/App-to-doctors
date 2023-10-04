@@ -29,8 +29,8 @@ sondaUrinaria!: any;
 pasDesfibrilacoe!:any;
 drenoToracico!: any;
 mascaraLaringea!: any;  
-tamanhoTE!:number;
-profundidadeTE!:number;
+tamanhoTE!:any;
+profundidadeTE!:any;
 desfibrilacao: number[] = [];
 cardioversaoSinc: number[] = [];
 
@@ -65,10 +65,14 @@ calcularDosagens() {
   this.calcularEquipamentosEmergencia()
   this.calculoMl();
   this.calculoMg();
+  this.calcularProfundidadeTE();
+  this.calcularTamanhoTE();
 } 
 
   calcularIdade(){
     this.calcularTamanhoTE();
+    this.calcularProfundidadeTE();
+    
     if(!this.peso && this.idade){
       this.pesoPrevisto = (this.idade * 2) + 8;
     }
@@ -101,6 +105,7 @@ calcularDosagens() {
 
 
   calcularTamanhoTE() {
+    debugger
     console.log("Valor de this.idade:", this.idade);
 
     if (this.idade > 1) {
@@ -111,17 +116,24 @@ calcularDosagens() {
       // Limitar tamanho do TE a 9, se for maior que 9
       this.tamanhoTE = Math.min(this.tamanhoTE, 9);
       
-      return this.tamanhoTE;
+      return 
     }
-    return '--'
+
+    this.tamanhoTE = '--'
+    return 
 
   }
 
   calcularProfundidadeTE() {
-    if( this.idade > 1 ) {      
-      return this.profundidadeTE = this.tamanhoTE * 3;
+    debugger
+    if( this.idade > 1 ) { 
+      debugger     
+      this.profundidadeTE = this.tamanhoTE * 3;
+      return 
     }
-    return '--'
+
+    this.profundidadeTE = '--'
+    return 
     
   }
 
