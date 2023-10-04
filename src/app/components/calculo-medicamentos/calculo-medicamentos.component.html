@@ -107,36 +107,46 @@
                     <span class="font-result" >
                       {{item.nome + ' ' + dados.quantidadeMg + 'mg/' + dados.quantidadeMl + 'ml : ' + dados.resultado + ' ml - ' + item.modoDeUso}}
                     </span>
+                    <!-- CORREÇÃO RENAL ADULTO-->
+                     <div style="padding-bottom: 1rem;" *ngIf="atendimento === 'Adulto' && item.calculoRenal === 'Sim'">
+                        <span *ngIf="clearanceCreatinina >= item.clearanceCreatininaItem2"  class="ion-text-wrap">
+                          <h3>Não há correção</h3>                       
+                        </span>
 
-                    <div style="padding-bottom: 1rem;" *ngIf="atendimento === 'Adulto' && item.calculoRenal === 'Sim'">
-                      <span *ngIf="clearanceCreatinina >= 10 && clearanceCreatinina < 50" class="ion-text-wrap">
-                        <h3>{{'CLCr 10 - 50 ml/min:'}}</h3>
-                        <p>{{dados.resultado + ' ml a cada 48h' }}</p>
-                      </span>
-                      <span *ngIf="clearanceCreatinina < 10" class="ion-text-wrap">
-                        <h3>{{'CLCr < 10 ml/min:'}}</h3>
-                        <p>{{dados.resultado + ' ml a cada 72h' }}</p>
-                        <p>{{'Hemodiálise: Dialisável (~20%)'}}</p>
-                        <p>{{'Diálise intermitente: Administrar após hemodiálise:' + (dosagemMgKg /2)+ 'mg/kg a cada 48 horas'}}</p>
-                      </span>
+                        <span *ngIf="clearanceCreatinina >= item.clearanceCreatininaItem1 && clearanceCreatinina < item.clearanceCreatininaItem2" class="ion-text-wrap">
+                          <h3>{{'CLCr' + item.clearanceCreatininaItem1 + ' - ' + item.clearanceCreatininaItem2 + 'ml/min:'}}</h3>
+                          <p>{{dados.resultado + ' ml a cada ' + item.clearanceCreatininaHorario1 + ' horas' }}</p>
+                          <p>{{'Diálise intermitente: Administrar após hemodiálise:' + (dosagemMgKg /2)+ 'mg/kg a cada ' + item.clearanceCreatininaHorario1  + ' horas'}}</p>
+                        </span>
+
+                        <span *ngIf="clearanceCreatinina < 10" class="ion-text-wrap">
+                          <h3>{{'CLCr < {{item.clearanceCreatininaItem1}} ml/min:'}}</h3>
+                          <p>{{dados.resultado + ' ml a cada' + item.clearanceCreatininaHorario2 + ' horas' }}</p>
+                          <p>{{'Hemodiálise: Dialisável (~20%)'}}</p>
+                          <p>{{'Diálise intermitente: Administrar após hemodiálise: ' + (dosagemMgKg /2)+ 'mg/kg a cada ' + item.clearanceCreatininaHorario2 + 'horas'}}</p>
+                        </span>
                     </div>
 
+                    <!-- CORREÇÃO RENAL PEDIATRICO-->
                     <div style="padding-bottom: 1rem;" *ngIf="atendimento === 'Pediatrico' && item.calculoRenal === 'Sim'">
-                      <span *ngIf="clearanceCreatinina >= 40 && clearanceCreatinina <= 80" class="ion-text-wrap">
-                        <h3>{{'CLCr 40 - 80 ml/min:'}}</h3>
-                        <p>{{' 90 mg/kg (80 mg piperacilina/10 mg tazobactam) a cada 6 horas' }}</p>
+                      <span *ngIf="clearanceCreatinina >= item.clearanceCreatininaItem3 && clearanceCreatinina <= item.clearanceCreatininaItem2" class="ion-text-wrap">
+                        <h3>{{'CLCr ' + item.clearanceCreatininaItem3 + '-' + item.clearanceCreatininaItem2 + 'ml/min:'}}</h3>
+                        <p>{{correcaoDose + ' mg/kg a cada ' +  item.clearanceCreatininaHorario1+ ' horas'}}' </p>
+                        <p>{{'Para crianças pesando menos de 50 kg, submetidas à hemodiálise, a dose recomendada é de ' + (correcaoDose/2) + 'mg/kg a cada 8 Horas'}}</p>
                       </span>
-                      <span *ngIf="clearanceCreatinina >= 20 && clearanceCreatinina <= 40" class="ion-text-wrap">
-                        <h3>{{'CLCr 20 - 40 ml/min:'}}</h3>
-                        <p>{{' 90 mg/kg (80 mg piperacilina/10 mg tazobactam) a cada 8 horas' }}</p>
+                      <span *ngIf="clearanceCreatinina >= item.clearanceCreatininaItem1 && clearanceCreatinina <= item.clearanceCreatininaItem3" class="ion-text-wrap">
+                        <h3>{{'CLCr ' + item.clearanceCreatininaItem1 + '-' + item.clearanceCreatininaItem3 + 'ml/min:'}}</h3>
+                        <p>{{correcaoDose + ' mg/kg a cada ' +  item.clearanceCreatininaHorario3 + ' horas'}}</p>
+                        <p>{{'Para crianças pesando menos de 50 kg, submetidas à hemodiálise, a dose recomendada é de ' + (correcaoDose/2) + 'mg/kg a cada 8 Horas'}}</p>                     
                       </span>
-                      <span *ngIf="clearanceCreatinina < 20" class="ion-text-wrap">
-                        <h3>{{'CLCr menor que 20 ml/min:'}}</h3>
-                        <p>{{' 90 mg/kg (80 mg piperacilina/10 mg tazobactam) a cada 12 horas' }}</p>
+                      <span *ngIf="clearanceCreatinina < item.clearanceCreatininaItem1" class="ion-text-wrap">
+                        <h3>{{'CLCr < ' + item.clearanceCreatininaItem1 + 'ml/min:'}}</h3>
+                        <p>{{correcaoDose + ' mg/kg a cada ' +  item.clearanceCreatininaHorario2 + ' horas'}}</p>
+                        <p>{{'Para crianças pesando menos de 50 kg, submetidas à hemodiálise, a dose recomendada é de ' + (correcaoDose/2) + 'mg/kg a cada 8 Horas'}}</p>                       
                       </span>
                       <span>
                         <h3>{{'Pescrição'}}</h3>
-                        <p>{{ correcaoMl + 'ml de Tazocin em ' + rediluicao + 'ml de soro fisiologico' }}</p>
+                        <p>{{ correcaoMl + 'ml de ' + item.nome + ' em ' + rediluicao + 'ml de soro fisiologico' }}</p>
                       </span>
                     </div>
                   </div>

@@ -12,6 +12,8 @@ import { MedicamentosService } from 'src/app/services/medicamentos.service';
 })
 export class PopupCadastroMedicamentoComponent {
   dosagemTipo: boolean = false;
+  isRenal: boolean = false;
+  isPediatrico: boolean = false;
   duracao = 8;
   editMode = false;
   step = 0;
@@ -37,6 +39,13 @@ export class PopupCadastroMedicamentoComponent {
     nome: ['', Validators.required],
     medicamentoUso: ['', Validators.required],
     calculoRenal: ['', Validators.required],
+    hemodialise: ['', Validators.required],
+    clearanceCreatininaItem1: [0, Validators.required],
+    clearanceCreatininaItem2: [0, Validators.required],
+    clearanceCreatininaItem3: [0, Validators.required],
+    clearanceCreatininaHorario1: ['', Validators.required],
+    clearanceCreatininaHorario2: ['', Validators.required],
+    clearanceCreatininaHorario3: ['', Validators.required],
     tipo: ['', Validators.required],
     dosagemTipo: ['', Validators.required],
     modoDeUso: ['', Validators.required],
@@ -186,14 +195,25 @@ export class PopupCadastroMedicamentoComponent {
   }
 
   submit() {  
+    debugger
     if (this.formMedicamento.invalid) {
       this.openSnackBar()
       this.markFormGroupAsTouched(this.formMedicamento);
       return;
     }    
-   
+   debugger
     this.dialogRef.close(this.formMedicamento.value);
 
+  }
+
+  formPediatrico(event: any){    
+    if(event.value === "Pediátrico"){
+
+      this.isPediatrico = true;
+    }
+    else{
+      this.isPediatrico = false;
+    }
   }
 
   formDosagemTipo(event: any){    
@@ -203,6 +223,16 @@ export class PopupCadastroMedicamentoComponent {
     }
     else{
       this.dosagemTipo = false;
+    }
+  }
+
+  formCalculoRenal(event: any){    
+    if(event.value === "Sim"){
+
+      this.isRenal = true;
+    }
+    else{
+      this.isRenal = false;
     }
   }
 
@@ -222,7 +252,7 @@ export class PopupCadastroMedicamentoComponent {
     });
   }
  
-buscarMedicamento(id: any){ 
+buscarMedicamento(id: any){   
   this.medicamentosService.Get(id).subscribe((response: any) => { 
     if(response.dosagemTipo === "mg/kg/dia"){
 
@@ -237,6 +267,13 @@ buscarMedicamento(id: any){
       nome: response.nome,
       medicamentoUso: response.medicamentoUso,
       calculoRenal: response.calculoRenal,
+      hemodialise: response.hemodialise,
+      clearanceCreatininaItem1: response.clearanceCreatininaItem1,
+      clearanceCreatininaItem2: response.clearanceCreatininaItem2,
+      clearanceCreatininaItem3: response.clearanceCreatininaItem3,
+      clearanceCreatininaHorario1: response.clearanceCreatininaHorario1,
+      clearanceCreatininaHorario2: response.clearanceCreatininaHorario2,
+      clearanceCreatininaHorario3: response.clearanceCreatininaHorario3,
       tipo: response.tipo,     
       dosagemTipo: response.dosagemTipo,
       modoDeUso: response.modoDeUso,
