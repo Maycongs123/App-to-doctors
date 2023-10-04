@@ -68,6 +68,7 @@ calcularDosagens() {
 } 
 
   calcularIdade(){
+    this.calcularTamanhoTE();
     if(!this.peso && this.idade){
       this.pesoPrevisto = (this.idade * 2) + 8;
     }
@@ -96,6 +97,44 @@ calcularDosagens() {
     const faixa = this.encontrarFaixaDePeso(); 
     const objetoEncontrado = equipamento.find((item: any )=> item.value === faixa);
     return objetoEncontrado?.label;
+  }
+
+
+  calcularTamanhoTE() {
+    console.log("Valor de this.idade:", this.idade);
+
+    if (this.idade > 1) {
+      // Calcular o tamanho bruto do tubo com base na idade
+      const tamanhoETTRaw = (this.idade / 4) + 3.5;
+      // Arredondar o tamanho bruto para o próximo número inteiro ou 0,5
+      this.tamanhoTE = Math.ceil(tamanhoETTRaw * 2) / 2;
+      // Limitar tamanho do TE a 9, se for maior que 9
+      this.tamanhoTE = Math.min(this.tamanhoTE, 9);
+      
+      return this.tamanhoTE;
+    }
+    return '--'
+
+  }
+
+  calcularProfundidadeTE() {
+    if( this.idade > 1 ) {      
+      return this.profundidadeTE = this.tamanhoTE * 3;
+    }
+    return '--'
+    
+  }
+
+  calcularDesfibrilacao() {
+    const energias = [2, 4, 6, 8, 10];      
+    // Calcular as cinco energias e adicioná-las ao array
+    return this.desfibrilacao = energias.map(x => x * this.peso)
+  }
+
+  cardioversaoSincronizada() {
+    const energias = [0.5,1,2];    
+    // Calcular as cinco energias e adicioná-las ao array
+    return this.cardioversaoSinc = energias.map(x => x * this.peso)
   }
 
   calculoMl(){
@@ -194,17 +233,3 @@ calcularDosagens() {
   }
   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
