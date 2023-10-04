@@ -29,6 +29,10 @@ sondaUrinaria!: any;
 pasDesfibrilacoe!:any;
 drenoToracico!: any;
 mascaraLaringea!: any;  
+tamanhoTE!:number;
+profundidadeTE!:number;
+desfibrilacao: number[] = [];
+cardioversaoSinc: number[] = [];
 
 ml_ADRENALINE_ET: any;
 ml_ADRENALINE_IM: any;
