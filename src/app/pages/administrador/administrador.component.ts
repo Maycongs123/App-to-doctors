@@ -61,7 +61,7 @@ export class AdministradorComponent {
   }
 
   adicionarMedicamento(medicamento: any) {
-    
+    debugger
     this.medicamentosService.Add(medicamento).subscribe({
       complete: () => {
         this.getMedicamentos();
@@ -124,6 +124,13 @@ export class AdministradorComponent {
       id: result.id,
       nome: result.nome,
       calculoRenal: result.calculoRenal,
+      hemodialise: result.hemodialise ,
+      clearanceCreatininaItem1: result.clearanceCreatininaItem1 ,
+      clearanceCreatininaItem2: result.clearanceCreatininaItem2,
+      clearanceCreatininaItem3: result.clearanceCreatininaItem3,
+      clearanceCreatininaHorario1: result.clearanceCreatininaHorario1 ,
+      clearanceCreatininaHorario2: result.clearanceCreatininaHorario2,
+      clearanceCreatininaHorario3: result.clearanceCreatininaHorario3,
       medicamentoUso: result.medicamentoUso,
       tipo: result.tipo,
       dosagemTipo: result.dosagemTipo,

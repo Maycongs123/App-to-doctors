@@ -18,26 +18,11 @@
                 <div style="display: flex; justify-content: center;">
                   <label>Medicamento de uso:</label><br>
                 </div>
-                <mat-radio-group required class="div-mat-form-field" formControlName="medicamentoUso">
+                <mat-radio-group required class="div-mat-form-field" formControlName="medicamentoUso" (change)="formPediatrico($event)">
                   <mat-radio-button value="Adulto">Adulto</mat-radio-button>
                   <mat-radio-button value="Pediátrico">Pediátrico</mat-radio-button>
                 </mat-radio-group>
                 <mat-error *ngIf="formMedicamento.controls.medicamentoUso.invalid && formMedicamento.controls.medicamentoUso.touched">
-                  Esse campo é obrigatório.
-                </mat-error>
-            </div>
-          </div>
-
-          <div class="div-flex">
-            <div>
-                <div style="display: flex; justify-content: center;">
-                  <label>Medicamento com correção renal?:</label><br>
-                </div>
-                <mat-radio-group required class="div-mat-form-field" style="padding-left: 3rem;" formControlName="calculoRenal">
-                  <mat-radio-button value="Sim">Sim</mat-radio-button>
-                  <mat-radio-button value="Não">Não</mat-radio-button>
-                </mat-radio-group>
-                <mat-error *ngIf="formMedicamento.controls.calculoRenal.invalid && formMedicamento.controls.calculoRenal.touched">
                   Esse campo é obrigatório.
                 </mat-error>
             </div>
@@ -190,8 +175,104 @@
             <button mat-button color="primary" (click)="nextStep()">Próximo</button>
           </mat-action-row>
         </mat-expansion-panel>
+
+
         
         <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title >
+              Medicamento com correção renal
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>          
+            <div class="div-flex">
+              <div>
+                  <div style="display: flex; justify-content: center;">
+                    <label>Medicamento com correção renal?:</label><br>
+                  </div>
+                  <mat-radio-group required class="div-mat-form-field" style="padding-left: 3rem;" formControlName="calculoRenal" (change)="formCalculoRenal($event)">
+                    <mat-radio-button value="Sim">Sim</mat-radio-button>
+                    <mat-radio-button value="Não">Não</mat-radio-button>
+                  </mat-radio-group>
+                  <mat-error *ngIf="formMedicamento.controls.calculoRenal.invalid && formMedicamento.controls.calculoRenal.touched">
+                    Esse campo é obrigatório.
+                  </mat-error>
+              </div>
+            </div>
+
+            <div *ngIf="isRenal">
+              <label>Dados para pacientes com hemodiálise</label><br>
+              <mat-form-field class="div-mat-form-field">
+                  <input type="text" matInput formControlName="hemodialise">
+                  <mat-error *ngIf="formMedicamento.controls.hemodialise.invalid && formMedicamento.controls.hemodialise.touched">
+                    Esse campo é obrigatório.
+                  </mat-error>
+              </mat-form-field>
+            </div>        
+
+            <div *ngIf="isRenal">
+              <label>Clearance de Creatinina (Menor valor para comparação):</label><br>
+              <mat-form-field class="div-mat-form-field">
+                  <input type="number" matInput formControlName="clearanceCreatininaItem1">
+                  <mat-error *ngIf="formMedicamento.controls.clearanceCreatininaItem1.invalid && formMedicamento.controls.clearanceCreatininaItem1.touched">
+                    Esse campo é obrigatório.
+                  </mat-error>
+              </mat-form-field>
+            </div>   
+            
+            <div *ngIf="isRenal">
+              <label>Clearance de Creatinina (Maior valor para comparação):</label><br>
+              <mat-form-field class="div-mat-form-field">
+                <input type="number" matInput formControlName="clearanceCreatininaItem2">
+                <mat-error *ngIf="formMedicamento.controls.clearanceCreatininaItem2.invalid && formMedicamento.controls.clearanceCreatininaItem2.touched">
+                  Esse campo é obrigatório.
+                </mat-error>
+              </mat-form-field>
+            </div>   
+            
+            <div *ngIf="isRenal && isPediatrico">
+              <label>Clearance de Creatinina (Valor intermediário para comparação):</label><br>
+              <mat-form-field class="div-mat-form-field">
+                  <input type="number" matInput formControlName="clearanceCreatininaItem3">
+              </mat-form-field>
+            </div>    
+              
+            <div *ngIf="isRenal">
+              <label>Correção de horário (Ex: 'Menor ClCr ou Medio ClCr' - 'Maior ClCr'):</label><br>
+              <mat-form-field class="div-mat-form-field">
+                  <input type="text" matInput formControlName="clearanceCreatininaHorario1">
+                  <mat-error *ngIf="formMedicamento.controls.clearanceCreatininaHorario1.invalid && formMedicamento.controls.clearanceCreatininaHorario1.touched">
+                    Esse campo é obrigatório.
+                  </mat-error>
+              </mat-form-field>
+            </div> 
+          
+          <div *ngIf="isRenal">
+            <label>Correção de horário (Ex: < 'Menor ClCr'):</label><br>
+            <mat-form-field class="div-mat-form-field">
+                <input type="text" matInput formControlName="clearanceCreatininaHorario2">
+                <mat-error *ngIf="formMedicamento.controls.clearanceCreatininaHorario2.invalid && formMedicamento.controls.clearanceCreatininaHorario2.touched">
+                  Esse campo é obrigatório.
+                </mat-error>
+            </mat-form-field>
+          </div>
+
+
+          <div *ngIf="isRenal && isPediatrico">
+            <label>Correção de horário (Ex: 'Menor ClCr' - 'Medio ClCr'):</label><br>
+            <mat-form-field class="div-mat-form-field">
+                <input type="text" matInput formControlName="clearanceCreatininaHorario3">             
+            </mat-form-field>
+          </div>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">Voltar</button>
+            <button mat-button color="primary" (click)="nextStep()">Próximo</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        
+        <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
               Indicações
@@ -222,7 +303,7 @@
           </mat-action-row>
         </mat-expansion-panel>
 
-        <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+        <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
               Dosagem
@@ -262,7 +343,7 @@
           </mat-action-row>
         </mat-expansion-panel>
 
-        <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+        <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
               Preparo / Diluição
@@ -293,7 +374,7 @@
           </mat-action-row>
         </mat-expansion-panel>
 
-        <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
+        <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)" hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
               Administração
@@ -324,7 +405,7 @@
           </mat-action-row>
         </mat-expansion-panel>
 
-        <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)" hideToggle>
+        <mat-expansion-panel [expanded]="step === 7" (opened)="setStep(7)" hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
               Contra indicações
@@ -355,7 +436,7 @@
           </mat-action-row>
         </mat-expansion-panel>
 
-        <mat-expansion-panel [expanded]="step === 7" (opened)="setStep(7)" hideToggle>
+        <mat-expansion-panel [expanded]="step === 8" (opened)="setStep(8)" hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title >
               Uso Durante a Gestação

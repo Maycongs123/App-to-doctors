@@ -92,13 +92,13 @@ export class CalculoRegraDos9Component implements OnInit{
     let value = 0;
     
     if (this.idade === 1) {
-      value = 10.5;      
-    } else if (this.idade === 2) {
       value = 9.5;      
+    } else if (this.idade === 2) {
+      value = 8.5;      
     } else if (this.idade === 3) {
-      value = 7.5;      
-    } else if (this.idade === 4) {
       value = 6.5;      
+    } else if (this.idade === 4) {
+      value = 5.5;      
     }  
 
     return value;
