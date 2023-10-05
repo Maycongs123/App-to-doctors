@@ -64,8 +64,8 @@ ml_SUGAMMADEX: any;
 ml_SUXAMETHONIUM: any;
 
 calcularDosagens() {
-  this.calcularLaminasLaringoscopio(this.peso)
-  this.calcularValorComBaseNoPeso(this.peso)
+  this.calcularLaminasLaringoscopio()
+  this.calcularValorComBaseNoPeso()
   this.calcularEquipamentosEmergencia()
   this.calculoMl();
   this.calculoMg();
@@ -76,14 +76,19 @@ calcularDosagens() {
 } 
 
   calcularIdade(){
-    this.calcularTamanhoTE();
-    this.calcularProfundidadeTE();
-    this.calcularDesfibrilacao();
-    this.cardioversaoSincronizada()
-    
     if(!this.peso && this.idade){
       this.pesoPrevisto = (this.idade * 2) + 8;
     }
+
+    this.calcularLaminasLaringoscopio()
+    this.calcularValorComBaseNoPeso()
+    this.calcularEquipamentosEmergencia()
+    this.calculoMl();
+    this.calculoMg();
+    this.calcularTamanhoTE();
+    this.calcularProfundidadeTE();
+    this.calcularDesfibrilacao();
+    this.cardioversaoSincronizada();
   } 
 
   calcularEquipamentosEmergencia(){
@@ -105,44 +110,56 @@ calcularDosagens() {
     this.mascaraLaringea = this.calcularEquipamento(mascarasLaringea);
   }
 
-  calcularValorComBaseNoPeso(peso: number): string {
-    if (this.peso >= 3 && this.peso <= 5) {
+  calcularValorComBaseNoPeso(): string {
+    let pesoCalculo = this.peso;
+
+    if(this.idade && !this.peso){
+      pesoCalculo = this.pesoPrevisto
+    };  
+
+    if (pesoCalculo >= 3 && pesoCalculo <= 5) {
       return  this.resultadoCalculo = '1';
-    } else if (this.peso >= 6 && this.peso <= 7) {
+    } else if (pesoCalculo >= 6 && pesoCalculo <= 7) {
       return this.resultadoCalculo ='1-1.5';
-    } else if ((this.peso >= 8 && this.peso <= 9) || (this.peso >= 10 && this.peso <= 11)) {
+    } else if ((pesoCalculo >= 8 && pesoCalculo <= 9) || (pesoCalculo >= 10 && pesoCalculo <= 11)) {
       return this.resultadoCalculo = '1.5';
-    } else if (this.peso >= 12 && this.peso <= 14) {
+    } else if (pesoCalculo >= 12 && pesoCalculo <= 14) {
       return this.resultadoCalculo = '2';
-    } else if (this.peso >= 15 && this.peso <= 18) {
+    } else if (pesoCalculo >= 15 && pesoCalculo <= 18) {
       return this.resultadoCalculo = '2';
-    } else if (this.peso >= 19 && this.peso <= 23) {
+    } else if (pesoCalculo >= 19 && pesoCalculo <= 23) {
       return this.resultadoCalculo = '2-2.5';
-    } else if (this.peso >= 24 && this.peso <= 29) {
+    } else if (pesoCalculo >= 24 && pesoCalculo <= 29) {
       return this.resultadoCalculo = '2.5';
-    } else if (this.peso >= 30 && this.peso <= 36) {
+    } else if (pesoCalculo >= 30 && pesoCalculo <= 36) {
       return this.resultadoCalculo = '3';
     } else {
       return 'Valor não encontrado'; 
     }
   }
 
-  calcularLaminasLaringoscopio(peso: number): string {
-    if (this.peso >= 3 && this.peso <= 5) {
+  calcularLaminasLaringoscopio(): string {
+    let pesoCalculo = this.peso;
+
+    if(this.idade && !this.peso){
+      pesoCalculo = this.pesoPrevisto
+    }; 
+
+    if (pesoCalculo >= 3 && pesoCalculo <= 5) {
       return this.calcLaminasLaringoscopio = "Reta 0-1";
-    } else if (this.peso >= 6 && this.peso <= 7) {
+    } else if (pesoCalculo >= 6 && pesoCalculo <= 7) {
       return this.calcLaminasLaringoscopio = "Reta 1";
-    } else if ((this.peso >= 8 && this.peso <= 9) || (this.peso >= 10 && this.peso <= 11)) {
+    } else if ((pesoCalculo >= 8 && pesoCalculo <= 9) || (pesoCalculo >= 10 && pesoCalculo <= 11)) {
       return this.calcLaminasLaringoscopio =  "Reta 1";
-    } else if (this.peso >= 12 && this.peso <= 14) {
+    } else if (pesoCalculo >= 12 && pesoCalculo <= 14) {
       return this.calcLaminasLaringoscopio = "Reta 1";
-    } else if (this.peso >= 15 && this.peso <= 18) {
+    } else if (pesoCalculo >= 15 && pesoCalculo <= 18) {
       return this.calcLaminasLaringoscopio =  "Reta 2";
-    } else if (this.peso >= 19 && this.peso <= 23) {
+    } else if (pesoCalculo >= 19 && pesoCalculo <= 23) {
       return this.calcLaminasLaringoscopio =  "Reta 2";
-    } else if (this.peso >= 24 && this.peso <= 29) {
+    } else if (pesoCalculo >= 24 && pesoCalculo <= 29) {
       return this.calcLaminasLaringoscopio =  "Reta 2 ou curva";
-    } else if (this.peso >= 30 && this.peso <= 36) {
+    } else if (pesoCalculo >= 30 && pesoCalculo <= 36) {
       return this.calcLaminasLaringoscopio = "Reta 2-3 ou curva";
     } else {
       return "Valor não encontrado";
@@ -157,8 +174,7 @@ calcularDosagens() {
   }
 
 
-  calcularTamanhoTE() {
-    debugger
+  calcularTamanhoTE() {    
     console.log("Valor de this.idade:", this.idade);
 
     if (this.idade > 1) {
@@ -178,9 +194,8 @@ calcularDosagens() {
   }
 
   calcularProfundidadeTE() {
-    debugger
-    if( this.idade > 1 ) { 
-      debugger     
+   
+    if( this.idade > 1 ) {       
       this.profundidadeTE = this.tamanhoTE * 3;
       return 
     }
@@ -193,13 +208,25 @@ calcularDosagens() {
   calcularDesfibrilacao() {
     const energias = [2, 4, 6, 8, 10];      
     // Calcular as cinco energias e adicioná-las ao array
-      this.desfibrilacao = energias.map(x => x * this.peso);
+    let pesoCalculo = this.peso;
+
+    if(this.idade && !this.peso){
+      pesoCalculo = this.pesoPrevisto
+    };  
+
+    this.desfibrilacao = energias.map(x => x * pesoCalculo);
   }
 
   cardioversaoSincronizada() {
     const energias = [0.5,1,2];    
     // Calcular as cinco energias e adicioná-las ao array
-    this.cardioversaoSinc = energias.map(x => x * this.peso);
+    let pesoCalculo = this.peso;
+
+    if(this.idade && !this.peso){
+      pesoCalculo = this.pesoPrevisto
+    };  
+    
+    this.cardioversaoSinc = energias.map(x => x * pesoCalculo);
   }
  
 
@@ -284,22 +311,28 @@ calcularDosagens() {
   }
 
     private encontrarFaixaDePeso() { 
-      if (this.peso >= 3 && this.peso <= 5) return 1;
-      if (this.peso >= 6 && this.peso <= 7) return 2;
-      if (this.peso >= 8 && this.peso <= 9) return 3;
-      if (this.peso >= 10 && this.peso <= 11) return 4;
-      if (this.peso >= 12 && this.peso <= 14) return 5;
-      if (this.peso >= 15 && this.peso <= 18) return 6;
-      if (this.peso >= 19 && this.peso <= 23) return 7;
-      if (this.peso >= 24 && this.peso <= 29) return 8;
-      if (this.peso >= 30) return 9;
+      let pesoCalculo = this.peso;
+
+      if(this.idade && !this.peso){
+        pesoCalculo = this.pesoPrevisto
+      };
+      
+      if (pesoCalculo >= 3 && pesoCalculo <= 5) return 1;
+      if (pesoCalculo >= 6 && pesoCalculo <= 7) return 2;
+      if (pesoCalculo >= 8 && pesoCalculo <= 9) return 3;
+      if (pesoCalculo >= 10 && pesoCalculo <= 11) return 4;
+      if (pesoCalculo >= 12 && pesoCalculo <= 14) return 5;
+      if (pesoCalculo >= 15 && pesoCalculo <= 18) return 6;
+      if (pesoCalculo >= 19 && pesoCalculo <= 23) return 7;
+      if (pesoCalculo >= 24 && pesoCalculo <= 29) return 8;
+      if (pesoCalculo >= 30) return 9;
 
       return 0;  
 
     }
     back(){
        history.back()
-     }  
+     }   
     
   }
   
