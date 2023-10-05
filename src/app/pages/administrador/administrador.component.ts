@@ -61,7 +61,7 @@ export class AdministradorComponent {
   }
 
   adicionarMedicamento(medicamento: any) {
-    debugger
+    
     this.medicamentosService.Add(medicamento).subscribe({
       complete: () => {
         this.getMedicamentos();

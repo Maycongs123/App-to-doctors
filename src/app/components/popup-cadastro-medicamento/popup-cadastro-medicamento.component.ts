@@ -195,13 +195,13 @@ export class PopupCadastroMedicamentoComponent {
   }
 
   submit() {  
-    debugger
+    
     if (this.formMedicamento.invalid) {
       this.openSnackBar()
       this.markFormGroupAsTouched(this.formMedicamento);
       return;
     }    
-   debugger
+   
     this.dialogRef.close(this.formMedicamento.value);
 
   }

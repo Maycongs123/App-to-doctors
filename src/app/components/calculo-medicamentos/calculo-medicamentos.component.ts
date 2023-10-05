@@ -52,7 +52,6 @@ export class CalculoMedicamentosComponent implements OnInit{
   creatina: any;
   idadeCalculoRenal: any;
   altura: any;
-  calculoRenal: any = "Sim";
   correcaoMl: any;
   correcaoDose: any;
   rediluicao: any;
@@ -138,9 +137,9 @@ export class CalculoMedicamentosComponent implements OnInit{
 
     this.calculoClearanceCreatininaAdulto();
 
-    if(this.atendimento === "Pediatrico" && this.calculoRenal === "Sim"){
+    if(this.atendimento === "Pediatrico" && this.item.calculoRenal === "Sim"){
       this.calculoClearanceCreatininaCrianca();
-      quantidadeMgCalculoRenal = 1000
+      quantidadeMgCalculoRenal = 1000;
     }
 
     var pesoLimitado;
@@ -148,7 +147,7 @@ export class CalculoMedicamentosComponent implements OnInit{
 
     if(this.idade <= 10){
       pesoLimitado = (this.idade * 2) + 8;
-      debugger
+      
       
       for (let i = 0; i < this.dadosMedicamentos.length; i++) {    
         const resultado = (pesoLimitado * this.dosagemMgKg * this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses * quantidadeMgCalculoRenal) * 1000;
@@ -300,7 +299,6 @@ export class CalculoMedicamentosComponent implements OnInit{
         quantidadeMl: this.medicamentoMlReverso
       }
     }
-    
   }
 
   calculoMcgMinReverso(){   
@@ -370,8 +368,7 @@ export class CalculoMedicamentosComponent implements OnInit{
   } 
 
 
-  calculoCorrecao(){   
-    debugger
+  calculoCorrecao(){     
     this.correcaoMl =  Math.round(parseInt(this.correcaoMl) * 0.9)
     this.correcaoDose = this.dosagemMgKg * 0.9
     this.rediluicao = (((0.9 * this.dosagemMgKg * this.peso) / 50) - this.correcaoMl).toLocaleString('pt-BR', { minimumFractionDigits: 2 });

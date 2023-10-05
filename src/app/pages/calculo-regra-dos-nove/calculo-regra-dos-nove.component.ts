@@ -34,7 +34,7 @@ export class CalculoRegraDos9Component implements OnInit{
   }
 
   toggleImageDisplay(imageId: string, imageValue: number) {  
-    debugger
+    
     const imagem = document.getElementById(imageId);
 
     let valorAreaCorpo: any = imageValue;

@@ -76,8 +76,12 @@ calcularDosagens() {
 } 
 
   calcularIdade(){
+    debugger
     if(!this.peso && this.idade){
       this.pesoPrevisto = (this.idade * 2) + 8;
+      this.calcularTamanhoTE();
+      this.calcularProfundidadeTE();
+      return
     }
 
     this.calcularLaminasLaringoscopio()
@@ -86,7 +90,7 @@ calcularDosagens() {
     this.calculoMl();
     this.calculoMg();
     this.calcularTamanhoTE();
-    this.calcularProfundidadeTE();
+    this.calcularProfundidadeTE();    
     this.calcularDesfibrilacao();
     this.cardioversaoSincronizada();
   } 
@@ -110,56 +114,46 @@ calcularDosagens() {
     this.mascaraLaringea = this.calcularEquipamento(mascarasLaringea);
   }
 
-  calcularValorComBaseNoPeso(): string {
-    let pesoCalculo = this.peso;
+  calcularValorComBaseNoPeso(): string {    
 
-    if(this.idade && !this.peso){
-      pesoCalculo = this.pesoPrevisto
-    };  
-
-    if (pesoCalculo >= 3 && pesoCalculo <= 5) {
+    if (this.peso >= 3 && this.peso <= 5) {
       return  this.resultadoCalculo = '1';
-    } else if (pesoCalculo >= 6 && pesoCalculo <= 7) {
+    } else if (this.peso >= 6 && this.peso <= 7) {
       return this.resultadoCalculo ='1-1.5';
-    } else if ((pesoCalculo >= 8 && pesoCalculo <= 9) || (pesoCalculo >= 10 && pesoCalculo <= 11)) {
+    } else if ((this.peso >= 8 && this.peso <= 9) || (this.peso >= 10 && this.peso <= 11)) {
       return this.resultadoCalculo = '1.5';
-    } else if (pesoCalculo >= 12 && pesoCalculo <= 14) {
+    } else if (this.peso >= 12 && this.peso <= 14) {
       return this.resultadoCalculo = '2';
-    } else if (pesoCalculo >= 15 && pesoCalculo <= 18) {
+    } else if (this.peso >= 15 && this.peso <= 18) {
       return this.resultadoCalculo = '2';
-    } else if (pesoCalculo >= 19 && pesoCalculo <= 23) {
+    } else if (this.peso >= 19 && this.peso <= 23) {
       return this.resultadoCalculo = '2-2.5';
-    } else if (pesoCalculo >= 24 && pesoCalculo <= 29) {
+    } else if (this.peso >= 24 && this.peso <= 29) {
       return this.resultadoCalculo = '2.5';
-    } else if (pesoCalculo >= 30 && pesoCalculo <= 36) {
+    } else if (this.peso >= 30 && this.peso <= 36) {
       return this.resultadoCalculo = '3';
     } else {
       return 'Valor não encontrado'; 
     }
   }
 
-  calcularLaminasLaringoscopio(): string {
-    let pesoCalculo = this.peso;
+  calcularLaminasLaringoscopio(): string {   
 
-    if(this.idade && !this.peso){
-      pesoCalculo = this.pesoPrevisto
-    }; 
-
-    if (pesoCalculo >= 3 && pesoCalculo <= 5) {
+    if (this.peso >= 3 && this.peso <= 5) {
       return this.calcLaminasLaringoscopio = "Reta 0-1";
-    } else if (pesoCalculo >= 6 && pesoCalculo <= 7) {
+    } else if (this.peso >= 6 && this.peso <= 7) {
       return this.calcLaminasLaringoscopio = "Reta 1";
-    } else if ((pesoCalculo >= 8 && pesoCalculo <= 9) || (pesoCalculo >= 10 && pesoCalculo <= 11)) {
+    } else if ((this.peso >= 8 && this.peso <= 9) || (this.peso >= 10 && this.peso <= 11)) {
       return this.calcLaminasLaringoscopio =  "Reta 1";
-    } else if (pesoCalculo >= 12 && pesoCalculo <= 14) {
+    } else if (this.peso >= 12 && this.peso <= 14) {
       return this.calcLaminasLaringoscopio = "Reta 1";
-    } else if (pesoCalculo >= 15 && pesoCalculo <= 18) {
+    } else if (this.peso >= 15 && this.peso <= 18) {
       return this.calcLaminasLaringoscopio =  "Reta 2";
-    } else if (pesoCalculo >= 19 && pesoCalculo <= 23) {
+    } else if (this.peso >= 19 && this.peso <= 23) {
       return this.calcLaminasLaringoscopio =  "Reta 2";
-    } else if (pesoCalculo >= 24 && pesoCalculo <= 29) {
+    } else if (this.peso >= 24 && this.peso <= 29) {
       return this.calcLaminasLaringoscopio =  "Reta 2 ou curva";
-    } else if (pesoCalculo >= 30 && pesoCalculo <= 36) {
+    } else if (this.peso >= 30 && this.peso <= 36) {
       return this.calcLaminasLaringoscopio = "Reta 2-3 ou curva";
     } else {
       return "Valor não encontrado";
@@ -208,100 +202,79 @@ calcularDosagens() {
   calcularDesfibrilacao() {
     const energias = [2, 4, 6, 8, 10];      
     // Calcular as cinco energias e adicioná-las ao array
-    let pesoCalculo = this.peso;
 
-    if(this.idade && !this.peso){
-      pesoCalculo = this.pesoPrevisto
-    };  
-
-    this.desfibrilacao = energias.map(x => x * pesoCalculo);
+    this.desfibrilacao = energias.map(x => x * this.peso);
   }
 
   cardioversaoSincronizada() {
     const energias = [0.5,1,2];    
-    // Calcular as cinco energias e adicioná-las ao array
-    let pesoCalculo = this.peso;
-
-    if(this.idade && !this.peso){
-      pesoCalculo = this.pesoPrevisto
-    };  
+    // Calcular as cinco energias e adicioná-las ao array    
     
-    this.cardioversaoSinc = energias.map(x => x * pesoCalculo);
+    this.cardioversaoSinc = energias.map(x => x * this.peso);
   }
  
 
-  calculoMl(){
-    let pesoCalculo = this.peso;
-
-    if(this.idade && !this.peso){
-      pesoCalculo = this.pesoPrevisto
-    };  
-      
-      this.ml_ADRENALINE_IV_IO = ((pesoCalculo * MEDICAMENTOS.ADRENALINE_IV_IO * 1) / PREPARACOES.ADRENALINE_IV_IO).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_ADRENALINE_ET = ((pesoCalculo * MEDICAMENTOS.ADRENALINE_ET * 1) / PREPARACOES.ADRENALINE_ET).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_ADRENALINE_IM = ((pesoCalculo * MEDICAMENTOS.ADRENALINE_IM * 1) / PREPARACOES.ADRENALINE_IM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_ATROPINE = ((pesoCalculo * MEDICAMENTOS.ATROPINE * 1) / PREPARACOES.ATROPINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_AMIODARONE = ((pesoCalculo * MEDICAMENTOS.AMIODARONE * 1) / PREPARACOES.AMIODARONE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_ATP = ((pesoCalculo * MEDICAMENTOS.ATP * 1) / PREPARACOES.ATP).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_CALCIUM_GLUCONATE = ((pesoCalculo * MEDICAMENTOS.CALCIUM_GLUCONATE * 1) / PREPARACOES.CALCIUM_GLUCONATE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_DEXTROSE_D10 = ((pesoCalculo * MEDICAMENTOS.DEXTROSE_D10 * 1) / PREPARACOES.DEXTROSE_D10).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_DEXTROSE_D50 = ((pesoCalculo * MEDICAMENTOS.DEXTROSE_D50 * 1) / PREPARACOES.DEXTROSE_D50).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_FLUMAZENIL = ((pesoCalculo * MEDICAMENTOS.FLUMAZENIL * 1) / PREPARACOES.FLUMAZENIL).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_LIGNOCAINE = ((pesoCalculo * MEDICAMENTOS.LIGNOCAINE * 1) / PREPARACOES.LIGNOCAINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_LORAZEPAM = ((pesoCalculo * MEDICAMENTOS.LORAZEPAM * 1) / PREPARACOES.LORAZEPAM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_MIDAZOLAM = ((pesoCalculo * MEDICAMENTOS.MIDAZOLAM * 1) / PREPARACOES.MIDAZOLAM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_MgSO4_50 = ((pesoCalculo * MEDICAMENTOS.MgSO4_50 * 5) / PREPARACOES.MgSO4_50).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_NALOXONE = ((pesoCalculo * MEDICAMENTOS.NALOXONE * 1) / PREPARACOES.NALOXONE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_NAHCO3 = ((pesoCalculo * MEDICAMENTOS.NAHCO3 * 1) / PREPARACOES.NAHCO3).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_PROCANAMIDE = ((pesoCalculo * MEDICAMENTOS.PROCANAMIDE * 1) / PREPARACOES.PROCANAMIDE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_KETAMINE = ((pesoCalculo * MEDICAMENTOS.KETAMINE * 1) / PREPARACOES.KETAMINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_FENTANYL = ((pesoCalculo * MEDICAMENTOS.FENTANYL * 1) / PREPARACOES.FENTANYL).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_MORPHINE = ((pesoCalculo * MEDICAMENTOS.MORPHINE * 1) / PREPARACOES.MORPHINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_ETOMIDATE = ((pesoCalculo * MEDICAMENTOS.ETOMIDATE * 1) / PREPARACOES.ETOMIDATE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_PROPOFOL = ((pesoCalculo * MEDICAMENTOS.PROPOFOL * 1) / PREPARACOES.PROPOFOL).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_ROCURONIUM = ((pesoCalculo * MEDICAMENTOS.ROCURONIUM * 1) / PREPARACOES.ROCURONIUM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_SUXAMETHONIUM = ((pesoCalculo * MEDICAMENTOS.SUXAMETHONIUM * 1) / PREPARACOES.SUXAMETHONIUM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_NEOSTIGMINE = ((pesoCalculo * MEDICAMENTOS.NEOSTIGMINE * 1) / PREPARACOES.NEOSTIGMINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-      this.ml_SUGAMMADEX = ((pesoCalculo * MEDICAMENTOS.SUGAMMADEX * 1) / PREPARACOES.SUGAMMADEX).toLocaleString('pt-BR', { minimumFractionDigits: 2 });  
+  calculoMl(){ 
+      this.ml_ADRENALINE_IV_IO = ((this.peso * MEDICAMENTOS.ADRENALINE_IV_IO * 1) / PREPARACOES.ADRENALINE_IV_IO).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ADRENALINE_ET = ((this.peso * MEDICAMENTOS.ADRENALINE_ET * 1) / PREPARACOES.ADRENALINE_ET).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ADRENALINE_IM = ((this.peso * MEDICAMENTOS.ADRENALINE_IM * 1) / PREPARACOES.ADRENALINE_IM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ATROPINE = ((this.peso * MEDICAMENTOS.ATROPINE * 1) / PREPARACOES.ATROPINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_AMIODARONE = ((this.peso * MEDICAMENTOS.AMIODARONE * 1) / PREPARACOES.AMIODARONE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ATP = ((this.peso * MEDICAMENTOS.ATP * 1) / PREPARACOES.ATP).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_CALCIUM_GLUCONATE = ((this.peso * MEDICAMENTOS.CALCIUM_GLUCONATE * 1) / PREPARACOES.CALCIUM_GLUCONATE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_DEXTROSE_D10 = ((this.peso * MEDICAMENTOS.DEXTROSE_D10 * 1) / PREPARACOES.DEXTROSE_D10).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_DEXTROSE_D50 = ((this.peso * MEDICAMENTOS.DEXTROSE_D50 * 1) / PREPARACOES.DEXTROSE_D50).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_FLUMAZENIL = ((this.peso * MEDICAMENTOS.FLUMAZENIL * 1) / PREPARACOES.FLUMAZENIL).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_LIGNOCAINE = ((this.peso * MEDICAMENTOS.LIGNOCAINE * 1) / PREPARACOES.LIGNOCAINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_LORAZEPAM = ((this.peso * MEDICAMENTOS.LORAZEPAM * 1) / PREPARACOES.LORAZEPAM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_MIDAZOLAM = ((this.peso * MEDICAMENTOS.MIDAZOLAM * 1) / PREPARACOES.MIDAZOLAM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_MgSO4_50 = ((this.peso * MEDICAMENTOS.MgSO4_50 * 5) / PREPARACOES.MgSO4_50).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_NALOXONE = ((this.peso * MEDICAMENTOS.NALOXONE * 1) / PREPARACOES.NALOXONE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_NAHCO3 = ((this.peso * MEDICAMENTOS.NAHCO3 * 1) / PREPARACOES.NAHCO3).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_PROCANAMIDE = ((this.peso * MEDICAMENTOS.PROCANAMIDE * 1) / PREPARACOES.PROCANAMIDE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_KETAMINE = ((this.peso * MEDICAMENTOS.KETAMINE * 1) / PREPARACOES.KETAMINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_FENTANYL = ((this.peso * MEDICAMENTOS.FENTANYL * 1) / PREPARACOES.FENTANYL).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_MORPHINE = ((this.peso * MEDICAMENTOS.MORPHINE * 1) / PREPARACOES.MORPHINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ETOMIDATE = ((this.peso * MEDICAMENTOS.ETOMIDATE * 1) / PREPARACOES.ETOMIDATE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_PROPOFOL = ((this.peso * MEDICAMENTOS.PROPOFOL * 1) / PREPARACOES.PROPOFOL).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_ROCURONIUM = ((this.peso * MEDICAMENTOS.ROCURONIUM * 1) / PREPARACOES.ROCURONIUM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_SUXAMETHONIUM = ((this.peso * MEDICAMENTOS.SUXAMETHONIUM * 1) / PREPARACOES.SUXAMETHONIUM).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_NEOSTIGMINE = ((this.peso * MEDICAMENTOS.NEOSTIGMINE * 1) / PREPARACOES.NEOSTIGMINE).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.ml_SUGAMMADEX = ((this.peso * MEDICAMENTOS.SUGAMMADEX * 1) / PREPARACOES.SUGAMMADEX).toLocaleString('pt-BR', { minimumFractionDigits: 2 });  
 
     }
      
 
 
   calculoMg(){
-    let pesoCalculo = this.peso;
 
-    if(this.idade && !this.peso){
-      pesoCalculo = this.pesoPrevisto
-    };
-
-    this.dosagens.ADRENALINE_IV_IO = pesoCalculo * MEDICAMENTOS.ADRENALINE_IV_IO;
-    this.dosagens.ADRENALINE_ET = pesoCalculo * MEDICAMENTOS.ADRENALINE_ET;
-    this.dosagens.ADRENALINE_IM = pesoCalculo * MEDICAMENTOS.ADRENALINE_IM;
-    this.dosagens.ATROPINE = pesoCalculo * MEDICAMENTOS.ATROPINE;
-    this.dosagens.AMIODARONE = pesoCalculo * MEDICAMENTOS.AMIODARONE;
-    this.dosagens.ATP = pesoCalculo * MEDICAMENTOS.ATP;
-    this.dosagens.CALCIUM_GLUCONATE = pesoCalculo * MEDICAMENTOS.CALCIUM_GLUCONATE;
-    this.dosagens.DEXTROSE_D10 = pesoCalculo * MEDICAMENTOS.DEXTROSE_D10;
-    this.dosagens.DEXTROSE_D50 = pesoCalculo * MEDICAMENTOS.DEXTROSE_D50;
-    this.dosagens.FLUMAZENIL = pesoCalculo * MEDICAMENTOS.FLUMAZENIL;
-    this.dosagens.LIGNOCAINE = pesoCalculo * MEDICAMENTOS.LIGNOCAINE;
-    this.dosagens.LORAZEPAM = pesoCalculo * MEDICAMENTOS.LORAZEPAM;
-    this.dosagens.MAGNESIUM_SULFATE = pesoCalculo * MEDICAMENTOS.MAGNESIUM_SULFATE;
-    this.dosagens.MgSO4_50 = pesoCalculo * MEDICAMENTOS.MgSO4_50;
-    this.dosagens.NALOXONE = pesoCalculo * MEDICAMENTOS.NALOXONE;
-    this.dosagens.NAHCO3 = pesoCalculo * MEDICAMENTOS.NAHCO3;
-    this.dosagens.PROCANAMIDE = pesoCalculo * MEDICAMENTOS.PROCANAMIDE;
-    this.dosagens.KETAMINE = pesoCalculo * MEDICAMENTOS.KETAMINE;
-    this.dosagens.MIDAZOLAM = pesoCalculo * MEDICAMENTOS.MIDAZOLAM;
-    this.dosagens.FENTANYL = pesoCalculo * MEDICAMENTOS.FENTANYL;
-    this.dosagens.MORPHINE = pesoCalculo * MEDICAMENTOS.MORPHINE;
-    this.dosagens.ETOMIDATE = pesoCalculo * MEDICAMENTOS.ETOMIDATE;
-    this.dosagens.PROPOFOL = pesoCalculo * MEDICAMENTOS.PROPOFOL;
-    this.dosagens.ROCURONIUM = pesoCalculo * MEDICAMENTOS.ROCURONIUM;
-    this.dosagens.SUXAMETHONIUM = pesoCalculo * MEDICAMENTOS.SUXAMETHONIUM;
-    this.dosagens.NEOSTIGMINE = pesoCalculo * MEDICAMENTOS.NEOSTIGMINE;
-    this.dosagens.SUGAMMADEX = pesoCalculo * MEDICAMENTOS.SUGAMMADEX;
+    this.dosagens.ADRENALINE_IV_IO = this.peso * MEDICAMENTOS.ADRENALINE_IV_IO;
+    this.dosagens.ADRENALINE_ET = this.peso * MEDICAMENTOS.ADRENALINE_ET;
+    this.dosagens.ADRENALINE_IM = this.peso * MEDICAMENTOS.ADRENALINE_IM;
+    this.dosagens.ATROPINE = this.peso * MEDICAMENTOS.ATROPINE;
+    this.dosagens.AMIODARONE = this.peso * MEDICAMENTOS.AMIODARONE;
+    this.dosagens.ATP = this.peso * MEDICAMENTOS.ATP;
+    this.dosagens.CALCIUM_GLUCONATE = this.peso * MEDICAMENTOS.CALCIUM_GLUCONATE;
+    this.dosagens.DEXTROSE_D10 = this.peso * MEDICAMENTOS.DEXTROSE_D10;
+    this.dosagens.DEXTROSE_D50 = this.peso * MEDICAMENTOS.DEXTROSE_D50;
+    this.dosagens.FLUMAZENIL = this.peso * MEDICAMENTOS.FLUMAZENIL;
+    this.dosagens.LIGNOCAINE = this.peso * MEDICAMENTOS.LIGNOCAINE;
+    this.dosagens.LORAZEPAM = this.peso * MEDICAMENTOS.LORAZEPAM;
+    this.dosagens.MAGNESIUM_SULFATE = this.peso * MEDICAMENTOS.MAGNESIUM_SULFATE;
+    this.dosagens.MgSO4_50 = this.peso * MEDICAMENTOS.MgSO4_50;
+    this.dosagens.NALOXONE = this.peso * MEDICAMENTOS.NALOXONE;
+    this.dosagens.NAHCO3 = this.peso * MEDICAMENTOS.NAHCO3;
+    this.dosagens.PROCANAMIDE = this.peso * MEDICAMENTOS.PROCANAMIDE;
+    this.dosagens.KETAMINE = this.peso * MEDICAMENTOS.KETAMINE;
+    this.dosagens.MIDAZOLAM = this.peso * MEDICAMENTOS.MIDAZOLAM;
+    this.dosagens.FENTANYL = this.peso * MEDICAMENTOS.FENTANYL;
+    this.dosagens.MORPHINE = this.peso * MEDICAMENTOS.MORPHINE;
+    this.dosagens.ETOMIDATE = this.peso * MEDICAMENTOS.ETOMIDATE;
+    this.dosagens.PROPOFOL = this.peso * MEDICAMENTOS.PROPOFOL;
+    this.dosagens.ROCURONIUM = this.peso * MEDICAMENTOS.ROCURONIUM;
+    this.dosagens.SUXAMETHONIUM = this.peso * MEDICAMENTOS.SUXAMETHONIUM;
+    this.dosagens.NEOSTIGMINE = this.peso * MEDICAMENTOS.NEOSTIGMINE;
+    this.dosagens.SUGAMMADEX = this.peso * MEDICAMENTOS.SUGAMMADEX;
   
     for (const medicamento in this.dosagens) {
       if (this.dosagens.hasOwnProperty(medicamento)) {
@@ -310,30 +283,25 @@ calcularDosagens() {
     } 
   }
 
-    private encontrarFaixaDePeso() { 
-      let pesoCalculo = this.peso;
-
-      if(this.idade && !this.peso){
-        pesoCalculo = this.pesoPrevisto
-      };
+    private encontrarFaixaDePeso() {      
       
-      if (pesoCalculo >= 3 && pesoCalculo <= 5) return 1;
-      if (pesoCalculo >= 6 && pesoCalculo <= 7) return 2;
-      if (pesoCalculo >= 8 && pesoCalculo <= 9) return 3;
-      if (pesoCalculo >= 10 && pesoCalculo <= 11) return 4;
-      if (pesoCalculo >= 12 && pesoCalculo <= 14) return 5;
-      if (pesoCalculo >= 15 && pesoCalculo <= 18) return 6;
-      if (pesoCalculo >= 19 && pesoCalculo <= 23) return 7;
-      if (pesoCalculo >= 24 && pesoCalculo <= 29) return 8;
-      if (pesoCalculo >= 30) return 9;
+      if (this.peso >= 3 && this.peso <= 5) return 1;
+      if (this.peso >= 6 && this.peso <= 7) return 2;
+      if (this.peso >= 8 && this.peso <= 9) return 3;
+      if (this.peso >= 10 && this.peso <= 11) return 4;
+      if (this.peso >= 12 && this.peso <= 14) return 5;
+      if (this.peso >= 15 && this.peso <= 18) return 6;
+      if (this.peso >= 19 && this.peso <= 23) return 7;
+      if (this.peso >= 24 && this.peso <= 29) return 8;
+      if (this.peso >= 30) return 9;
 
       return 0;  
 
     }
+
     back(){
        history.back()
-     }   
-    
+    } 
   }
   
 
