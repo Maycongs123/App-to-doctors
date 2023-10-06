@@ -75,8 +75,7 @@ calcularDosagens() {
   this.cardioversaoSincronizada();
 } 
 
-  calcularIdade(){
-    debugger
+  calcularIdade(){   
     if(!this.peso && this.idade){
       this.pesoPrevisto = (this.idade * 2) + 8;
       this.calcularTamanhoTE();

@@ -132,7 +132,7 @@ export class CalculoMedicamentosComponent implements OnInit{
   }
 
   calculoMgKg(){   
-    var pesoLimitado;
+    // var pesoLimitado;
     var quantidadeMgCalculoRenal = 1;
 
     this.calculoClearanceCreatininaAdulto();
@@ -142,29 +142,28 @@ export class CalculoMedicamentosComponent implements OnInit{
       quantidadeMgCalculoRenal = 1000;
     }
 
-    var pesoLimitado;
-
-
-    if(this.idade <= 10){
-      pesoLimitado = (this.idade * 2) + 8;
+    // if(this.idade <= 10){
+    //   pesoLimitado = (this.idade * 2) + 8;
       
       
-      for (let i = 0; i < this.dadosMedicamentos.length; i++) {    
-        const resultado = (pesoLimitado * this.dosagemMgKg * this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses * quantidadeMgCalculoRenal) * 1000;
-        this.correcaoMl = resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-        const key = `${i}`;
-        this.resultadoMgKg[key] = {
-          resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
-          quantidadeMg: this.dadosMedicamentos[i].quantidadeMg,
-          quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
-        }
-      } 
-      this.calculoCorrecao();
-      return;
-    }  
+    //   for (let i = 0; i < this.dadosMedicamentos.length; i++) {    
+    //     const resultado = (pesoLimitado * this.dosagemMgKg * this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses * quantidadeMgCalculoRenal) * 1000;
+    //     this.correcaoMl = resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+    //     const key = `${i}`;
+    //     this.resultadoMgKg[key] = {
+    //       resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
+    //       quantidadeMg: this.dadosMedicamentos[i].quantidadeMg,
+    //       quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
+    //     }
+    //   } 
+    //   this.calculoCorrecao();
+    //   return;
+    // }  
     
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
       const resultado = (this.peso * this.dosagemMgKg* this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses * quantidadeMgCalculoRenal);
+      // this.correcaoMl = resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      this.correcaoMl = resultado;
       const key = `${i}`;
       this.resultadoMgKg[key] = {
         resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
@@ -194,24 +193,24 @@ export class CalculoMedicamentosComponent implements OnInit{
   calculoMcgKgPediatrico(){
     var qntMg = this.medicamentoMg[0] || this.medicamentoMg;
     var qntMl = this.medicamentoMl[0] || this.medicamentoMl;
-    var pesoLimitado;
+    // var pesoLimitado;
 
-    if(this.idade <= 10){
-      pesoLimitado = (this.idade * 2) + 8;
+    // if(this.idade <= 10){
+    //   pesoLimitado = (this.idade * 2) + 8;
       
-      for (let i = 0; i < this.dadosMedicamentos.length; i++) {
-        const resultado = (this.doseCalculo * pesoLimitado * (1440 / ((qntMg/qntMl) * 1000)));
-        const soroFisologico = 24 - resultado;
-        const key = `${i}`;
-        this.resultadoMcgKgPediatrico[key] = {
-          resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
-          soroFisologico: soroFisologico,
-          quantidadeMg: this.medicamentoMg,
-          quantidadeMl: this.medicamentoMl        
-        }
-      }
-      return;
-    } 
+    //   for (let i = 0; i < this.dadosMedicamentos.length; i++) {
+    //     const resultado = (this.doseCalculo * pesoLimitado * (1440 / ((qntMg/qntMl) * 1000)));
+    //     const soroFisologico = 24 - resultado;
+    //     const key = `${i}`;
+    //     this.resultadoMcgKgPediatrico[key] = {
+    //       resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
+    //       soroFisologico: soroFisologico,
+    //       quantidadeMg: this.medicamentoMg,
+    //       quantidadeMl: this.medicamentoMl        
+    //     }
+    //   }
+    //   return;
+    // } 
       
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
       const resultado = (this.doseCalculo * this.peso * (1440 / ((qntMg/qntMl) * 1000)));
@@ -242,22 +241,22 @@ export class CalculoMedicamentosComponent implements OnInit{
 
 
   calculoMgKgReverso(){   
-    var pesoLimitado;
+    // var pesoLimitado;
 
-    if(this.idade <= 10){
-      pesoLimitado = (this.idade * 2) + 8;
+    // if(this.idade <= 10){
+    //   pesoLimitado = (this.idade * 2) + 8;
       
-      for (let i = 0; i < this.dadosMedicamentos.length; i++) {
-        const resultado = (this.volume * this.medicamentoMgReverso[i] * this.item.numeroDoses) / (pesoLimitado * this.medicamentoMlReverso[i]);
-        const key = `${i}`;
-        this.resultadoMgKgReverso[key] = {
-          resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
-          quantidadeMg: this.dadosMedicamentos[i].quantidadeMg,
-          quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
-        }
-      } 
-      return;
-    } 
+    //   for (let i = 0; i < this.dadosMedicamentos.length; i++) {
+    //     const resultado = (this.volume * this.medicamentoMgReverso[i] * this.item.numeroDoses) / (pesoLimitado * this.medicamentoMlReverso[i]);
+    //     const key = `${i}`;
+    //     this.resultadoMgKgReverso[key] = {
+    //       resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
+    //       quantidadeMg: this.dadosMedicamentos[i].quantidadeMg,
+    //       quantidadeMl: this.dadosMedicamentos[i].quantidadeMl
+    //     }
+    //   } 
+    //   return;
+    // } 
 
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
       const resultado = (this.volume * this.medicamentoMgReverso[i] * this.item.numeroDoses) / (this.peso * this.medicamentoMlReverso[i]);
@@ -273,22 +272,22 @@ export class CalculoMedicamentosComponent implements OnInit{
   calculoMcgKgReverso(){  
     var qntMg = this.medicamentoMgReverso[0] || this.medicamentoMgReverso
     var qntMl = this.medicamentoMlReverso[0] || this.medicamentoMlReverso
-    var pesoLimitado;
+    // var pesoLimitado;
 
-    if(this.idade <= 10){
-      pesoLimitado = (this.idade * 2) + 8;
+    // if(this.idade <= 10){
+    //   pesoLimitado = (this.idade * 2) + 8;
       
-      for (let i = 0; i < this.dadosMedicamentos.length; i++) {
-        const resultado = (this.vazao * ((qntMg) /(this.soroGlicosadoReverso + qntMl) * 1000)) / (pesoLimitado * 60);
-        const key = `${i}`;
-        this.resultadoMcgKgReverso[key] = {
-          resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
-          quantidadeMg: this.medicamentoMgReverso,
-          quantidadeMl: this.medicamentoMlReverso
-        }
-      }
-      return;
-    } 
+    //   for (let i = 0; i < this.dadosMedicamentos.length; i++) {
+    //     const resultado = (this.vazao * ((qntMg) /(this.soroGlicosadoReverso + qntMl) * 1000)) / (pesoLimitado * 60);
+    //     const key = `${i}`;
+    //     this.resultadoMcgKgReverso[key] = {
+    //       resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
+    //       quantidadeMg: this.medicamentoMgReverso,
+    //       quantidadeMl: this.medicamentoMlReverso
+    //     }
+    //   }
+    //   return;
+    // } 
 
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
       const resultado = (this.vazao * ((qntMg) /(this.soroGlicosadoReverso + qntMl) * 1000)) / (this.peso * 60);
@@ -368,10 +367,12 @@ export class CalculoMedicamentosComponent implements OnInit{
   } 
 
 
-  calculoCorrecao(){     
-    this.correcaoMl =  Math.round(parseInt(this.correcaoMl) * 0.9)
-    this.correcaoDose = this.dosagemMgKg * 0.9
-    this.rediluicao = (((0.9 * this.dosagemMgKg * this.peso) / 50) - this.correcaoMl).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+  calculoCorrecao(){ 
+    
+    // this.correcaoMl =  Math.round(parseInt(this.correcaoMl) * 0.9)
+    this.correcaoMl =  (this.correcaoMl * 1000) * 0.9;
+    this.correcaoDose = this.dosagemMgKg * 0.9;
+    this.rediluicao = (((0.9 * this.dosagemMgKg * this.peso) / (this.correcaoMl + (this.correcaoMl * 0,6))) - this.correcaoMl).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
 
   }
 }
