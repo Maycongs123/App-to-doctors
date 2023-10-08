@@ -226,9 +226,9 @@
                 </div>
               </div>   
               
-              <!-- <div *ngIf="isRenal && isPediatrico" class="div-flex-1">
+              <div *ngIf="isRenal" class="div-flex-1">
                 <div style="width: 78%">
-                  <label>Clearance de Creatinina (Valor intermediário para comparação):</label><br>
+                  <label>Clearance de Creatinina (Valor 3):</label><br>
                   <mat-form-field class="div-mat-form-field">
                       <input type="number" matInput formControlName="valor_3_ClearanceCreatinina">
                       <mat-error *ngIf="formMedicamento.controls.valor_3_ClearanceCreatinina.invalid && formMedicamento.controls.valor_3_ClearanceCreatinina.touched">
@@ -236,11 +236,11 @@
                       </mat-error>
                   </mat-form-field>
                 </div>
-              </div>     -->
+              </div>    
                 
               <div *ngIf="isRenal" class="div-flex-1">
                 <div style="width: 78%">
-                  <label>Correção de horário (Faixa 2: Ex (8 horas)):</label><br>
+                  <label>Correção de horário ou Uso (Faixa 2):</label><br>
                   <mat-form-field class="div-mat-form-field">
                       <input type="text" matInput formControlName="faixa_1_HorarioClCr">
                       <mat-error *ngIf="formMedicamento.controls.faixa_1_HorarioClCr.invalid && formMedicamento.controls.faixa_1_HorarioClCr.touched">
@@ -252,7 +252,7 @@
             
             <div *ngIf="isRenal" class="div-flex-1">
               <div style="width: 78%">
-                <label>Correção de horário (Faixa 3: Ex (8 horas)):</label><br>
+                <label>Correção de horário ou Uso (Faixa 3):</label><br>
                 <mat-form-field class="div-mat-form-field">
                     <input type="text" matInput formControlName="faixa_2_HorarioClCr">
                     <mat-error *ngIf="formMedicamento.controls.faixa_2_HorarioClCr.invalid && formMedicamento.controls.faixa_2_HorarioClCr.touched">
@@ -265,7 +265,7 @@
 
           <div *ngIf="isRenal" class="div-flex-1">
             <div>
-              <label>Correção de horário (Faixa 4 - hemodialise:)</label><br>
+              <label>Correção de horário ou Uso(Faixa 4 - hemodialise:)</label><br>
               <mat-form-field class="div-mat-form-field">
                   <input type="text" matInput formControlName="faixa_Hemodialise_Horario">
                   <mat-error *ngIf="formMedicamento.controls.faixa_Hemodialise_Horario.invalid && formMedicamento.controls.faixa_Hemodialise_Horario.touched">

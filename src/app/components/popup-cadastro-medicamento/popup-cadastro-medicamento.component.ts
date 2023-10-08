@@ -268,7 +268,7 @@ buscarMedicamento(id: any){
       calculoRenal: response.calculoRenal,
       valor_1_ClearanceCreatinina: response.valor_1_ClearanceCreatinina,
       valor_2_ClearanceCreatinina: response.valor_2_ClearanceCreatinina,
-      valor_3_ClearanceCreatinina: response.valor_2_ClearanceCreatinina,
+      valor_3_ClearanceCreatinina: response.valor_3_ClearanceCreatinina,
       faixa_1_HorarioClCr: response.faixa_1_HorarioClCr,
       faixa_2_HorarioClCr: response.faixa_2_HorarioClCr,
       faixa_Hemodialise_Horario: response.faixa_Hemodialise_Horario,

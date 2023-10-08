@@ -109,42 +109,58 @@
                     </span>
                     <!-- CORREÇÃO RENAL ADULTO-->
                      <div style="padding-bottom: 1rem;" *ngIf="atendimento === 'Adulto' && item.calculoRenal === 'Sim'">
-                        <span *ngIf="clearanceCreatinina >= item.valor_2_ClearanceCreatinina"  class="ion-text-wrap">                        
-                          <h3>Não há correção</h3>                       
+                      <!-- <span *ngIf="clearanceCreatinina >= item.valor_3_ClearanceCreatinina"  class="ion-text-wrap">     -->
+                        <span class="ion-text-wrap">                        
+                          <h3>{{'CLCr > ' + item.valor_3_ClearanceCreatinina + 'ml/min:'}}</h3>   
+                          <p>Não há correção</p>                            
                         </span>
 
-                        <span *ngIf="clearanceCreatinina >= item.valor_1_ClearanceCreatinina && clearanceCreatinina < item.valor_2_ClearanceCreatinina" class="ion-text-wrap">                        
+                        <!-- <span *ngIf="clearanceCreatinina >= item.valor_1_ClearanceCreatinina && clearanceCreatinina < item.valor_2_ClearanceCreatinina" class="ion-text-wrap"> -->
+                        <span class="ion-text-wrap">                        
+                          <h3>{{'CLCr ' + item.valor_2_ClearanceCreatinina + ' - ' + item.valor_3_ClearanceCreatinina + 'ml/min:'}}</h3>
+                          <p>{{(dosagemMgKg * 0.7) + ' mg/kg a cada ' + item.faixa_1_HorarioClCr + ' horas' }}</p>                          
+                        </span>
+
+                        <!-- <span *ngIf="clearanceCreatinina < item.valor_1_ClearanceCreatinina" class="ion-text-wrap">  -->
+                        <span class="ion-text-wrap">                        
                           <h3>{{'CLCr ' + item.valor_1_ClearanceCreatinina + ' - ' + item.valor_2_ClearanceCreatinina + 'ml/min:'}}</h3>
-                          <p>{{(dosagemMgKg * 0.7) + ' mg/kg a cada ' + item.faixa_1_HorarioClCr + ' horas' }}</p>
-                          <p>{{'Diálise intermitente: Administrar após hemodiálise: ' + (dosagemMgKg * 0.2)+ 'mg/kg a cada ' + item.faixa_Hemodialise_Horario  + ' horas'}}</p>
+                          <p>{{(dosagemMgKg * 0.4) + ' mg/kg a cada ' + item.faixa_2_HorarioClCr + ' horas' }}</p>
                         </span>
 
-                        <span *ngIf="clearanceCreatinina < item.valor_1_ClearanceCreatinina" class="ion-text-wrap">                        
+                        <span>
                           <h3>{{'CLCr < ' + item.valor_1_ClearanceCreatinina + 'ml/min:'}}</h3>
-                          <p>{{(dosagemMgKg * 0.4) + ' mg/kg a cada ' + item.faixa_2_HorarioClCr + ' horas' }}</p>                         
                           <p>{{'Diálise intermitente: Administrar após hemodiálise: ' + (dosagemMgKg * 0.2) + 'mg/kg a cada ' + item.faixa_Hemodialise_Horario + 'horas'}}</p>
                         </span>
                     </div>
 
                     <!-- CORREÇÃO RENAL PEDIATRICO-->
                     <div style="padding-bottom: 1rem;" *ngIf="atendimento === 'Pediatrico' && item.calculoRenal === 'Sim'">
+                      <!-- <span *ngIf="clearanceCreatinina >= item.valor_2_ClearanceCreatinina" class="ion-text-wrap"> -->
                       <span *ngIf="clearanceCreatinina >= item.valor_2_ClearanceCreatinina" class="ion-text-wrap">
-                        <h3>Não há correção</h3>                       
+                        <h3>{{'CLCr > ' + item.valor_3_ClearanceCreatinina + 'ml/min:'}}</h3>   
+                        <p>Não há correção</p>    
+                      </span>
+
+                      <!-- <span *ngIf="clearanceCreatinina >= item.valor_1_ClearanceCreatinina && clearanceCreatinina < item.valor_2_ClearanceCreatinina" class="ion-text-wrap"> -->
+                      <span class="ion-text-wrap">
+                        <h3>{{'CLCr ' + item.valor_2_ClearanceCreatinina + ' - ' + item.valor_3_ClearanceCreatinina + 'ml/min:'}}</h3>
+                        <p>{{(correcaoDose * 0.7) + ' mg/kg a cada ' + item.faixa_1_HorarioClCr + ' horas' }}</p>                                        
+                      </span>
+
+                      <!-- <span *ngIf="clearanceCreatinina < item.clearanceCreatininaItem1" class="ion-text-wrap"> -->
+                      <span class="ion-text-wrap">
+                        <h3>{{'CLCr ' + item.valor_1_ClearanceCreatinina + ' - ' + item.valor_2_ClearanceCreatinina + 'ml/min:'}}</h3>
+                        <p>{{(correcaoDose * 0.4) + ' mg/kg a cada ' + item.faixa_2_HorarioClCr + ' horas'}}</p>                                           
+                      </span>
+
+                      <span>
+                        <h3>{{'CLCr < ' + item.valor_1_ClearanceCreatinina + 'ml/min:'}}</h3>
                         <p>{{'Para crianças pesando menos de 50 kg, submetidas à hemodiálise, a dose recomendada é de ' + (correcaoDose * 0.2) + 'mg/kg a cada '+  item.faixa_Hemodialise_Horario +' horas'}}</p>
                       </span>
-                      <span *ngIf="clearanceCreatinina >= item.valor_1_ClearanceCreatinina && clearanceCreatinina < item.valor_2_ClearanceCreatinina" class="ion-text-wrap">
-                        <h3>{{'CLCr ' + item.valor_1_ClearanceCreatinina + ' - ' + item.valor_2_ClearanceCreatinina + 'ml/min:'}}</h3>
-                        <p>{{(correcaoDose * 0.7) + ' mg/kg a cada ' + item.faixa_1_HorarioClCr + ' horas' }}</p>
-                        <p>{{'Para crianças pesando menos de 50 kg, submetidas à hemodiálise, a dose recomendada é de ' + (correcaoDose * 0.2) + 'mg/kg a cada '+  item.faixa_Hemodialise_Horario +' horas'}}</p>                     
-                      </span>
-                      <span *ngIf="clearanceCreatinina < item.clearanceCreatininaItem1" class="ion-text-wrap">
-                        <h3>{{'CLCr < ' + item.clearanceCreatininaItem1 + 'ml/min:'}}</h3>
-                        <p>{{(correcaoDose * 0.4) + ' mg/kg a cada ' + item.faixa_2_HorarioClCr + ' horas'}}</p>
-                        <p>{{'Para crianças pesando menos de 50 kg, submetidas à hemodiálise, a dose recomendada é de ' + (correcaoDose * 0.2) + 'mg/kg a cada '+  item.faixa_Hemodialise_Horario +' horas'}}</p>                       
-                      </span>
+
                       <span>
                         <h3>{{'Pescrição'}}</h3>
-                        <p>{{ correcaoMl + 'ml de ' + item.nome + ' em ' + rediluicao + 'ml de soro fisiologico' }}</p>
+                        <p>{{ correcaoMl + 'ml de ' + item.nome + ' em ' + rediluicao + 'ml de soro fisiologico' }}</p>                       
                       </span>
                     </div>
                   </div>
