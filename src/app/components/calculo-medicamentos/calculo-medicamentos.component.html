@@ -57,10 +57,15 @@
                   mg/kg/dia
                 </ng-template>
                 <div name="mg/kg/dia" class="div-calculadora">
-                  <mat-form-field class="matFormCalculadora">
+                  <mat-form-field class="matFormCalculadora" *ngIf="atendimento === 'Adulto'">
                       <mat-label>Peso(Kg)</mat-label>
                       <input matInput type="number" [(ngModel)]="peso" [step]="0.01">
                   </mat-form-field>
+                  <mat-form-field class="matFormCalculadora" *ngIf="atendimento === 'Pediatrico'">
+                    <mat-label>Peso(Kg)</mat-label>
+                    <input matInput type="number" [(ngModel)]="peso" [step]="0.01" max="40">
+                    <mat-hint>Crianças com mais de 40kg, alterar o modo de atendimento para adulto.</mat-hint>
+                </mat-form-field>
                   <mat-form-field class="matFormCalculadora" *ngIf="item.calculoRenal === 'Sim' && atendimento === 'Adulto'">
                     <mat-label>Qual o seu gênero?</mat-label>
                     <mat-select [(ngModel)]="genero">
@@ -100,7 +105,7 @@
                   <mat-form-field class="matFormCalculadora" *ngIf="atendimento === 'Pediatrico'">
                     <mat-label>Dosagem máxima (mg/kg)</mat-label>
                     <input matInput type="number" [(ngModel)]="dosagemMaxima" [step]="0.01">
-                    <mat-hint>{{'Variação da dosagem máxima' + item.VariacaoMinimaDosagemMaxima +' mg/kg - ' + item.VariacaoMaximaDosagemMaxima + ' mg/kg'}}</mat-hint>
+                    <mat-hint>{{'Variação da dosagem máxima ' + item.variacaoMinimaDosagemMaxima +' mg/kg - ' + item.variacaoMaximaDosagemMaxima + ' mg/kg'}}</mat-hint>
                   </mat-form-field>
                   <button  mat-button matTooltip="Accent" (click)="calculoMgKg()">
                     <span>Calcular</span>
@@ -114,6 +119,11 @@
                     </span>
                     <!-- CORREÇÃO RENAL ADULTO-->
                      <div style="padding-bottom: 1rem;" *ngIf="atendimento === 'Adulto' && item.calculoRenal === 'Sim'">
+
+                      <span class="ion-text-wrap">                        
+                        <h3>{{'CLCr = ' + clearanceCreatininaFormat + ' ml/min:'}}</h3> 
+                      </span>
+
                       <!-- <span *ngIf="clearanceCreatinina >= item.valor_3_ClearanceCreatinina"  class="ion-text-wrap">     -->
                         <span class="ion-text-wrap">                        
                           <h3>{{'CLCr > ' + item.valor_3_ClearanceCreatinina + 'ml/min:'}}</h3>   
@@ -123,31 +133,36 @@
                         <!-- <span *ngIf="clearanceCreatinina >= item.valor_1_ClearanceCreatinina && clearanceCreatinina < item.valor_2_ClearanceCreatinina" class="ion-text-wrap"> -->
                         <span class="ion-text-wrap">                        
                           <h3>{{'CLCr ' + item.valor_2_ClearanceCreatinina + ' - ' + item.valor_3_ClearanceCreatinina + 'ml/min:'}}</h3>
-                          <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{(dosagemMgKg * (item.Valor_1_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.faixa_1_HorarioClCr}}</p>
+                          <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{(dosagemMgKg * (item.valor_1_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.faixa_1_HorarioClCr}}</p>
                           <p *ngIf="item.alteracaoValorFaixas === 'ApenasUso'">{{(dosagemMgKg) + ' mg/kg - ' + item.faixa_1_HorarioClCr}}</p>
-                          <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{(dosagemMgKg * (item.Valor_1_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.modoDeUso}}</p>
+                          <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{(dosagemMgKg * (item.valor_1_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.modoDeUso}}</p>
                         </span>
 
                         <!-- <span *ngIf="clearanceCreatinina < item.valor_1_ClearanceCreatinina" class="ion-text-wrap">  -->
                         <span class="ion-text-wrap">                        
                           <h3>{{'CLCr ' + item.valor_1_ClearanceCreatinina + ' - ' + item.valor_2_ClearanceCreatinina + 'ml/min:'}}</h3>
-                          <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{(dosagemMgKg * (item.Valor_2_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.faixa_2_HorarioClCr}}</p>
+                          <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{(dosagemMgKg * (item.valor_2_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.faixa_2_HorarioClCr}}</p>
                           <p *ngIf="item.alteracaoValorFaixas === 'ApenasUso'">{{(dosagemMgKg) + ' mg/kg - ' + item.faixa_2_HorarioClCr}}</p>
-                          <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{(dosagemMgKg * (item.Valor_2_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.modoDeUso}}</p>
+                          <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{(dosagemMgKg * (item.valor_2_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.modoDeUso}}</p>
                         </span>
 
                         <span>
                           <h3>{{'CLCr < ' + item.valor_1_ClearanceCreatinina + 'ml/min:'}}</h3>
-                          <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{'Diálise intermitente: Administrar após hemodiálise: ' + (dosagemMgKg * (item.Valor_3_Porcetagem_ClearanceCreatinina / 100)) + 'mg/kg - ' + item.faixa_Hemodialise_Horario}}</p>
+                          <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{'Diálise intermitente: Administrar após hemodiálise: ' + (dosagemMgKg * (item.valor_3_Porcetagem_ClearanceCreatinina / 100)) + 'mg/kg - ' + item.faixa_Hemodialise_Horario}}</p>
                           <p *ngIf="item.alteracaoValorFaixas === 'ApenasUso'">{{'Diálise intermitente: Administrar após hemodiálise: ' + (dosagemMgKg) + 'mg/kg - ' + item.faixa_Hemodialise_Horario}}</p>
-                          <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{'Diálise intermitente: Administrar após hemodiálise: ' + (dosagemMgKg * (item.Valor_3_Porcetagem_ClearanceCreatinina / 100)) + 'mg/kg - ' + item.modoDeUso}}</p>
+                          <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{'Diálise intermitente: Administrar após hemodiálise: ' + (dosagemMgKg * (item.valor_3_Porcetagem_ClearanceCreatinina / 100)) + 'mg/kg - ' + item.modoDeUso}}</p>
                         </span>
                     </div>
 
                     <!-- CORREÇÃO RENAL PEDIATRICO-->
                     <div style="padding-bottom: 1rem;" *ngIf="atendimento === 'Pediatrico' && item.calculoRenal === 'Sim'">
+
+                      <span class="ion-text-wrap">                        
+                        <h3>{{'CLCr = ' + clearanceCreatininaFormat + ' ml/min:'}}</h3> 
+                      </span>
+
                       <!-- <span *ngIf="clearanceCreatinina >= item.valor_2_ClearanceCreatinina" class="ion-text-wrap"> -->
-                      <span *ngIf="clearanceCreatinina >= item.valor_2_ClearanceCreatinina" class="ion-text-wrap">
+                      <span  class="ion-text-wrap">
                         <h3>{{'CLCr > ' + item.valor_3_ClearanceCreatinina + 'ml/min:'}}</h3>   
                         <p>Não há correção</p>    
                       </span>
@@ -155,24 +170,24 @@
                       <!-- <span *ngIf="clearanceCreatinina >= item.valor_1_ClearanceCreatinina && clearanceCreatinina < item.valor_2_ClearanceCreatinina" class="ion-text-wrap"> -->
                       <span class="ion-text-wrap">
                         <h3>{{'CLCr ' + item.valor_2_ClearanceCreatinina + ' - ' + item.valor_3_ClearanceCreatinina + 'ml/min:'}}</h3>
-                        <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{(correcaoDose * (item.Valor_1_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.faixa_1_HorarioClCr}}</p>
+                        <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{(correcaoDose * (item.valor_1_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.faixa_1_HorarioClCr}}</p>
                         <p *ngIf="item.alteracaoValorFaixas === 'ApenasUso'">{{(correcaoDose) + ' mg/kg - ' + item.faixa_1_HorarioClCr}}</p>
-                        <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{(correcaoDose * (item.Valor_1_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.modoDeUso}}</p>                                       
+                        <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{(correcaoDose * (item.valor_1_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.modoDeUso}}</p>                                       
                       </span>
 
                       <!-- <span *ngIf="clearanceCreatinina < item.clearanceCreatininaItem1" class="ion-text-wrap"> -->
                       <span class="ion-text-wrap">
                         <h3>{{'CLCr ' + item.valor_1_ClearanceCreatinina + ' - ' + item.valor_2_ClearanceCreatinina + 'ml/min:'}}</h3>
-                        <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{(correcaoDose * (item.Valor_2_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.faixa_2_HorarioClCr}}</p>
+                        <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{(correcaoDose * (item.valor_2_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.faixa_2_HorarioClCr}}</p>
                         <p *ngIf="item.alteracaoValorFaixas === 'ApenasUso'">{{(correcaoDose) + ' mg/kg - ' + item.faixa_2_HorarioClCr}}</p>
-                        <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{(correcaoDose * (item.Valor_2_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.modoDeUso}}</p>                                          
+                        <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{(correcaoDose * (item.valor_2_Porcetagem_ClearanceCreatinina / 100)) + ' mg/kg - ' + item.modoDeUso}}</p>                                          
                       </span>
 
                       <span>
                         <h3>{{'CLCr < ' + item.valor_1_ClearanceCreatinina + 'ml/min:'}}</h3>                        
-                        <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{'Para crianças pesando menos de 50 kg, submetidas à hemodiálise, a dose recomendada é de ' + (correcaoDose * (item.Valor_3_Porcetagem_ClearanceCreatinina / 100)) + 'mg/kg - '+  item.faixa_Hemodialise_Horario}}</p>
+                        <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{'Para crianças pesando menos de 50 kg, submetidas à hemodiálise, a dose recomendada é de ' + (correcaoDose * (item.valor_3_Porcetagem_ClearanceCreatinina / 100)) + 'mg/kg - '+  item.faixa_Hemodialise_Horario}}</p>
                         <p *ngIf="item.alteracaoValorFaixas === 'ApenasUso'">{{'Para crianças pesando menos de 50 kg, submetidas à hemodiálise, a dose recomendada é de ' + (correcaoDose) + 'mg/kg - '+  item.faixa_Hemodialise_Horario}}</p>
-                        <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{'Para crianças pesando menos de 50 kg, submetidas à hemodiálise, a dose recomendada é de ' + (correcaoDose * (item.Valor_3_Porcetagem_ClearanceCreatinina / 100)) + 'mg/kg - '+  item.modoDeUso}}</p>
+                        <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{'Para crianças pesando menos de 50 kg, submetidas à hemodiálise, a dose recomendada é de ' + (correcaoDose * (item.valor_3_Porcetagem_ClearanceCreatinina / 100)) + 'mg/kg - '+  item.modoDeUso}}</p>
                       </span>
                     </div>
 
@@ -191,10 +206,15 @@
                   mg/Kg
                 </ng-template>
                 <div name="mcg/kg/min" class="div-calculadora">
-                  <mat-form-field class="matFormCalculadora">
-                      <mat-label>Peso(Kg)</mat-label>
-                      <input matInput type="number" [(ngModel)]="peso" [step]="0.01">
-                  </mat-form-field>
+                  <mat-form-field class="matFormCalculadora" *ngIf="atendimento === 'Adulto'">
+                    <mat-label>Peso(Kg)</mat-label>
+                    <input matInput type="number" [(ngModel)]="peso" [step]="0.01" max="40">
+                </mat-form-field>
+                <mat-form-field class="matFormCalculadora" *ngIf="atendimento === 'Pediatrico'">
+                  <mat-label>Peso(Kg)</mat-label>
+                  <input matInput type="number" [(ngModel)]="peso" [step]="0.01">
+                  <mat-hint>Crianças com mais de 40kg, alterar o modo de atendimento para adulto.</mat-hint>
+              </mat-form-field>
                   <mat-form-field class="matFormCalculadora" *ngIf="atendimento === 'Pediatrico'">
                     <mat-label>Idade</mat-label>
                     <input matInput type="number" [(ngModel)]="idade" >
@@ -262,11 +282,13 @@
                   </div>
                 </div>           
             </div>
+
             <!--CALCULO PEDIATRICO-->
             <div name="mcg/kg/min" class="div-calculadora" *ngIf="atendimento === 'Pediatrico'">
               <mat-form-field class="matFormCalculadora">
                   <mat-label>Peso(Kg)</mat-label>
                   <input matInput type="number" [(ngModel)]="peso" [step]="0.01">
+                  <mat-hint>Crianças com mais de 40kg, alterar o modo de atendimento para adulto.</mat-hint>
               </mat-form-field>
               <!-- <mat-form-field class="matFormCalculadora">
                 <mat-label>Idade</mat-label>
@@ -303,10 +325,15 @@
                 ml/h
               </ng-template>
               <div name="mcg/kg/min" class="div-calculadora">
-                <mat-form-field class="matFormCalculadora">
-                    <mat-label>Peso(Kg)</mat-label>
-                    <input matInput type="number" [(ngModel)]="peso" [step]="0.01">
-                </mat-form-field>
+                <mat-form-field class="matFormCalculadora" *ngIf="atendimento === 'Adulto'">
+                  <mat-label>Peso(Kg)</mat-label>
+                  <input matInput type="number" [(ngModel)]="peso" [step]="0.01" max="40">
+              </mat-form-field>
+              <mat-form-field class="matFormCalculadora" *ngIf="atendimento === 'Pediatrico'">
+                <mat-label>Peso(Kg)</mat-label>
+                <input matInput type="number" [(ngModel)]="peso" [step]="0.01">
+                <mat-hint>Crianças com mais de 40kg, alterar o modo de atendimento para adulto.</mat-hint>
+              </mat-form-field>
                 <mat-form-field class="matFormCalculadora" *ngIf="atendimento === 'Pediatrico'">
                   <mat-label>Idade</mat-label>
                   <input matInput type="number" [(ngModel)]="idade" >
