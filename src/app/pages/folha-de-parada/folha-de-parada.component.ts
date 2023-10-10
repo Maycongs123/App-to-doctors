@@ -292,7 +292,7 @@ calcularDosagens() {
       if (this.peso >= 15 && this.peso <= 18) return 6;
       if (this.peso >= 19 && this.peso <= 23) return 7;
       if (this.peso >= 24 && this.peso <= 29) return 8;
-      if (this.peso >= 30) return 9;
+      if (this.peso >= 30 && this.peso <= 40) return 9;
 
       return 0;  
 

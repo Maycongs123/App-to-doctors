@@ -192,6 +192,12 @@ export const mascarasLaringea = [
 ]; 
 
 
+export const alteracaoValorFaixas = [  
+  {value: "Ambos", label: "Modificar ambos valores"},
+  {value: "ApenasDose", label: "Modificar apenas a dosagem"},
+  {value: "ApenasUso", label: "Modificar apenas o modo de uso"}
+]
+
 
 export const MEDICAMENTOS = {
     ADRENALINE_IV_IO: 0.01,

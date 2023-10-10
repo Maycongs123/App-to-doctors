@@ -55,6 +55,7 @@ export class CalculoMedicamentosComponent implements OnInit{
   correcaoMl: any;
   correcaoDose: any;
   rediluicao: any;
+  dosagemMaxima: any;
 
   constructor(
     private elementRef: ElementRef,    
@@ -118,6 +119,7 @@ export class CalculoMedicamentosComponent implements OnInit{
     this.administracao = JSON.parse(this.item.administracao);
     this.usoGestacao = JSON.parse(this.item.usoGestacao);  
     this.dosagemMgKg = this.item.quantidadeMgKg;
+    this.dosagemMaxima = this.item.dosagemMaxima;
     
     const quantidadeMlArray = JSON.parse(this.item.quantidadeMg);
     const quantidadeMgArray  = JSON.parse(this.item.quantidadeMl);
@@ -362,17 +364,15 @@ export class CalculoMedicamentosComponent implements OnInit{
         break;
     }
 
-    this.clearanceCreatinina = (constanteK * this.altura) / this.creatina;
-    
+    this.clearanceCreatinina = (constanteK * this.altura) / this.creatina;    
   } 
 
 
-  calculoCorrecao(){ 
-    
+  calculoCorrecao(){     
     // this.correcaoMl =  Math.round(parseInt(this.correcaoMl) * 0.9)
     this.correcaoMl =  (this.correcaoMl * 1000) * 0.9;
     this.correcaoDose = this.dosagemMgKg * 0.9;
-    this.rediluicao = (((0.9 * this.dosagemMgKg * this.peso) / (this.correcaoMl + (this.correcaoMl * 0,6))) - this.correcaoMl).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+    this.rediluicao = (((0.9 * this.dosagemMgKg * this.peso) / (this.correcaoMl + this.dosagemMaxima)) - this.correcaoMl).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
 
   }
 }

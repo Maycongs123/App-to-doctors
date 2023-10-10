@@ -13,6 +13,7 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
       
+          <!-- MEDICAMENTO USO -->
           <div class="div-flex">
             <div>
                 <div style="display: flex; justify-content: center;">
@@ -28,6 +29,7 @@
             </div>
           </div>
 
+          <!-- NOME MEDICAMENTO -->
           <div class="div-flex">
             <div>
                 <label>Nome do medicamento:</label><br>
@@ -40,6 +42,8 @@
             </div>
           </div>
 
+
+          <!-- TIPO MEDICAMENTO -->
           <div class="div-flex">
             <div>
                 <label style="text-align: left;">Tipo do medicamento: </label><br>
@@ -65,6 +69,7 @@
             </div>
           </div>
 
+          <!-- MODO DE USO -->
           <div class="div-flex">
             <div>
                 <label>Modo de uso:</label><br>
@@ -77,6 +82,8 @@
             </div>
           </div>
 
+
+          <!-- TIPO DOSAGEM -->
           <div class="div-flex">
             <div>
                 <div style="display: flex; justify-content: center;">
@@ -109,6 +116,7 @@
       
           <div class="div-flex">
             <div>
+              <!-- QUANTIDADE MILIGRAMAS -->
                 <div>
                     <label>Quantidade em mg:</label><br>
                     <div formArrayName="quantidadeMg">
@@ -125,6 +133,7 @@
                     </div>
                     <button mat-button color="primary" type="button" (click)="adicionarCampoQuantidadeMg()">Adicionar apresentação em mg</button>
                 </div>
+                <!-- QUANTIDADE ML -->
                 <div>
                     <label>Quantidade em ml:</label><br>
                     <div formArrayName="quantidadeMl">
@@ -159,6 +168,33 @@
                       </mat-error>
                   </mat-form-field>
               </div>      
+              <div *ngIf="dosagemTipo && isPediatrico">
+                <label>Dosagem Máxima (mg/kg):</label><br>
+                <mat-form-field class="div-mat-form-field">
+                    <input type="number" matInput formControlName="dosagemMaxima">
+                    <mat-error *ngIf="formMedicamento.controls.dosagemMaxima.invalid && formMedicamento.controls.dosagemMaxima.touched">
+                      Esse campo é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+              </div>
+              <div *ngIf="dosagemTipo && isPediatrico">
+                <label>Variação Dosagem Máxima (Menor valor mg/kg):</label><br>
+                <mat-form-field class="div-mat-form-field">
+                    <input type="number" matInput formControlName="variacaoMinimaDosagemMaxima">
+                    <mat-error *ngIf="formMedicamento.controls.variacaoMinimaDosagemMaxima.invalid && formMedicamento.controls.variacaoMinimaDosagemMaxima.touched">
+                      Esse campo é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+              </div>
+              <div *ngIf="dosagemTipo && isPediatrico">
+                <label>Variação Dosagem Máxima (Maior valor mg/kg):</label><br>
+                <mat-form-field class="div-mat-form-field">
+                    <input type="number" matInput formControlName="variacaoMaximaDosagemMaxima">
+                    <mat-error *ngIf="formMedicamento.controls.variacaoMaximaDosagemMaxima.invalid && formMedicamento.controls.variacaoMaximaDosagemMaxima.touched">
+                      Esse campo é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+              </div>
               <div *ngIf="!dosagemTipo">
                 <label>Quantidade de soro glicosado 5% (ml):</label><br>
                 <mat-form-field class="div-mat-form-field">
@@ -185,7 +221,8 @@
             </mat-panel-title>
             <mat-panel-description>
             </mat-panel-description>
-          </mat-expansion-panel-header>          
+          </mat-expansion-panel-header>  
+
             <div class="div-flex">
               <div>
                   <div style="display: flex; justify-content: center;">
@@ -200,8 +237,24 @@
                   </mat-error>
               </div>
             </div>
-            <div>                  
-  
+
+            <div class="div-flex" *ngIf="isRenal">
+              <div>
+                  <div style="display: flex; justify-content: center; padding-bottom: 0.3rem;">
+                    <label>Qual os dados você deseja editar?:</label><br>
+                  </div>
+                  <mat-select formControlName="alteracaoValorFaixas" [(ngModel)]="isAlteracaoFaixas">
+                    <mat-option *ngFor="let dados of alteracaoValorFaixas" [value]="dados.value">
+                      {{dados.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="formMedicamento.controls.alteracaoValorFaixas.invalid && formMedicamento.controls.alteracaoValorFaixas.touched">
+                    Esse campo é obrigatório.
+                  </mat-error>
+              </div>
+            </div>
+
+            <div>
               <div *ngIf="isRenal" class="div-flex-1" >
                 <div style="width: 78%">
                   <label>Clearance de Creatinina (Valor 1):</label><br>
@@ -212,7 +265,7 @@
                       </mat-error>
                   </mat-form-field>
                 </div>
-              </div>   
+              </div> 
               
               <div *ngIf="isRenal" class="div-flex-1">
                 <div style="width: 78%">
@@ -225,7 +278,7 @@
                   </mat-form-field>
                 </div>
               </div>   
-              
+             
               <div *ngIf="isRenal" class="div-flex-1">
                 <div style="width: 78%">
                   <label>Clearance de Creatinina (Valor 3):</label><br>
@@ -237,8 +290,46 @@
                   </mat-form-field>
                 </div>
               </div>    
+
+
+              <div *ngIf="isRenal && (isAlteracaoFaixas === 'Ambos' || isAlteracaoFaixas === 'ApenasDose')" class="div-flex-1" >
+                <div style="width: 78%">
+                  <label>Correção Porcetagem Clearance de Creatinina (Faixa 2):</label><br>
+                  <mat-form-field class="div-mat-form-field">
+                      <input type="number" matInput formControlName="valor_1_Porcetagem_ClearanceCreatinina" placeholder="80%">
+                      <mat-error *ngIf="formMedicamento.controls.valor_1_Porcetagem_ClearanceCreatinina.invalid && formMedicamento.controls.valor_1_Porcetagem_ClearanceCreatinina.touched">
+                        Esse campo é obrigatório.
+                      </mat-error>
+                  </mat-form-field>
+                </div>
+              </div> 
+              
+              <div *ngIf="isRenal && (isAlteracaoFaixas === 'Ambos' || isAlteracaoFaixas === 'ApenasDose')" class="div-flex-1" >
+                <div style="width: 78%">
+                  <label>Correção Porcetagem Clearance de Creatinina (Faixa 3):</label><br>
+                  <mat-form-field class="div-mat-form-field">
+                      <input type="number" matInput formControlName="valor_2_Porcetagem_ClearanceCreatinina" placeholder="40%">
+                      <mat-error *ngIf="formMedicamento.controls.valor_2_Porcetagem_ClearanceCreatinina.invalid && formMedicamento.controls.valor_2_Porcetagem_ClearanceCreatinina.touched">
+                        Esse campo é obrigatório.
+                      </mat-error>
+                  </mat-form-field>
+                </div>
+              </div> 
+              
+              <div *ngIf="isRenal && (isAlteracaoFaixas === 'Ambos' || isAlteracaoFaixas === 'ApenasDose')" class="div-flex-1" >
+                <div style="width: 78%">
+                  <label>Correção Porcetagem Clearance de Creatinina (Faixa 4):</label><br>
+                  <mat-form-field class="div-mat-form-field">
+                      <input type="number" matInput formControlName="valor_3_Porcetagem_ClearanceCreatinina" placeholder="20%">
+                      <mat-error *ngIf="formMedicamento.controls.valor_3_Porcetagem_ClearanceCreatinina.invalid && formMedicamento.controls.valor_3_Porcetagem_ClearanceCreatinina.touched">
+                        Esse campo é obrigatório.
+                      </mat-error>
+                  </mat-form-field>
+                </div>
+              </div> 
+              
                 
-              <div *ngIf="isRenal" class="div-flex-1">
+              <div *ngIf="isRenal && (isAlteracaoFaixas === 'Ambos' || isAlteracaoFaixas === 'ApenasUso')" class="div-flex-1">
                 <div style="width: 78%">
                   <label>Correção de horário ou Uso (Faixa 2):</label><br>
                   <mat-form-field class="div-mat-form-field">
@@ -250,7 +341,7 @@
                 </div>
               </div> 
             
-            <div *ngIf="isRenal" class="div-flex-1">
+            <div *ngIf="isRenal && (isAlteracaoFaixas === 'Ambos' || isAlteracaoFaixas === 'ApenasUso')" class="div-flex-1">
               <div style="width: 78%">
                 <label>Correção de horário ou Uso (Faixa 3):</label><br>
                 <mat-form-field class="div-mat-form-field">
@@ -261,19 +352,19 @@
                 </mat-form-field>
               </div>
             </div>
-          </div>
-
-          <div *ngIf="isRenal" class="div-flex-1">
-            <div>
-              <label>Correção de horário ou Uso(Faixa 4 - hemodialise:)</label><br>
-              <mat-form-field class="div-mat-form-field">
-                  <input type="text" matInput formControlName="faixa_Hemodialise_Horario">
-                  <mat-error *ngIf="formMedicamento.controls.faixa_Hemodialise_Horario.invalid && formMedicamento.controls.faixa_Hemodialise_Horario.touched">
-                    Esse campo é obrigatório.
-                  </mat-error>
-              </mat-form-field>
+            <div *ngIf="isRenal && (isAlteracaoFaixas === 'Ambos' || isAlteracaoFaixas === 'ApenasUso')" class="div-flex-1">
+              <div>
+                <label>Correção de horário ou Uso(Faixa 4)</label><br>
+                <mat-form-field class="div-mat-form-field">
+                    <input type="text" matInput formControlName="faixa_Hemodialise_Horario">
+                    <mat-error *ngIf="formMedicamento.controls.faixa_Hemodialise_Horario.invalid && formMedicamento.controls.faixa_Hemodialise_Horario.touched">
+                      Esse campo é obrigatório.
+                    </mat-error>
+                </mat-form-field>
+              </div>
             </div>
           </div>
+
           
           <mat-action-row>
             <button mat-button color="warn" (click)="prevStep()">Voltar</button>

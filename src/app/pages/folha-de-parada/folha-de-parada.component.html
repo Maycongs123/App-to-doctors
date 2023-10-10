@@ -29,11 +29,11 @@
                     <div class="div-conteudo-medicacao-4" style="line-height: 25px;">
                         <mat-form-field class="matFormCalculadora">
                             <mat-label>Peso(Kg)</mat-label>
-                            <input matInput type="number" [step]="0.01" (input)="calcularDosagens()" [(ngModel)]="peso">
+                            <input matInput type="number" [step]="0.01" (input)="calcularDosagens()" min="0" [(ngModel)]="peso">
                         </mat-form-field>
                         <mat-form-field class="matFormCalculadora">
                             <mat-label>Idade</mat-label>
-                            <input matInput type="number" (input)="calcularIdade()" [(ngModel)]="idade">
+                            <input matInput type="number" (input)="calcularIdade()" min="0" [(ngModel)]="idade">
                         </mat-form-field>
                         <span *ngIf="!peso && idade"><b>→peso corporal previsto é de {{pesoPrevisto}}kg</b></span>
                     </div>                   

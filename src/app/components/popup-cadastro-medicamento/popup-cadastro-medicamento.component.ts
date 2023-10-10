@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 import { MedicamentosService } from 'src/app/services/medicamentos.service';
 
+
 @Component({
   selector: 'app-popup-cadastro-medicamento',
   templateUrl: './popup-cadastro-medicamento.component.html',
@@ -14,10 +15,16 @@ export class PopupCadastroMedicamentoComponent {
   dosagemTipo: boolean = false;
   isRenal: boolean = false;
   isPediatrico: boolean = false;
+  isAlteracaoFaixas: string = '';
   duracao = 8;
   editMode = false;
   step = 0;
 
+  alteracaoValorFaixas = [  
+    {value: "Ambos", viewValue: "Modificar ambos valores"},
+    {value: "ApenasDose", viewValue: "Modificar apenas a dosagem"},
+    {value: "ApenasUso", viewValue: "Modificar apenas o modo de uso"}
+  ]
 
   constructor(
     public dialogRef: MatDialogRef<PopupCadastroMedicamentoComponent>,
@@ -27,8 +34,8 @@ export class PopupCadastroMedicamentoComponent {
     private medicamentosService: MedicamentosService
   ) {}
 
-  ngOnInit(): void {    
-    this.editMode = this.data.editMode;
+  ngOnInit(): void {
+    this.editMode = this.data.editMode;  
     if(this.editMode === true){
       this.buscarMedicamento(this.data.element.id)
     }
@@ -38,10 +45,17 @@ export class PopupCadastroMedicamentoComponent {
     id: 0,
     nome: ['', Validators.required],
     medicamentoUso: ['', Validators.required],
-    calculoRenal: ['', Validators.required],    
+    calculoRenal: ['Não', Validators.required],  
+    alteracaoValorFaixas: ['', Validators.required],
+    dosagemMaxima: [0, Validators.required],
+    variacaoMinimaDosagemMaxima: [0, Validators.required],
+    variacaoMaximaDosagemMaxima: [0, Validators.required],
     valor_1_ClearanceCreatinina: [0, Validators.required],
     valor_2_ClearanceCreatinina: [0, Validators.required],
     valor_3_ClearanceCreatinina: [0, Validators.required],
+    valor_1_Porcetagem_ClearanceCreatinina: [0, Validators.required],
+    valor_2_Porcetagem_ClearanceCreatinina: [0, Validators.required],
+    valor_3_Porcetagem_ClearanceCreatinina: [0, Validators.required],
     faixa_1_HorarioClCr: ['', Validators.required],
     faixa_2_HorarioClCr: ['', Validators.required],
     faixa_Hemodialise_Horario: ['', Validators.required],
@@ -227,12 +241,15 @@ export class PopupCadastroMedicamentoComponent {
 
   formCalculoRenal(event: any){    
     if(event.value === "Sim"){
-
       this.isRenal = true;
     }
     else{
       this.isRenal = false;
     }
+  }
+
+  formAlteracaoValorFaixas(event: any){
+    this.isAlteracaoFaixas = event.value;
   }
 
   openSnackBar() {
@@ -266,9 +283,16 @@ buscarMedicamento(id: any){
       nome: response.nome,
       medicamentoUso: response.medicamentoUso,
       calculoRenal: response.calculoRenal,
+      alteracaoValorFaixas: response.alteracaoValorFaixas,
+      dosagemMaxima: response.dosagemMaxima,
+      variacaoMinimaDosagemMaxima: response.variacaoMinimaDosagemMaxima,
+      variacaoMaximaDosagemMaxima: response.variacaoMaximaDosagemMaxima,
       valor_1_ClearanceCreatinina: response.valor_1_ClearanceCreatinina,
       valor_2_ClearanceCreatinina: response.valor_2_ClearanceCreatinina,
       valor_3_ClearanceCreatinina: response.valor_3_ClearanceCreatinina,
+      valor_1_Porcetagem_ClearanceCreatinina: response.valor_1_Porcetagem_ClearanceCreatinina,
+      valor_2_Porcetagem_ClearanceCreatinina: response.valor_2_Porcetagem_ClearanceCreatinina,
+      valor_3_Porcetagem_ClearanceCreatinina: response.valor_3_Porcetagem_ClearanceCreatinina,
       faixa_1_HorarioClCr: response.faixa_1_HorarioClCr,
       faixa_2_HorarioClCr: response.faixa_2_HorarioClCr,
       faixa_Hemodialise_Horario: response.faixa_Hemodialise_Horario,
