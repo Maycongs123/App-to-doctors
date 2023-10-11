@@ -170,8 +170,8 @@ export class CalculoMedicamentosComponent implements OnInit{
     // }  
     
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
-      const resultado = (this.peso * this.dosagemMgKg* this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses);
-      debugger
+      const resultado = (this.peso * this.dosagemMgKg * this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses);
+      
       this.correcaoMl = resultado;
      
      
@@ -381,7 +381,7 @@ export class CalculoMedicamentosComponent implements OnInit{
 
 
   calculoCorrecao(){     
-    debugger
+    
     if(this.item.alteracaoValorFaixas === "Ambos" || this.item.alteracaoValorFaixas === "ApenasDose") {
       this.porcetagemRediluicao = this.valorCorrecaoMlPediatrico();
     }
@@ -397,7 +397,7 @@ export class CalculoMedicamentosComponent implements OnInit{
 
   
   valorCorrecaoMlPediatrico(){
-    debugger
+    
     let porcetagem;
 
     if(this.clearanceCreatinina >= this.item.valor_3_ClearanceCreatinina){

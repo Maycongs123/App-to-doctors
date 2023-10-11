@@ -169,7 +169,7 @@
                   </mat-form-field>
               </div>      
               <div *ngIf="dosagemTipo && isPediatrico">
-                <label>Dosagem Máxima (mg/kg):</label><br>
+                <label>Concentração Máxima (mg/kg):</label><br>
                 <mat-form-field class="div-mat-form-field">
                     <input type="number" matInput formControlName="dosagemMaxima">
                     <mat-error *ngIf="formMedicamento.controls.dosagemMaxima.invalid && formMedicamento.controls.dosagemMaxima.touched">
@@ -243,8 +243,8 @@
                   <div style="display: flex; justify-content: center; padding-bottom: 0.3rem;">
                     <label>Qual os dados você deseja editar?:</label><br>
                   </div>
-                  <mat-select formControlName="alteracaoValorFaixas" [(ngModel)]="isAlteracaoFaixas">
-                    <mat-option *ngFor="let dados of alteracaoValorFaixas" [value]="dados.value">
+                  <mat-select formControlName="alteracaoValorFaixas">
+                    <mat-option *ngFor="let dados of alteracaoValorFaixas" [value]="dados.value"  [(ngModel)]="isAlteracaoFaixas">
                       {{dados.viewValue}}
                     </mat-option>
                   </mat-select>
@@ -259,8 +259,8 @@
                 <div style="width: 78%">
                   <label>Clearance de Creatinina (Valor 1):</label><br>
                   <mat-form-field class="div-mat-form-field">
-                      <input type="number" matInput formControlName="valor_1_ClearanceCreatinina">
-                      <mat-error *ngIf="formMedicamento.controls.valor_1_ClearanceCreatinina.invalid && formMedicamento.controls.valor_1_ClearanceCreatinina.touched">
+                      <input type="number" matInput formControlName="valor_3_ClearanceCreatinina">
+                      <mat-error *ngIf="formMedicamento.controls.valor_3_ClearanceCreatinina.invalid && formMedicamento.controls.valor_3_ClearanceCreatinina.touched">
                         Esse campo é obrigatório.
                       </mat-error>
                   </mat-form-field>
@@ -283,8 +283,8 @@
                 <div style="width: 78%">
                   <label>Clearance de Creatinina (Valor 3):</label><br>
                   <mat-form-field class="div-mat-form-field">
-                      <input type="number" matInput formControlName="valor_3_ClearanceCreatinina">
-                      <mat-error *ngIf="formMedicamento.controls.valor_3_ClearanceCreatinina.invalid && formMedicamento.controls.valor_3_ClearanceCreatinina.touched">
+                      <input type="number" matInput formControlName="valor_1_ClearanceCreatinina">
+                      <mat-error *ngIf="formMedicamento.controls.valor_1_ClearanceCreatinina.invalid && formMedicamento.controls.valor_1_ClearanceCreatinina.touched">
                         Esse campo é obrigatório.
                       </mat-error>
                   </mat-form-field>

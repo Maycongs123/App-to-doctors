@@ -70,6 +70,7 @@ export class AdministradorComponent {
   }
 
   editarMedicamentoModal(element: any) { 
+    
     const dialogRef = this.dialog.open(PopupCadastroMedicamentoComponent, {
       panelClass: 'custom-dialog-container-cadastro',
       data: { element: element, editMode: true }

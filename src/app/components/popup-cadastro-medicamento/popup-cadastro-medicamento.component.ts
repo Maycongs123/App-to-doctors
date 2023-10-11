@@ -48,14 +48,14 @@ export class PopupCadastroMedicamentoComponent {
     calculoRenal: ['Não', Validators.required],  
     alteracaoValorFaixas: [''],
     dosagemMaxima: [0, Validators.required],
-    variacaoMinimaDosagemMaxima: [0, Validators.required],
-    variacaoMaximaDosagemMaxima: [0, Validators.required],
-    valor_1_ClearanceCreatinina: [0, Validators.required],
-    valor_2_ClearanceCreatinina: [0, Validators.required],
-    valor_3_ClearanceCreatinina: [0, Validators.required],
-    valor_1_Porcetagem_ClearanceCreatinina: [0, Validators.required],
-    valor_2_Porcetagem_ClearanceCreatinina: [0, Validators.required],
-    valor_3_Porcetagem_ClearanceCreatinina: [0, Validators.required],
+    variacaoMinimaDosagemMaxima: [0],
+    variacaoMaximaDosagemMaxima: [0],
+    valor_1_ClearanceCreatinina: [0],
+    valor_2_ClearanceCreatinina: [0],
+    valor_3_ClearanceCreatinina: [0],
+    valor_1_Porcetagem_ClearanceCreatinina: [0],
+    valor_2_Porcetagem_ClearanceCreatinina: [0],
+    valor_3_Porcetagem_ClearanceCreatinina: [0],
     faixa_1_HorarioClCr: [''],
     faixa_2_HorarioClCr: [''],
     faixa_Hemodialise_Horario: [''],
@@ -270,9 +270,10 @@ export class PopupCadastroMedicamentoComponent {
  
 buscarMedicamento(id: any){   
   this.medicamentosService.Get(id).subscribe((response: any) => { 
-    if(response.dosagemTipo === "mg/kg/dia"){
+    if(response.dosagemTipo === "mg/kg/dia" && response.calculoRenal === "Sim"){
 
       this.dosagemTipo = true;
+      this.isRenal = true;
     }
     else{
       this.dosagemTipo = false;
