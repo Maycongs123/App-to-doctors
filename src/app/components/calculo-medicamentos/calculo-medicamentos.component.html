@@ -133,24 +133,24 @@
                         <!-- <span *ngIf="clearanceCreatinina >= item.valor_1_ClearanceCreatinina && clearanceCreatinina < item.valor_2_ClearanceCreatinina" class="ion-text-wrap"> -->
                         <span class="ion-text-wrap">                        
                           <h3>{{'CLCr ' + item.valor_2_ClearanceCreatinina + ' - ' + item.valor_3_ClearanceCreatinina + 'ml/min:'}}</h3>
-                          <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{(correcaoMl * (item.valor_1_Porcetagem_ClearanceCreatinina / 100)) + ' ml - ' + item.faixa_1_HorarioClCr}}</p>
+                          <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{calcularFaixa2() + ' ml - ' + item.faixa_1_HorarioClCr}}</p>
                           <p *ngIf="item.alteracaoValorFaixas === 'ApenasUso'">{{(correcaoMl) + ' ml - ' + item.faixa_1_HorarioClCr}}</p>
-                          <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{(correcaoMl * (item.valor_1_Porcetagem_ClearanceCreatinina / 100)) + ' ml - ' + item.modoDeUso}}</p>
+                          <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{calcularFaixa2() + ' ml - ' + item.modoDeUso}}</p>
                         </span>
 
                         <!-- <span *ngIf="clearanceCreatinina < item.valor_1_ClearanceCreatinina" class="ion-text-wrap">  -->
                         <span class="ion-text-wrap">                        
                           <h3>{{'CLCr ' + item.valor_1_ClearanceCreatinina + ' - ' + item.valor_2_ClearanceCreatinina + 'ml/min:'}}</h3>
-                          <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{(correcaoMl * (item.valor_2_Porcetagem_ClearanceCreatinina / 100)) + ' ml - ' + item.faixa_2_HorarioClCr}}</p>
+                          <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{calcularFaixa3() + ' ml - ' + item.faixa_2_HorarioClCr}}</p>
                           <p *ngIf="item.alteracaoValorFaixas === 'ApenasUso'">{{(correcaoMl) + ' ml - ' + item.faixa_2_HorarioClCr}}</p>
-                          <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{(correcaoMl * (item.valor_2_Porcetagem_ClearanceCreatinina / 100)) + ' ml - ' + item.modoDeUso}}</p>
+                          <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{calcularFaixa3() + ' ml - ' + item.modoDeUso}}</p>
                         </span>
 
                         <span>
                           <h3>{{'CLCr < ' + item.valor_1_ClearanceCreatinina + 'ml/min:'}}</h3>
-                          <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{'Diálise intermitente: Administrar após hemodiálise: ' + (correcaoMl * (item.valor_3_Porcetagem_ClearanceCreatinina / 100)) + ' ml - ' + item.faixa_Hemodialise_Horario}}</p>
+                          <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{'Diálise intermitente: Administrar após hemodiálise: ' + calcularFaixa4() + ' ml - ' + item.faixa_Hemodialise_Horario}}</p>
                           <p *ngIf="item.alteracaoValorFaixas === 'ApenasUso'">{{'Diálise intermitente: Administrar após hemodiálise: ' + (correcaoMl) + ' ml - ' + item.faixa_Hemodialise_Horario}}</p>
-                          <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{'Diálise intermitente: Administrar após hemodiálise: ' + (correcaoMl * (item.valor_3_Porcetagem_ClearanceCreatinina / 100)) + ' ml - ' + item.modoDeUso}}</p>
+                          <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{'Diálise intermitente: Administrar após hemodiálise: ' + calcularFaixa4() + ' ml - ' + item.modoDeUso}}</p>
                         </span>
                     </div>
 
