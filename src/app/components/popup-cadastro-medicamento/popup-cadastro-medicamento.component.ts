@@ -271,7 +271,7 @@ export class PopupCadastroMedicamentoComponent {
 buscarMedicamento(id: any){   
   this.medicamentosService.Get(id).subscribe((response: any) => { 
     if(response.dosagemTipo === "mg/kg/dia" && response.calculoRenal === "Sim"){
-
+      this.isAlteracaoFaixas = response.alteracaoValorFaixas;
       this.dosagemTipo = true;
       this.isRenal = true;
     }

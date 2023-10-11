@@ -243,8 +243,8 @@
                   <div style="display: flex; justify-content: center; padding-bottom: 0.3rem;">
                     <label>Qual os dados você deseja editar?:</label><br>
                   </div>
-                  <mat-select formControlName="alteracaoValorFaixas">
-                    <mat-option *ngFor="let dados of alteracaoValorFaixas" [value]="dados.value"  [(ngModel)]="isAlteracaoFaixas">
+                  <mat-select formControlName="alteracaoValorFaixas" [(ngModel)]="isAlteracaoFaixas">
+                    <mat-option *ngFor="let dados of alteracaoValorFaixas" [value]="dados.value"  >
                       {{dados.viewValue}}
                     </mat-option>
                   </mat-select>
