@@ -178,7 +178,7 @@
                 </mat-form-field>
               </div>
               <div *ngIf="dosagemTipo && isPediatrico">
-                <label>Variação Dosagem Máxima (Menor valor mg/kg):</label><br>
+                <label>Concetração minima da solução(Menor valor mg/kg):</label><br>
                 <mat-form-field class="div-mat-form-field">
                     <input type="number" matInput formControlName="variacaoMinimaDosagemMaxima">
                     <mat-error *ngIf="formMedicamento.controls.variacaoMinimaDosagemMaxima.invalid && formMedicamento.controls.variacaoMinimaDosagemMaxima.touched">
@@ -187,7 +187,7 @@
                 </mat-form-field>
               </div>
               <div *ngIf="dosagemTipo && isPediatrico">
-                <label>Variação Dosagem Máxima (Maior valor mg/kg):</label><br>
+                <label>Concetração máxima da solução (Maior valor mg/kg):</label><br>
                 <mat-form-field class="div-mat-form-field">
                     <input type="number" matInput formControlName="variacaoMaximaDosagemMaxima">
                     <mat-error *ngIf="formMedicamento.controls.variacaoMaximaDosagemMaxima.invalid && formMedicamento.controls.variacaoMaximaDosagemMaxima.touched">

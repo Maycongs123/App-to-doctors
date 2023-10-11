@@ -54,9 +54,11 @@ export class CalculoMedicamentosComponent implements OnInit{
   idadeCalculoRenal: any;
   altura: any;
   correcaoMl: any;
+  rediluicao: any
   correcaoDose: any;
-  rediluicao: any;
+  rediluicaoML: any;
   dosagemMaxima: any;
+  porcetagemRediluicao: any = 1;
   porcetagemFaixa2: any;
   porcetagemFaixa3: any;
   porcetagemFaixa4: any;
@@ -138,15 +140,15 @@ export class CalculoMedicamentosComponent implements OnInit{
     }   
   }
 
-  calculoMgKg(){   
+  calculoMgKg(){ 
     // var pesoLimitado;
-    var quantidadeMgCalculoRenal = 1;
+    // var quantidadeMgCalculoRenal = 1;
 
     this.calculoClearanceCreatininaAdulto();
 
     if(this.atendimento === "Pediatrico" && this.item.calculoRenal === "Sim"){
       this.calculoClearanceCreatininaCrianca();
-      quantidadeMgCalculoRenal = 1000;
+      // quantidadeMgCalculoRenal = 1000;
     }
 
     // if(this.idade <= 10){
@@ -168,9 +170,11 @@ export class CalculoMedicamentosComponent implements OnInit{
     // }  
     
     for (let i = 0; i < this.dadosMedicamentos.length; i++) {
-      const resultado = (this.peso * this.dosagemMgKg* this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses * quantidadeMgCalculoRenal);
-      // this.correcaoMl = resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+      const resultado = (this.peso * this.dosagemMgKg* this.dadosMedicamentos[i].quantidadeMl) / (this.dadosMedicamentos[i].quantidadeMg * this.item.numeroDoses);
+      debugger
       this.correcaoMl = resultado;
+     
+     
       const key = `${i}`;
       this.resultadoMgKg[key] = {
         resultado: resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
@@ -351,7 +355,7 @@ export class CalculoMedicamentosComponent implements OnInit{
     }
   } 
 
-  calculoClearanceCreatininaCrianca(){
+  calculoClearanceCreatininaCrianca(){   
     let constanteK: any;
    
     switch (this.idadeCalculoRenal) {
@@ -378,9 +382,53 @@ export class CalculoMedicamentosComponent implements OnInit{
 
   calculoCorrecao(){     
     debugger
+    if(this.item.alteracaoValorFaixas === "Ambos" || this.item.alteracaoValorFaixas === "ApenasDose") {
+      this.porcetagemRediluicao = this.valorCorrecaoMlPediatrico();
+    }
+
     // this.correcaoMl =  Math.round(parseInt(this.correcaoMl) * 0.9)
-    this.correcaoMl =  (this.correcaoMl * 1000) * 0.9;
-    this.correcaoDose = this.dosagemMgKg * 0.9;
-    this.rediluicao = (((0.9 * this.dosagemMgKg * this.peso) / (this.dosagemMaxima)) - this.correcaoMl).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+    this.correcaoMl =  (this.correcaoMl) * this.porcetagemRediluicao;
+    // this.rediluicaoML = resultado.toLocaleString('pt-BR', { minimumFractionDigits: 2 })
+    // this.correcaoDose = this.dosagemMgKg * 0.9;
+    this.rediluicao = (((this.porcetagemRediluicao * this.dosagemMgKg * this.peso) / (this.dosagemMaxima)) - this.correcaoMl).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+
+    this.rediluicaoML = this.correcaoMl.toLocaleString('pt-BR', { minimumFractionDigits: 2 })
   }
+
+  
+  valorCorrecaoMlPediatrico(){
+    debugger
+    let porcetagem;
+
+    if(this.clearanceCreatinina >= this.item.valor_3_ClearanceCreatinina){
+      porcetagem = 1;
+    }
+    if(this.clearanceCreatinina >= this.item.valor_2_ClearanceCreatinina && this.clearanceCreatinina < this.item.valor_3_ClearanceCreatinina){
+      porcetagem = this.item.valor_2_Porcetagem_ClearanceCreatinina  / 100;
+    }
+    if(this.clearanceCreatinina >= this.item.valor_1_ClearanceCreatinina && this.clearanceCreatinina < this.item.valor_2_ClearanceCreatinina){
+      porcetagem = this.item.valor_1_Porcetagem_ClearanceCreatinina / 100;
+    }
+    if(this.clearanceCreatinina < this.item.clearanceCreatininaItem1){
+      porcetagem = this.item.valor_3_Porcetagem_ClearanceCreatinina / 100;
+    }
+
+    return porcetagem;
+  }
+
+
+  calcularFaixa2(){
+   let valorFaixa2 = (this.correcaoMl * (this.item.valor_1_Porcetagem_ClearanceCreatinina / 100)).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+   return valorFaixa2;
+  }
+
+  calcularFaixa3(){
+    let valorFaixa3 = (this.correcaoMl * (this.item.valor_2_Porcetagem_ClearanceCreatinina / 100)).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+    return valorFaixa3;
+   }
+
+  calcularFaixa4(){
+    let valorFaixa4 = (this.correcaoMl * (this.item.valor_3_Porcetagem_ClearanceCreatinina / 100)).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+    return valorFaixa4;
+   }
 }
