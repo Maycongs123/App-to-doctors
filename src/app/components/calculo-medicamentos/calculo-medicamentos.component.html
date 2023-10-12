@@ -183,8 +183,6 @@
                         <p *ngIf="item.alteracaoValorFaixas === 'ApenasDose'">{{calcularFaixa3() + ' ml - ' + item.modoDeUso}}</p>                                          
                       </span>
 
-
-
                       <span>
                         <h3>{{'CLCr < ' + item.valor_1_ClearanceCreatinina + 'ml/min:'}}</h3>                        
                         <p *ngIf="item.alteracaoValorFaixas === 'Ambos'">{{'Para crianças pesando menos de 50 kg, submetidas à hemodiálise, a dose recomendada é de ' + calcularFaixa4() + ' ml - '+  item.faixa_Hemodialise_Horario}}</p>

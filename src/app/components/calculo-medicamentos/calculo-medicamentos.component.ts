@@ -59,10 +59,7 @@ export class CalculoMedicamentosComponent implements OnInit{
   rediluicaoML: any;
   dosagemMaxima: any;
   porcetagemRediluicao: any = 1;
-  porcetagemFaixa2: any;
-  porcetagemFaixa3: any;
-  porcetagemFaixa4: any;
-
+ 
   constructor(
     private elementRef: ElementRef,    
     private renderer: Renderer2,
