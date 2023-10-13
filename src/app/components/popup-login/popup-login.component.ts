@@ -17,8 +17,8 @@ export class PopupLoginComponent {
   ) {}
 
   formLogin = this.formBuilder.group({
-    email: ['', Validators.required],
-    password: ['', Validators.required]
+    email: ['usuarioteste@gmail.com', Validators.required],
+    password: ['123456', Validators.required]
   });
 
   submit() {    

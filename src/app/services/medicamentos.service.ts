@@ -13,7 +13,7 @@ import { Medicamento } from '../model/medicamento';
 })
 export class MedicamentosService {
 
-REST_API: string = 'https://doctor-api.azurewebsites.net/api';
+REST_API: string = 'https://maycon-dev.azurewebsites.net/api';
 // REST_API: string = 'https://doctors-api.azurewebsites.net/api';
 // REST_API: string = 'https://localhost:7044/api';
 

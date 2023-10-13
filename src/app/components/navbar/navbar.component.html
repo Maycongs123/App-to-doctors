@@ -23,7 +23,7 @@
                         <span class="span-toolbar">Página Inicial</span>
                     </button> 
                     <button mat-button (click)="adm()">
-                        <span *ngIf="loginLogout" class="span-toolbar">Menu Adiministrativo</span>
+                        <span *ngIf="loginLogout" class="span-toolbar">Menu Administrativo</span>
                     </button>                      
                     <button *ngIf="!loginLogout" mat-button (click)="openDialogLogin()">
                         <span class="span-toolbar">Login</span>
@@ -42,7 +42,7 @@
                 <span class="span-toolbar">Página Inicial</span>
             </button>     
             <button *ngIf="loginLogout" mat-button (click)="adm()">
-                <span class="span-toolbar">Menu Adiministrativo</span>
+                <span class="span-toolbar">Menu Administrativo</span>
             </button>        
             <button *ngIf="!loginLogout" mat-button (click)="openDialogLogin()">
                 <span class="span-toolbar">Login</span>
